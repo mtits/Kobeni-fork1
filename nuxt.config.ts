@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Kobeni | Pull Yourself Together!',
+      htmlAttrs: {
+        'data-theme': 'dark',
+      },
     },
   },
 
@@ -12,6 +15,7 @@ export default defineNuxtConfig({
       linkActiveClass: 'active',
     },
   },
+
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
