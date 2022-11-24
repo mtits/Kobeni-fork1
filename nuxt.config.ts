@@ -5,6 +5,13 @@ export default defineNuxtConfig({
       title: 'Kobeni | Pull Yourself Together!',
     },
   },
+
+  router: {
+    // https://router.vuejs.org/api/interfaces/routeroptions.html
+    options: {
+      linkActiveClass: 'active',
+    },
+  },
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {

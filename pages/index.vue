@@ -1,5 +1,5 @@
 <template>
-  <div class="prose">
-    <h1>Index Here</h1>
+  <div>
+    <PageTitle title="Kobeni"> Welcome to the internet. </PageTitle>
   </div>
 </template>

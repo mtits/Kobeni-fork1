@@ -52,9 +52,10 @@
 
 <template>
   <div>
-    <div class="prose mb-8">
-      <h1 class="text-sky-400">OPP Result Codes</h1>
-    </div>
+    <PageTitle title="OPP Result Codes">
+      The result codes are part of the response body's JSON (field result)
+      containing a code and a description explaining the code.
+    </PageTitle>
 
     <Transition>
       <div class="pb-8" v-if="result.data">
