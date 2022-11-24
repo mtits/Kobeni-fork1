@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="ml-5">
     <!-- main div for drawer -->
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col items-center">
         <!-- Page content here -->
-        <div class="container mx-auto p-9">
+        <div class="container mx-auto p-10">
           <NuxtPage />
         </div>
       </div>
@@ -15,7 +15,7 @@
           <!-- Sidebar content here -->
           <div class="mb-4">
             <article class="prose mb-1">
-              <h3>Kobeni</h3>
+              <h3 class="text-sky-400">Kobeni</h3>
             </article>
 
             <!-- items -->
@@ -24,7 +24,7 @@
 
           <div class="mb-4">
             <article class="prose mb-1">
-              <h3>PAY.ON Stuffs</h3>
+              <h3 class="text-sky-400">PAY.ON Stuffs</h3>
             </article>
             <!-- items -->
             <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>

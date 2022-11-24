@@ -17,3 +17,12 @@ export const arrayToFormatter = (arrayMain, separator) => {
 
   return containerString
 }
+
+/**
+ * Formats textarea string to URL data param string
+ * @param {String} textAreaString
+ * @returns String
+ */
+export const textAreaToURLParams = (textAreaString) => {
+  return textAreaString.replace(/\n/g, '&')
+}

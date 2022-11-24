@@ -10,6 +10,10 @@
     <Input label="Access Token" type="password" v-model="accessToken" />
 
     <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+
+    <div class="mt-3">
+      <button class="btn btn-primary" @click="submit">Submit</button>
+    </div>
   </div>
 </template>
 
@@ -35,7 +39,29 @@
     'customer.surname=Wick',
   ])
 
+  const responseData = ref('')
+
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
   })
+
+  async function submit() {
+    try {
+      const rawResponse = await fetch('./api/copyandpay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          endPoint: endPoint.value,
+          accessToken: accessToken.value,
+          dataParameters: textAreaToURLParams(dataParameters.value),
+        }),
+      })
+
+      responseData.value = await rawResponse.json()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 </script>
