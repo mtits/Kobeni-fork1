@@ -1,3 +1,40 @@
+<template>
+  <div>
+    <PageTitle title="OPP Result Codes">
+      The result codes are part of the response body's JSON (field result)
+      containing a code and a description explaining the code.
+    </PageTitle>
+
+    <Transition>
+      <div class="pb-8" v-if="result.data">
+        <button class="btn btn-primary" @click="exportCSV">
+          Export to CSV
+        </button>
+      </div>
+    </Transition>
+
+    <Transition>
+      <div class="overflow-x-auto" v-if="result.data">
+        <table class="table table-zebra w-full">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th class="text-sky-400 text-lg">Code</th>
+              <th class="text-sky-400 text-lg">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="result in result.data.resultCodes" class="hover">
+              <td class="font-mono">{{ result.code }}</td>
+              <td>{{ result.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </Transition>
+  </div>
+</template>
+
 <script setup>
   import { reactive, onMounted } from 'vue'
   import csvDownload from 'json-to-csv-export'
@@ -49,40 +86,3 @@
     }
   }
 </script>
-
-<template>
-  <div>
-    <PageTitle title="OPP Result Codes">
-      The result codes are part of the response body's JSON (field result)
-      containing a code and a description explaining the code.
-    </PageTitle>
-
-    <Transition>
-      <div class="pb-8" v-if="result.data">
-        <button class="btn btn-primary" @click="exportCSV">
-          Export to CSV
-        </button>
-      </div>
-    </Transition>
-
-    <Transition>
-      <div class="overflow-x-auto" v-if="result.data">
-        <table class="table table-zebra w-full">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th class="text-sky-400 text-lg">Code</th>
-              <th class="text-sky-400 text-lg">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="result in result.data.resultCodes" class="hover">
-              <td class="font-mono">{{ result.code }}</td>
-              <td>{{ result.description }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </Transition>
-  </div>
-</template>
