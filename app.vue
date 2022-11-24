@@ -8,6 +8,7 @@
         <div class="container mx-auto p-10">
           <NuxtPage />
         </div>
+        <Footer />
       </div>
       <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
