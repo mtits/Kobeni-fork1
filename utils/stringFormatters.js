@@ -26,3 +26,19 @@ export const arrayToFormatter = (arrayMain, separator) => {
 export const textAreaToURLParams = (textAreaString) => {
   return textAreaString.replace(/\n/g, '&')
 }
+
+/**
+ * Appends the checkout ID to the clipboard
+ * @param {String} checkoutID
+ */
+export const copyCheckoutID = (checkoutID) => {
+  navigator.clipboard.writeText(checkoutID)
+}
+
+/**
+ * Appends an entire stringified JSON response object to the clipboard
+ * @param {Object} jsonResponse
+ */
+export const copyEntireResponse = (jsonResponse) => {
+  navigator.clipboard.writeText(JSON.stringify(jsonResponse))
+}

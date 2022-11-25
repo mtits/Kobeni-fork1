@@ -38,25 +38,38 @@
               :data="responseData"></Textareadisplayonly>
 
             <div class="btn-group mt-3 place-items-center">
-              <button class="btn">Copy Response</button>
+              <button class="btn" @click="copyEntireResponse(responseData)">
+                Copy Response
+              </button>
 
-              <button class="btn" v-if="responseData.id">
+              <button
+                class="btn"
+                v-if="responseData.id"
+                @click="copyCheckoutID(responseData.id)">
                 Copy Checkout ID
               </button>
 
-              <button class="btn btn-primary" v-if="responseData.id">
-                Launch Widget
-              </button>
+              <label
+                for="cnp-modal"
+                class="btn btn-primary"
+                v-if="responseData.id"
+                >Launch Widget</label
+              >
             </div>
           </div>
         </Transition>
       </div>
     </div>
+
+    <modal modalId="cnp-modal" title="CopyandPay Widget">
+      Checkout ID: {{ responseData.id }}
+    </modal>
   </div>
 </template>
 
 <script setup>
   import { ref, onMounted } from 'vue'
+  import axios from 'axios'
 
   const endPoint = ref('https://eu-test.oppwa.com/v1/checkouts')
   const endPoints = ref([
@@ -100,19 +113,17 @@
     try {
       responseData.value = ''
 
-      const rawResponse = await fetch('./api/copyandpay', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const response = await axios({
+        method: 'post',
+        url: './api/copyandpay',
+        data: {
           endPoint: endPoint.value,
           accessToken: accessToken.value,
           dataParameters: textAreaToURLParams(dataParameters.value),
-        }),
+        },
       })
 
-      responseData.value = await rawResponse.json()
+      responseData.value = response.data
     } catch (error) {
       console.error(error)
     }
