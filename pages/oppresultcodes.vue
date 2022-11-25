@@ -42,6 +42,10 @@
   import csvDownload from 'json-to-csv-export'
   import axios from 'axios'
 
+  useHead({
+    title: 'Kobeni | Result Codes',
+  })
+
   // the one variable to rule them all
   const result = reactive({
     url: 'https://eu-test.oppwa.com/v1/resultcodes',
@@ -56,7 +60,6 @@
     result.error = false
     try {
       showLoading.value = true
-      // fetch!
       const response = await axios.get(result.url)
       result.data = response.data
     } catch (error) {

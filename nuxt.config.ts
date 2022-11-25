@@ -6,6 +6,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         'data-theme': 'dark',
       },
+      link: [{ rel: 'icon', href: '/favicon.png' }],
     },
   },
 

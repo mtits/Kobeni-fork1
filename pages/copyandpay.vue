@@ -58,6 +58,7 @@
                 for="cnp-modal"
                 class="btn btn-primary"
                 v-if="responseData.id"
+                @click="createScriptTag"
                 >Launch Widget</label
               >
             </div>
@@ -66,8 +67,10 @@
       </div>
     </div>
 
-    <modal modalId="cnp-modal" title="CopyandPay Widget">
-      Checkout ID: {{ responseData.id }}
+    <modal modalId="cnp-modal" title="CopyandPay Widget" v-if="responseData.id">
+      Checkout ID: {{ checkoutId }}
+      <Cnpform
+        shopper-result-url="https://docs.oppwa.com/tutorials/integration-guide" />
     </modal>
   </div>
 </template>
@@ -75,6 +78,10 @@
 <script setup>
   import { ref, onMounted } from 'vue'
   import axios from 'axios'
+
+  useHead({
+    title: 'Kobeni | CopyandPay',
+  })
 
   const endPoint = ref('https://eu-test.oppwa.com/v1/checkouts')
   const endPoints = ref([
@@ -87,8 +94,9 @@
       value: 'https://eu-prod.oppwa.com/v1/checkouts',
     },
   ])
-  const accessToken = ref(
-    'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
+  const accessToken = useState(
+    'accessToken',
+    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
   )
   const dataParameters = ref('')
   const defaultParameters = ref([
@@ -106,6 +114,7 @@
   ])
 
   const responseData = ref('')
+  const checkoutId = useState('checkoutId')
 
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
@@ -131,10 +140,43 @@
       })
 
       responseData.value = response.data
+
+      if (responseData.value.id) {
+        checkoutId.value = responseData.value.id
+      }
     } catch (error) {
       console.error(error)
     } finally {
       showLoading.value = false
     }
+  }
+
+  /**
+   * create the script tag and append to the document to display the widgy
+   */
+  function createScriptTag() {
+    // check if existing widgetScript element exists in the HTML head and remove it
+    if (document.head.contains(document.getElementById('widget-script-tag'))) {
+      console.info('widget-script-tag element exists, removing now.')
+      document.head.removeChild(document.getElementById('widget-script-tag'))
+    }
+
+    // create the new script tag and append to head
+    const widgetScript = document.createElement('script')
+    widgetScript.id = 'widget-script-tag'
+
+    let subDomain = ''
+
+    // eval env mode
+    if (endPoint.value == 'https://eu-test.oppwa.com/v1/checkouts') {
+      subDomain = 'eu-test'
+    } else {
+      subDomain = 'eu-prod'
+    }
+
+    widgetScript.src = `https://${subDomain}.oppwa.com/v1/paymentWidgets.js?checkoutId=${responseData.value.id}`
+
+    // append to head
+    document.querySelector('head').append(widgetScript)
   }
 </script>
