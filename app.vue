@@ -1,8 +1,10 @@
 <template>
-  <div class="ml-5">
+  <div>
     <!-- main div for drawer -->
     <div class="drawer drawer-mobile">
-      <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+      <input id="app-drawer" type="checkbox" class="drawer-toggle" />
+
+      <!-- pages container -->
       <div class="drawer-content flex flex-col items-center">
         <!-- Page content here -->
         <div class="container mx-auto p-10">
@@ -10,9 +12,11 @@
         </div>
         <Footer />
       </div>
+
+      <!-- drawer items -->
       <div class="drawer-side">
-        <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+        <label for="app-drawer" class="drawer-overlay"></label>
+        <ul class="menu p-4 w-80 bg-base-200 text-base-content">
           <!-- Sidebar content here -->
           <div class="mb-4">
             <article class="prose mb-1">
@@ -31,6 +35,9 @@
             <!-- items -->
             <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
             <li><NuxtLink to="/oppresultcodes">OPP Result Codes</NuxtLink></li>
+            <li>
+              <NuxtLink to="/config-payon">Config</NuxtLink>
+            </li>
           </div>
         </ul>
       </div>
@@ -49,3 +56,19 @@
     filter: blur(1rem);
   }
 </style>
+
+<script setup>
+  // payon params
+  const accessToken = useState(
+    'accessToken',
+    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
+  )
+
+  const entityId = useState(
+    'entityId',
+    () => '8a8294174b7ecb28014b9699220015ca'
+  )
+
+  const autoLaunchWidget = useState('autoLaunchWidget', () => true)
+  const cnpModal = useState('cnpModal', () => false)
+</script>

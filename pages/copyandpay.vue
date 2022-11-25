@@ -17,8 +17,6 @@
       </select>
     </div>
 
-    <Input label="Access Token" type="password" v-model="accessToken" />
-
     <div class="flex w-full mt-3">
       <!-- left -->
       <div class="grid flex-grow">
@@ -62,13 +60,18 @@
                 >Launch Widget</label
               >
             </div>
+
+            Autolaunch: {{ autoLaunchWidget }}
           </div>
         </Transition>
       </div>
     </div>
 
     <!-- cnp modal here -->
-    <modal modalId="cnp-modal" title="CopyandPay Widget" v-if="responseData.id">
+    <modal
+      title="CopyandPay Widget"
+      :isModalOpen="cnpModal"
+      v-if="responseData.id">
       <Cnpform
         shopper-result-url="https://docs.oppwa.com/tutorials/integration-guide" />
     </modal>
@@ -94,10 +97,7 @@
       value: 'https://eu-prod.oppwa.com/v1/checkouts',
     },
   ])
-  const accessToken = useState(
-    'accessToken',
-    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
-  )
+  const accessToken = useState('accessToken')
   const dataParameters = ref('')
   const defaultParameters = ref([
     'entityId=8a8294174b7ecb28014b9699220015ca',
@@ -115,6 +115,8 @@
 
   const responseData = ref('')
   const checkoutId = useState('checkoutId')
+  const autoLaunchWidget = useState('autoLaunchWidget')
+  const cnpModal = useState('cnpModal')
 
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
@@ -141,8 +143,15 @@
 
       responseData.value = response.data
 
+      // save states
       if (responseData.value.id) {
         checkoutId.value = responseData.value.id
+      }
+
+      // open the modal and call the form
+      if (autoLaunchWidget.value) {
+        cnpModal.value = true
+        createScriptTag()
       }
     } catch (error) {
       console.error(error)
@@ -155,6 +164,9 @@
    * create the script tag and append to the document to display the widgy
    */
   function createScriptTag() {
+    // open the modal first
+    cnpModal.value = true
+
     // check if existing widgetScript element exists in the HTML head and remove it
     if (document.head.contains(document.getElementById('widget-script-tag'))) {
       console.info('widget-script-tag element exists, removing now.')

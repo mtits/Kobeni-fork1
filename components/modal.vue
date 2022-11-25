@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input type="checkbox" :id="modalId" class="modal-toggle" />
-    <div class="modal">
+    <input type="checkbox" class="modal-toggle" />
+    <div class="modal" :class="{ 'modal-open': cnpModal }">
       <div class="modal-box">
         <h3 class="font-bold text-sky-400 text-lg" v-if="title">{{ title }}</h3>
         <p class="py-3">
@@ -10,7 +10,7 @@
 
         <!-- button to close -->
         <div class="modal-action">
-          <label :for="modalId" class="btn">Close</label>
+          <label class="btn" @click="cnpModal = false">Close</label>
         </div>
       </div>
     </div>
@@ -18,12 +18,9 @@
 </template>
 
 <script setup>
-  defineProps({
-    modalId: {
-      type: String,
-      required: true,
-    },
+  const cnpModal = useState('cnpModal')
 
+  defineProps({
     title: {
       type: String,
     },

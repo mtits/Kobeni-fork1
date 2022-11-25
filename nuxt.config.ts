@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Kobeni | Pull Yourself Together!',
+      title: 'Kobeni | Pull Yoself Togedah!',
       htmlAttrs: {
         'data-theme': 'dark',
       },
