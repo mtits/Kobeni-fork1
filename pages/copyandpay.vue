@@ -60,8 +60,6 @@
                 >Launch Widget</label
               >
             </div>
-
-            Autolaunch: {{ autoLaunchWidget }}
           </div>
         </Transition>
       </div>
@@ -117,6 +115,7 @@
   const checkoutId = useState('checkoutId')
   const autoLaunchWidget = useState('autoLaunchWidget')
   const cnpModal = useState('cnpModal')
+  const widgetStyle = useState('widgetStyle')
 
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
@@ -127,6 +126,8 @@
    * submit to the API!
    */
   async function submit() {
+    wpwlOptions.style = widgetStyle.value
+
     try {
       showLoading.value = true
       responseData.value = ''
