@@ -3,13 +3,12 @@
     <!-- main div for drawer -->
     <div class="drawer drawer-mobile">
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
-
-      <!-- pages container -->
       <div class="drawer-content flex flex-col items-center">
         <!-- Page content here -->
         <div class="container mx-auto p-10">
           <NuxtPage />
         </div>
+
         <Footer />
       </div>
 
@@ -18,27 +17,38 @@
         <label for="app-drawer" class="drawer-overlay"></label>
         <ul class="menu p-4 w-80 bg-base-200 text-base-content">
           <!-- Sidebar content here -->
-          <div class="mb-4">
-            <article class="prose mb-1">
+
+          <!-- APP MENUS -->
+          <li class="menu-title">
+            <div class="prose">
               <h3 class="text-sky-400">Kobeni</h3>
-            </article>
+            </div>
+          </li>
+          <li><NuxtLink to="/">Home</NuxtLink></li>
+          <li></li>
 
-            <!-- items -->
-            <li><NuxtLink to="/">Home</NuxtLink></li>
-          </div>
-
-          <div class="mb-4">
-            <article class="prose mb-1">
+          <!-- PAYON MENUS -->
+          <li class="menu-title">
+            <div class="prose">
               <h3 class="text-sky-400">PAY.ON Stuffs</h3>
-            </article>
+            </div>
+          </li>
+          <li>
+            <NuxtLink to="/config-payon">Setup</NuxtLink>
+          </li>
+          <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
+          <li><a>Server-to-Server</a></li>
+          <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
+          <li></li>
 
-            <!-- items -->
-            <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
-            <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
-            <li>
-              <NuxtLink to="/config-payon">Config</NuxtLink>
-            </li>
-          </div>
+          <!-- PZ MENUS -->
+          <li class="menu-title">
+            <div class="prose">
+              <h3 class="text-sky-400">Paymentz Stuffs</h3>
+            </div>
+          </li>
+          <li><a>Standard Checkout</a></li>
+          <li><a>REST API</a></li>
         </ul>
       </div>
     </div>

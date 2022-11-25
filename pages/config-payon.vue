@@ -27,8 +27,8 @@
     <div class="form-control w-96">
       <label class="label cursor-pointer">
         <span class="label-text"
-          >Set Widget to "card" style (This might cause visibility
-          issues).</span
+          >Set Widget to "card" style (This might cause visibility issues due to
+          this app's theme).</span
         >
         <input
           type="checkbox"

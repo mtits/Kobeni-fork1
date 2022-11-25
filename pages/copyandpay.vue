@@ -17,8 +17,8 @@
       </select>
     </div>
 
-    <div class="flex w-full mt-3">
-      <!-- left -->
+    <div class="flex flex-col w-full">
+      <!-- top -->
       <div class="grid flex-grow">
         <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
@@ -28,10 +28,10 @@
         </div>
       </div>
 
-      <div class="divider divider-horizontal mt-3" v-if="responseData"></div>
+      <div class="divider" v-if="responseData"></div>
 
-      <!-- right -->
-      <div class="grid flex-grow">
+      <!-- botton -->
+      <div class="grid flex-grow" v-if="responseData">
         <Loading :showLoading="showLoading" />
 
         <Transition>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageTitle title="OPP Result Codes">
+    <PageTitle title="Result Codes">
       The result codes are part of the response body's JSON (field result)
       containing a code and a description explaining the code.
     </PageTitle>
