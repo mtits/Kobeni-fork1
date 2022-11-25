@@ -32,20 +32,10 @@
         </table>
       </div>
     </Transition>
+
+    <Loading :showLoading="showLoading" />
   </div>
 </template>
-
-<style>
-  .v-enter-active,
-  .v-leave-active {
-    transition: opacity 0.5s ease;
-  }
-
-  .v-enter-from,
-  .v-leave-to {
-    opacity: 0;
-  }
-</style>
 
 <script setup>
   import { reactive, onMounted } from 'vue'
@@ -59,11 +49,14 @@
     data: '',
     error: false,
   })
+
+  let showLoading = ref(false)
   // fetch the list from oppwa's API
   async function fetchList() {
     // reset state
     result.error = false
     try {
+      showLoading.value = true
       // fetch!
       const rawResults = await fetch(result.url, {
         method: 'GET',
@@ -74,6 +67,8 @@
       // update state to display error notif, also display to console
       result.error = true
       console.error('Uh oh, stinky...', error)
+    } finally {
+      showLoading.value = false
     }
   }
   // on app component mounted, run the function

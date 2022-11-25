@@ -5,6 +5,7 @@
       secure and simple-to-integrate.
     </PageTitle>
 
+    <!-- select endpoint -->
     <div class="form-control w-full mt-3">
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Endpoint</span>
@@ -22,6 +23,8 @@
       <!-- left -->
       <div class="grid flex-grow">
         <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+
+        <!-- submit btn -->
         <div class="mt-3">
           <button class="btn btn-primary" @click="submit">Submit</button>
         </div>
@@ -31,6 +34,8 @@
 
       <!-- right -->
       <div class="grid flex-grow">
+        <Loading :showLoading="showLoading" />
+
         <Transition>
           <div v-if="responseData">
             <Textareadisplayonly
@@ -106,11 +111,13 @@
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
   })
 
+  let showLoading = ref(false)
   /**
    * submit to the API!
    */
   async function submit() {
     try {
+      showLoading.value = true
       responseData.value = ''
 
       const response = await axios({
@@ -126,6 +133,8 @@
       responseData.value = response.data
     } catch (error) {
       console.error(error)
+    } finally {
+      showLoading.value = false
     }
   }
 </script>
