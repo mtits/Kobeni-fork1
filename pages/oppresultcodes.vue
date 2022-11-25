@@ -40,8 +40,7 @@
 <script setup>
   import { reactive, onMounted } from 'vue'
   import csvDownload from 'json-to-csv-export'
-
-  definePageMeta({ title: 'Kobeni | OPP Result Codes' })
+  import axios from 'axios'
 
   // the one variable to rule them all
   const result = reactive({
@@ -58,11 +57,8 @@
     try {
       showLoading.value = true
       // fetch!
-      const rawResults = await fetch(result.url, {
-        method: 'GET',
-      })
-      // parse
-      result.data = await rawResults.json()
+      const response = await axios.get(result.url)
+      result.data = response.data
     } catch (error) {
       // update state to display error notif, also display to console
       result.error = true
