@@ -67,8 +67,8 @@
       </div>
     </div>
 
+    <!-- cnp modal here -->
     <modal modalId="cnp-modal" title="CopyandPay Widget" v-if="responseData.id">
-      Checkout ID: {{ checkoutId }}
       <Cnpform
         shopper-result-url="https://docs.oppwa.com/tutorials/integration-guide" />
     </modal>

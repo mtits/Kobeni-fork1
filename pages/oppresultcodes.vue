@@ -32,15 +32,12 @@
         </table>
       </div>
     </Transition>
-
-    <Loading :showLoading="showLoading" />
   </div>
 </template>
 
 <script setup>
-  import { reactive, onMounted } from 'vue'
+  import { reactive } from 'vue'
   import csvDownload from 'json-to-csv-export'
-  import axios from 'axios'
 
   useHead({
     title: 'Kobeni | Result Codes',
@@ -50,30 +47,11 @@
   const result = reactive({
     url: 'https://eu-test.oppwa.com/v1/resultcodes',
     data: '',
-    error: false,
   })
 
-  let showLoading = ref(false)
-  // fetch the list from oppwa's API
-  async function fetchList() {
-    // reset state
-    result.error = false
-    try {
-      showLoading.value = true
-      const response = await axios.get(result.url)
-      result.data = response.data
-    } catch (error) {
-      // update state to display error notif, also display to console
-      result.error = true
-      console.error('Uh oh, stinky...', error)
-    } finally {
-      showLoading.value = false
-    }
-  }
-  // on app component mounted, run the function
-  onMounted(() => {
-    fetchList()
-  })
+  // fetch from ACI docs
+  const { data } = await useFetch(result.url)
+  result.data = data.value
   /**
    * parse JSON into CSV and download to client
    */
