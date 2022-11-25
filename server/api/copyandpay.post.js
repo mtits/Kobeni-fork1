@@ -3,12 +3,6 @@ import axios from 'axios'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  console.log({
-    requestEndpoint: body.endPoint,
-    accessToken: body.accessToken,
-    data: body.dataParameters,
-  })
-
   try {
     const response = await axios({
       method: 'post',
@@ -20,13 +14,28 @@ export default defineEventHandler(async (event) => {
     })
 
     // log to server before returning
-    console.log(response.data)
+    console.log({
+      requestData: {
+        requestEndpoint: body.endPoint,
+        accessToken: body.accessToken,
+        data: body.dataParameters,
+      },
+      responseData: response.data,
+    })
+
     return response.data
 
     // error
   } catch (error) {
     // log to server before returning
-    console.log(error.response.data)
+    console.log({
+      requestData: {
+        requestEndpoint: body.endPoint,
+        accessToken: body.accessToken,
+        data: body.dataParameters,
+      },
+      responseErrorData: error.response.data,
+    })
     return error.response.data
   }
 })
