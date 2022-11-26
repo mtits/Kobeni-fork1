@@ -24,17 +24,20 @@
 
         <!-- submit btn -->
         <div class="mt-3">
-          <button class="btn btn-primary" @click="submit">Submit</button>
+          <button
+            class="btn btn-primary"
+            :class="{ loading: showLoading }"
+            @click="submit">
+            Submit
+          </button>
         </div>
       </div>
 
-      <div class="divider" v-if="responseData"></div>
+      <!-- <div class="divider" v-if="responseData"></div> -->
 
       <!-- botton -->
-      <div class="grid flex-grow" v-if="responseData">
-        <Loading :showLoading="showLoading" />
-
-        <Transition>
+      <Transition mode="out-in">
+        <div class="grid flex-grow" v-if="responseData">
           <div v-if="responseData">
             <Textareadisplayonly
               label="Response Data"
@@ -61,8 +64,8 @@
               >
             </div>
           </div>
-        </Transition>
-      </div>
+        </div>
+      </Transition>
     </div>
 
     <!-- cnp modal here -->
@@ -70,8 +73,7 @@
       title="CopyandPay Widget"
       :isModalOpen="cnpModal"
       v-if="responseData.id">
-      <Cnpform
-        shopper-result-url="https://docs.oppwa.com/tutorials/integration-guide" />
+      <Cnpform :shopper-result-url="shopperResultURLPayon" />
     </modal>
   </div>
 </template>
@@ -116,12 +118,13 @@
   const autoLaunchWidget = useState('autoLaunchWidget')
   const cnpModal = useState('cnpModal')
   const widgetStyle = useState('widgetStyle')
+  const shopperResultURLPayon = useState('shopperResultUrlPayon')
 
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
   })
 
-  let showLoading = ref(false)
+  const showLoading = ref(false)
   /**
    * submit to the API!
    */

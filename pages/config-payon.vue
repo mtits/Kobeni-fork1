@@ -1,10 +1,15 @@
 <template>
   <div>
-    <PageTitle title="Configure a Merchant"></PageTitle>
-    <p>Input your BIP credentials here.</p>
+    <PageTitle title="Configure a Merchant">
+      Input your BIP credentials. Set up the widget behaviour.
+    </PageTitle>
 
     <Input label="Access Token" type="password" v-model="accessToken" />
     <Input label="Entiry ID" type="text" v-model="entityId" />
+    <Input
+      label="Shopper Result URL"
+      type="text"
+      v-model="shopperResultURLPayon" />
 
     <PageTitle title="Widget Behaviour" class="mt-10"></PageTitle>
 
@@ -42,10 +47,16 @@
 </template>
 
 <script setup>
+  useHead({
+    title: 'Kobeni | Config for PAY.ON',
+  })
+
   const widgetStyle = useState('widgetStyle')
 
   // the data below are all initialized @ app.vue
   const accessToken = useState('accessToken')
   const entityId = useState('entityId')
   const autoLaunchWidget = useState('autoLaunchWidget')
+
+  const shopperResultURLPayon = useState('shopperResultUrlPayon')
 </script>

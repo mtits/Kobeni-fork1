@@ -5,7 +5,7 @@
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col items-center">
         <!-- Page content here -->
-        <div class="container mx-auto p-10">
+        <div class="container mx-auto p-5">
           <NuxtPage />
         </div>
 
@@ -21,10 +21,12 @@
           <!-- APP MENUS -->
           <li class="menu-title">
             <div class="prose">
-              <h3 class="text-sky-400">Kobeni</h3>
+              <h3 class="text-sky-400">KOBENI - Keep Trying</h3>
             </div>
           </li>
           <li><NuxtLink to="/">Home</NuxtLink></li>
+          <li><NuxtLink to="/tomorrow">Tomorrow</NuxtLink></li>
+
           <li></li>
 
           <!-- PAYON MENUS -->
@@ -56,6 +58,7 @@
 </template>
 
 <style>
+  /* page transition */
   .page-enter-active,
   .page-leave-active {
     transition: all 0.4s;
@@ -64,6 +67,17 @@
   .page-leave-to {
     opacity: 0;
     filter: blur(1rem);
+  }
+
+  /* component transitions */
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
   }
 </style>
 
@@ -75,19 +89,25 @@
     const wpwlOptions = document.createElement('script')
     wpwlOptions.src = '/external.js'
 
+    // result URL
+    useState('shopperResultUrlPayon', () => {
+      const currentURL = new URL(window.location.href)
+      return `${currentURL.origin}/shopperresulturl-payon`
+    })
+
     // append to head
     document.querySelector('head').append(wpwlOptions)
+
+    // payon params
+    useState(
+      'accessToken',
+      () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
+    )
+
+    useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
+    useState('autoLaunchWidget', () => true)
+    useState('cnpModal', () => false)
+
+    useState('widgetStyle', () => 'plain')
   })
-
-  // payon params
-  useState(
-    'accessToken',
-    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
-  )
-
-  useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
-  useState('autoLaunchWidget', () => true)
-  useState('cnpModal', () => false)
-
-  useState('widgetStyle', () => 'plain')
 </script>
