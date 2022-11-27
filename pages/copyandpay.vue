@@ -43,15 +43,16 @@
               label="Response Data"
               :data="responseData"></Textareadisplayonly>
 
+            <!-- btn group -->
             <div class="btn-group mt-3 place-items-center">
-              <button class="btn" @click="copyEntireResponse(responseData)">
+              <button class="btn" @click="copyResponse(responseData)">
                 Copy Response
               </button>
 
               <button
                 class="btn"
                 v-if="responseData.id"
-                @click="copyCheckoutID(responseData.id)">
+                @click="copyID(responseData.id)">
                 Copy Checkout ID
               </button>
 
@@ -63,6 +64,10 @@
                 >Launch Widget</label
               >
             </div>
+
+            <Transition>
+              <Alert v-if="showAlert">Data copied to clipboard</Alert>
+            </Transition>
           </div>
         </div>
       </Transition>
@@ -117,6 +122,7 @@
   const cnpModal = useState('cnpModal')
   const shopperResultURLPayon = useState('shopperResultUrlPayon')
   const showLoading = ref(false)
+  const showAlert = ref(false)
 
   // widget states
   const autoLaunchWidget = useState('autoLaunchWidget')
@@ -211,5 +217,31 @@
 
     // append to head
     document.querySelector('head').append(widgetScript)
+  }
+
+  /**
+   * Stringify data and copy to clipboard
+   * @param {Object} data
+   */
+  function copyResponse(data) {
+    showAlert.value = true
+    copyEntireResponse(data)
+
+    setTimeout(() => {
+      showAlert.value = false
+    }, 1000)
+  }
+
+  /**
+   * copy checkout ID to clipboard
+   * @param {String} data
+   */
+  function copyID(data) {
+    showAlert.value = true
+    copyCheckoutID(data)
+
+    setTimeout(() => {
+      showAlert.value = false
+    }, 1000)
   }
 </script>

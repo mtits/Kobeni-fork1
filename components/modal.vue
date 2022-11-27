@@ -10,7 +10,7 @@
 
         <!-- button to close -->
         <div class="modal-action">
-          <label class="btn" @click="cnpModal = false">Close</label>
+          <label class="btn btn-block" @click="cnpModal = false">Close</label>
         </div>
       </div>
     </div>

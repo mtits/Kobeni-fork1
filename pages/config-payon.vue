@@ -12,42 +12,50 @@
       v-model="shopperResultURLPayon" />
 
     <PageTitle title="Widget Behaviour" class="mt-10"></PageTitle>
-
-    <!-- auto-launch -->
-
-    <Toggle v-model="autoLaunchWidget"
-      >Automatically launch the widget if a checkout ID is detected.</Toggle
-    >
-
-    <!-- plain vs card -->
-    <div class="form-control w-96">
-      <label class="label cursor-pointer">
-        <span class="label-text"
-          >Set Widget's style to "card" (May cause visibility issues because of
-          this app's theme). Current default: "plain".</span
+    <div class="flex w-full">
+      <!-- left -->
+      <div class="grid flex-grow p-5">
+        <!-- auto-launch -->
+        <Toggle v-model="autoLaunchWidget"
+          >Automatically launch the widget if a checkout ID is detected.</Toggle
         >
-        <input
-          type="checkbox"
-          class="toggle"
-          v-model="widgetStyle"
-          true-value="card"
-          false-value="plain" />
-      </label>
-    </div>
 
-    <!-- of CVVs and others -->
-    <Toggle v-model="maskCvv"
-      ><span class="font-bold">maskCvv</span> - Masks the CVV (duh...).</Toggle
-    >
-    <Toggle v-model="requireCvv"
-      ><span class="font-bold">requireCvv</span> - Determines whether the CVV
-      field is presented on the payment form.</Toggle
-    >
-    <Toggle v-model="showCVVHint"
-      ><span class="font-bold">showCVVHint</span> - If set to true then the
-      credit card form will display a hint on where the CVV is located when the
-      mouse is hovering over the CVV field.</Toggle
-    >
+        <!-- plain vs card -->
+        <div class="form-control w-96">
+          <label class="label cursor-pointer">
+            <span class="label-text"
+              >Set Widget's style to <span class="text-sky-400">card</span> (May
+              cause visibility issues because of this app's theme). Current
+              default: <span class="text-sky-400">plain</span>.</span
+            >
+            <input
+              type="checkbox"
+              class="toggle"
+              v-model="widgetStyle"
+              true-value="card"
+              false-value="plain" />
+          </label>
+        </div>
+      </div>
+
+      <!-- right -->
+      <div class="grid flex-grow p-5">
+        <!-- of CVVs and others -->
+        <Toggle v-model="maskCvv"
+          ><span class="text-sky-400 font-bold">maskCvv</span> - Masks the CVV
+          (duh...).</Toggle
+        >
+        <Toggle v-model="requireCvv"
+          ><span class="text-sky-400 font-bold">requireCvv</span> - Determines
+          whether the CVV field is presented on the payment form.</Toggle
+        >
+        <Toggle v-model="showCVVHint"
+          ><span class="text-sky-400 font-bold">showCVVHint</span> - If set to
+          true, then the credit card form will display a hint on where the CVV
+          is located when the mouse is hovering over the CVV field.</Toggle
+        >
+      </div>
+    </div>
   </div>
 </template>
 
