@@ -11,6 +11,7 @@
       type="text"
       v-model="shopperResultURLPayon" />
 
+    <!-- ALL TOGGLES HERE -->
     <PageTitle title="Widget Behaviour" class="mt-10"> </PageTitle>
     <Alert>
       Disclaimer: some of the items here have been changed from the default

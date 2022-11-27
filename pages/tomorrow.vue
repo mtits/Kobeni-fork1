@@ -20,11 +20,31 @@
 
     <PageTitle title="Soundboard"> Other things to fill your ears. </PageTitle>
     <div class="flex place-items-center justify-center">
-      <div class="btn-group btn-group-vertical">
-        <button class="btn" @click="tomorrow.play()">Tomorrow!</button>
-        <button class="btn" @click="wow.play()">&lt;:3) ~Wow</button>
-        <button class="btn" @click="omae.play()">Omae wa mou shindeiru</button>
-        <button class="btn" @click="nani.play()">Nani???</button>
+      <!-- col 1 -->
+      <div class="grid px-5 flex-grow">
+        <div class="btn-group btn-group-vertical">
+          <button class="btn" @click="tomorrow.play()">Tomorrow!</button>
+          <button class="btn" @click="wow.play()">&lt;:3) ~Wow</button>
+        </div>
+      </div>
+
+      <!-- col 2 -->
+      <div class="grid px-5 flex-grow">
+        <div class="btn-group btn-group-vertical">
+          <button class="btn" @click="omae.play()">
+            Omae wa mou shindeiru
+          </button>
+          <button class="btn" @click="nani.play()">Nani???</button>
+        </div>
+      </div>
+
+      <!-- col 3 -->
+      <div class="grid px-5 flex-grow">
+        <div class="btn-group btn-group-vertical">
+          <button class="btn" @click="pekoLaugh.play()">
+            AH↗️HA↘️HA↗️HA↘️HA↗️
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -57,5 +77,9 @@
 
   const nani = new Howl({
     src: ['/audio/nani.mp3'],
+  })
+
+  const pekoLaugh = new Howl({
+    src: ['/audio/peko_laugh.mp3'],
   })
 </script>
