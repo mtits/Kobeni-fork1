@@ -14,26 +14,17 @@
     <PageTitle title="Widget Behaviour" class="mt-10"></PageTitle>
 
     <!-- auto-launch -->
-    <div class="form-control w-96">
-      <label class="label cursor-pointer">
-        <span class="label-text"
-          >Automatically launch the widget if a checkout ID is detected.</span
-        >
-        <input
-          type="checkbox"
-          class="toggle"
-          v-model="autoLaunchWidget"
-          :true-value="true"
-          :false-value="false" />
-      </label>
-    </div>
+
+    <Toggle v-model="autoLaunchWidget"
+      >Automatically launch the widget if a checkout ID is detected.</Toggle
+    >
 
     <!-- plain vs card -->
     <div class="form-control w-96">
       <label class="label cursor-pointer">
         <span class="label-text"
-          >Set Widget to "card" style (This might cause visibility issues due to
-          this app's theme).</span
+          >Set Widget's style to "card" (May cause visibility issues because of
+          this app's theme). Current default: "plain".</span
         >
         <input
           type="checkbox"
@@ -43,6 +34,20 @@
           false-value="plain" />
       </label>
     </div>
+
+    <!-- of CVVs and others -->
+    <Toggle v-model="maskCvv"
+      ><span class="font-bold">maskCvv</span> - Masks the CVV (duh...).</Toggle
+    >
+    <Toggle v-model="requireCvv"
+      ><span class="font-bold">requireCvv</span> - Determines whether the CVV
+      field is presented on the payment form.</Toggle
+    >
+    <Toggle v-model="showCVVHint"
+      ><span class="font-bold">showCVVHint</span> - If set to true then the
+      credit card form will display a hint on where the CVV is located when the
+      mouse is hovering over the CVV field.</Toggle
+    >
   </div>
 </template>
 
@@ -51,12 +56,13 @@
     title: 'Kobeni | Config for PAY.ON',
   })
 
-  const widgetStyle = useState('widgetStyle')
-
-  // the data below are all initialized @ app.vue
+  // get app states
   const accessToken = useState('accessToken')
   const entityId = useState('entityId')
-  const autoLaunchWidget = useState('autoLaunchWidget')
-
   const shopperResultURLPayon = useState('shopperResultUrlPayon')
+  const autoLaunchWidget = useState('autoLaunchWidget')
+  const widgetStyle = useState('widgetStyle')
+  const maskCvv = useState('maskCvv')
+  const requireCvv = useState('requireCvv')
+  const showCVVHint = useState('showCVVHint')
 </script>

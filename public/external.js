@@ -1,1 +1,1 @@
-var wpwlOptions = { style: 'plain' }
+var wpwlOptions = { style: 'plain', maskCvv: false }

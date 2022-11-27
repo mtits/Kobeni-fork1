@@ -112,24 +112,28 @@
     'customer.givenName=John',
     'customer.surname=Wick',
   ])
-
   const responseData = ref('')
   const checkoutId = useState('checkoutId')
-  const autoLaunchWidget = useState('autoLaunchWidget')
   const cnpModal = useState('cnpModal')
-  const widgetStyle = useState('widgetStyle')
   const shopperResultURLPayon = useState('shopperResultUrlPayon')
+  const showLoading = ref(false)
+
+  // widget states
+  const autoLaunchWidget = useState('autoLaunchWidget')
+  const widgetStyle = useState('widgetStyle')
+  const maskCvv = useState('maskCvv')
+  const requireCvv = useState('requireCvv')
+  const showCVVHint = useState('showCVVHint')
 
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
   })
 
-  const showLoading = ref(false)
   /**
    * submit to the API!
    */
   async function submit() {
-    wpwlOptions.style = widgetStyle.value
+    setWpwlOptions()
 
     try {
       showLoading.value = true
@@ -162,6 +166,19 @@
     } finally {
       showLoading.value = false
     }
+  }
+
+  /**
+   * sets the wpwlOptions based on config-payon before launching the widget
+   */
+  function setWpwlOptions() {
+    wpwlOptions.style = widgetStyle.value
+    wpwlOptions.maskCvv = maskCvv.value
+    wpwlOptions.requireCvv = requireCvv.value
+    wpwlOptions.showCVVHint = showCVVHint.value
+
+    // display the options to the user
+    console.table(wpwlOptions)
   }
 
   /**

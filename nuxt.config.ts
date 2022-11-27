@@ -2,11 +2,11 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Kobeni | Pull Yoself Togedah!',
       htmlAttrs: {
         'data-theme': 'dark',
       },
       link: [{ rel: 'icon', href: '/favicon.png' }],
+      script: [{ src: '/external.js' }],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     keepalive: true,

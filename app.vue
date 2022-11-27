@@ -86,30 +86,35 @@
 <script setup>
   import { onMounted } from 'vue'
 
-  // added external var as required by ACI to customize their widget
-  onMounted(() => {
-    const wpwlOptions = document.createElement('script')
-    wpwlOptions.src = '/external.js'
+  useHead({
+    title: 'Kobeni | Pull Yoself Togedah!',
+  })
 
-    // result URL
+  // set default states of the widget
+  useState('autoLaunchWidget', () => true)
+  useState('widgetStyle', () => 'plain')
+  useState('maskCvv', () => true)
+  useState('requireCvv', () => true)
+  useState('showCVVHint', () => false)
+
+  // payon default params
+  useState(
+    'accessToken',
+    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
+  )
+  useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
+  useState('cnpModal', () => false)
+
+  onMounted(() => {
+    // create and link external js to head, the nuxt.config.ts doesn't work, dammit
+    // const wpwl = document.createElement('script')
+    // wpwl.src = '/external.js'
+    // document.querySelector('head').append(wpwl)
+
+    // result URL for PAY.ON
     useState('shopperResultUrlPayon', () => {
       const currentURL = new URL(window.location.href)
       return `${currentURL.origin}/shopperresulturl-payon`
     })
-
-    // append to head
-    document.querySelector('head').append(wpwlOptions)
-
-    // payon params
-    useState(
-      'accessToken',
-      () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
-    )
-
-    useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
-    useState('autoLaunchWidget', () => true)
-    useState('cnpModal', () => false)
-
-    useState('widgetStyle', () => 'plain')
   })
 </script>
