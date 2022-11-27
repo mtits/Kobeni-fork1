@@ -11,12 +11,19 @@
       type="text"
       v-model="shopperResultURLPayon" />
 
-    <PageTitle title="Widget Behaviour" class="mt-10"></PageTitle>
+    <PageTitle title="Widget Behaviour" class="mt-10"> </PageTitle>
+    <Alert>
+      Disclaimer: some of the items here have been changed from the default
+      setting to better suit the app's look and flow. <br />
+      Additionally, the items labeled as
+      <span class="text-sky-400">Exclusive</span> are features custom-made only
+      for this app.
+    </Alert>
     <div class="flex w-full">
       <!-- left -->
       <div class="grid flex-grow p-5">
         <!-- auto-launch -->
-        <Toggle v-model="autoLaunchWidget" title="Auto-launch"
+        <Toggle v-model="autoLaunchWidget" title="Auto-launch (Exclusive)"
           >Launch the widget if a checkout ID is detected.</Toggle
         >
 
@@ -38,22 +45,34 @@
               false-value="plain" />
           </label>
         </div>
+
+        <Toggle
+          v-model="disableCardExpiryDateValidation"
+          title="disableCardExpiryDateValidation"
+          >Determines whether the card expiry date field should be validated. By
+          default it is validated (false).</Toggle
+        >
       </div>
 
       <!-- middle -->
       <div class="grid flex-grow p-5">
         <!-- of CVVs and others -->
-        <Toggle v-model="maskCvv" title="maskCvv"
-          >Masks the CVV (duh...).</Toggle
-        >
+        <Toggle v-model="maskCvv" title="maskCvv">Masks the CVV.</Toggle>
+
         <Toggle v-model="requireCvv" title="requireCvv"
           >Determines whether the CVV field is presented on the payment
           form.</Toggle
         >
+
         <Toggle v-model="showCVVHint" title="showCVVHint"
           >If set to true, then the credit card form will display a hint on
           where the CVV is located when the mouse is hovering over the CVV
           field.</Toggle
+        >
+
+        <Toggle v-model="allowEmptyCvv" title="allowEmptyCvv"
+          >Determines whether the CVV field can be empty. By default it is
+          false.</Toggle
         >
       </div>
 
@@ -90,7 +109,11 @@
   const maskCvv = useState('maskCvv')
   const requireCvv = useState('requireCvv')
   const showCVVHint = useState('showCVVHint')
+  const allowEmptyCvv = useState('allowEmptyCvv')
   const validation = useState('validation')
   const showLabels = useState('showLabels')
   const showPlaceholders = useState('showPlaceholders')
+  const disableCardExpiryDateValidation = useState(
+    'disableCardExpiryDateValidation'
+  )
 </script>

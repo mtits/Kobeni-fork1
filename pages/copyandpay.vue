@@ -179,9 +179,13 @@
       maskCvv: useState('maskCvv').value,
       requireCvv: useState('requireCvv').value,
       showCVVHint: useState('showCVVHint').value,
+      allowEmptyCvv: useState('allowEmptyCvv').value,
       validation: useState('validation').value,
       showLabels: useState('showLabels').value,
       showPlaceholders: useState('showPlaceholders').value,
+      disableCardExpiryDateValidation: useState(
+        'disableCardExpiryDateValidation'
+      ).value,
       //
       spinner: {
         color: '#38bdf8',

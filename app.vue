@@ -97,9 +97,11 @@
   useState('maskCvv', () => true)
   useState('requireCvv', () => true)
   useState('showCVVHint', () => false)
+  useState('allowEmptyCvv', () => false)
   useState('validation', () => true)
   useState('showLabels', () => true)
   useState('showPlaceholders', () => true)
+  useState('disableCardExpiryDateValidation', () => false)
 
   // payon default params
   useState(
