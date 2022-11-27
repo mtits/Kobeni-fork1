@@ -25,7 +25,9 @@
             </div>
           </li>
           <li><NuxtLink to="/">Home</NuxtLink></li>
-          <li><NuxtLink to="/tomorrow">Tomorrow</NuxtLink></li>
+          <li>
+            <NuxtLink to="/tomorrow">Tomorrow... and the soundboard</NuxtLink>
+          </li>
 
           <li></li>
 

@@ -11,11 +11,23 @@
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <button class="btn btn-primary" @click="sayTomorrow">
+          <button class="btn btn-primary" @click="tomorrow.play()">
             Tomorrow!
           </button>
         </div>
       </div>
+    </div>
+
+    <PageTitle title="Soundboard"> Other things to fill your ears. </PageTitle>
+    <div class="btn-group btn-group-vertical">
+      <button class="btn btn-primary" @click="tomorrow.play()">
+        Tomorrow!
+      </button>
+      <button class="btn btn-error" @click="wow.play()">~Wow</button>
+      <button class="btn btn-info" @click="omae.play()">
+        Omae wa mou shindeiru
+      </button>
+      <button class="btn btn-warning" @click="nani.play()">Nani???</button>
     </div>
   </div>
 </template>
@@ -33,11 +45,19 @@
     title: 'Kobeni | Tomorrow, Ina said calmly...',
   })
 
-  const sound = new Howl({
-    src: ['/tomorrow.mp3'],
+  const tomorrow = new Howl({
+    src: ['/audio/tomorrow.mp3'],
   })
 
-  function sayTomorrow() {
-    sound.play()
-  }
+  const wow = new Howl({
+    src: ['/audio/wow.mp3'],
+  })
+
+  const omae = new Howl({
+    src: ['/audio/omae wa.mp3'],
+  })
+
+  const nani = new Howl({
+    src: ['/audio/nani.mp3'],
+  })
 </script>
