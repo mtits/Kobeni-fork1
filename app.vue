@@ -5,7 +5,7 @@
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col items-center">
         <!-- Page content here -->
-        <div class="container mx-auto p-5">
+        <div class="container mx-auto px-20 pt-5 pb-20">
           <NuxtPage />
         </div>
 
@@ -92,10 +92,14 @@
 
   // set default states of the widget
   useState('autoLaunchWidget', () => true)
+  //
   useState('widgetStyle', () => 'plain')
   useState('maskCvv', () => true)
   useState('requireCvv', () => true)
   useState('showCVVHint', () => false)
+  useState('validation', () => true)
+  useState('showLabels', () => true)
+  useState('showPlaceholders', () => true)
 
   // payon default params
   useState(
@@ -116,5 +120,7 @@
       const currentURL = new URL(window.location.href)
       return `${currentURL.origin}/shopperresulturl-payon`
     })
+
+    // console.log(wpwlOptions)
   })
 </script>

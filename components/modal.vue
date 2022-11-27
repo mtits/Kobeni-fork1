@@ -3,7 +3,9 @@
     <input type="checkbox" class="modal-toggle" />
     <div class="modal" :class="{ 'modal-open': cnpModal }">
       <div class="modal-box">
-        <h3 class="font-bold text-sky-400 text-lg" v-if="title">{{ title }}</h3>
+        <h3 class="font-bold text-sky-400 text-lg mb-8" v-if="title">
+          {{ title }}
+        </h3>
         <p class="py-3">
           <slot></slot>
         </p>

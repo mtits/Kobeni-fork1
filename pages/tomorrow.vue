@@ -19,11 +19,13 @@
     </div>
 
     <PageTitle title="Soundboard"> Other things to fill your ears. </PageTitle>
-    <div class="btn-group btn-group-vertical">
-      <button class="btn" @click="tomorrow.play()">Tomorrow!</button>
-      <button class="btn" @click="wow.play()">&lt;:3) ~Wow</button>
-      <button class="btn" @click="omae.play()">Omae wa mou shindeiru</button>
-      <button class="btn" @click="nani.play()">Nani???</button>
+    <div class="flex place-items-center justify-center">
+      <div class="btn-group btn-group-vertical">
+        <button class="btn" @click="tomorrow.play()">Tomorrow!</button>
+        <button class="btn" @click="wow.play()">&lt;:3) ~Wow</button>
+        <button class="btn" @click="omae.play()">Omae wa mou shindeiru</button>
+        <button class="btn" @click="nani.play()">Nani???</button>
+      </div>
     </div>
   </div>
 </template>

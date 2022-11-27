@@ -2,6 +2,9 @@
   <div class="form-control w-96">
     <label class="label cursor-pointer">
       <span class="label-text">
+        <span class="text-sky-400 font-bold" v-if="title"
+          ><kbd>{{ title }}</kbd></span
+        ><br />
         <slot></slot>
       </span>
       <input
@@ -21,6 +24,11 @@
     modelValue: {
       type: Boolean,
       required: true,
+    },
+
+    title: {
+      type: String,
+      required: false,
     },
   })
 

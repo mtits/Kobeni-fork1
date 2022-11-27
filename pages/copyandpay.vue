@@ -126,10 +126,6 @@
 
   // widget states
   const autoLaunchWidget = useState('autoLaunchWidget')
-  const widgetStyle = useState('widgetStyle')
-  const maskCvv = useState('maskCvv')
-  const requireCvv = useState('requireCvv')
-  const showCVVHint = useState('showCVVHint')
 
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
@@ -178,10 +174,19 @@
    * sets the wpwlOptions based on config-payon before launching the widget
    */
   function setWpwlOptions() {
-    wpwlOptions.style = widgetStyle.value
-    wpwlOptions.maskCvv = maskCvv.value
-    wpwlOptions.requireCvv = requireCvv.value
-    wpwlOptions.showCVVHint = showCVVHint.value
+    wpwlOptions = {
+      style: useState('widgetStyle').value,
+      maskCvv: useState('maskCvv').value,
+      requireCvv: useState('requireCvv').value,
+      showCVVHint: useState('showCVVHint').value,
+      validation: useState('validation').value,
+      showLabels: useState('showLabels').value,
+      showPlaceholders: useState('showPlaceholders').value,
+      //
+      spinner: {
+        color: '#38bdf8',
+      },
+    }
 
     // display the options to the user
     console.table(wpwlOptions)

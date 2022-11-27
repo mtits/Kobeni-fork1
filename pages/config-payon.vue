@@ -16,15 +16,17 @@
       <!-- left -->
       <div class="grid flex-grow p-5">
         <!-- auto-launch -->
-        <Toggle v-model="autoLaunchWidget"
-          >Automatically launch the widget if a checkout ID is detected.</Toggle
+        <Toggle v-model="autoLaunchWidget" title="Auto-launch"
+          >Launch the widget if a checkout ID is detected.</Toggle
         >
 
         <!-- plain vs card -->
         <div class="form-control w-96">
           <label class="label cursor-pointer">
-            <span class="label-text"
-              >Set Widget's style to <span class="text-sky-400">card</span> (May
+            <span class="label-text">
+              <span class="text-sky-400 font-bold"><kbd>Card Style</kbd></span
+              ><br />
+              Set Widget's style to <span class="text-sky-400">card</span> (May
               cause visibility issues because of this app's theme). Current
               default: <span class="text-sky-400">plain</span>.</span
             >
@@ -38,21 +40,36 @@
         </div>
       </div>
 
-      <!-- right -->
+      <!-- middle -->
       <div class="grid flex-grow p-5">
         <!-- of CVVs and others -->
-        <Toggle v-model="maskCvv"
-          ><span class="text-sky-400 font-bold">maskCvv</span> - Masks the CVV
-          (duh...).</Toggle
+        <Toggle v-model="maskCvv" title="maskCvv"
+          >Masks the CVV (duh...).</Toggle
         >
-        <Toggle v-model="requireCvv"
-          ><span class="text-sky-400 font-bold">requireCvv</span> - Determines
-          whether the CVV field is presented on the payment form.</Toggle
+        <Toggle v-model="requireCvv" title="requireCvv"
+          >Determines whether the CVV field is presented on the payment
+          form.</Toggle
         >
-        <Toggle v-model="showCVVHint"
-          ><span class="text-sky-400 font-bold">showCVVHint</span> - If set to
-          true, then the credit card form will display a hint on where the CVV
-          is located when the mouse is hovering over the CVV field.</Toggle
+        <Toggle v-model="showCVVHint" title="showCVVHint"
+          >If set to true, then the credit card form will display a hint on
+          where the CVV is located when the mouse is hovering over the CVV
+          field.</Toggle
+        >
+      </div>
+
+      <!-- right -->
+      <div class="grid flex-grow p-5">
+        <Toggle v-model="validation" title="validation"
+          >If false, disables validation and the functions validate and onSubmit
+          will not be called.</Toggle
+        >
+
+        <Toggle v-model="showLabels" title="showLabels"
+          >Shows or hides input labels. Default is true.</Toggle
+        >
+
+        <Toggle v-model="showPlaceholders" title="showPlaceholders"
+          >Shows or hides input showPlaceholders. Default is true.</Toggle
         >
       </div>
     </div>
@@ -73,4 +90,7 @@
   const maskCvv = useState('maskCvv')
   const requireCvv = useState('requireCvv')
   const showCVVHint = useState('showCVVHint')
+  const validation = useState('validation')
+  const showLabels = useState('showLabels')
+  const showPlaceholders = useState('showPlaceholders')
 </script>

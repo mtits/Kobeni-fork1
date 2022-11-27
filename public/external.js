@@ -1,1 +1,4 @@
-var wpwlOptions = { style: 'plain', maskCvv: false }
+/**
+ * initialize object that will contain the widget customizations
+ */
+var wpwlOptions = {}
