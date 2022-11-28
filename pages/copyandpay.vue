@@ -141,17 +141,16 @@
       showLoading.value = true
       responseData.value = ''
 
-      const response = await axios({
+      const { data } = await useFetch('/api/copyandpay', {
         method: 'post',
-        url: './api/copyandpay',
-        data: {
+        body: {
           endPoint: endPoint.value,
           accessToken: accessToken.value,
           dataParameters: textAreaToURLParams(dataParameters.value),
         },
       })
 
-      responseData.value = response.data
+      responseData.value = data.value
 
       // save states
       if (responseData.value.id) {

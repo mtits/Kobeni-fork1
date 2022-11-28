@@ -6,6 +6,10 @@
     </PageTitle>
 
     <Transition>
+      <Loading v-if="pending" />
+    </Transition>
+
+    <Transition>
       <div class="pb-8" v-if="result.data">
         <button class="btn btn-primary" @click="exportCSV">
           Export to CSV
@@ -50,8 +54,9 @@
   })
 
   // fetch from ACI docs
-  const { data } = await useFetch(result.url)
+  const { data, pending } = await useFetch(result.url)
   result.data = data.value
+
   /**
    * parse JSON into CSV and download to client
    */

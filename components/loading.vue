@@ -1,5 +1,5 @@
 <template>
-  <div class="p-7 content-center" id="progress" v-if="showLoading">
+  <div class="content-center my-5">
     <div>
       <p>Loading...</p>
     </div>
@@ -8,12 +8,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  defineProps({
-    showLoading: {
-      type: Boolean,
-      required: true,
-    },
-  })
-</script>

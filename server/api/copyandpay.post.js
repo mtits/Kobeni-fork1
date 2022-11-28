@@ -36,6 +36,7 @@ export default defineEventHandler(async (event) => {
       },
       responseErrorData: error.response.data,
     })
+
     return error.response.data
   }
 })

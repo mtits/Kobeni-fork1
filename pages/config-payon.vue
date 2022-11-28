@@ -80,8 +80,9 @@
       <!-- right -->
       <div class="grid flex-grow p-5">
         <Toggle v-model="validation" title="validation"
-          >If false, disables validation and the functions validate and onSubmit
-          will not be called.</Toggle
+          >If false, disables validation and the functions
+          <kbd class="font-semibold">validate</kbd> and
+          <kbd class="font-semibold">onSubmit</kbd> will not be called.</Toggle
         >
 
         <Toggle v-model="showLabels" title="showLabels"
@@ -89,7 +90,7 @@
         >
 
         <Toggle v-model="showPlaceholders" title="showPlaceholders"
-          >Shows or hides input showPlaceholders. Default is true.</Toggle
+          >Shows or hides input placeholders. Default is true.</Toggle
         >
       </div>
     </div>
