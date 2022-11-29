@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         'data-theme': 'dark',
       },
       link: [{ rel: 'icon', href: '/favicon.png' }],
-      script: [{ src: '/external.js' }],
+      script: [{ src: '/external.js' }, { src: '/jquery-3.6.1.min.js' }],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     keepalive: true,

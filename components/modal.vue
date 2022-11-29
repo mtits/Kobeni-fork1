@@ -12,7 +12,7 @@
 
         <!-- button to close -->
         <div class="modal-action">
-          <label class="btn btn-block" @click="cnpModal = false">Close</label>
+          <label class="btn btn-block" @click="yeetTheWidget">Close</label>
         </div>
       </div>
     </div>
@@ -27,4 +27,24 @@
       type: String,
     },
   })
+
+  /**
+   * todo: yeet the widget
+   */
+  function yeetTheWidget() {
+    cnpModal.value = false
+
+    // nuf said
+    removeScriptFromHead()
+
+    // i can't believe you've done this
+    if (window.wpwl !== undefined && window.wpwl.unload !== undefined) {
+      window.wpwl.unload()
+      $('script').each(function () {
+        if (this.src.indexOf('static.min.js') !== -1) {
+          $(this).remove()
+        }
+      })
+    }
+  }
 </script>

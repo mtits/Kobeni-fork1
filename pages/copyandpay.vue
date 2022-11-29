@@ -85,7 +85,6 @@
 
 <script setup>
   import { ref, onMounted } from 'vue'
-  import axios from 'axios'
 
   useHead({
     title: 'Kobeni | CopyandPay',
@@ -202,12 +201,6 @@
     // open the modal first
     cnpModal.value = true
 
-    // check if existing widgetScript element exists in the HTML head and remove it
-    if (document.head.contains(document.getElementById('widget-script-tag'))) {
-      console.info('widget-script-tag element exists, removing now.')
-      document.head.removeChild(document.getElementById('widget-script-tag'))
-    }
-
     // create the new script tag and append to head
     const widgetScript = document.createElement('script')
     widgetScript.id = 'widget-script-tag'
@@ -224,7 +217,7 @@
     widgetScript.src = `https://${subDomain}.oppwa.com/v1/paymentWidgets.js?checkoutId=${responseData.value.id}`
 
     // append to head
-    document.querySelector('head').append(widgetScript)
+    document.head.append(widgetScript)
   }
 
   /**
