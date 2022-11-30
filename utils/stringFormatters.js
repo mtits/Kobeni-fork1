@@ -31,7 +31,7 @@ export const textAreaToURLParams = (textAreaString) => {
  * Appends the checkout ID to the clipboard
  * @param {String} checkoutID
  */
-export const copyCheckoutID = (checkoutID) => {
+export const copyString = (checkoutID) => {
   navigator.clipboard.writeText(checkoutID)
 }
 

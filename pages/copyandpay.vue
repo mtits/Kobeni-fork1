@@ -6,15 +6,20 @@
     </PageTitle>
 
     <!-- select endpoint -->
-    <div class="form-control w-full mt-3">
+    <div class="form-control mt-3">
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Endpoint</span>
       </label>
-      <select class="select select-bordered w-full" v-model="endPoint">
+      <select class="select select-bordered max-w-sm" v-model="endPoint">
         <option v-for="option in endPoints" :value="option.value">
           {{ option.text }}
         </option>
       </select>
+      <label class="label">
+        <span class="label-text-alt"
+          ><kbd>{{ endPoint }}</kbd>
+        </span>
+      </label>
     </div>
 
     <div class="flex flex-col w-full">
@@ -74,10 +79,7 @@
     </div>
 
     <!-- cnp modal here -->
-    <modal
-      title="CopyandPay Widget"
-      :isModalOpen="cnpModal"
-      v-if="responseData.id">
+    <modal title="CopyandPay Widget" :isModalOpen="cnpModal" v-if="checkoutId">
       <Cnpform :shopper-result-url="shopperResultURLPayon" />
     </modal>
   </div>
@@ -93,11 +95,11 @@
   const endPoint = ref('https://eu-test.oppwa.com/v1/checkouts')
   const endPoints = ref([
     {
-      text: 'https://eu-test.oppwa.com/v1/checkouts',
+      text: 'Test',
       value: 'https://eu-test.oppwa.com/v1/checkouts',
     },
     {
-      text: 'https://eu-prod.oppwa.com/v1/checkouts',
+      text: 'Live',
       value: 'https://eu-prod.oppwa.com/v1/checkouts',
     },
   ])
@@ -134,8 +136,6 @@
    * submit to the API!
    */
   async function submit() {
-    setWpwlOptions()
-
     try {
       showLoading.value = true
       responseData.value = ''
@@ -198,8 +198,15 @@
    * create the script tag and append to the document to display the widgy
    */
   function createScriptTag() {
+    setWpwlOptions()
+
     // open the modal first
     cnpModal.value = true
+
+    // update the value of the checkoutId from the responseData
+    if (responseData.value.id) {
+      checkoutId.value = responseData.value.id
+    }
 
     // create the new script tag and append to head
     const widgetScript = document.createElement('script')
@@ -239,7 +246,7 @@
    */
   function copyID(data) {
     showAlert.value = true
-    copyCheckoutID(data)
+    copyString(data)
 
     setTimeout(() => {
       showAlert.value = false

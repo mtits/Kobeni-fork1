@@ -42,6 +42,8 @@
           </li>
           <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
           <li><a>Server-to-Server</a></li>
+          <li><a>Backoffice</a></li>
+          <li><NuxtLink to="/fmmid">FMMID</NuxtLink></li>
           <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
           <li></li>
 

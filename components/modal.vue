@@ -21,6 +21,7 @@
 
 <script setup>
   const cnpModal = useState('cnpModal')
+  const checkoutId = useState('checkoutId')
 
   defineProps({
     title: {
@@ -36,15 +37,10 @@
 
     // nuf said
     removeScriptFromHead()
+    yeetTheWidgy()
 
-    // i can't believe you've done this
-    if (window.wpwl !== undefined && window.wpwl.unload !== undefined) {
-      window.wpwl.unload()
-      $('script').each(function () {
-        if (this.src.indexOf('static.min.js') !== -1) {
-          $(this).remove()
-        }
-      })
-    }
+    // clear checkout ID so that the form unrenders because of v-if
+    console.info('"checkoutID" cleared!')
+    checkoutId.value = ''
   }
 </script>
