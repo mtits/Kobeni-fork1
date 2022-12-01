@@ -15,26 +15,24 @@
       <!-- drawer items -->
       <div class="drawer-side">
         <label for="app-drawer" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-80 bg-base-200 text-base-content">
+        <ul class="menu p-4 w-72 bg-base-200 text-base-content">
           <!-- Sidebar content here -->
 
           <!-- APP MENUS -->
           <li class="menu-title">
             <div class="prose">
-              <h3 class="text-sky-400">KOBENI - Keep Trying</h3>
+              <h3 class="text-sky-400">Kobeni - Keep Trying</h3>
             </div>
           </li>
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li>
-            <NuxtLink to="/tomorrow">Tomorrow... and the soundboard</NuxtLink>
+            <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
           </li>
-
-          <li></li>
 
           <!-- PAYON MENUS -->
           <li class="menu-title">
             <div class="prose">
-              <h3 class="text-sky-400">PAY.ON Stuffs</h3>
+              <h3 class="text-sky-400 mt-4">PAY.ON Stuffs</h3>
             </div>
           </li>
           <li>
@@ -45,16 +43,26 @@
           <li><a>Backoffice</a></li>
           <li><NuxtLink to="/fmmid">FMMID</NuxtLink></li>
           <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
-          <li></li>
+          <li><a>Webhook Decryptor</a></li>
 
           <!-- PZ MENUS -->
-          <li class="menu-title">
+          <li class="menu-title mt-4">
             <div class="prose">
               <h3 class="text-sky-400">Paymentz Stuffs</h3>
             </div>
           </li>
           <li><a>Standard Checkout</a></li>
           <li><a>REST API</a></li>
+
+          <!-- WL MENUS -->
+          <li class="menu-title mt-4">
+            <div class="prose">
+              <h3 class="text-sky-400">WL Stuffs</h3>
+            </div>
+          </li>
+          <li><a>Hosted Payment Page</a></li>
+          <li><a>Server-to-server</a></li>
+          <li><a>Backoffice</a></li>
         </ul>
       </div>
     </div>

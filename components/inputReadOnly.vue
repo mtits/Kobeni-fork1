@@ -7,6 +7,7 @@
       <input
         :type="type"
         class="input font-mono input-bordered w-full"
+        :class="{ 'input-error': characterCount > characterCountMax }"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         spellcheck="false"
