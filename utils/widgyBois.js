@@ -5,7 +5,9 @@ export const removeScriptFromHead = () => {
   const elementToYeet = document.getElementById('widget-script-tag')
 
   if (document.head.contains(elementToYeet)) {
-    console.info('Found "widget-script-tag" in document head, removing now.')
+    console.info(
+      'The script "widget-script-tag" in document head has been yeeted succesfully.'
+    )
 
     document.head.removeChild(document.getElementById('widget-script-tag'))
   }
@@ -24,7 +26,7 @@ export const yeetTheWidgy = () => {
       if (this.src.indexOf('static.min.js') !== -1) {
         $(this).remove()
 
-        console.info('The script "static.min.js" has been purged!')
+        console.info('The script "static.min.js" has been purged.')
       }
     })
   }

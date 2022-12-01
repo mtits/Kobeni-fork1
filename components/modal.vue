@@ -40,7 +40,9 @@
     yeetTheWidgy()
 
     // clear checkout ID so that the form unrenders because of v-if
-    console.info('"checkoutID" cleared!')
+    console.info(
+      'The "checkoutID" and his entire family has been terminated. There were no survivors.'
+    )
     checkoutId.value = ''
   }
 </script>

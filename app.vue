@@ -5,8 +5,12 @@
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col items-center">
         <!-- Page content here -->
-        <div class="container mx-auto px-20 pt-5 pb-20">
-          <NuxtPage />
+        <div class="container mx-auto px-16 py-10">
+          <div class="card bg-base-200 shadow-xl">
+            <div class="card-body">
+              <NuxtPage />
+            </div>
+          </div>
         </div>
 
         <Footer />
@@ -14,22 +18,27 @@
 
       <!-- drawer items -->
       <div class="drawer-side">
-        <label for="app-drawer" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-72 bg-base-200 text-base-content">
-          <!-- Sidebar content here -->
+        <label class="drawer-overlay" for="app-drawer"></label>
 
-          <!-- APP MENUS -->
-          <li class="menu-title">
-            <div class="prose">
-              <h3 class="text-sky-400">Kobeni - Keep Trying</h3>
-            </div>
-          </li>
+        <!-- Sidebar content here -->
+
+        <!-- side title -->
+        <div class="p-4 w-72 bg-base-200 sticky top-0 items-center px-7">
+          <div class="prose">
+            <h1 class="text-sky-400">Kobeni</h1>
+          </div>
+        </div>
+
+        <!-- APP MENUS -->
+        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li>
             <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
           </li>
+        </ul>
 
-          <!-- PAYON MENUS -->
+        <!-- PAYON MENUS -->
+        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
           <li class="menu-title">
             <div class="prose">
               <h3 class="text-sky-400 mt-4">PAY.ON Stuffs</h3>
@@ -41,28 +50,37 @@
           <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
           <li><a>Server-to-Server</a></li>
           <li><a>Backoffice</a></li>
-          <li><NuxtLink to="/fmmid">FMMID</NuxtLink></li>
+          <li><a>Reporting API (Query TRX)</a></li>
+          <li><NuxtLink to="/fmmid">Format Thy MID</NuxtLink></li>
           <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
           <li><a>Webhook Decryptor</a></li>
+        </ul>
 
-          <!-- PZ MENUS -->
-          <li class="menu-title mt-4">
+        <!-- PZ MENUS -->
+        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
+          <li class="menu-title">
             <div class="prose">
               <h3 class="text-sky-400">Paymentz Stuffs</h3>
             </div>
           </li>
+          <li><a>Setup</a></li>
           <li><a>Standard Checkout</a></li>
           <li><a>REST API</a></li>
+          <li><a>Backoffice</a></li>
+        </ul>
 
-          <!-- WL MENUS -->
-          <li class="menu-title mt-4">
+        <!-- WL MENUS -->
+        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
+          <li class="menu-title">
             <div class="prose">
               <h3 class="text-sky-400">WL Stuffs</h3>
             </div>
           </li>
+          <li><a>Setup</a></li>
           <li><a>Hosted Payment Page</a></li>
           <li><a>Server-to-server</a></li>
           <li><a>Backoffice</a></li>
+          <li><a>Webhook Decryptor</a></li>
         </ul>
       </div>
     </div>

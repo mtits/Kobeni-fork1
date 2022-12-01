@@ -7,7 +7,7 @@
     </PageTitle>
 
     <!-- hero -->
-    <div class="hero min-h-screen" id="ina-hero">
+    <div class="hero min-h-screen mb-4" id="ina-hero">
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center">
         <div class="max-w-md">

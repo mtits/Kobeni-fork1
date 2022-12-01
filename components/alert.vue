@@ -1,5 +1,5 @@
 <template>
-  <div class="alert shadow-lg mt-3">
+  <div class="alert bg-base-100 shadow-lg mt-3">
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
