@@ -13,10 +13,9 @@
 
     <!-- ALL TOGGLES HERE -->
     <PageTitle title="Widget Behaviour" class="mt-10"> </PageTitle>
-    <Alert color-style="bg-base-300">
-      Disclaimer: some of the items here have been changed from the default
-      setting to better suit the app's look and flow. <br />
-      Additionally, the items labeled as
+    <Alert title="Disclaimer" color-style="bg-base-300">
+      Some of the items here have been changed from the default setting to
+      better suit the app's look and flow. Additionally, the items labeled as
       <span class="font-medium">Exclusive</span> are features custom-made only
       for this app.
     </Alert>

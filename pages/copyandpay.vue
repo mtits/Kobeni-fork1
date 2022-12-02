@@ -77,7 +77,9 @@
     <!-- Toast for copy buttons -->
     <Transition>
       <div class="toast" v-if="showAlert">
-        <Alert color-style="alert-info">Data copied to clipboard.</Alert>
+        <Alert title="Done" color-style="alert-info"
+          >Data copied to clipboard.</Alert
+        >
       </div>
     </Transition>
 
