@@ -27,6 +27,14 @@
       <div class="grid flex-grow">
         <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
+        <Alert class="my-6" title="Info" color-style=" alert-info">
+          Be sure to add the parameter <kbd>entityId</kbd> in the
+          <NuxtLink class="link link-hover font-semibold" to="/config-payon"
+            >Setup</NuxtLink
+          >
+          menu. Do not add it here.
+        </Alert>
+
         <!-- submit btn -->
         <div class="mt-3">
           <button
@@ -110,9 +118,9 @@
     },
   ])
   const accessToken = useState('accessToken')
+  const entityId = useState('entityId')
   const dataParameters = ref('')
   const defaultParameters = ref([
-    'entityId=8a8294174b7ecb28014b9699220015ca',
     'amount=1.00',
     'currency=USD',
     'paymentType=PA',
@@ -136,12 +144,35 @@
 
   onMounted(() => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+
+    // todo: check if session data exists, if so, show the button to load previous request params
   })
+
+  /**
+   * set up session data on click of the submit button
+   */
+  async function setupSession() {
+    const { refresh, update } = await useSession()
+
+    await refresh()
+
+    await update({
+      accessToken: accessToken.value,
+      entityId: entityId.value,
+      dataParameters: dataParameters.value,
+    })
+
+    // console.log('Session Data:', session.value)
+  }
 
   /**
    * submit to the API!
    */
   async function submit() {
+    // push the sessions to.. well.. sessions
+    await setupSession()
+
+    //
     try {
       showLoading.value = true
       responseData.value = ''
@@ -151,7 +182,9 @@
         body: {
           endPoint: endPoint.value,
           accessToken: accessToken.value,
-          dataParameters: textAreaToURLParams(dataParameters.value),
+          dataParameters: `${textAreaToURLParams(
+            dataParameters.value
+          )}&entityId=${entityId.value}`,
         },
       })
 

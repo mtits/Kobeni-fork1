@@ -5,7 +5,7 @@
     </label>
     <div class="input-group">
       <input
-        :type="type"
+        type="text"
         class="input font-mono w-full"
         :class="{ 'input-error': characterCount > characterCountMax }"
         :value="modelValue"
@@ -15,7 +15,7 @@
 
       <button class="btn" @click="$emit('copyContent')">Copy</button>
     </div>
-    <label class="label mb-1">
+    <label class="label mb-1" v-if="displayCharacterCount">
       <span class="label-text"
         >Character Count:
         <kbd
@@ -35,20 +35,20 @@
       required: true,
     },
 
-    type: {
-      type: String,
-      required: false,
-      default: 'text',
-    },
-
     characterCount: {
       type: Number,
-      required: true,
+      required: false,
     },
 
     characterCountMax: {
       type: Number,
-      required: true,
+      required: false,
+    },
+
+    displayCharacterCount: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
 
     modelValue: {

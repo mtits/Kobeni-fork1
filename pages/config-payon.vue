@@ -5,7 +5,7 @@
     </PageTitle>
 
     <Input label="Access Token" type="password" v-model="accessToken" />
-    <Input label="Entiry ID" type="text" v-model="entityId" />
+    <Input label="Entity ID" type="text" v-model="entityId" />
     <Input
       label="Shopper Result URL"
       type="text"

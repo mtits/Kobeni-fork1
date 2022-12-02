@@ -5,20 +5,34 @@
     </label>
     <textarea
       class="textarea font-mono h-80"
+      :value="stringyfiedJSON"
       spellcheck="false"
-      :value="JSON.stringify(data, null, 1)"
       readonly></textarea>
   </div>
 </template>
 
 <script setup>
-  defineProps({
+  import { computed } from 'vue'
+
+  const props = defineProps({
     label: {
       type: String,
       default: 'Response Data',
     },
-    data: {
-      type: Object,
+
+    data: [String, Object],
+
+    isJson: {
+      type: Boolean,
+      default: true,
     },
+  })
+
+  const stringyfiedJSON = computed(() => {
+    if (props.isJson) {
+      return JSON.stringify(props.data, null, 1)
+    } else {
+      return props.data
+    }
   })
 </script>

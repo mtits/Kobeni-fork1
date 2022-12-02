@@ -140,18 +140,14 @@
   useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
   useState('cnpModal', () => false)
 
+  /**
+   *
+   */
   onMounted(() => {
-    // create and link external js to head, the nuxt.config.ts doesn't work, dammit
-    // const wpwl = document.createElement('script')
-    // wpwl.src = '/external.js'
-    // document.querySelector('head').append(wpwl)
-
     // result URL for PAY.ON
     useState('shopperResultUrlPayon', () => {
       const currentURL = new URL(window.location.href)
       return `${currentURL.origin}/shopperresulturl-payon`
     })
-
-    // console.log(wpwlOptions)
   })
 </script>
