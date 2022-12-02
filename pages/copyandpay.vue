@@ -69,14 +69,17 @@
                 >Launch Widget</label
               >
             </div>
-
-            <Transition>
-              <Alert v-if="showAlert">Data copied to clipboard</Alert>
-            </Transition>
           </div>
         </div>
       </Transition>
     </div>
+
+    <!-- Toast for copy buttons -->
+    <Transition>
+      <div class="toast" v-if="showAlert">
+        <Alert color-style="alert-info">Data copied to clipboard.</Alert>
+      </div>
+    </Transition>
 
     <!-- cnp modal here -->
     <modal title="CopyandPay Widget" :isModalOpen="cnpModal" v-if="checkoutId">
@@ -237,7 +240,7 @@
 
     setTimeout(() => {
       showAlert.value = false
-    }, 1000)
+    }, 1500)
   }
 
   /**
@@ -250,6 +253,6 @@
 
     setTimeout(() => {
       showAlert.value = false
-    }, 1000)
+    }, 1500)
   }
 </script>

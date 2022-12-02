@@ -23,9 +23,12 @@
         <!-- Sidebar content here -->
 
         <!-- side title -->
-        <div class="p-4 w-72 bg-base-200 sticky top-0 items-center px-7">
+        <div class="p-4 w-72 bg-base-200 sticky top-0 items-center">
           <div class="prose">
-            <h1 class="text-sky-400">Kobeni</h1>
+            <h1 class="text-sky-400">
+              Kobeni
+              <div class="badge">ALPHA</div>
+            </h1>
           </div>
         </div>
 
@@ -50,7 +53,7 @@
           <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
           <li><a>Server-to-Server</a></li>
           <li><a>Backoffice</a></li>
-          <li><a>Reporting API (Query TRX)</a></li>
+          <li><a>Reporting API (trx doko?)</a></li>
           <li><NuxtLink to="/fmmid">Format Thy MID</NuxtLink></li>
           <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
           <li><a>Webhook Decryptor</a></li>

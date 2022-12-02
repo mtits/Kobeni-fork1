@@ -13,11 +13,11 @@
 
     <!-- ALL TOGGLES HERE -->
     <PageTitle title="Widget Behaviour" class="mt-10"> </PageTitle>
-    <Alert>
+    <Alert color-style="bg-base-300">
       Disclaimer: some of the items here have been changed from the default
       setting to better suit the app's look and flow. <br />
       Additionally, the items labeled as
-      <span class="text-sky-400">Exclusive</span> are features custom-made only
+      <span class="font-medium">Exclusive</span> are features custom-made only
       for this app.
     </Alert>
     <div class="flex w-full">
