@@ -44,8 +44,9 @@
   import { reactive } from 'vue'
   import csvDownload from 'json-to-csv-export'
 
-  useHead({
-    title: 'Kobeni | Result Codes',
+  definePageMeta({
+    pageTitle: 'Kobeni | Result Codes',
+    middleware: 'update-title',
   })
 
   // the one variable to rule them all

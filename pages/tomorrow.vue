@@ -59,8 +59,9 @@
 <script setup>
   import { Howl } from 'howler'
 
-  useHead({
-    title: 'Kobeni | Tomorrow, Ina said calmly...',
+  definePageMeta({
+    pageTitle: 'Kobeni | Tomorrow, Ina said calmly...',
+    middleware: 'update-title',
   })
 
   const tomorrow = new Howl({

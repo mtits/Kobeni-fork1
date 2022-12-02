@@ -15,3 +15,10 @@
     background-image: url('/kobeni.png');
   }
 </style>
+
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Pull Yoself Togedah!',
+    middleware: 'update-title',
+  })
+</script>

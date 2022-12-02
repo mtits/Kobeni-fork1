@@ -1,18 +1,15 @@
 <template>
   <div>
     <PageTitle title="Transaction Request Results"> </PageTitle>
-
-    <NuxtLink to="/copyandpay" class="btn btn-secondary"
-      >Submit Another Request</NuxtLink
-    >
   </div>
 </template>
 
 <script setup>
   import { ref, onMounted } from 'vue'
 
-  useHead({
-    title: 'Kobeni | Result Page',
+  definePageMeta({
+    pageTitle: 'Kobeni | Result Page',
+    middleware: 'update-title',
   })
 
   const route = useRoute()

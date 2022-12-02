@@ -54,6 +54,7 @@
           <li><a>Server-to-Server</a></li>
           <li><a>Backoffice</a></li>
           <li><a>Reporting API (trx doko?)</a></li>
+          <li><a>Pay-by-link</a></li>
           <li><NuxtLink to="/fmmid">Format Thy MID</NuxtLink></li>
           <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
           <li><a>Webhook Decryptor</a></li>
@@ -68,6 +69,7 @@
           </li>
           <li><a>Setup</a></li>
           <li><a>Standard Checkout</a></li>
+          <li><a>Generate Auth Token</a></li>
           <li><a>REST API</a></li>
           <li><a>Backoffice</a></li>
         </ul>
@@ -116,10 +118,6 @@
 
 <script setup>
   import { onMounted } from 'vue'
-
-  useHead({
-    title: 'Kobeni | Pull Yoself Togedah!',
-  })
 
   // set default states of the widget
   useState('autoLaunchWidget', () => true)

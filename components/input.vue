@@ -6,6 +6,7 @@
     <input
       :type="type"
       class="input font-mono w-full"
+      :placeholder="placeHolder"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       spellcheck="false" />
@@ -17,6 +18,12 @@
     label: {
       type: String,
       required: true,
+    },
+
+    placeHolder: {
+      type: String,
+      required: false,
+      default: '',
     },
 
     type: {

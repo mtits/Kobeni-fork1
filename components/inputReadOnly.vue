@@ -6,7 +6,7 @@
     <div class="input-group">
       <input
         :type="type"
-        class="input font-mono input-bordered w-full"
+        class="input font-mono w-full"
         :class="{ 'input-error': characterCount > characterCountMax }"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"

@@ -98,8 +98,9 @@
 </template>
 
 <script setup>
-  useHead({
-    title: 'Kobeni | Config for PAY.ON',
+  definePageMeta({
+    pageTitle: 'Kobeni | Config for PAY.ON',
+    middleware: 'update-title',
   })
 
   // get app states

@@ -93,8 +93,9 @@
 <script setup>
   import { ref, onMounted } from 'vue'
 
-  useHead({
-    title: 'Kobeni | CopyandPay',
+  definePageMeta({
+    pageTitle: 'Kobeni | CopyandPay',
+    middleware: 'update-title',
   })
 
   const endPoint = ref('https://eu-test.oppwa.com/v1/checkouts')

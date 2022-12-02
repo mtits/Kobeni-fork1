@@ -1,7 +1,7 @@
 <template>
   <div>
-    <PageTitle title="Format My MID">
-      Enter thy MID information below and I shall format thee!
+    <PageTitle title="Format Thy MID">
+      Enter thy MID information beneath and I shall format thee!
     </PageTitle>
 
     <div class="flex w-full">
@@ -11,6 +11,7 @@
           <Input label="Merchant Name" v-model="merchantName" />
           <Input
             label="Acquirer BIN (required for JCB)"
+            place-holder="Enter JCB BIN e.g. 35000"
             v-model="jcbAcquirerBIN" />
         </div>
       </div>
@@ -129,8 +130,13 @@
 <script setup>
   import { ref, computed } from 'vue'
 
-  const MID = ref('')
-  const merchantName = ref('')
+  definePageMeta({
+    pageTitle: 'Kobeni | Format Thy MID',
+    middleware: 'update-title',
+  })
+
+  const MID = ref('69420')
+  const merchantName = ref('Cognito Inc.')
   const jcbAcquirerBIN = ref('')
 
   const visaRequestorID = computed(() => {
