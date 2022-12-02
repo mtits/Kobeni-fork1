@@ -10,7 +10,7 @@
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Endpoint</span>
       </label>
-      <select class="select select-bordered max-w-sm" v-model="endPoint">
+      <select class="select max-w-sm" v-model="endPoint">
         <option v-for="option in endPoints" :value="option.value">
           {{ option.text }}
         </option>
@@ -76,7 +76,7 @@
 
     <!-- Toast for copy buttons -->
     <Transition>
-      <div class="toast" v-if="showAlert">
+      <div class="toast toast-end" v-if="showAlert">
         <Alert title="Done" color-style="alert-info"
           >Data copied to clipboard.</Alert
         >
@@ -189,9 +189,27 @@
       disableCardExpiryDateValidation: useState(
         'disableCardExpiryDateValidation'
       ).value,
+
       //
       spinner: {
         color: '#38bdf8',
+      },
+
+      //
+      labels: {
+        submit: 'PAY NOW',
+      },
+
+      // sets the placeholder for number and cvv, because iFrames, that's why
+      iframeStyles: {
+        'card-number-placeholder': {
+          color: 'rgb(107 114 128)',
+        },
+        'cvv-placeholder': {
+          color: 'rgb(107 114 128)',
+        },
+
+        'background-color': 'rgb(229 231 235)',
       },
     }
 

@@ -4,7 +4,7 @@
       <span class="label-text text-sky-400 font-bold">{{ label }}</span>
     </label>
     <textarea
-      class="textarea font-mono textarea-bordered h-80"
+      class="textarea font-mono h-80"
       spellcheck="false"
       :value="JSON.stringify(data, null, 1)"
       readonly></textarea>

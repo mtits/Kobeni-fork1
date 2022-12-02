@@ -33,9 +33,10 @@
             <span class="label-text">
               <span class="text-sky-400 font-bold"><kbd>Card Style</kbd></span
               ><br />
-              Set Widget's style to <span class="text-sky-400">card</span> (May
-              cause visibility issues because of this app's theme). Current
-              default: <span class="text-sky-400">plain</span>.</span
+              Set the widget's style to
+              <span class="text-sky-400">card</span> (This will some cause
+              visibility issues because of this app's theme). Current default:
+              <span class="text-sky-400">'plain'</span>.</span
             >
             <input
               type="checkbox"

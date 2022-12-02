@@ -12,12 +12,69 @@
 
         <!-- button to close -->
         <div class="modal-action">
-          <label class="btn btn-block" @click="yeetTheWidget">Close</label>
+          <label class="btn btn-block btn-warning" @click="yeetTheWidget"
+            >Cancel</label
+          >
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+  .wpwl-label {
+    color: rgb(56 189 248);
+    font-weight: 500;
+  }
+
+  .wpwl-wrapper {
+    color: black;
+  }
+
+  .wpwl-control {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
+    font-size: 1rem;
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-color: hsl(220, 18%, 20%);
+    border-radius: 0.5rem;
+
+    background-color: rgb(229 231 235);
+  }
+
+  .wpwl-control::placeholder {
+    color: rgb(107 114 128);
+  }
+
+  .wpwl-control-brand {
+    width: fit-content;
+  }
+
+  .wpwl-brand-card {
+    margin-left: 1px;
+  }
+
+  .wpwl-button-pay {
+    background-color: hsl(262 80% 50%);
+    font-family: inherit;
+    border: inherit;
+    border-radius: 0.5rem;
+    font-weight: 600;
+
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    transition-property: all;
+    transition-duration: 200ms;
+  }
+
+  .wpwl-button-pay:hover {
+    background-color: hsl(262 80% 40%);
+  }
+</style>
 
 <script setup>
   const cnpModal = useState('cnpModal')
