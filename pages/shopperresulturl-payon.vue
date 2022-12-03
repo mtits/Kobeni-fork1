@@ -2,23 +2,6 @@
   <div>
     <PageTitle title="Transaction Results"> </PageTitle>
 
-    <Transition>
-      <InputReadOnly
-        label="Entity ID"
-        v-model="entityId"
-        :display-character-count="false"
-        @copy-content="copyString(entityId)"
-        v-if="entityId" />
-    </Transition>
-
-    <Transition>
-      <Textareadisplayonly
-        label="Request Data Sent"
-        :data="dataParameters"
-        :is-json="false"
-        v-if="dataParameters"></Textareadisplayonly>
-    </Transition>
-
     <Alert class="my-6" title="Info" color-style=" alert-info">
       The checkout ID used for getting this transaction's result is one-time
       only. If you refresh this page, you will not be able to get the results
@@ -52,6 +35,47 @@
             Copy Registration ID
           </button>
         </div>
+      </div>
+    </Transition>
+
+    <Transition>
+      <InputReadOnly
+        label="Entity ID"
+        v-model="entityId"
+        :display-character-count="false"
+        @copy-content="copyString(entityId)"
+        v-if="entityId" />
+    </Transition>
+
+    <Transition>
+      <InputReadOnly
+        label="Checkout ID"
+        v-model="id"
+        :display-character-count="false"
+        @copy-content="copyString(id)"
+        v-if="id" />
+    </Transition>
+
+    <Transition>
+      <InputReadOnly
+        label="Resource Path"
+        v-model="resourcePath"
+        :display-character-count="false"
+        @copy-content="copyString(resourcePath)"
+        v-if="resourcePath" />
+    </Transition>
+
+    <Transition>
+      <div>
+        <Textareadisplayonly
+          label="Request Data Sent"
+          :data="dataParameters"
+          :is-json="false"
+          v-if="dataParameters"></Textareadisplayonly>
+
+        <button class="btn mt-3" @click="copyString(dataParameters)">
+          Copy Previous Data
+        </button>
       </div>
     </Transition>
   </div>
