@@ -203,15 +203,15 @@
    * submit to the API!
    */
   async function submit() {
+    showLoading.value = true
+    responseData.value = ''
+
     // push the sessions to.. well.. sessions
     await setSessionData()
     await getSessionData()
 
     //
     try {
-      showLoading.value = true
-      responseData.value = ''
-
       const { data } = await useFetch('/api/copyandpay', {
         method: 'post',
         body: {
