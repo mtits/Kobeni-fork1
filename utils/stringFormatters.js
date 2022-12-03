@@ -1,8 +1,8 @@
 /**
  * Formats an array into a string with a specific separator/delimiter
- * @param {Array} array
+ * @param {array} arrayMain
  * @param {String} separator
- * @returns String
+ * @returns String, e.g. "customer.givenName=john&customer.surname=wick&...""
  */
 export const arrayToFormatter = (arrayMain, separator) => {
   let containerString = ''

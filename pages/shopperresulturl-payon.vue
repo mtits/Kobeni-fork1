@@ -44,7 +44,7 @@
 
     await refresh()
 
-    console.log(session.value)
+    // console.log(session.value)
     entityId.value = session.value.entityId
     dataParameters.value = session.value.dataParameters
   }

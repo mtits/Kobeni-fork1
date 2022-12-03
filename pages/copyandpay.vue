@@ -35,14 +35,32 @@
           menu. Do not add it here.
         </Alert>
 
-        <!-- submit btn -->
+        <!-- buttons -->
         <div class="mt-3">
-          <button
-            class="btn btn-primary"
-            :class="{ loading: showLoading }"
-            @click="submit">
-            Submit
-          </button>
+          <!-- submit btn -->
+          <div
+            class="tooltip tooltip-bottom"
+            data-tip="Submitting this will replace the previous data.">
+            <button
+              class="btn btn-primary"
+              :class="{ loading: showLoading }"
+              @click="submit">
+              Submit
+            </button>
+          </div>
+
+          <Transition>
+            <div
+              class="tooltip tooltip-right"
+              :data-tip="sessionDataParameters">
+              <button
+                class="btn btn-secondary ml-3"
+                v-if="sessionDataParameters"
+                @click="loadSessionData">
+                Load Previous Data
+              </button>
+            </div>
+          </Transition>
         </div>
       </div>
 
@@ -142,16 +160,46 @@
   // widget states
   const autoLaunchWidget = useState('autoLaunchWidget')
 
-  onMounted(() => {
+  // all session data from here
+  const sessionAccessToken = ref('')
+  const sessionDataParameters = ref('')
+  const sessionEntityId = ref('')
+
+  /**
+   *
+   */
+  onMounted(async () => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
-    // todo: check if session data exists, if so, show the button to load previous request params
+    await getSessionData()
   })
+
+  /**
+   * fetches data from the session and set it to the
+   */
+  async function getSessionData() {
+    const { session, refresh } = await useSession()
+
+    await refresh()
+
+    sessionAccessToken.value = session.value.accessToken
+    sessionEntityId.value = session.value.entityId
+    sessionDataParameters.value = session.value.dataParameters
+  }
+
+  /**
+   * loads the session data as the main ui data
+   */
+  function loadSessionData() {
+    accessToken.value = sessionAccessToken.value
+    entityId.value = sessionEntityId.value
+    dataParameters.value = sessionDataParameters.value
+  }
 
   /**
    * set up session data on click of the submit button
    */
-  async function setupSession() {
+  async function setSessionData() {
     const { refresh, update } = await useSession()
 
     await refresh()
@@ -170,7 +218,7 @@
    */
   async function submit() {
     // push the sessions to.. well.. sessions
-    await setupSession()
+    await setSessionData()
 
     //
     try {
