@@ -16,8 +16,13 @@
           :is-json="true"
           v-if="responseData"></Textareadisplayonly>
 
+        <button class="btn btn-ghost loading" v-else>Am Loading...</button>
+
         <div class="btn-group mt-3 place-items-center">
-          <button class="btn" @click="copyEntireResponse(responseData)">
+          <button
+            class="btn"
+            @click="copyEntireResponse(responseData)"
+            v-if="responseData">
             Copy Response
           </button>
 
@@ -38,46 +43,55 @@
       </div>
     </Transition>
 
-    <Transition>
-      <InputReadOnly
-        label="Entity ID"
-        v-model="entityId"
-        :display-character-count="false"
-        @copy-content="copyString(entityId)"
-        v-if="entityId" />
-    </Transition>
+    <div class="card mt-6 bg-base-300 text-neutral-content shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title">Misc. Data</h2>
 
-    <Transition>
-      <InputReadOnly
-        label="Checkout ID"
-        v-model="id"
-        :display-character-count="false"
-        @copy-content="copyString(id)"
-        v-if="id" />
-    </Transition>
+        <Transition>
+          <InputReadOnly
+            label="Entity ID"
+            v-model="entityId"
+            :display-character-count="false"
+            @copy-content="copyString(entityId)"
+            v-if="entityId" />
+        </Transition>
 
-    <Transition>
-      <InputReadOnly
-        label="Resource Path"
-        v-model="resourcePath"
-        :display-character-count="false"
-        @copy-content="copyString(resourcePath)"
-        v-if="resourcePath" />
-    </Transition>
+        <Transition>
+          <InputReadOnly
+            label="Checkout ID"
+            v-model="id"
+            :display-character-count="false"
+            @copy-content="copyString(id)"
+            v-if="id" />
+        </Transition>
 
-    <Transition>
-      <div>
-        <Textareadisplayonly
-          label="Request Data Sent"
-          :data="dataParameters"
-          :is-json="false"
-          v-if="dataParameters"></Textareadisplayonly>
+        <Transition>
+          <InputReadOnly
+            label="Resource Path"
+            v-model="resourcePath"
+            :display-character-count="false"
+            @copy-content="copyString(resourcePath)"
+            v-if="resourcePath" />
+        </Transition>
 
-        <button class="btn mt-3" @click="copyString(dataParameters)">
-          Copy Previous Data
-        </button>
+        <Transition>
+          <div>
+            <Textareadisplayonly
+              label="Request Data Sent"
+              :data="dataParameters"
+              :is-json="false"
+              v-if="dataParameters"></Textareadisplayonly>
+
+            <button
+              class="btn mt-3"
+              @click="copyString(dataParameters)"
+              v-if="dataParameters">
+              Copy Previous Data
+            </button>
+          </div>
+        </Transition>
       </div>
-    </Transition>
+    </div>
   </div>
 </template>
 
