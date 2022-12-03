@@ -133,6 +133,7 @@
   useState('disableCardExpiryDateValidation', () => false)
 
   // payon default params
+  useState('mode', () => 'Test')
   useState(
     'accessToken',
     () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='

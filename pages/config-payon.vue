@@ -11,6 +11,18 @@
       type="text"
       v-model="shopperResultURLPayon" />
 
+    <!-- select environment -->
+    <div class="form-control mt-3">
+      <label class="label mb-1">
+        <span class="label-text text-sky-400 font-bold">Environment</span>
+      </label>
+      <select class="select max-w-sm" v-model="mode">
+        <option v-for="option in modeOptions" :value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+    </div>
+
     <!-- ALL TOGGLES HERE -->
     <PageTitle title="Widget Behaviour" class="mt-10"> </PageTitle>
     <Alert title="Disclaimer" color-style="bg-base-300">
@@ -101,6 +113,26 @@
   definePageMeta({
     pageTitle: 'Kobeni | Config for PAY.ON',
     middleware: 'update-title',
+  })
+
+  //
+  const mode = useState('mode')
+  const modeOptions = ref([
+    {
+      text: 'TEST',
+      value: 'Test',
+    },
+    {
+      text: 'PRODUCTION',
+      value: 'Live',
+    },
+  ])
+  const modeText = computed(() => {
+    if (mode.value == 'Test') {
+      return 'https://eu-test.oppwa.com/v1/checkouts'
+    } else {
+      return 'https://eu-prod.oppwa.com/v1/checkouts'
+    }
   })
 
   // get app states

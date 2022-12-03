@@ -5,22 +5,12 @@
       secure and simple-to-integrate.
     </PageTitle>
 
-    <!-- select endpoint -->
-    <div class="form-control mt-3">
-      <label class="label mb-1">
-        <span class="label-text text-sky-400 font-bold">Endpoint</span>
-      </label>
-      <select class="select max-w-sm" v-model="endPoint">
-        <option v-for="option in endPoints" :value="option.value">
-          {{ option.text }}
-        </option>
-      </select>
-      <label class="label">
-        <span class="label-text-alt"
-          ><kbd>{{ endPoint }}</kbd>
-        </span>
-      </label>
-    </div>
+    <!-- show endpoint -->
+    <InputReadOnly
+      label="Endpoint"
+      v-model="modeText"
+      :display-character-count="false"
+      @copy-content="copyString(modeText)" />
 
     <div class="flex flex-col w-full">
       <!-- top -->
@@ -76,14 +66,14 @@
 
             <!-- btn group -->
             <div class="btn-group mt-3 place-items-center">
-              <button class="btn" @click="copyResponse(responseData)">
+              <button class="btn" @click="copyEntireResponse(responseData)">
                 Copy Response
               </button>
 
               <button
                 class="btn"
                 v-if="responseData.id"
-                @click="copyID(responseData.id)">
+                @click="copyString(responseData.id)">
                 Copy Checkout ID
               </button>
 
@@ -100,15 +90,6 @@
       </Transition>
     </div>
 
-    <!-- Toast for copy buttons -->
-    <Transition>
-      <div class="toast toast-end" v-if="showAlert">
-        <Alert title="Done" color-style="alert-info"
-          >Data copied to clipboard.</Alert
-        >
-      </div>
-    </Transition>
-
     <!-- cnp modal here -->
     <modal title="CopyandPay Widget" :isModalOpen="cnpModal" v-if="checkoutId">
       <Cnpform :shopper-result-url="shopperResultURLPayon" />
@@ -117,26 +98,28 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, computed } from 'vue'
 
   definePageMeta({
     pageTitle: 'Kobeni | CopyandPay',
     middleware: 'update-title',
   })
 
-  const endPoint = ref('https://eu-test.oppwa.com/v1/checkouts')
-  const endPoints = ref([
-    {
-      text: 'Test',
-      value: 'https://eu-test.oppwa.com/v1/checkouts',
-    },
-    {
-      text: 'Live',
-      value: 'https://eu-prod.oppwa.com/v1/checkouts',
-    },
-  ])
+  //
+  const mode = useState('mode')
+  const modeText = computed(() => {
+    if (mode.value == 'Test') {
+      return 'https://eu-test.oppwa.com/v1/checkouts'
+    } else {
+      return 'https://eu-prod.oppwa.com/v1/checkouts'
+    }
+  })
+
+  //
   const accessToken = useState('accessToken')
   const entityId = useState('entityId')
+
+  //
   const dataParameters = ref('')
   const defaultParameters = ref([
     'amount=1.00',
@@ -155,12 +138,12 @@
   const cnpModal = useState('cnpModal')
   const shopperResultURLPayon = useState('shopperResultUrlPayon')
   const showLoading = ref(false)
-  const showAlert = ref(false)
 
   // widget states
   const autoLaunchWidget = useState('autoLaunchWidget')
 
   // all session data from here
+  const sessionMode = ref('')
   const sessionAccessToken = ref('')
   const sessionDataParameters = ref('')
   const sessionEntityId = ref('')
@@ -175,13 +158,14 @@
   })
 
   /**
-   * fetches data from the session and set it to the
+   * fetches data from the session and sets it to the local variables
    */
   async function getSessionData() {
     const { session, refresh } = await useSession()
 
     await refresh()
 
+    sessionMode.value = session.value.mode
     sessionAccessToken.value = session.value.accessToken
     sessionEntityId.value = session.value.entityId
     sessionDataParameters.value = session.value.dataParameters
@@ -191,6 +175,7 @@
    * loads the session data as the main ui data
    */
   function loadSessionData() {
+    mode.value = sessionMode.value
     accessToken.value = sessionAccessToken.value
     entityId.value = sessionEntityId.value
     dataParameters.value = sessionDataParameters.value
@@ -205,6 +190,7 @@
     await refresh()
 
     await update({
+      mode: mode.value,
       accessToken: accessToken.value,
       entityId: entityId.value,
       dataParameters: dataParameters.value,
@@ -219,6 +205,7 @@
   async function submit() {
     // push the sessions to.. well.. sessions
     await setSessionData()
+    await getSessionData()
 
     //
     try {
@@ -228,7 +215,7 @@
       const { data } = await useFetch('/api/copyandpay', {
         method: 'post',
         body: {
-          endPoint: endPoint.value,
+          mode: mode.value,
           accessToken: accessToken.value,
           dataParameters: `${textAreaToURLParams(
             dataParameters.value
@@ -320,7 +307,7 @@
     let subDomain = ''
 
     // eval env mode
-    if (endPoint.value == 'https://eu-test.oppwa.com/v1/checkouts') {
+    if (mode.value == 'Test') {
       subDomain = 'eu-test'
     } else {
       subDomain = 'eu-prod'
@@ -330,31 +317,5 @@
 
     // append to head
     document.head.append(widgetScript)
-  }
-
-  /**
-   * Stringify data and copy to clipboard
-   * @param {Object} data
-   */
-  function copyResponse(data) {
-    showAlert.value = true
-    copyEntireResponse(data)
-
-    setTimeout(() => {
-      showAlert.value = false
-    }, 1500)
-  }
-
-  /**
-   * copy checkout ID to clipboard
-   * @param {String} data
-   */
-  function copyID(data) {
-    showAlert.value = true
-    copyString(data)
-
-    setTimeout(() => {
-      showAlert.value = false
-    }, 1500)
   }
 </script>

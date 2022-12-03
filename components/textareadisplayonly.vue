@@ -4,7 +4,7 @@
       <span class="label-text text-sky-400 font-bold">{{ label }}</span>
     </label>
     <textarea
-      class="textarea font-mono h-80"
+      class="textarea font-mono h-96"
       :value="stringyfiedJSON"
       spellcheck="false"
       readonly></textarea>
@@ -30,7 +30,7 @@
 
   const stringyfiedJSON = computed(() => {
     if (props.isJson) {
-      return JSON.stringify(props.data, null, 1)
+      return JSON.stringify(props.data, null, 2)
     } else {
       return props.data
     }

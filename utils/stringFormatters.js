@@ -40,5 +40,5 @@ export const copyString = (data) => {
  * @param {Object} jsonResponse
  */
 export const copyEntireResponse = (jsonResponse) => {
-  navigator.clipboard.writeText(JSON.stringify(jsonResponse))
+  navigator.clipboard.writeText(JSON.stringify(jsonResponse, null, 2))
 }

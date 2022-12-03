@@ -6,41 +6,32 @@ export default defineEventHandler(async (event) => {
 
   // set the endpoint depending on the environment
   if (body.mode == 'Test') {
-    endPoint = 'https://eu-test.oppwa.com/v1/checkouts'
+    endPoint = `https://eu-test.oppwa.com/v1/checkouts/${body.checkoutID}/payment`
   } else {
-    endPoint = 'https://eu-prod.oppwa.com/v1/checkouts'
+    endPoint = `https://eu-prod.oppwa.com/v1/checkouts/${body.checkoutID}/payment`
   }
 
   try {
     const response = await axios({
-      method: 'post',
+      method: 'get',
       url: endPoint,
       headers: {
         Authorization: `Bearer ${body.accessToken}`,
       },
-      data: body.dataParameters,
+      params: {
+        entityId: body.entityId,
+      },
     })
 
-    // log to server before returning
-    console.log({
-      requestData: {
-        mode: body.mode,
-        accessToken: body.accessToken,
-        data: body.dataParameters,
-      },
-      responseData: response.data,
-    })
+    console.log({ transactionResult: response.data })
 
     return response.data
-
-    // error
   } catch (error) {
-    // log to server before returning
     console.log({
       requestData: {
         mode: body.mode,
         accessToken: body.accessToken,
-        data: body.dataParameters,
+        entityId: body.entityId,
       },
       responseErrorData: error.response.data,
     })
