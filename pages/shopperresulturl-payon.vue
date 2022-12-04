@@ -11,7 +11,7 @@
     <Transition>
       <div>
         <Textareadisplayonly
-          label="Transaction Results"
+          label="Response Data"
           :data="responseData"
           :is-json="true"
           v-if="responseData"></Textareadisplayonly>
