@@ -51,7 +51,7 @@
             <NuxtLink to="/config-payon">Setup</NuxtLink>
           </li>
           <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
-          <li><a>Server-to-Server</a></li>
+          <li><NuxtLink to="/server-to-server">Server-to-Server</NuxtLink></li>
           <li><a>Backoffice</a></li>
           <li><a>Reporting API (trx doko?)</a></li>
           <li><a>Pay-by-link</a></li>
@@ -122,6 +122,9 @@
   // set default states of the widget
   useState('autoLaunchWidget', () => true)
   //
+  useState('selectedBrands', () => {
+    return ['MASTER', 'VISA']
+  })
   useState('widgetStyle', () => 'plain')
   useState('maskCvv', () => true)
   useState('requireCvv', () => true)

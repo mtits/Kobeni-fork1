@@ -92,7 +92,9 @@
 
     <!-- cnp modal here -->
     <modal title="CopyandPay Widget" :isModalOpen="cnpModal" v-if="checkoutId">
-      <Cnpform :shopper-result-url="shopperResultURLPayon" />
+      <Cnpform
+        :shopper-result-url="shopperResultURLPayon"
+        :brands="selectedBrandsFormatted" />
     </modal>
   </div>
 </template>
@@ -124,7 +126,7 @@
   const defaultParameters = ref([
     'amount=1.00',
     'currency=USD',
-    'paymentType=PA',
+    'paymentType=DB',
     'billing.city=South Jadyn',
     'billing.country=US',
     'billing.street1=645 Delmer Vista Suite 927',
@@ -141,9 +143,14 @@
 
   // widget states
   const autoLaunchWidget = useState('autoLaunchWidget')
+  const selectedBrands = useState('selectedBrands')
+  const selectedBrandsFormatted = computed(() => {
+    return arrayToFormatter(selectedBrands.value, ' ')
+  })
 
   // all session data from here
   const sessionMode = ref('')
+  const sessionBrands = ref('')
   const sessionAccessToken = ref('')
   const sessionDataParameters = ref('')
   const sessionEntityId = ref('')
@@ -166,6 +173,7 @@
     await refresh()
 
     sessionMode.value = session.value.mode
+    sessionBrands.value = session.value.brands
     sessionAccessToken.value = session.value.accessToken
     sessionEntityId.value = session.value.entityId
     sessionDataParameters.value = session.value.dataParameters
@@ -176,6 +184,7 @@
    */
   function loadSessionData() {
     mode.value = sessionMode.value
+    selectedBrands.value = sessionBrands.value
     accessToken.value = sessionAccessToken.value
     entityId.value = sessionEntityId.value
     dataParameters.value = sessionDataParameters.value
@@ -191,6 +200,7 @@
 
     await update({
       mode: mode.value,
+      brands: selectedBrands.value,
       accessToken: accessToken.value,
       entityId: entityId.value,
       dataParameters: dataParameters.value,

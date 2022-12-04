@@ -21,6 +21,34 @@
           {{ option.text }}
         </option>
       </select>
+      <label class="label">
+        <span class="label-text-alt italic">{{ modeText }}</span>
+      </label>
+    </div>
+
+    <!-- select brands -->
+    <div>
+      <label class="label mb-1">
+        <span class="label-text text-sky-400 font-bold">Brands</span>
+      </label>
+      <!-- select brands -->
+      <select class="select w-96" size="7" v-model="selectedBrands" multiple>
+        <option v-for="brand in brandList">{{ brand }}</option>
+      </select>
+
+      <!-- selected brands display via badges -->
+      <div class="card mt-3 bg-base-100">
+        <div class="card-body">
+          <h2 class="card-title text-sky-400">Selected Brands</h2>
+          <div class="card-actions">
+            <TransitionGroup>
+              <div class="badge" v-for="brand in selectedBrands" :key="brand">
+                {{ brand }}
+              </div>
+            </TransitionGroup>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ALL TOGGLES HERE -->
@@ -129,11 +157,14 @@
   ])
   const modeText = computed(() => {
     if (mode.value == 'Test') {
-      return 'https://eu-test.oppwa.com/v1/checkouts'
+      return '"https://eu-test.oppwa.com/v1/..."'
     } else {
-      return 'https://eu-prod.oppwa.com/v1/checkouts'
+      return '"https://eu-prod.oppwa.com/v1/..."'
     }
   })
+
+  const selectedBrands = useState('selectedBrands')
+  const brandList = getBrandsList()
 
   // get app states
   const accessToken = useState('accessToken')
