@@ -65,7 +65,6 @@
 
   definePageMeta({
     pageTitle: 'Kobeni | Tomorrow, Ina said calmly...',
-    middleware: 'update-title',
   })
 
   const tomorrow = new Howl({

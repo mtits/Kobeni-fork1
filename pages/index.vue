@@ -19,6 +19,5 @@
 <script setup>
   definePageMeta({
     pageTitle: 'Kobeni | Pull Yoself Togedah!',
-    middleware: 'update-title',
   })
 </script>

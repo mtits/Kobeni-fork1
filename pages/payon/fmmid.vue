@@ -132,7 +132,6 @@
 
   definePageMeta({
     pageTitle: 'Kobeni | Format Thy MID',
-    middleware: 'update-title',
   })
 
   const MID = ref('69420')

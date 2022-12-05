@@ -104,7 +104,6 @@
 
   definePageMeta({
     pageTitle: 'Kobeni | CopyandPay',
-    middleware: 'update-title',
   })
 
   //

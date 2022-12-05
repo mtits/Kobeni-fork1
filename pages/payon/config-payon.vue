@@ -140,7 +140,6 @@
 <script setup>
   definePageMeta({
     pageTitle: 'Kobeni | Config for PAY.ON',
-    middleware: 'update-title',
   })
 
   //

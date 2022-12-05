@@ -100,7 +100,6 @@
 
   definePageMeta({
     pageTitle: 'Kobeni | Result Page',
-    middleware: 'update-title',
   })
 
   //

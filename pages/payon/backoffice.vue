@@ -68,8 +68,7 @@
   import { onMounted } from 'vue'
 
   definePageMeta({
-    pageTitle: 'Kobeni | Server-to-Server',
-    middleware: 'update-title',
+    pageTitle: 'Kobeni | Backoffice Operations',
   })
 
   //

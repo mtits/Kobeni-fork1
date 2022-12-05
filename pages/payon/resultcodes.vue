@@ -46,7 +46,6 @@
 
   definePageMeta({
     pageTitle: 'Kobeni | Result Codes',
-    middleware: 'update-title',
   })
 
   // the one variable to rule them all

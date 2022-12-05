@@ -70,7 +70,6 @@
 
   definePageMeta({
     pageTitle: 'Kobeni | Server-to-Server',
-    middleware: 'update-title',
   })
 
   //
