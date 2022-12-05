@@ -44,7 +44,7 @@
               class="tooltip tooltip-right"
               :data-tip="sessionDataParameters">
               <button
-                class="btn btn-secondary ml-3"
+                class="btn ml-3"
                 v-if="sessionDataParameters"
                 @click="loadSessionData">
                 Load Previous Data

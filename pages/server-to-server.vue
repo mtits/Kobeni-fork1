@@ -16,14 +16,41 @@
     <!-- Params -->
     <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
-    <button class="btn mt-3" :class="{ loading: showLoading }" @click="submit">
+    <button
+      class="btn mt-3 btn-primary"
+      :class="{ loading: showLoading }"
+      @click="submit">
       Submit
     </button>
+    <Transition>
+      <button
+        class="btn ml-3"
+        @click="loadSessionData"
+        v-if="sessiondataParametersServerToServer">
+        Load Previous Data
+      </button>
+    </Transition>
 
     <Textareadisplayonly
       label="Response Data"
       :data="responseData"
       v-if="responseData"></Textareadisplayonly>
+
+    <div class="btn-group mt-3 place-items-center">
+      <button
+        class="btn"
+        @click="copyEntireResponse(responseData)"
+        v-if="responseData">
+        Copy Response
+      </button>
+
+      <button
+        class="btn"
+        @click="copyString(responseData.id)"
+        v-if="responseData.id">
+        Copy Transaction ID
+      </button>
+    </div>
   </div>
 </template>
 
@@ -111,6 +138,19 @@
     })
   }
 
+  /**
+   * loads the session data as the main ui data
+   */
+  function loadSessionData() {
+    mode.value = sessionMode.value
+    accessToken.value = sessionAccessToken.value
+    entityId.value = sessionEntityId.value
+    dataParameters.value = sessiondataParametersServerToServer.value
+  }
+
+  /**
+   *
+   */
   async function submit() {
     showLoading.value = true
     responseData.value = ''
