@@ -26,7 +26,7 @@
         </Alert>
 
         <!-- buttons -->
-        <div class="mt-3">
+        <div>
           <!-- submit btn -->
           <div
             class="tooltip tooltip-bottom"

@@ -113,6 +113,7 @@
   const dataParameters = ref('')
   const entityId = ref('')
   const accessToken = ref('')
+  const referenceTransaction = useState('referenceTransaction')
 
   //
   const responseData = ref('')
@@ -148,6 +149,7 @@
       })
 
       responseData.value = data.value
+      referenceTransaction.value = responseData.value.id
     } catch (error) {
       console.error(error)
     }

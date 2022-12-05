@@ -1,10 +1,16 @@
 <template>
   <div>
-    <PageTitle title="Server-to-Server">
-      This integration variant requires you to collect the card data which
-      increases your PCI-compliance scope. If you want to minimize your
-      PCI-compliance requirements, we recommend that you use COPYandPAY.
+    <PageTitle title="Backoffice">
+      Backoffice operations can be performed against initial payments that were
+      generated using COPYandPAY or server-to-server. The referencedPaymentId is
+      the value return in the id JSON field.
     </PageTitle>
+
+    <!-- reference transaction -->
+    <Input
+      type="text"
+      label="Reference Transaction"
+      v-model="referenceTransaction" />
 
     <!-- show endpoint -->
     <InputReadOnly
@@ -25,11 +31,11 @@
     <Transition>
       <div
         class="tooltip tooltip-right"
-        :data-tip="sessiondataParametersServerToServer">
+        :data-tip="`${sessiondataParametersBackoffice}\nRefTrx=${sessionRefId}`">
         <button
           class="btn ml-3"
           @click="loadSessionData"
-          v-if="sessiondataParametersServerToServer">
+          v-if="sessiondataParametersBackoffice">
           Load Previous Data
         </button>
       </div>
@@ -54,13 +60,6 @@
         v-if="responseData.id">
         Copy Transaction ID
       </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.registrationId)"
-        v-if="responseData.registrationId">
-        Copy Registration ID
-      </button>
     </div>
   </div>
 </template>
@@ -77,36 +76,23 @@
   const mode = useState('mode')
   const modeText = computed(() => {
     if (mode.value == 'Test') {
-      return 'https://eu-test.oppwa.com/v1/payments'
+      return `https://eu-test.oppwa.com/v1/payments/${referenceTransaction.value}`
     } else {
-      return 'https://eu-prod.oppwa.com/v1/payments'
+      return `https://eu-prod.oppwa.com/v1/payments/${referenceTransaction.value}`
     }
   })
 
   //
+  const referenceTransaction = useState('referenceTransaction')
   const accessToken = useState('accessToken')
   const entityId = useState('entityId')
-  const referenceTransaction = useState('referenceTransaction')
 
   //
   const dataParameters = ref('')
   const defaultParameters = ref([
     'amount=1.00',
     'currency=USD',
-    'paymentType=PA',
-    'paymentBrand=VISA',
-    'card.number=4200000000000000',
-    'card.holder=Nicolas Cage',
-    'card.expiryMonth=05',
-    'card.expiryYear=2034',
-    'card.cvv=123',
-    'billing.city=South Jadyn',
-    'billing.country=US',
-    'billing.street1=645 Delmer Vista Suite 927',
-    'billing.postcode=15705-9357',
-    'customer.email=test@test.com',
-    'customer.givenName=John',
-    'customer.surname=Wick',
+    'paymentType=CP',
   ])
 
   //
@@ -115,8 +101,9 @@
 
   // all session data from here
   const sessionMode = ref('')
+  const sessionRefId = ref('')
   const sessionAccessToken = ref('')
-  const sessiondataParametersServerToServer = ref('')
+  const sessiondataParametersBackoffice = ref('')
   const sessionEntityId = ref('')
 
   /**
@@ -128,10 +115,11 @@
     await refresh()
 
     sessionMode.value = session.value.mode
+    sessionRefId.value = session.value.referenceId
     sessionAccessToken.value = session.value.accessToken
     sessionEntityId.value = session.value.entityId
-    sessiondataParametersServerToServer.value =
-      session.value.dataParametersServerToServer
+    sessiondataParametersBackoffice.value =
+      session.value.dataParametersBackoffice
   }
 
   /**
@@ -144,9 +132,10 @@
 
     await update({
       mode: mode.value,
+      referenceId: referenceTransaction.value,
       accessToken: accessToken.value,
       entityId: entityId.value,
-      dataParametersServerToServer: dataParameters.value,
+      dataParametersBackoffice: dataParameters.value,
     })
   }
 
@@ -155,9 +144,10 @@
    */
   function loadSessionData() {
     mode.value = sessionMode.value
+    referenceTransaction.value = sessionRefId.value
     accessToken.value = sessionAccessToken.value
     entityId.value = sessionEntityId.value
-    dataParameters.value = sessiondataParametersServerToServer.value
+    dataParameters.value = sessiondataParametersBackoffice.value
   }
 
   /**
@@ -171,10 +161,11 @@
     await getSessionData()
 
     try {
-      const { data } = await useFetch('/api/server-2-server', {
+      const { data } = await useFetch('/api/backoffice', {
         method: 'post',
         body: {
           mode: mode.value,
+          referenceId: referenceTransaction.value,
           accessToken: accessToken.value,
           dataParameters: `${textAreaToURLParams(
             dataParameters.value
@@ -183,7 +174,6 @@
       })
 
       responseData.value = data.value
-      referenceTransaction.value = responseData.value.id
     } catch (error) {
       console.error(error)
     } finally {

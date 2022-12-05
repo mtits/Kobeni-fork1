@@ -52,7 +52,7 @@
           </li>
           <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
           <li><NuxtLink to="/server-to-server">Server-to-Server</NuxtLink></li>
-          <li><a>Backoffice</a></li>
+          <li><NuxtLink to="/backoffice">Backoffice</NuxtLink></li>
           <li><a>Reporting API (trx doko?)</a></li>
           <li><a>Pay-by-link</a></li>
           <li><NuxtLink to="/fmmid">Format Thy MID</NuxtLink></li>
@@ -136,6 +136,7 @@
   useState('disableCardExpiryDateValidation', () => false)
 
   // payon default params
+  useState('referenceTransaction', () => '')
   useState('mode', () => 'Test')
   useState(
     'accessToken',
