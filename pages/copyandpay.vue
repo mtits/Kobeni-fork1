@@ -205,8 +205,6 @@
       entityId: entityId.value,
       dataParameters: dataParameters.value,
     })
-
-    // console.log('Session Data:', session.value)
   }
 
   /**

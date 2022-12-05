@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageTitle title="Configure a Merchant">
+    <PageTitle title="Configure Merchant">
       Input your BIP credentials. Set up the widget behaviour.
     </PageTitle>
 

@@ -15,6 +15,15 @@
 
     <!-- Params -->
     <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+
+    <button class="btn mt-3" :class="{ loading: showLoading }" @click="submit">
+      Submit
+    </button>
+
+    <Textareadisplayonly
+      label="Response Data"
+      :data="responseData"
+      v-if="responseData"></Textareadisplayonly>
   </div>
 </template>
 
@@ -46,6 +55,7 @@
     'amount=1.00',
     'currency=USD',
     'paymentType=PA',
+    'paymentBrand=VISA',
     'card.number=4200000000000000',
     'card.holder=Nicolas Cage',
     'card.expiryMonth=05',
@@ -59,9 +69,78 @@
     'customer.givenName=John',
     'customer.surname=Wick',
   ])
-  const responseData = ref('')
 
-  onMounted(() => {
+  //
+  const responseData = ref('')
+  const showLoading = ref(false)
+
+  // all session data from here
+  const sessionMode = ref('')
+  const sessionAccessToken = ref('')
+  const sessiondataParametersServerToServer = ref('')
+  const sessionEntityId = ref('')
+
+  /**
+   * fetches data from the session and sets it to the local variables
+   */
+  async function getSessionData() {
+    const { session, refresh } = await useSession()
+
+    await refresh()
+
+    sessionMode.value = session.value.mode
+    sessionAccessToken.value = session.value.accessToken
+    sessionEntityId.value = session.value.entityId
+    sessiondataParametersServerToServer.value =
+      session.value.dataParametersServerToServer
+  }
+
+  /**
+   * set up session data on click of the submit button
+   */
+  async function setSessionData() {
+    const { refresh, update } = await useSession()
+
+    await refresh()
+
+    await update({
+      mode: mode.value,
+      accessToken: accessToken.value,
+      entityId: entityId.value,
+      dataParametersServerToServer: dataParameters.value,
+    })
+  }
+
+  async function submit() {
+    showLoading.value = true
+    responseData.value = ''
+
+    await setSessionData()
+    await getSessionData()
+
+    try {
+      const { data } = await useFetch('/api/server-2-server', {
+        method: 'post',
+        body: {
+          mode: mode.value,
+          accessToken: accessToken.value,
+          dataParameters: `${textAreaToURLParams(
+            dataParameters.value
+          )}&entityId=${entityId.value}`,
+        },
+      })
+
+      responseData.value = data.value
+    } catch (error) {
+      console.error(error)
+    } finally {
+      showLoading.value = false
+    }
+  }
+
+  onMounted(async () => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+
+    await getSessionData()
   })
 </script>
