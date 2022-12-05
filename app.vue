@@ -48,15 +48,17 @@
             </div>
           </li>
           <li>
-            <NuxtLink to="/config-payon">Setup</NuxtLink>
+            <NuxtLink to="/payon/config-payon">Setup</NuxtLink>
           </li>
-          <li><NuxtLink to="/copyandpay">CopyandPay</NuxtLink></li>
-          <li><NuxtLink to="/server-to-server">Server-to-Server</NuxtLink></li>
-          <li><NuxtLink to="/backoffice">Backoffice</NuxtLink></li>
-          <li><NuxtLink to="/recurring">Recurring</NuxtLink></li>
+          <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
+          <li>
+            <NuxtLink to="/payon/server-to-server">Server-to-Server</NuxtLink>
+          </li>
+          <li><NuxtLink to="/payon/backoffice">Backoffice</NuxtLink></li>
+          <li><NuxtLink to="/payon/recurring">Recurring</NuxtLink></li>
           <li><a>Transaction Doko?</a></li>
-          <li><NuxtLink to="/fmmid">Format Thy MID</NuxtLink></li>
-          <li><NuxtLink to="/resultcodes">Result Codes</NuxtLink></li>
+          <li><NuxtLink to="/payon/fmmid">Format Thy MID</NuxtLink></li>
+          <li><NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink></li>
           <li><a>Webhook Decryptor</a></li>
         </ul>
 
@@ -153,7 +155,7 @@
     // result URL for PAY.ON
     useState('shopperResultUrlPayon', () => {
       const currentURL = new URL(window.location.href)
-      return `${currentURL.origin}/shopperresulturl-payon`
+      return `${currentURL.origin}/payon/shopperresulturl-payon`
     })
   })
 </script>

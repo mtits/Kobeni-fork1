@@ -44,6 +44,10 @@
           <button class="btn" @click="pekoLaugh.play()">
             AH↗️HA↘️HA↗️HA↘️HA↗️
           </button>
+
+          <button class="btn" @click="ehe.play()">
+            "'Ehe' Te Nandayo!?!?!?!1"
+          </button>
         </div>
       </div>
     </div>
@@ -82,5 +86,9 @@
 
   const pekoLaugh = new Howl({
     src: ['/audio/peko_laugh.mp3'],
+  })
+
+  const ehe = new Howl({
+    src: ['/audio/ehe.mp3'],
   })
 </script>
