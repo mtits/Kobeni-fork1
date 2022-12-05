@@ -114,6 +114,7 @@
   const entityId = ref('')
   const accessToken = ref('')
   const referenceTransaction = useState('referenceTransaction')
+  const registrationId = useState('registrationId')
 
   //
   const responseData = ref('')
@@ -150,6 +151,9 @@
 
       responseData.value = data.value
       referenceTransaction.value = responseData.value.id
+      if (responseData.value.registrationId) {
+        registrationId.value = responseData.value.registrationId
+      }
     } catch (error) {
       console.error(error)
     }

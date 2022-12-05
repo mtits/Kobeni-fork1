@@ -1,10 +1,12 @@
 <template>
   <div>
-    <PageTitle title="Server-to-Server">
-      This integration variant requires you to collect the card data which
-      increases your PCI-compliance scope. If you want to minimize your
-      PCI-compliance requirements, we recommend that you use COPYandPAY.
+    <PageTitle title="Recurring">
+      Subsequent payments only. Please send the initial transactions over at
+      CopyandPay or S2S.
     </PageTitle>
+
+    <!-- reference transaction -->
+    <Input type="text" label="Registration ID" v-model="registrationId" />
 
     <!-- show endpoint -->
     <InputReadOnly
@@ -25,11 +27,11 @@
     <Transition>
       <div
         class="tooltip tooltip-right"
-        :data-tip="sessiondataParametersServerToServer">
+        :data-tip="`${sessiondataParametersRecurring}\nRG=${sessionRegId}`">
         <button
           class="btn ml-3"
           @click="loadSessionData"
-          v-if="sessiondataParametersServerToServer">
+          v-if="sessiondataParametersRecurring">
           Load Previous Data
         </button>
       </div>
@@ -54,13 +56,6 @@
         v-if="responseData.id">
         Copy Transaction ID
       </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.registrationId)"
-        v-if="responseData.registrationId">
-        Copy Registration ID
-      </button>
     </div>
   </div>
 </template>
@@ -77,37 +72,27 @@
   const mode = useState('mode')
   const modeText = computed(() => {
     if (mode.value == 'Test') {
-      return 'https://eu-test.oppwa.com/v1/payments'
+      return `https://eu-test.oppwa.com/v1/registrations/${registrationId.value}/payments`
     } else {
-      return 'https://eu-prod.oppwa.com/v1/payments'
+      return `https://eu-prod.oppwa.com/v1/registrations/${registrationId.value}/payments`
     }
   })
 
   //
+  const registrationId = useState('registrationId')
   const accessToken = useState('accessToken')
   const entityId = useState('entityId')
-  const referenceTransaction = useState('referenceTransaction')
-  const registrationId = useState('registrationId')
 
   //
   const dataParameters = ref('')
   const defaultParameters = ref([
-    'amount=1.00',
+    'amount=92.00',
     'currency=USD',
-    'paymentType=PA',
-    'paymentBrand=VISA',
-    'card.number=4200000000000000',
-    'card.holder=Nicolas Cage',
-    'card.expiryMonth=05',
-    'card.expiryYear=2034',
-    'card.cvv=123',
-    'billing.city=South Jadyn',
-    'billing.country=US',
-    'billing.street1=645 Delmer Vista Suite 927',
-    'billing.postcode=15705-9357',
-    'customer.email=test@test.com',
-    'customer.givenName=John',
-    'customer.surname=Wick',
+    'paymentType=DB',
+    'standingInstruction.mode=REPEATED',
+    'standingInstruction.type=RECURRING',
+    'standingInstruction.source=MIT',
+    'standingInstruction.initialTransactionId=REPLACE_ME',
   ])
 
   //
@@ -116,8 +101,9 @@
 
   // all session data from here
   const sessionMode = ref('')
+  const sessionRegId = ref('')
   const sessionAccessToken = ref('')
-  const sessiondataParametersServerToServer = ref('')
+  const sessiondataParametersRecurring = ref('')
   const sessionEntityId = ref('')
 
   /**
@@ -129,10 +115,10 @@
     await refresh()
 
     sessionMode.value = session.value.mode
+    sessionRegId.value = session.value.registrationId
     sessionAccessToken.value = session.value.accessToken
     sessionEntityId.value = session.value.entityId
-    sessiondataParametersServerToServer.value =
-      session.value.dataParametersServerToServer
+    sessiondataParametersRecurring.value = session.value.dataParametersRecurring
   }
 
   /**
@@ -145,9 +131,10 @@
 
     await update({
       mode: mode.value,
+      registrationId: registrationId.value,
       accessToken: accessToken.value,
       entityId: entityId.value,
-      dataParametersServerToServer: dataParameters.value,
+      dataParametersRecurring: dataParameters.value,
     })
   }
 
@@ -156,9 +143,10 @@
    */
   function loadSessionData() {
     mode.value = sessionMode.value
+    registrationId.value = sessionRegId.value
     accessToken.value = sessionAccessToken.value
     entityId.value = sessionEntityId.value
-    dataParameters.value = sessiondataParametersServerToServer.value
+    dataParameters.value = sessiondataParametersRecurring.value
   }
 
   /**
@@ -172,10 +160,11 @@
     await getSessionData()
 
     try {
-      const { data } = await useFetch('/api/server-2-server', {
+      const { data } = await useFetch('/api/recurring', {
         method: 'post',
         body: {
           mode: mode.value,
+          registrationId: registrationId.value,
           accessToken: accessToken.value,
           dataParameters: `${textAreaToURLParams(
             dataParameters.value
@@ -184,11 +173,6 @@
       })
 
       responseData.value = data.value
-      referenceTransaction.value = responseData.value.id
-
-      if (responseData.value.registrationId) {
-        registrationId.value = responseData.value.registrationId
-      }
     } catch (error) {
       console.error(error)
     } finally {
