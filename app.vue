@@ -48,7 +48,7 @@
             </div>
           </li>
           <li>
-            <NuxtLink to="/payon/config">Setup</NuxtLink>
+            <NuxtLink to="/payon/config/configure-merchant">Setup</NuxtLink>
           </li>
           <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
           <li>

@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   router: {
     // https://router.vuejs.org/api/interfaces/routeroptions.html
     options: {
-      linkActiveClass: 'active',
+      linkActiveClass: 'active tab-active',
     },
   },
 
