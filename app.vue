@@ -24,7 +24,7 @@
 
         <!-- side title -->
         <div class="p-4 w-72 bg-base-200 sticky top-0 items-center">
-          <div class="prose">
+          <div class="prose ml-3">
             <h1 class="text-sky-400">
               Kobeni
               <div class="badge">ALPHA</div>
