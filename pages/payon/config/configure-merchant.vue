@@ -55,7 +55,10 @@
             <div class="card-actions justify-start">
               <!-- selected brands display via badges -->
               <TransitionGroup>
-                <div class="badge" v-for="brand in selectedBrands" :key="brand">
+                <div
+                  class="badge badge-lg"
+                  v-for="brand in selectedBrands"
+                  :key="brand">
                   {{ brand }}
                 </div>
               </TransitionGroup>
