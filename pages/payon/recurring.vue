@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageTitle title="Recurring">
+    <PageTitle title="Recurring (REPEATED only)">
       Subsequent payments only. Please send the initial transactions over at
       CopyandPay or S2S.
     </PageTitle>

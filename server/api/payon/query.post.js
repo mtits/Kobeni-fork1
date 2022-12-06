@@ -2,16 +2,10 @@ import axios from 'axios'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
-  let subDomain = ''
+
+  const subDomain = body.mode == 'Test' ? 'eu-test' : 'eu-prod'
   let endPoint = ''
   let merchantTransactionId = undefined // axios note: params that are null or undefined are not rendered in the URL.
-
-  // set the endpoint depending on the environment
-  if (body.mode == 'Test') {
-    subDomain = `eu-test`
-  } else {
-    subDomain = `eu-prod`
-  }
 
   if (body.searchType == 'paymentId') {
     endPoint = `https://${subDomain}.oppwa.com/v1/query/${body.referenceId}`

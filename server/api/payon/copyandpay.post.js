@@ -2,14 +2,10 @@ import axios from 'axios'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
-  let endPoint = ''
 
   // set the endpoint depending on the environment
-  if (body.mode == 'Test') {
-    endPoint = 'https://eu-test.oppwa.com/v1/checkouts'
-  } else {
-    endPoint = 'https://eu-prod.oppwa.com/v1/checkouts'
-  }
+  const subDomain = body.mode == 'Test' ? 'eu-test' : 'eu-prod'
+  const endPoint = `https://${subDomain}.oppwa.com/v1/checkouts`
 
   try {
     const response = await axios({
