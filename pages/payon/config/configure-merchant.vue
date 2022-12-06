@@ -9,7 +9,7 @@
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Environment</span>
       </label>
-      <select class="select max-w-sm" v-model="mode">
+      <select class="select" v-model="mode">
         <option v-for="option in modeOptions" :value="option.value">
           {{ option.text }}
         </option>
@@ -34,7 +34,7 @@
           <span class="label-text text-sky-400 font-bold">Brands</span>
         </label>
         <!-- select brands -->
-        <select class="select w-96" size="15" v-model="selectedBrands" multiple>
+        <select class="select" size="15" v-model="selectedBrands" multiple>
           <option v-for="brand in brandList">{{ brand }}</option>
         </select>
       </div>
