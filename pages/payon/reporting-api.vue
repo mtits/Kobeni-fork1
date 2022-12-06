@@ -13,7 +13,7 @@
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Search Type</span>
       </label>
-      <select class="select max-w-sm" v-model="searchType">
+      <select class="select" v-model="searchType">
         <option v-for="sType in searchTypes" :value="sType">
           {{ sType }}
         </option>

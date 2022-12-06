@@ -81,6 +81,24 @@
         >
       </div>
     </div>
+
+    <Input
+      label="Card Submit Label (The 'PAY NOW' button)"
+      v-model="payNowLabel" />
+
+    <!-- select locale -->
+    <div class="mt-3">
+      <label class="label">
+        <span class="label-text text-sky-400 font-bold"
+          >Locale (Widget Language)</span
+        >
+      </label>
+      <select class="select w-full" v-model="locale">
+        <option v-for="local in localeList" :value="local.value">
+          {{ local.text }}
+        </option>
+      </select>
+    </div>
   </div>
 </template>
 
@@ -102,4 +120,8 @@
   const disableCardExpiryDateValidation = useState(
     'disableCardExpiryDateValidation'
   )
+
+  const payNowLabel = useState('payNowLabel')
+  const locale = useState('locale')
+  const localeList = getLocaleList()
 </script>

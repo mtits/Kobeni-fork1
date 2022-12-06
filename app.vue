@@ -135,6 +135,8 @@
   useState('showLabels', () => true)
   useState('showPlaceholders', () => true)
   useState('disableCardExpiryDateValidation', () => false)
+  useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')
+  useState('locale', () => 'en')
 
   // payon default params
   useState('referenceTransaction', () => '')

@@ -246,6 +246,7 @@
    */
   function setWpwlOptions() {
     wpwlOptions = {
+      locale: useState('locale').value,
       style: useState('widgetStyle').value,
       maskCvv: useState('maskCvv').value,
       requireCvv: useState('requireCvv').value,
@@ -265,7 +266,7 @@
 
       //
       labels: {
-        submit: 'PAY NOW',
+        submit: useState('payNowLabel').value,
       },
 
       // sets the placeholder for number and cvv, because iFrames, that's why

@@ -4,8 +4,8 @@
       Enter thy MID information beneath and I shall format thee!
     </PageTitle>
 
-    <div class="flex w-full">
-      <div class="grid flex-grow">
+    <div class="flex w-full space-x-6">
+      <div class="grid flex-grow w-1/2">
         <div>
           <Input label="Merchant ID" v-model="MID" />
           <Input label="Merchant Name" v-model="merchantName" />
@@ -16,9 +16,7 @@
         </div>
       </div>
 
-      <div class="divider divider-horizontal"></div>
-
-      <div class="grid flex-grow">
+      <div class="grid flex-grow w-1/2">
         <!-- VISA Content -->
         <Transition>
           <div class="card bg-base-300 shadow-xl" v-if="MID || merchantName">

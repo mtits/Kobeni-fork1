@@ -27,14 +27,14 @@
       v-model="shopperResultURLPayon" />
 
     <!-- select brands -->
-    <div class="flex w-full mt-3">
+    <label class="label mt-3">
+      <span class="label-text text-sky-400 font-bold">Brands</span>
+    </label>
+    <div class="flex w-full space-x-6">
       <!-- left side -->
       <div class="grid flex-grow w-1/2">
-        <div class="card">
+        <div class="card bg-base-100">
           <div class="card-body">
-            <label class="label">
-              <span class="label-text text-sky-400 font-bold">Brands</span>
-            </label>
             <!-- select brands -->
             <select class="select" size="15" v-model="selectedBrands" multiple>
               <option v-for="brand in brandList">{{ brand }}</option>
@@ -45,13 +45,8 @@
 
       <!-- right side -->
       <div class="grid flex-grow w-1/2">
-        <div class="card">
+        <div class="card bg-base-100">
           <div class="card-body">
-            <label class="label">
-              <span class="label-text text-sky-400 font-bold"
-                >Selected Brands</span
-              >
-            </label>
             <div class="card-actions justify-start">
               <!-- selected brands display via badges -->
               <TransitionGroup>

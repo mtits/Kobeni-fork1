@@ -218,3 +218,47 @@ export const getBrandsList = () => {
     'TRUSTPAY_VA',
   ]
 }
+
+/**
+ * locale list go brrrr....
+ * @returns array of all locales
+ */
+export const getLocaleList = () => {
+  return [
+    { text: 'Arabic', value: 'ar' },
+    { text: 'French', value: 'be' },
+    { text: 'Bulgarian', value: 'bg' },
+    { text: 'Catalan', value: 'ca' },
+    { text: 'Simplified Chinese', value: 'cn' },
+    { text: 'Czech', value: 'cz' },
+    { text: 'Danish', value: 'da' },
+    { text: 'German', value: 'de' },
+    { text: 'Greek', value: 'el' },
+    { text: 'English', value: 'en' },
+    { text: 'Spanish', value: 'es' },
+    { text: 'Estonian', value: 'et' },
+    { text: 'Basque', value: 'eu' },
+    { text: 'Finnish', value: 'fi' },
+    { text: 'French', value: 'fr' },
+    { text: 'Greek', value: 'gr' },
+    { text: 'Croatian', value: 'hr' },
+    { text: 'Hungarian', value: 'hu' },
+    { text: 'Indonesian', value: 'id' },
+    { text: 'Italian', value: 'it' },
+    { text: 'Japanese', value: 'ja' },
+    { text: 'Korean', value: 'ko' },
+    { text: 'Lithuanian', value: 'lt' },
+    { text: 'Latvian', value: 'lv' },
+    { text: 'Dutch', value: 'nl' },
+    { text: 'Norwegian', value: 'no' },
+    { text: 'Polish', value: 'pl' },
+    { text: 'Portugese', value: 'pt' },
+    { text: 'Romanian', value: 'ro' },
+    { text: 'Russian', value: 'ru' },
+    { text: 'Slovak', value: 'sk' },
+    { text: 'Slovene', value: 'sl' },
+    { text: 'Swedish', value: 'sv' },
+    { text: 'Turkish', value: 'tr' },
+    { text: 'Traditional Chinese', value: 'zh' },
+  ]
+}

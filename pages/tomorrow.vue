@@ -21,7 +21,7 @@
     <PageTitle title="Soundboard"> Other things to fill your ears. </PageTitle>
     <div class="flex place-items-center justify-center">
       <!-- col 1 -->
-      <div class="grid px-5 flex-grow">
+      <div class="grid px-5 flex-grow w-1/3">
         <div class="btn-group btn-group-vertical">
           <button class="btn" @click="tomorrow.play()">Tomorrow!</button>
           <button class="btn" @click="wow.play()">&lt;:3) ~Wow</button>
@@ -29,7 +29,7 @@
       </div>
 
       <!-- col 2 -->
-      <div class="grid px-5 flex-grow">
+      <div class="grid px-5 flex-grow w-1/3">
         <div class="btn-group btn-group-vertical">
           <button class="btn" @click="omae.play()">
             Omae wa mou shindeiru
@@ -39,7 +39,7 @@
       </div>
 
       <!-- col 3 -->
-      <div class="grid px-5 flex-grow">
+      <div class="grid px-5 flex-grow w-1/3">
         <div class="btn-group btn-group-vertical">
           <button class="btn" @click="pekoLaugh.play()">
             AH↗️HA↘️HA↗️HA↘️HA↗️
