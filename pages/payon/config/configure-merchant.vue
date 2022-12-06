@@ -29,21 +29,25 @@
     <!-- select brands -->
     <div class="flex w-full mt-3">
       <!-- left side -->
-      <div class="grid flex-grow">
-        <label class="label mb-2">
-          <span class="label-text text-sky-400 font-bold">Brands</span>
-        </label>
-        <!-- select brands -->
-        <select class="select" size="15" v-model="selectedBrands" multiple>
-          <option v-for="brand in brandList">{{ brand }}</option>
-        </select>
+      <div class="grid flex-grow w-1/2">
+        <div class="card">
+          <div class="card-body">
+            <label class="label">
+              <span class="label-text text-sky-400 font-bold">Brands</span>
+            </label>
+            <!-- select brands -->
+            <select class="select" size="15" v-model="selectedBrands" multiple>
+              <option v-for="brand in brandList">{{ brand }}</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <!-- right side -->
-      <div class="grid flex-grow">
+      <div class="grid flex-grow w-1/2">
         <div class="card">
           <div class="card-body">
-            <label class="label mb-2">
+            <label class="label">
               <span class="label-text text-sky-400 font-bold"
                 >Selected Brands</span
               >
