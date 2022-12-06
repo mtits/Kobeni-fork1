@@ -48,7 +48,7 @@
             </div>
           </li>
           <li>
-            <NuxtLink to="/payon/config-payon">Setup</NuxtLink>
+            <NuxtLink to="/payon/config">Setup</NuxtLink>
           </li>
           <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
           <li>
@@ -56,7 +56,9 @@
           </li>
           <li><NuxtLink to="/payon/backoffice">Backoffice</NuxtLink></li>
           <li><NuxtLink to="/payon/recurring">Recurring</NuxtLink></li>
-          <li><a>Transaction Doko?</a></li>
+          <li>
+            <NuxtLink to="/payon/reporting-api">Transaction Doko?</NuxtLink>
+          </li>
           <li><NuxtLink to="/payon/fmmid">Format Thy MID</NuxtLink></li>
           <li><NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink></li>
           <li><a>Webhook Decryptor</a></li>
