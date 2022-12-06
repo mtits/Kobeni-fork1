@@ -160,7 +160,7 @@
     await getSessionData()
 
     try {
-      const { data } = await useFetch('/api/backoffice', {
+      const { data } = await useFetch('/api/payon/backoffice', {
         method: 'post',
         body: {
           mode: mode.value,

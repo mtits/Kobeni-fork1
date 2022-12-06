@@ -138,7 +138,7 @@
    */
   async function fetchTransactionResults() {
     try {
-      const { data } = await useFetch('/api/getTransactionResults', {
+      const { data } = await useFetch('/api/payon/getTransactionResults', {
         method: 'post',
         body: {
           mode: mode.value,

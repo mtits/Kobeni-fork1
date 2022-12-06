@@ -159,7 +159,7 @@
     await getSessionData()
 
     try {
-      const { data } = await useFetch('/api/recurring', {
+      const { data } = await useFetch('/api/payon/recurring', {
         method: 'post',
         body: {
           mode: mode.value,

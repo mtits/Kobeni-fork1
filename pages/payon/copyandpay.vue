@@ -219,7 +219,7 @@
 
     //
     try {
-      const { data } = await useFetch('/api/copyandpay', {
+      const { data } = await useFetch('/api/payon/copyandpay', {
         method: 'post',
         body: {
           mode: mode.value,

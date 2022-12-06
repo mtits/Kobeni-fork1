@@ -171,7 +171,7 @@
     await getSessionData()
 
     try {
-      const { data } = await useFetch('/api/server-2-server', {
+      const { data } = await useFetch('/api/payon/server-2-server', {
         method: 'post',
         body: {
           mode: mode.value,
