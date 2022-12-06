@@ -16,6 +16,7 @@
     <InputReadOnly
       label="Endpoint"
       v-model="modeText"
+      :mode="mode"
       :display-character-count="false"
       @copy-content="copyString(modeText)" />
 

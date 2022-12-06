@@ -7,7 +7,10 @@
       <input
         type="text"
         class="input font-mono w-full"
-        :class="{ 'input-error': characterCount > characterCountMax }"
+        :class="{
+          'input-error': characterCount > characterCountMax,
+          'input-warning': !isTestMode,
+        }"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         spellcheck="false"
@@ -29,7 +32,9 @@
 </template>
 
 <script setup>
-  defineProps({
+  import { computed } from 'vue'
+
+  const props = defineProps({
     label: {
       type: String,
       required: true,
@@ -51,6 +56,12 @@
       default: true,
     },
 
+    mode: {
+      type: String,
+      required: false,
+      default: 'Test',
+    },
+
     modelValue: {
       type: String,
       default: '',
@@ -58,4 +69,8 @@
   })
 
   defineEmits(['update:modelValue', 'copyContent'])
+
+  const isTestMode = computed(() => {
+    return props.mode == 'Test' ? true : false
+  })
 </script>
