@@ -20,7 +20,9 @@
 
         <Alert class="my-6" title="Info" color-style=" alert-info">
           Be sure to add the parameter <kbd>entityId</kbd> in the
-          <NuxtLink class="link link-hover font-semibold" to="/payon/config"
+          <NuxtLink
+            class="link link-hover font-semibold"
+            to="/payon/config/configure-merchant"
             >Setup</NuxtLink
           >
           menu. Do not add it here.

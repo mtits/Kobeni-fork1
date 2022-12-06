@@ -23,7 +23,7 @@
         <!-- Sidebar content here -->
 
         <!-- side title -->
-        <div class="p-4 w-72 bg-base-200 sticky top-0 items-center">
+        <div class="p-4 w-64 bg-base-200 sticky top-0 items-center">
           <div class="prose ml-3">
             <h1 class="text-sky-400">
               Kobeni
@@ -33,7 +33,7 @@
         </div>
 
         <!-- APP MENUS -->
-        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
+        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li>
             <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
@@ -41,12 +41,11 @@
         </ul>
 
         <!-- PAYON MENUS -->
-        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
+        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
           <li class="menu-title">
-            <div class="prose">
-              <h3 class="text-sky-400 mt-4">PAY.ON Stuffs</h3>
-            </div>
+            <span>PAY.ON Stuffs</span>
           </li>
+
           <li>
             <NuxtLink to="/payon/config/configure-merchant">Setup</NuxtLink>
           </li>
@@ -65,12 +64,11 @@
         </ul>
 
         <!-- PZ MENUS -->
-        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
+        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
           <li class="menu-title">
-            <div class="prose">
-              <h3 class="text-sky-400">Paymentz Stuffs</h3>
-            </div>
+            <span>Paymentz Stuffs</span>
           </li>
+
           <li><a>Setup</a></li>
           <li><a>Standard Checkout</a></li>
           <li><a>Generate Auth Token</a></li>
@@ -79,12 +77,11 @@
         </ul>
 
         <!-- WL MENUS -->
-        <ul class="menu menu-compact p-4 w-72 bg-base-200 text-base-content">
+        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
           <li class="menu-title">
-            <div class="prose">
-              <h3 class="text-sky-400">WL Stuffs</h3>
-            </div>
+            <span>WL Stuffs</span>
           </li>
+
           <li><a>Setup</a></li>
           <li><a>Hosted Payment Page</a></li>
           <li><a>Server-to-server</a></li>
@@ -100,7 +97,7 @@
   /* page transition */
   .page-enter-active,
   .page-leave-active {
-    transition: all 0.4s;
+    transition: all 0.3s;
   }
   .page-enter-from,
   .page-leave-to {

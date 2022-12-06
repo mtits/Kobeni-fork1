@@ -4,13 +4,6 @@
       Input your BIP credentials. Set up the widget behaviour.
     </Alert>
 
-    <Input label="Access Token" type="password" v-model="accessToken" />
-    <Input label="Entity ID" type="text" v-model="entityId" />
-    <Input
-      label="Shopper Result URL"
-      type="text"
-      v-model="shopperResultURLPayon" />
-
     <!-- select environment -->
     <div class="form-control mt-3">
       <label class="label mb-1">
@@ -26,26 +19,43 @@
       </label>
     </div>
 
-    <!-- select brands -->
-    <div>
-      <label class="label mb-1">
-        <span class="label-text text-sky-400 font-bold">Brands</span>
-      </label>
-      <!-- select brands -->
-      <select class="select w-96" size="7" v-model="selectedBrands" multiple>
-        <option v-for="brand in brandList">{{ brand }}</option>
-      </select>
+    <Input label="Access Token" type="password" v-model="accessToken" />
+    <Input label="Entity ID" type="text" v-model="entityId" />
+    <Input
+      label="Shopper Result URL"
+      type="text"
+      v-model="shopperResultURLPayon" />
 
-      <!-- selected brands display via badges -->
-      <div class="card mt-3 bg-base-100">
-        <div class="card-body">
-          <h2 class="card-title text-sky-400">Selected Brands</h2>
-          <div class="card-actions">
-            <TransitionGroup>
-              <div class="badge" v-for="brand in selectedBrands" :key="brand">
-                {{ brand }}
-              </div>
-            </TransitionGroup>
+    <!-- select brands -->
+    <div class="flex w-full mt-3">
+      <!-- left side -->
+      <div class="grid flex-grow">
+        <label class="label mb-2">
+          <span class="label-text text-sky-400 font-bold">Brands</span>
+        </label>
+        <!-- select brands -->
+        <select class="select w-96" size="15" v-model="selectedBrands" multiple>
+          <option v-for="brand in brandList">{{ brand }}</option>
+        </select>
+      </div>
+
+      <!-- right side -->
+      <div class="grid flex-grow">
+        <div class="card">
+          <div class="card-body">
+            <label class="label mb-2">
+              <span class="label-text text-sky-400 font-bold"
+                >Selected Brands</span
+              >
+            </label>
+            <div class="card-actions justify-start">
+              <!-- selected brands display via badges -->
+              <TransitionGroup>
+                <div class="badge" v-for="brand in selectedBrands" :key="brand">
+                  {{ brand }}
+                </div>
+              </TransitionGroup>
+            </div>
           </div>
         </div>
       </div>
