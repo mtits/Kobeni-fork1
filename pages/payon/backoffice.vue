@@ -72,6 +72,11 @@
   })
 
   //
+  const referenceTransaction = useState('referenceTransaction')
+  const accessToken = useState('accessToken')
+  const entityId = useState('entityId')
+
+  //
   const mode = useState('mode')
   const modeText = computed(() => {
     if (mode.value == 'Test') {
@@ -80,11 +85,6 @@
       return `https://eu-prod.oppwa.com/v1/payments/${referenceTransaction.value}`
     }
   })
-
-  //
-  const referenceTransaction = useState('referenceTransaction')
-  const accessToken = useState('accessToken')
-  const entityId = useState('entityId')
 
   //
   const dataParameters = ref('')
@@ -180,6 +180,9 @@
     }
   }
 
+  /**
+   *
+   */
   onMounted(async () => {
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 

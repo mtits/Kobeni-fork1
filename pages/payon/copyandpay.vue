@@ -19,7 +19,7 @@
 
         <Alert class="my-6" title="Info" color-style=" alert-info">
           Be sure to add the parameter <kbd>entityId</kbd> in the
-          <NuxtLink class="link link-hover font-semibold" to="/config-payon"
+          <NuxtLink class="link link-hover font-semibold" to="/payon/config"
             >Setup</NuxtLink
           >
           menu. Do not add it here.
@@ -53,8 +53,6 @@
           </Transition>
         </div>
       </div>
-
-      <!-- <div class="divider" v-if="responseData"></div> -->
 
       <!-- botton -->
       <Transition mode="out-in">
@@ -153,15 +151,6 @@
   const sessionAccessToken = ref('')
   const sessionDataParameters = ref('')
   const sessionEntityId = ref('')
-
-  /**
-   *
-   */
-  onMounted(async () => {
-    dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
-
-    await getSessionData()
-  })
 
   /**
    * fetches data from the session and sets it to the local variables
@@ -325,4 +314,13 @@
     // append to head
     document.head.append(widgetScript)
   }
+
+  /**
+   *
+   */
+  onMounted(async () => {
+    dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+
+    await getSessionData()
+  })
 </script>
