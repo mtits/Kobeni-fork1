@@ -2,7 +2,7 @@
   <div>
     <PageTitle title="Transaction Results"> </PageTitle>
 
-    <Alert class="my-6" title="Info" color-style=" alert-info">
+    <Alert class="my-6" title="Info" color-style="bg-base-300">
       The checkout ID used for getting this transaction's result is one-time
       only. If you refresh this page, you will not be able to get the results
       anymore.

@@ -18,7 +18,7 @@
       <div class="grid flex-grow">
         <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
-        <Alert class="my-6" title="Info" color-style=" alert-info">
+        <Alert class="my-6" title="Info" color-style="bg-base-300">
           Be sure to add the parameter <kbd>entityId</kbd> in the
           <NuxtLink
             class="link link-hover font-semibold"
