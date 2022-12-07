@@ -1,8 +1,8 @@
 <template>
   <div>
     <PageTitle title="쟤네 못봤겠지?">
-      Webhook are managed in the BIP under
-      <span class="italic">Administration > Webhooks</span>.
+      Webhooks are managed in the BIP under
+      <span class="italic font-medium">Administration > Webhooks</span>.
     </PageTitle>
 
     <Input
@@ -30,6 +30,15 @@
         :is-json="true"
         :data="responseData"
         v-if="responseData"></Textareadisplayonly>
+    </Transition>
+
+    <Transition>
+      <button
+        class="btn mt-3"
+        v-if="responseData"
+        @click="copyEntireResponse(responseData)">
+        Copy Webhook Data
+      </button>
     </Transition>
   </div>
 </template>

@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     const authTag = new Buffer.from(authTagFromHttpHeader, 'hex')
     const cipherText = new Buffer.from(httpBody, 'hex')
 
-    // Prepare descryption
+    // Prepare decryption
     const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv)
     decipher.setAuthTag(authTag)
 
@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
 
     //
   } catch (error) {
-    console.log('Error:', error)
-    return error
+    console.log('Decryption Error:', error)
+    return { ServerMsg: error }
   }
 })
