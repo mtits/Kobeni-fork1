@@ -84,6 +84,7 @@
 
     <Input
       label="Card Submit Label (The 'PAY NOW' button)"
+      helper-text="This permanently overrides 'Locale' regardless of language"
       v-model="payNowLabel" />
 
     <!-- select locale -->

@@ -10,6 +10,10 @@
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       spellcheck="false" />
+
+    <label class="label" v-if="helperText">
+      <span class="label-text-alt">{{ helperText }}</span>
+    </label>
   </div>
 </template>
 
@@ -21,6 +25,12 @@
     },
 
     placeHolder: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    helperText: {
       type: String,
       required: false,
       default: '',

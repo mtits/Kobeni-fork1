@@ -60,7 +60,9 @@
           </li>
           <li><NuxtLink to="/payon/fmmid">Format Thy MID</NuxtLink></li>
           <li><NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink></li>
-          <li><a>Webhook Decryptor</a></li>
+          <li>
+            <NuxtLink to="/payon/webhook-decryptor">Webhook Decrytor</NuxtLink>
+          </li>
         </ul>
 
         <!-- PZ MENUS -->
