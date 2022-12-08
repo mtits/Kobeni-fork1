@@ -126,7 +126,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
 
   definePageMeta({
     pageTitle: 'Kobeni | Format Thy MID',
@@ -154,5 +154,12 @@
 
   const jcbRequestorID = computed(() => {
     return `${jcbAcquirerBIN.value}MCT${MID.value}`
+  })
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
   })
 </script>

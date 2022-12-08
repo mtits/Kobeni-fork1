@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
 
   definePageMeta({
     pageTitle: 'Kobeni | Webhook Decrytor',
@@ -83,4 +83,11 @@
       showLoading.value = false
     }
   }
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
+  })
 </script>

@@ -73,6 +73,7 @@
 </style>
 
 <script setup>
+  import { onMounted } from 'vue'
   import { Howl } from 'howler'
 
   definePageMeta({
@@ -101,5 +102,9 @@
 
   const ehe = new Howl({
     src: ['/audio/ehe.mp3'],
+  })
+
+  onMounted(() => {
+    useGetCurrentUser()
   })
 </script>

@@ -3,7 +3,10 @@
     <!-- main div for drawer -->
     <div class="drawer drawer-mobile">
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
+
+      <!-- all in -->
       <div class="drawer-content flex flex-col items-center">
+        <!-- <Navbar /> -->
         <!-- Page content here -->
         <div class="container mx-auto px-16 py-10">
           <div class="card bg-base-200 shadow-xl">
@@ -13,11 +16,11 @@
           </div>
         </div>
 
-        <Footer />
+        <Footer v-if="currentUser" />
       </div>
 
       <!-- drawer items -->
-      <div class="drawer-side">
+      <div class="drawer-side" v-if="currentUser">
         <label class="drawer-overlay" for="app-drawer"></label>
 
         <!-- Sidebar content here -->
@@ -29,6 +32,12 @@
               Kobeni
               <div class="badge">ALPHA</div>
             </h1>
+          </div>
+
+          <div class="mt-3 ml-3" v-if="currentUser">
+            <button class="btn btn-secondary btn-xs" @click="logout">
+              Logout
+            </button>
           </div>
         </div>
 
@@ -121,6 +130,10 @@
 
 <script setup>
   import { onMounted } from 'vue'
+  import { getAuth, signOut } from 'firebase/auth'
+
+  const router = useRouter()
+  const currentUser = useState('currentUser', () => '')
 
   // set default states of the widget
   useState('autoLaunchWidget', () => true)
@@ -152,6 +165,20 @@
   useState('cnpModal', () => false)
 
   /**
+   * yeets you out of the house
+   */
+  async function logout() {
+    const auth = getAuth(firebaseApp)
+
+    try {
+      await signOut(auth)
+      router.push({ path: '/login' })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  /**
    *
    */
   onMounted(() => {
@@ -160,5 +187,8 @@
       const currentURL = new URL(window.location.href)
       return `${currentURL.origin}/payon/shopperresulturl-payon`
     })
+
+    //
+    useGetCurrentUser()
   })
 </script>

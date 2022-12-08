@@ -184,5 +184,6 @@
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
     await getSessionData()
+    useGetCurrentUser()
   })
 </script>

@@ -167,5 +167,6 @@
 
     await getSessionData()
     await fetchTransactionResults()
+    useGetCurrentUser()
   })
 </script>

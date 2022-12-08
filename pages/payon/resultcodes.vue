@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-  import { reactive } from 'vue'
+  import { reactive, onMounted } from 'vue'
   import csvDownload from 'json-to-csv-export'
 
   definePageMeta({
@@ -75,4 +75,11 @@
       console.error(error)
     }
   }
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
+  })
 </script>
