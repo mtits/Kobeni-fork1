@@ -23,6 +23,7 @@ export const useGetCurrentUser = () => {
       //   router.push('/login')
       // }, 500)
 
+      // route back to login route
       router.push({ path: '/login' })
     }
   })

@@ -74,7 +74,7 @@
 
 <script setup>
   import { onMounted } from 'vue'
-  import { Howl } from 'howler'
+  import { Howl, Howler } from 'howler'
 
   definePageMeta({
     pageTitle: 'Kobeni | Tomorrow, Ina said calmly...',
@@ -104,6 +104,12 @@
     src: ['/audio/ehe.mp3'],
   })
 
+  // global object
+  Howler.volume(0.5)
+
+  /**
+   *
+   */
   onMounted(() => {
     useGetCurrentUser()
   })
