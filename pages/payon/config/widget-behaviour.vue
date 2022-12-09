@@ -6,16 +6,18 @@
       <span class="font-medium">Exclusive</span> are features custom-made only
       for this app.
     </Alert>
-    <div class="flex w-full">
+
+    <!-- display toggles as columns -->
+    <div class="grid grid-cols-3 gap-4">
       <!-- left -->
-      <div class="grid flex-grow p-5">
+      <div>
         <!-- auto-launch -->
         <Toggle v-model="autoLaunchWidget" title="Auto-launch (Exclusive)"
           >Launch the widget if a checkout ID is detected.</Toggle
         >
 
         <!-- plain vs card -->
-        <div class="form-control w-96">
+        <div class="form-control w-auto">
           <label class="label cursor-pointer">
             <span class="label-text">
               <span class="text-sky-400 font-bold"><kbd>Card Style</kbd></span
@@ -43,7 +45,7 @@
       </div>
 
       <!-- middle -->
-      <div class="grid flex-grow p-5">
+      <div>
         <!-- of CVVs and others -->
         <Toggle v-model="maskCvv" title="maskCvv">Masks the CVV.</Toggle>
 
@@ -65,7 +67,7 @@
       </div>
 
       <!-- right -->
-      <div class="grid flex-grow p-5">
+      <div>
         <Toggle v-model="validation" title="validation"
           >If false, disables validation and the functions
           <kbd class="font-semibold">validate</kbd> and
