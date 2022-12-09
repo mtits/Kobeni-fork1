@@ -25,80 +25,86 @@
 
         <!-- Sidebar content here -->
 
-        <!-- side title -->
-        <div class="p-4 w-64 bg-base-200 sticky top-0 items-center">
-          <div class="prose ml-3">
-            <h1 class="text-sky-400">
-              Kobeni
-              <div class="badge">ALPHA</div>
-            </h1>
+        <!-- somehow, this div allows the whole drawer to minimize on smaller screens -->
+        <div>
+          <!-- side title -->
+          <div class="p-4 w-64 bg-base-200 sticky top-0 items-center">
+            <div class="prose ml-3">
+              <h1 class="text-sky-400">
+                Kobeni
+                <div class="badge">ALPHA</div>
+              </h1>
+            </div>
+
+            <div class="mt-3 ml-3" v-if="currentUser">
+              <button class="btn btn-secondary btn-xs" @click="logout">
+                Logout
+              </button>
+            </div>
           </div>
 
-          <div class="mt-3 ml-3" v-if="currentUser">
-            <button class="btn btn-secondary btn-xs" @click="logout">
-              Logout
-            </button>
-          </div>
+          <!-- APP MENUS -->
+          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+            <li><NuxtLink to="/">Home</NuxtLink></li>
+            <li>
+              <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
+            </li>
+          </ul>
+
+          <!-- PAYON MENUS -->
+          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+            <li class="menu-title">
+              <span>PAY.ON Stuffs</span>
+            </li>
+
+            <li>
+              <NuxtLink to="/payon/config/configure-merchant">Setup</NuxtLink>
+            </li>
+            <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
+            <li>
+              <NuxtLink to="/payon/server-to-server">Server-to-Server</NuxtLink>
+            </li>
+            <li><NuxtLink to="/payon/backoffice">Backoffice</NuxtLink></li>
+            <li><NuxtLink to="/payon/recurring">Recurring</NuxtLink></li>
+            <li>
+              <NuxtLink to="/payon/reporting-api">Transaction Doko?</NuxtLink>
+            </li>
+            <li><NuxtLink to="/payon/fmmid">Format Thy MID</NuxtLink></li>
+            <li><NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink></li>
+            <li>
+              <NuxtLink to="/payon/webhook-decryptor"
+                >Webhook Decrytor</NuxtLink
+              >
+            </li>
+          </ul>
+
+          <!-- PZ MENUS -->
+          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+            <li class="menu-title">
+              <span>Paymentz Stuffs</span>
+            </li>
+
+            <li><a>Setup</a></li>
+            <li><a>Standard Checkout</a></li>
+            <li><a>Generate Auth Token</a></li>
+            <li><a>REST API</a></li>
+            <li><a>Backoffice</a></li>
+          </ul>
+
+          <!-- WL MENUS -->
+          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+            <li class="menu-title">
+              <span>WL Stuffs</span>
+            </li>
+
+            <li><a>Setup</a></li>
+            <li><a>Hosted Payment Page</a></li>
+            <li><a>Server-to-server</a></li>
+            <li><a>Backoffice</a></li>
+            <li><a>Webhook Decryptor</a></li>
+          </ul>
         </div>
-
-        <!-- APP MENUS -->
-        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
-          <li><NuxtLink to="/">Home</NuxtLink></li>
-          <li>
-            <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
-          </li>
-        </ul>
-
-        <!-- PAYON MENUS -->
-        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
-          <li class="menu-title">
-            <span>PAY.ON Stuffs</span>
-          </li>
-
-          <li>
-            <NuxtLink to="/payon/config/configure-merchant">Setup</NuxtLink>
-          </li>
-          <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
-          <li>
-            <NuxtLink to="/payon/server-to-server">Server-to-Server</NuxtLink>
-          </li>
-          <li><NuxtLink to="/payon/backoffice">Backoffice</NuxtLink></li>
-          <li><NuxtLink to="/payon/recurring">Recurring</NuxtLink></li>
-          <li>
-            <NuxtLink to="/payon/reporting-api">Transaction Doko?</NuxtLink>
-          </li>
-          <li><NuxtLink to="/payon/fmmid">Format Thy MID</NuxtLink></li>
-          <li><NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink></li>
-          <li>
-            <NuxtLink to="/payon/webhook-decryptor">Webhook Decrytor</NuxtLink>
-          </li>
-        </ul>
-
-        <!-- PZ MENUS -->
-        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
-          <li class="menu-title">
-            <span>Paymentz Stuffs</span>
-          </li>
-
-          <li><a>Setup</a></li>
-          <li><a>Standard Checkout</a></li>
-          <li><a>Generate Auth Token</a></li>
-          <li><a>REST API</a></li>
-          <li><a>Backoffice</a></li>
-        </ul>
-
-        <!-- WL MENUS -->
-        <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
-          <li class="menu-title">
-            <span>WL Stuffs</span>
-          </li>
-
-          <li><a>Setup</a></li>
-          <li><a>Hosted Payment Page</a></li>
-          <li><a>Server-to-server</a></li>
-          <li><a>Backoffice</a></li>
-          <li><a>Webhook Decryptor</a></li>
-        </ul>
+        <!-- end side drawer container -->
       </div>
     </div>
   </div>
