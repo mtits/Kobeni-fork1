@@ -1,5 +1,5 @@
 <template>
-  <div class="form-control w-96">
+  <div class="form-control w-auto">
     <label class="label cursor-pointer">
       <span class="label-text">
         <span class="text-sky-400 font-bold" v-if="title"
