@@ -6,14 +6,19 @@
 
     <div class="grid place-items-center">
       <div class="w-96 h-96">
-        <Input label="Email Address" v-model="email" />
-        <Input type="password" label="Password" v-model="password" />
+        <Input label="Email Address" v-model="email" @keyup.enter="login" />
+
+        <Input
+          type="password"
+          label="Password"
+          v-model="password"
+          @keyup.enter="login" />
 
         <button
           class="btn mt-6 w-full"
           :class="{ loading: isLoading }"
           @click="login">
-          Login
+          Sign In
         </button>
 
         <!-- alert for failed logins -->

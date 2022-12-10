@@ -22,29 +22,30 @@
       <!-- drawer items -->
       <div class="drawer-side" v-if="currentUser">
         <label class="drawer-overlay" for="app-drawer"></label>
-
         <!-- Sidebar content here -->
 
-        <!-- somehow, this div allows the whole drawer to minimize on smaller screens -->
-        <div>
+        <!-- main container of the side drawer contents -->
+        <aside class="w-80 bg-base-300">
           <!-- side title -->
-          <div class="p-4 w-64 bg-base-200 sticky top-0 items-center">
-            <div class="prose ml-3">
+          <div class="py-3 px-6 sticky top-0 bg-opacity-90 backdrop-blur z-20">
+            <div class="prose">
               <h1 class="text-sky-400">
                 Kobeni
                 <div class="badge">ALPHA</div>
               </h1>
             </div>
-
-            <div class="mt-3 ml-3" v-if="currentUser">
+            <!-- logout button only displays if a user is logged in -->
+            <div class="mt-3" v-if="currentUser">
               <button class="btn btn-secondary btn-xs" @click="logout">
-                Logout
+                Sign Out
               </button>
             </div>
           </div>
 
+          <div class="h-4"></div>
+
           <!-- APP MENUS -->
-          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+          <ul class="menu menu-compact flex flex-col p-0 px-4">
             <li><NuxtLink to="/">Home</NuxtLink></li>
             <li>
               <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
@@ -52,7 +53,8 @@
           </ul>
 
           <!-- PAYON MENUS -->
-          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+          <ul class="menu menu-compact flex flex-col p-0 px-4">
+            <li></li>
             <li class="menu-title">
               <span>PAY.ON Stuffs</span>
             </li>
@@ -79,7 +81,8 @@
           </ul>
 
           <!-- PZ MENUS -->
-          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+          <ul class="menu menu-compact flex flex-col p-0 px-4">
+            <li></li>
             <li class="menu-title">
               <span>Paymentz Stuffs</span>
             </li>
@@ -92,7 +95,8 @@
           </ul>
 
           <!-- WL MENUS -->
-          <ul class="menu menu-compact p-4 w-64 bg-base-200 text-base-content">
+          <ul class="menu menu-compact flex flex-col p-0 px-4">
+            <li></li>
             <li class="menu-title">
               <span>WL Stuffs</span>
             </li>
@@ -103,7 +107,7 @@
             <li><a>Backoffice</a></li>
             <li><a>Webhook Decryptor</a></li>
           </ul>
-        </div>
+        </aside>
         <!-- end side drawer container -->
       </div>
     </div>
