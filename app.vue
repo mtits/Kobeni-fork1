@@ -63,7 +63,7 @@
             </li>
 
             <li>
-              <NuxtLink to="/payon/config/configure-merchant">Setup</NuxtLink>
+              <NuxtLink to="/payon/config/widget-behaviour">Setup</NuxtLink>
             </li>
             <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
             <li>
