@@ -35,10 +35,13 @@
               </h1>
             </div>
             <!-- logout button only displays if a user is logged in -->
-            <div class="mt-3" v-if="currentUser">
+            <div class="mt-3 space-x-2" v-if="currentUser">
               <button class="btn btn-secondary btn-xs" @click="logout">
                 Sign Out
               </button>
+              <span class="text-xs">
+                {{ currentUser.email }}
+              </span>
             </div>
           </div>
 
