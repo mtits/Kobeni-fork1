@@ -42,17 +42,15 @@
           >Determines whether the card expiry date field should be validated. By
           default it is validated (false).</Toggle
         >
-      </div>
-
-      <!-- middle -->
-      <div>
-        <!-- of CVVs and others -->
-        <Toggle v-model="maskCvv" title="maskCvv">Masks the CVV.</Toggle>
-
         <Toggle v-model="requireCvv" title="requireCvv"
           >Determines whether the CVV field is presented on the payment
           form.</Toggle
         >
+      </div>
+
+      <!-- middle -->
+      <div>
+        <Toggle v-model="maskCvv" title="maskCvv">Masks the CVV.</Toggle>
 
         <Toggle v-model="showCVVHint" title="showCVVHint"
           >If set to true, then the credit card form will display a hint on

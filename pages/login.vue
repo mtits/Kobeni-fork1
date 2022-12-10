@@ -1,10 +1,8 @@
 <template>
   <div class="">
-    <PageTitle title="sorry, new phone, who dis?">
-      Kobeni requires you to login
-    </PageTitle>
-
     <div class="grid place-items-center">
+      <PageTitle title="sorry, new phone, hu dis?"> </PageTitle>
+
       <div class="w-96 h-96">
         <Input label="Email Address" v-model="email" @keyup.enter="login" />
 

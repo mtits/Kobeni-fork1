@@ -8,7 +8,7 @@
       <div class="drawer-content flex flex-col items-center">
         <!-- <Navbar /> -->
         <!-- Page content here -->
-        <div class="container mx-auto px-16 py-10">
+        <div class="container mx-auto px-14 py-10">
           <div class="card bg-base-200 shadow-xl">
             <div class="card-body">
               <NuxtPage />
