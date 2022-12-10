@@ -1,15 +1,11 @@
 <template>
   <div>
     <div class="tabs">
-      <NuxtLink
-        class="tab tab-bordered tab-lg"
-        to="/payon/config/widget-behaviour"
+      <NuxtLink class="tab tab-lifted" to="/payon/config/widget-behaviour"
         >Widget Behaviour</NuxtLink
       >
 
-      <NuxtLink
-        class="tab tab-bordered tab-lg"
-        to="/payon/config/configure-merchant"
+      <NuxtLink class="tab tab-lifted" to="/payon/config/configure-merchant"
         >Configure Merchant</NuxtLink
       >
     </div>

@@ -58,7 +58,7 @@
           <div class="h-4"></div>
 
           <!-- APP MENUS -->
-          <ul class="menu menu-compact flex flex-col p-0 px-4">
+          <ul class="menu flex flex-col p-0 px-4">
             <li><NuxtLink to="/">Home</NuxtLink></li>
             <li>
               <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
@@ -66,15 +66,31 @@
           </ul>
 
           <!-- PAYON MENUS -->
-          <ul class="menu menu-compact flex flex-col p-0 px-4">
+          <ul class="menu flex flex-col p-0 px-4">
             <li></li>
             <li class="menu-title">
               <span>PAY.ON Stuffs</span>
             </li>
 
-            <li>
-              <NuxtLink to="/payon/config/widget-behaviour">Setup</NuxtLink>
-            </li>
+            <!-- collapse for sub menus -->
+            <div
+              class="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
+              <input type="checkbox" />
+              <div class="collapse-title">Setup</div>
+              <div class="collapse-content">
+                <li>
+                  <NuxtLink to="/payon/config/widget-behaviour"
+                    >Widget Behaviour</NuxtLink
+                  >
+                </li>
+                <li>
+                  <NuxtLink to="/payon/config/configure-merchant"
+                    >Configure Merchant</NuxtLink
+                  >
+                </li>
+              </div>
+            </div>
+
             <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
             <li>
               <NuxtLink to="/payon/server-to-server">Server-to-Server</NuxtLink>
@@ -94,7 +110,7 @@
           </ul>
 
           <!-- PZ MENUS -->
-          <ul class="menu menu-compact flex flex-col p-0 px-4">
+          <ul class="menu flex flex-col p-0 px-4">
             <li></li>
             <li class="menu-title">
               <span>Paymentz Stuffs</span>
@@ -108,7 +124,7 @@
           </ul>
 
           <!-- WL MENUS -->
-          <ul class="menu menu-compact flex flex-col p-0 px-4">
+          <ul class="menu flex flex-col p-0 px-4">
             <li></li>
             <li class="menu-title">
               <span>WL Stuffs</span>
