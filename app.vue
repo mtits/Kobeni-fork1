@@ -104,7 +104,7 @@
             <li><NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink></li>
             <li>
               <NuxtLink to="/payon/webhook-decryptor"
-                >Webhook Decrytor</NuxtLink
+                >Webhook Decryptor</NuxtLink
               >
             </li>
           </ul>
