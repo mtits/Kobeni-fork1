@@ -21,10 +21,6 @@
 
     <Input label="Access Token" type="password" v-model="accessToken" />
     <Input label="Entity ID" type="text" v-model="entityId" />
-    <Input
-      label="Shopper Result URL"
-      type="text"
-      v-model="shopperResultURLPayon" />
 
     <!-- select brands -->
     <label class="label mt-3">
@@ -96,5 +92,4 @@
   // get app states
   const accessToken = useState('accessToken')
   const entityId = useState('entityId')
-  const shopperResultURLPayon = useState('shopperResultUrlPayon')
 </script>

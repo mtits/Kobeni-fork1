@@ -85,8 +85,14 @@
     </div>
 
     <Input
+      label="Shopper Result URL"
+      type="text"
+      helper-text="The customer/user is redirected here after the transaction."
+      v-model="shopperResultURLPayon" />
+
+    <Input
       label="Card Submit Label (The 'PAY NOW' button)"
-      helper-text="This permanently overrides 'Locale' regardless of language"
+      helper-text="This permanently overrides 'Locale' regardless of language."
       v-model="payNowLabel" />
 
     <!-- select locale -->
@@ -127,4 +133,5 @@
   const payNowLabel = useState('payNowLabel')
   const locale = useState('locale')
   const localeList = getLocaleList()
+  const shopperResultURLPayon = useState('shopperResultUrlPayon')
 </script>

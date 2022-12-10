@@ -195,7 +195,7 @@
     // result URL for PAY.ON
     useState('shopperResultUrlPayon', () => {
       const currentURL = new URL(window.location.href)
-      return `${currentURL.origin}/payon/shopperresulturl-payon`
+      return `${currentURL.origin}/payon/shopperresulturl`
     })
 
     //
