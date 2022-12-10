@@ -149,6 +149,12 @@
   .v-leave-to {
     opacity: 0;
   }
+
+  /** style the scrollbar for firefox */
+  body {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: hsl(220 13% 69%) black; /* scroll thumb and track */
+  }
 </style>
 
 <script setup>
