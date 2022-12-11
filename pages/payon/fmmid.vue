@@ -126,8 +126,6 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
-
   definePageMeta({
     pageTitle: 'Kobeni | Format Thy MID',
   })

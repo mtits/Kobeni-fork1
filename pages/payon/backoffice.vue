@@ -66,8 +66,6 @@
 </template>
 
 <script setup>
-  import { onMounted } from 'vue'
-
   definePageMeta({
     pageTitle: 'Kobeni | Backoffice Operations',
   })

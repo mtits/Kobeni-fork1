@@ -73,7 +73,6 @@
 </style>
 
 <script setup>
-  import { onMounted } from 'vue'
   import { Howl, Howler } from 'howler'
 
   definePageMeta({

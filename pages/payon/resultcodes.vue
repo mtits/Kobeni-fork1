@@ -41,7 +41,6 @@
 </template>
 
 <script setup>
-  import { reactive, onMounted } from 'vue'
   import csvDownload from 'json-to-csv-export'
 
   definePageMeta({

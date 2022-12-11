@@ -44,8 +44,6 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
-
   definePageMeta({
     pageTitle: 'Kobeni | Webhook Decrytor',
   })

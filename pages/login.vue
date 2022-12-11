@@ -44,7 +44,6 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
   import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
   definePageMeta({
