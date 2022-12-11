@@ -18,6 +18,17 @@
       <div class="grid flex-grow">
         <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
+        <div class="text-xs mt-3">
+          Current Active Brands:
+          <span class="space-x-1">
+            <span
+              class="badge badge-accent badge-xs"
+              v-for="brands in selectedBrands">
+              {{ brands }}</span
+            >
+          </span>
+        </div>
+
         <Alert class="my-6" title="Info" color-style="bg-base-300">
           Be sure to add the parameter <kbd>entityId</kbd> in the
           <NuxtLink

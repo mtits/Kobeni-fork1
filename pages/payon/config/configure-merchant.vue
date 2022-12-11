@@ -23,26 +23,94 @@
     <Input label="Entity ID" type="text" v-model="entityId" />
 
     <!-- select brands -->
-    <label class="label mt-3">
-      <span class="label-text text-sky-400 font-bold">Brands</span>
-    </label>
-    <div class="flex w-full space-x-6">
+    <div class="flex w-full mt-6 space-x-6">
       <!-- left side -->
-      <div class="grid flex-grow w-1/2">
+      <div class="grid flex-grow space-y-6 w-1/2">
+        <!-- cards -->
         <div class="card bg-base-100">
           <div class="card-body">
+            <label class="label">
+              <span class="label-text text-sky-400 font-bold">Card Brands</span>
+            </label>
             <!-- select brands -->
-            <select class="select" size="15" v-model="selectedBrands" multiple>
-              <option v-for="brand in brandList">{{ brand }}</option>
+            <select
+              class="select"
+              size="10"
+              v-model="selectedCardBrands"
+              multiple>
+              <option v-for="brand in cardBrandList">{{ brand }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- virtual -->
+        <div class="card bg-base-100">
+          <div class="card-body">
+            <label class="label">
+              <span class="label-text text-sky-400 font-bold"
+                >Virtual Accounts</span
+              >
+            </label>
+            <select
+              class="select"
+              size="10"
+              v-model="selectedVirtualBrands"
+              multiple>
+              <option v-for="brand in virtualBrandList">{{ brand }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- banks -->
+        <div class="card bg-base-100">
+          <div class="card-body">
+            <label class="label">
+              <span class="label-text text-sky-400 font-bold"
+                >Bank Accounts</span
+              >
+            </label>
+            <select
+              class="select"
+              size="10"
+              v-model="selectedBankBrands"
+              multiple>
+              <option v-for="brand in bankBrandList">{{ brand }}</option>
             </select>
           </div>
         </div>
       </div>
 
       <!-- right side -->
-      <div class="grid flex-grow w-1/2">
+      <div class="grid flex-grow space-y-6 w-1/2">
         <div class="card bg-base-100">
           <div class="card-body">
+            <label class="label">
+              <span class="label-text text-sky-400 font-bold"
+                >Selected Brands</span
+              >
+            </label>
+            <div class="card-actions justify-start">
+              <!-- selected brands display via badges -->
+              <TransitionGroup>
+                <div
+                  class="badge badge-lg"
+                  v-for="brand in combinedSelectedBrands"
+                  :key="brand">
+                  {{ brand }}
+                </div>
+              </TransitionGroup>
+            </div>
+          </div>
+        </div>
+
+        <!-- active selected brands -->
+        <div class="card bg-base-100">
+          <div class="card-body">
+            <label class="label">
+              <span class="label-text text-sky-400 font-bold"
+                >ACTIVE Selected Brands</span
+              >
+            </label>
             <div class="card-actions justify-start">
               <!-- selected brands display via badges -->
               <TransitionGroup>
@@ -55,6 +123,14 @@
               </TransitionGroup>
             </div>
           </div>
+        </div>
+
+        <div>
+          <button
+            class="btn w-full"
+            @click="selectedBrands = combinedSelectedBrands">
+            Set Active Brands
+          </button>
         </div>
       </div>
     </div>
@@ -86,9 +162,24 @@
     }
   })
 
-  const selectedBrands = useState('selectedBrands')
-  const brandList = getBrandsList()
+  const selectedCardBrands = useState('selectedCardBrands')
+  const cardBrandList = getBrandsList().cards
 
+  const selectedVirtualBrands = useState('selectedVirtualBrands')
+  const virtualBrandList = getBrandsList().virtual
+
+  const selectedBankBrands = useState('selectedBankBrands')
+  const bankBrandList = getBrandsList().bank
+
+  const combinedSelectedBrands = computed(() => {
+    return [
+      ...selectedCardBrands.value,
+      ...selectedVirtualBrands.value,
+      ...selectedBankBrands.value,
+    ]
+  })
+
+  const selectedBrands = useState('selectedBrands')
   // get app states
   const accessToken = useState('accessToken')
   const entityId = useState('entityId')

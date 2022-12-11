@@ -73,8 +73,7 @@
             </li>
 
             <!-- collapse for sub menus -->
-            <div
-              class="collapse collapse-arrow bg-base-100 border border-base-300 rounded-box">
+            <div class="collapse collapse-arrow rounded-box">
               <input type="checkbox" />
               <div class="collapse-title">Setup</div>
               <div class="collapse-content">
@@ -174,7 +173,6 @@
 </style>
 
 <script setup>
-  import { onMounted } from 'vue'
   import { getAuth, signOut } from 'firebase/auth'
 
   const router = useRouter()
@@ -182,10 +180,26 @@
 
   // set default states of the widget
   useState('autoLaunchWidget', () => true)
+
   //
-  useState('selectedBrands', () => {
-    return ['MASTER', 'VISA']
+  useState('selectedCardBrands', () => {
+    return ['VISA', 'MASTER']
   })
+
+  useState('selectedVirtualBrands', () => {
+    return []
+  })
+
+  useState('selectedBankBrands', () => {
+    return []
+  })
+
+  // default selected
+  useState('selectedBrands', () => {
+    return ['VISA', 'MASTER']
+  })
+
+  //
   useState('widgetStyle', () => 'plain')
   useState('maskCvv', () => true)
   useState('requireCvv', () => true)
