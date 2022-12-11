@@ -7,14 +7,14 @@
     </PageTitle>
 
     <Transition>
-      <div v-if="pending">Loading Data...</div>
-    </Transition>
-
-    <Transition>
       <div>
-        <div class="pb-8" v-if="result.data">
+        <div class="pb-3 space-x-2" v-if="result.data">
           <button class="btn btn-primary" @click="exportCSV">
             Export to CSV
+          </button>
+
+          <button class="btn" :class="{ loading: pending }" @click="refresh">
+            Refresh
           </button>
         </div>
 
@@ -54,7 +54,7 @@
   })
 
   // fetch from ACI docs
-  const { data, pending } = await useFetch(result.url)
+  const { data, pending, refresh } = await useFetch(result.url)
   result.data = data.value
 
   /**
