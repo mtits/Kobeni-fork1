@@ -55,8 +55,6 @@
   const isLoading = ref(false)
   const isLoginFailed = ref(false)
 
-  const router = useRouter()
-
   /**
    *
    */
@@ -73,9 +71,12 @@
         password.value
       )
 
+      // validate if user exist on login
       if (userCredential.user) {
-        router.push({ path: '/' })
+        await navigateTo('/')
       }
+
+      //
     } catch (error) {
       isLoginFailed.value = true
       console.error({ errorCode: error.code, errorMessage: error.message })
