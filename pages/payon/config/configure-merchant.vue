@@ -23,15 +23,13 @@
     <Input label="Entity ID" type="text" v-model="entityId" />
 
     <!-- select brands -->
-    <div class="flex w-full mt-6 space-x-6">
+    <div class="flex mt-6 space-x-6">
       <!-- left side -->
-      <div class="grid flex-grow space-y-6 w-1/2">
+      <div class="grid space-y-6 w-1/2">
         <!-- cards -->
         <div class="card bg-base-100">
           <div class="card-body">
-            <label class="label">
-              <span class="label-text text-sky-400 font-bold">Card Brands</span>
-            </label>
+            <h2 class="card-title text-sky-400">Card Brands</h2>
             <!-- select brands -->
             <select
               class="select"
@@ -40,17 +38,25 @@
               multiple>
               <option v-for="brand in cardBrandList">{{ brand }}</option>
             </select>
+
+            <!-- display currently selected for this section -->
+            <div class="card-actions justify-start mt-3">
+              <TransitionGroup>
+                <div
+                  class="badge badge-info badge-lg"
+                  v-for="brand in selectedCardBrands"
+                  :key="brand">
+                  {{ brand }}
+                </div>
+              </TransitionGroup>
+            </div>
           </div>
         </div>
 
         <!-- virtual -->
         <div class="card bg-base-100">
           <div class="card-body">
-            <label class="label">
-              <span class="label-text text-sky-400 font-bold"
-                >Virtual Accounts</span
-              >
-            </label>
+            <h2 class="card-title text-sky-400">Virtual Accounts</h2>
             <select
               class="select"
               size="10"
@@ -58,17 +64,25 @@
               multiple>
               <option v-for="brand in virtualBrandList">{{ brand }}</option>
             </select>
+
+            <!-- display currently selected for this section -->
+            <div class="card-actions justify-start mt-3">
+              <TransitionGroup>
+                <div
+                  class="badge badge-info badge-lg"
+                  v-for="brand in selectedVirtualBrands"
+                  :key="brand">
+                  {{ brand }}
+                </div>
+              </TransitionGroup>
+            </div>
           </div>
         </div>
 
         <!-- banks -->
         <div class="card bg-base-100">
           <div class="card-body">
-            <label class="label">
-              <span class="label-text text-sky-400 font-bold"
-                >Bank Accounts</span
-              >
-            </label>
+            <h2 class="card-title text-sky-400">Bank Accounts</h2>
             <select
               class="select"
               size="10"
@@ -76,61 +90,55 @@
               multiple>
               <option v-for="brand in bankBrandList">{{ brand }}</option>
             </select>
+
+            <!-- display currently selected for this section -->
+            <div class="card-actions justify-start mt-3">
+              <TransitionGroup>
+                <div
+                  class="badge badge-info badge-lg"
+                  v-for="brand in selectedBankBrands"
+                  :key="brand">
+                  {{ brand }}
+                </div>
+              </TransitionGroup>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- right side -->
-      <div class="grid flex-grow space-y-6 w-1/2">
-        <div class="card bg-base-100">
-          <div class="card-body">
-            <label class="label">
-              <span class="label-text text-sky-400 font-bold"
-                >Selected Brands</span
-              >
-            </label>
-            <div class="card-actions justify-start">
-              <!-- selected brands display via badges -->
-              <TransitionGroup>
-                <div
-                  class="badge badge-lg"
-                  v-for="brand in combinedSelectedBrands"
-                  :key="brand">
-                  {{ brand }}
-                </div>
-              </TransitionGroup>
-            </div>
-          </div>
-        </div>
-
+      <div class="grid w-1/2">
         <!-- active selected brands -->
-        <div class="card bg-base-100">
+        <div class="card bg-neutral">
           <div class="card-body">
-            <label class="label">
-              <span class="label-text text-sky-400 font-bold"
-                >ACTIVE Selected Brands</span
-              >
-            </label>
-            <div class="card-actions justify-start">
-              <!-- selected brands display via badges -->
-              <TransitionGroup>
-                <div
-                  class="badge badge-lg"
-                  v-for="brand in selectedBrands"
-                  :key="brand">
-                  {{ brand }}
-                </div>
-              </TransitionGroup>
+            <h2 class="card-title text-sky-400">ACTIVE Selected Brands</h2>
+
+            <div class="space-y-3">
+              <p>
+                Select the brands on the left that is associated with the MID
+                that you set above. This controls the set of brands that will be
+                used inside the widget form "data-brands" attribute.
+              </p>
+
+              <button
+                class="btn btn-accent w-full"
+                @click="selectedBrands = combinedSelectedBrands">
+                Set Active Brands
+              </button>
+
+              <div class="justify-start space-x-3 space-y-3">
+                <!-- selected brands display via badges -->
+                <TransitionGroup>
+                  <div
+                    class="badge badge-warning badge-lg"
+                    v-for="brand in selectedBrands"
+                    :key="brand">
+                    {{ brand }}
+                  </div>
+                </TransitionGroup>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div>
-          <button
-            class="btn w-full"
-            @click="selectedBrands = combinedSelectedBrands">
-            Set Active Brands
-          </button>
         </div>
       </div>
     </div>

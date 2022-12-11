@@ -22,7 +22,7 @@
           Current Active Brands:
           <span class="space-x-1">
             <span
-              class="badge badge-accent badge-xs"
+              class="badge badge-warning badge-xs"
               v-for="brands in selectedBrands">
               {{ brands }}</span
             >
