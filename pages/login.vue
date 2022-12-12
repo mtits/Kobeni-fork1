@@ -75,7 +75,7 @@
 
       // validate if user exist on login
       if (userCredential.user) {
-        await navigateTo('/')
+        await navigateTo('payon/copyandpay')
       }
 
       //
