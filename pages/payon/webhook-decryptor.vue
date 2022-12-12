@@ -8,12 +8,20 @@
     <Input
       label="Secret"
       type="password"
-      helper-text="From BIP"
+      helper-text="Found in the BIP admin settings"
       v-model="secretFromConfiguration" />
 
-    <Input label="ivfromHttpHeader" v-model="ivfromHttpHeader" />
+    <Input
+      label="Initialization Vector"
+      place-holder="C4FD0D6CB07AE3DF6F7B239E"
+      helper-text="x-initialization-vector - found in the HTTP header"
+      v-model="ivfromHttpHeader" />
 
-    <Input label="authTagFromHttpHeader" v-model="authTagFromHttpHeader" />
+    <Input
+      label="Authentication Tag"
+      place-holder="54CA208CB4A0F8227738E96D6AB61361"
+      helper-text="x-authentication-tag - found in the HTTP header"
+      v-model="authTagFromHttpHeader" />
 
     <Textarea label="HTTP Body" v-model="httpBody"></Textarea>
 
@@ -21,7 +29,7 @@
       class="btn btn-primary mt-3"
       :class="{ loading: showLoading }"
       @click="decryptData">
-      Decrypt Data
+      싸우러 가자
     </button>
 
     <Transition>
