@@ -6,7 +6,8 @@
 
       <!-- all in -->
       <div class="drawer-content flex flex-col items-center">
-        <!-- <Navbar /> -->
+        <NavBar v-if="currentUser" />
+
         <!-- Page content here -->
         <div class="container mx-auto px-14 py-10">
           <div class="card bg-base-200 shadow-xl">
@@ -43,15 +44,6 @@
                 Kobeni
                 <div class="badge">ALPHA</div>
               </h1>
-            </div>
-            <!-- logout button only displays if a user is logged in -->
-            <div class="mt-3 space-x-2" v-if="currentUser">
-              <button class="btn btn-secondary btn-xs" @click="logout">
-                Sign Out
-              </button>
-              <span class="text-xs">
-                {{ currentUser.email }}
-              </span>
             </div>
           </div>
 
@@ -189,7 +181,6 @@
 <script setup>
   import { getAuth, signOut } from 'firebase/auth'
 
-  const router = useRouter()
   const currentUser = useState('currentUser', () => '')
 
   // set default states of the widget
@@ -245,7 +236,7 @@
 
     try {
       await signOut(auth)
-      router.push({ path: '/login' })
+      await navigateTo('/login')
     } catch (error) {
       console.error(error)
     }
