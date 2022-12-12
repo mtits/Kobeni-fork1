@@ -38,11 +38,12 @@
         <!-- main container of the side drawer contents -->
         <aside class="w-80 bg-base-300">
           <!-- side title -->
-          <div class="py-3 px-6 sticky top-0 bg-opacity-90 backdrop-blur z-20">
+          <div
+            class="py-3 px-7 bg-neutral sticky top-0 bg-opacity-90 backdrop-blur z-20">
             <div class="prose">
               <h1 class="text-sky-400">
                 Kobeni
-                <div class="badge">ALPHA</div>
+                <div class="badge badge-accent">ALPHA</div>
               </h1>
             </div>
           </div>
