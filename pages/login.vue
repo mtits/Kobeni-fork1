@@ -1,7 +1,9 @@
 <template>
   <div class="">
     <div class="grid place-items-center">
-      <PageTitle title="sorry, new phone, hu dis?"> </PageTitle>
+      <PageTitle title="Kobeni"> </PageTitle>
+
+      <p>sorry, new phone, hu dis?</p>
 
       <div class="w-96 h-96">
         <Input label="Email Address" v-model="email" @keyup.enter="login" />
