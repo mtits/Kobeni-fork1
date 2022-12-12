@@ -59,6 +59,9 @@
 
           <!-- APP MENUS -->
           <ul class="menu flex flex-col p-0 px-4">
+            <li class="menu-title">
+              <span>App Stuffs</span>
+            </li>
             <li><NuxtLink to="/">Home</NuxtLink></li>
             <li>
               <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
@@ -75,14 +78,15 @@
             <!-- collapse for sub menus -->
             <div class="collapse collapse-arrow rounded-box">
               <input type="checkbox" />
+
               <div class="collapse-title">Setup</div>
               <div class="collapse-content">
-                <li>
+                <li class="hover-bordered">
                   <NuxtLink to="/payon/config/widget-behaviour"
                     >Widget Behaviour</NuxtLink
                   >
                 </li>
-                <li>
+                <li class="hover-bordered">
                   <NuxtLink to="/payon/config/configure-merchant"
                     >Configure Merchant</NuxtLink
                   >
@@ -90,18 +94,28 @@
               </div>
             </div>
 
-            <li><NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink></li>
-            <li>
+            <li class="hover-bordered">
+              <NuxtLink to="/payon/copyandpay">CopyandPay</NuxtLink>
+            </li>
+            <li class="hover-bordered">
               <NuxtLink to="/payon/server-to-server">Server-to-Server</NuxtLink>
             </li>
-            <li><NuxtLink to="/payon/backoffice">Backoffice</NuxtLink></li>
-            <li><NuxtLink to="/payon/recurring">Recurring</NuxtLink></li>
-            <li>
+            <li class="hover-bordered">
+              <NuxtLink to="/payon/backoffice">Backoffice</NuxtLink>
+            </li>
+            <li class="hover-bordered">
+              <NuxtLink to="/payon/recurring">Recurring</NuxtLink>
+            </li>
+            <li class="hover-bordered">
               <NuxtLink to="/payon/reporting-api">Transaction Doko?</NuxtLink>
             </li>
-            <li><NuxtLink to="/payon/fmmid">Format Thy MID</NuxtLink></li>
-            <li><NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink></li>
-            <li>
+            <li class="hover-bordered">
+              <NuxtLink to="/payon/fmmid">Format Thy MID</NuxtLink>
+            </li>
+            <li class="hover-bordered">
+              <NuxtLink to="/payon/resultcodes">Result Codes</NuxtLink>
+            </li>
+            <li class="hover-bordered">
               <NuxtLink to="/payon/webhook-decryptor"
                 >Webhook Decryptor</NuxtLink
               >
@@ -115,11 +129,11 @@
               <span>Paymentz Stuffs</span>
             </li>
 
-            <li><a>Setup</a></li>
-            <li><a>Standard Checkout</a></li>
-            <li><a>Generate Auth Token</a></li>
-            <li><a>REST API</a></li>
-            <li><a>Backoffice</a></li>
+            <li class="hover-bordered"><a>Setup</a></li>
+            <li class="hover-bordered"><a>Standard Checkout</a></li>
+            <li class="hover-bordered"><a>Generate Auth Token</a></li>
+            <li class="hover-bordered"><a>REST API</a></li>
+            <li class="hover-bordered"><a>Backoffice</a></li>
           </ul>
 
           <!-- WL MENUS -->
@@ -129,11 +143,11 @@
               <span>WL Stuffs</span>
             </li>
 
-            <li><a>Setup</a></li>
-            <li><a>Hosted Payment Page</a></li>
-            <li><a>Server-to-server</a></li>
-            <li><a>Backoffice</a></li>
-            <li><a>Webhook Decryptor</a></li>
+            <li class="hover-bordered"><a>Setup</a></li>
+            <li class="hover-bordered"><a>Hosted Payment Page</a></li>
+            <li class="hover-bordered"><a>Server-to-server</a></li>
+            <li class="hover-bordered"><a>Backoffice</a></li>
+            <li class="hover-bordered"><a>Webhook Decryptor</a></li>
           </ul>
         </aside>
         <!-- end side drawer container -->
