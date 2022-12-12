@@ -11,18 +11,8 @@
       </div>
 
       <div class="navbar-end mr-12 space-x-3">
-        <div class="form-control">
-          <label class="input-group">
-            <input
-              type="text"
-              class="input input-sm"
-              :value="currentUser.email"
-              readonly />
-            <button class="btn btn-sm btn-warning" @click="logout">
-              Sign Out
-            </button>
-          </label>
-        </div>
+        <span>{{ currentUser.email }}</span>
+        <button class="btn btn-sm btn-warning" @click="logout">Sign Out</button>
       </div>
     </div>
   </div>
