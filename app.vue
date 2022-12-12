@@ -118,7 +118,7 @@
           <ul class="menu flex flex-col p-0 px-4">
             <li></li>
             <li class="menu-title">
-              <span>Paymentz Stuffs</span>
+              <span>Paymentz Stuffs (UNDER CONSTRUCTION)</span>
             </li>
 
             <li class="hover-bordered"><a>Setup</a></li>
@@ -132,7 +132,7 @@
           <ul class="menu flex flex-col p-0 px-4">
             <li></li>
             <li class="menu-title">
-              <span>WL Stuffs</span>
+              <span>WL Stuffs (UNDER CONSTRUCTION)</span>
             </li>
 
             <li class="hover-bordered"><a>Setup</a></li>

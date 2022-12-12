@@ -1,17 +1,17 @@
 <template>
-  <div class="sticky top-0 z-20 bg-base-300 bg-opacity-90 backdrop-blur w-full">
+  <div class="sticky top-0 z-20 bg-neutral bg-opacity-90 backdrop-blur w-full">
     <div class="navbar">
-      <div class="flex-1">
-        <!-- <a class="btn btn-ghost normal-case text-xl">Hola</a> -->
+      <div class="navbar-start ml-12">
+        <!-- <a class="btn btn-ghost normal-case">{{ currentUser.email }}</a> -->
       </div>
 
-      <div class="flex-none mx-8">
-        <ul class="menu menu-horizontal px-3 space-x-3">
-          <li>
-            <a class="link">{{ currentUser.email }}</a>
-          </li>
-          <li><a class="btn btn-secondary" @click="logout">Logout</a></li>
-        </ul>
+      <div class="navbar-end mr-12 space-x-3">
+        <div>
+          <span>{{ currentUser.email }}</span>
+        </div>
+        <div>
+          <button class="btn btn-warning" @click="logout">Sign Out</button>
+        </div>
       </div>
     </div>
   </div>
