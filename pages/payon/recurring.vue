@@ -107,7 +107,7 @@
   /**
    * fetches data from the session and sets it to the local variables
    */
-  async function getSessionData() {
+  const getSessionData = async () => {
     const { session, refresh } = await useSession()
 
     await refresh()
@@ -122,7 +122,7 @@
   /**
    * set up session data on click of the submit button
    */
-  async function setSessionData() {
+  const setSessionData = async () => {
     const { refresh, update } = await useSession()
 
     await refresh()
@@ -139,7 +139,7 @@
   /**
    * loads the session data as the main ui data
    */
-  function loadSessionData() {
+  const loadSessionData = () => {
     mode.value = sessionMode.value
     registrationId.value = sessionRegId.value
     accessToken.value = sessionAccessToken.value
@@ -150,7 +150,7 @@
   /**
    *
    */
-  async function submit() {
+  const submit = async () => {
     showLoading.value = true
     responseData.value = ''
 

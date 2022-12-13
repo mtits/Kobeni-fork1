@@ -119,7 +119,7 @@
   /**
    * gets the session data before doing anything else
    */
-  async function getSessionData() {
+  const getSessionData = async () => {
     const { session, refresh } = await useSession()
 
     await refresh()
@@ -134,7 +134,7 @@
   /**
    * fetches the transaction results
    */
-  async function fetchTransactionResults() {
+  const fetchTransactionResults = async () => {
     try {
       const { data } = await useFetch('/api/payon/getTransactionResults', {
         method: 'post',

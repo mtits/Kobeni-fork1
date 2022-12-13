@@ -60,7 +60,7 @@
   /**
    * parse JSON into CSV and download to client
    */
-  function exportCSV() {
+  const exportCSV = () => {
     try {
       const dataToConvert = {
         data: result.data.resultCodes,

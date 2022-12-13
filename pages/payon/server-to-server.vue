@@ -136,7 +136,7 @@
   /**
    * set up session data on click of the submit button
    */
-  async function setSessionData() {
+  const setSessionData = async () => {
     const { refresh, update } = await useSession()
 
     await refresh()
@@ -152,7 +152,7 @@
   /**
    * loads the session data as the main ui data
    */
-  function loadSessionData() {
+  const loadSessionData = () => {
     mode.value = sessionMode.value
     accessToken.value = sessionAccessToken.value
     entityId.value = sessionEntityId.value
@@ -162,7 +162,7 @@
   /**
    *
    */
-  async function submit() {
+  const submit = async () => {
     showLoading.value = true
     responseData.value = ''
 

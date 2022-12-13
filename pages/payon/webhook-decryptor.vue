@@ -67,7 +67,7 @@
   /**
    *
    */
-  async function decryptData() {
+  const decryptData = async () => {
     showLoading.value = true
     responseData.value = ''
 

@@ -60,7 +60,7 @@
   /**
    *
    */
-  async function login() {
+  const login = async () => {
     isLoading.value = true
     isLoginFailed.value = false
 

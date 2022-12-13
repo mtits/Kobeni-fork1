@@ -74,7 +74,7 @@
   /**
    *
    */
-  async function submit() {
+  const submit = async () => {
     showLoading.value = true
     responseData.value = ''
 
