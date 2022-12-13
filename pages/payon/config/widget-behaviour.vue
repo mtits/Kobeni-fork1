@@ -8,7 +8,7 @@
     </Alert>
 
     <!-- display toggles as columns -->
-    <div class="grid grid-cols-2 gap-4 mt-3">
+    <div class="grid grid-cols-2 gap-4 mt-3 px-14">
       <!-- left -->
       <div>
         <!-- auto-launch -->

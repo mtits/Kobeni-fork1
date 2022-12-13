@@ -45,7 +45,7 @@
 
     <div class="card mt-6 bg-base-300 text-neutral-content shadow-xl">
       <div class="card-body">
-        <h2 class="card-title">Misc. Data</h2>
+        <h2 class="card-title">Misc. Data ('ya might need dis...)</h2>
 
         <Transition>
           <InputReadOnly
