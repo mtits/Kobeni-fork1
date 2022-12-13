@@ -26,7 +26,7 @@
   /**
    * yeets you out of the house
    */
-  async function logout() {
+  const logout = async () => {
     const auth = getAuth(firebaseApp)
 
     try {

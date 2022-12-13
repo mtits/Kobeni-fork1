@@ -26,6 +26,9 @@
     },
   })
 
+  /**
+   *
+   */
   const stringyfiedJSON = computed(() => {
     if (props.isJson) {
       return JSON.stringify(props.data, null, 2)

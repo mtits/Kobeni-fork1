@@ -89,7 +89,7 @@
   /**
    * todo: yeet the widget
    */
-  function yeetTheWidget() {
+  const yeetTheWidget = () => {
     cnpModal.value = false
 
     // nuf said
