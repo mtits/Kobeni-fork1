@@ -6,12 +6,6 @@
       the value return in the id JSON field.
     </PageTitle>
 
-    <!-- reference transaction -->
-    <Input
-      type="text"
-      label="Reference Transaction"
-      v-model="referenceTransaction" />
-
     <!-- show endpoint -->
     <InputReadOnly
       label="Endpoint"
@@ -19,6 +13,12 @@
       :mode="mode"
       :display-character-count="false"
       @copy-content="copyString(modeText)" />
+
+    <!-- reference transaction -->
+    <Input
+      type="text"
+      label="Reference Transaction"
+      v-model="referenceTransaction" />
 
     <!-- Params -->
     <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>

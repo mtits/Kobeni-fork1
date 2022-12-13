@@ -5,7 +5,7 @@
     </label>
     <input
       :type="type"
-      class="input font-mono w-full"
+      class="input input-bordered font-mono w-full"
       :placeholder="placeHolder"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"

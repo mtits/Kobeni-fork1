@@ -9,7 +9,7 @@
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Environment</span>
       </label>
-      <select class="select" v-model="mode">
+      <select class="select select-bordered" v-model="mode">
         <option v-for="option in modeOptions" :value="option.value">
           {{ option.text }}
         </option>
@@ -32,7 +32,7 @@
             <h2 class="card-title text-sky-400">Card Brands</h2>
             <!-- select brands -->
             <select
-              class="select"
+              class="select select-bordered"
               size="10"
               v-model="selectedCardBrands"
               multiple>
@@ -58,7 +58,7 @@
           <div class="card-body">
             <h2 class="card-title text-sky-400">Virtual Accounts</h2>
             <select
-              class="select"
+              class="select select-bordered"
               size="10"
               v-model="selectedVirtualBrands"
               multiple>
@@ -84,7 +84,7 @@
           <div class="card-body">
             <h2 class="card-title text-sky-400">Bank Accounts</h2>
             <select
-              class="select"
+              class="select select-bordered"
               size="10"
               v-model="selectedBankBrands"
               multiple>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-base-200">
     <!-- main div for drawer -->
     <div class="drawer drawer-mobile">
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
@@ -9,12 +9,8 @@
         <NavBar v-if="currentUser" />
 
         <!-- Page content here -->
-        <div class="container mx-auto px-14 py-10">
-          <div class="card bg-base-200 shadow-xl">
-            <div class="card-body">
-              <NuxtPage />
-            </div>
-          </div>
+        <div class="container mx-auto px-14 py-10 bg-base-200">
+          <NuxtPage />
 
           <!-- i made dis -->
           <div class="grid place-items-center mt-4">

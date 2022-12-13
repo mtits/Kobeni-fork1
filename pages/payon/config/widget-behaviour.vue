@@ -8,7 +8,7 @@
     </Alert>
 
     <!-- display toggles as columns -->
-    <div class="grid grid-cols-3 gap-4 mt-6">
+    <div class="grid grid-cols-2 gap-4 mt-3">
       <!-- left -->
       <div>
         <!-- auto-launch -->
@@ -46,12 +46,12 @@
           >Determines whether the CVV field is presented on the payment
           form.</Toggle
         >
+
+        <Toggle v-model="maskCvv" title="maskCvv">Masks the CVV.</Toggle>
       </div>
 
-      <!-- middle -->
+      <!-- right -->
       <div>
-        <Toggle v-model="maskCvv" title="maskCvv">Masks the CVV.</Toggle>
-
         <Toggle v-model="showCVVHint" title="showCVVHint"
           >If set to true, then the credit card form will display a hint on
           where the CVV is located when the mouse is hovering over the CVV
@@ -62,10 +62,7 @@
           >Determines whether the CVV field can be empty. By default it is
           false.</Toggle
         >
-      </div>
 
-      <!-- right -->
-      <div>
         <Toggle v-model="validation" title="validation"
           >If false, disables validation and the functions
           <kbd class="font-semibold">validate</kbd> and
@@ -100,7 +97,7 @@
           >Locale (Widget Language)</span
         >
       </label>
-      <select class="select w-full" v-model="locale">
+      <select class="select select-bordered w-full" v-model="locale">
         <option v-for="local in localeList" :value="local.value">
           {{ local.text }}
         </option>
