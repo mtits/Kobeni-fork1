@@ -3,9 +3,15 @@
     <div class="card bg-base-300 shadow-xl">
       <div class="card-body">
         <div class="grid place-items-center">
-          <PageTitle title="Kobeni"> </PageTitle>
+          <div class="prose">
+            <h1>
+              <span class="text-sky-400"> Kobeni </span>
+            </h1>
+          </div>
 
-          <p>sorry, new phone, hu dis?</p>
+          <div class="mb-14">
+            <p class="italic">sorry, new phone, hu dis?</p>
+          </div>
 
           <div class="w-96 h-96">
             <Input label="Email Address" v-model="email" @keyup.enter="login" />
@@ -22,6 +28,16 @@
               @click="login">
               Sign In
             </button>
+
+            <div class="grid place-items-center mt-3">
+              <div class="tooltip tooltip-bottom" data-tip="Aha ha...">
+                <a
+                  href="https://www.youtube.com/watch?v=8X_Ot0k4XJc"
+                  class="link text-sm">
+                  Forgot Password?
+                </a>
+              </div>
+            </div>
 
             <!-- alert for failed logins -->
             <Transition>

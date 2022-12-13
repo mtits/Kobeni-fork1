@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Alert title="Info" color-style="bg-base-300">
+    <Alert class="mt-3" title="Info" color-style="bg-base-300">
       Input your BIP credentials. Set up the widget behaviour.
     </Alert>
 

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <PageTitle title="Setup"></PageTitle>
+
     <div class="tabs">
       <NuxtLink class="tab tab-lifted" to="/payon/config/widget-behaviour"
         >Widget Behaviour</NuxtLink
@@ -10,7 +12,7 @@
       >
     </div>
     <!-- displays the selected child page -->
-    <div class="py-6">
+    <div class="">
       <NuxtPage />
     </div>
   </div>

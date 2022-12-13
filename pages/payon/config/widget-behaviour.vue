@@ -1,6 +1,31 @@
 <template>
   <div>
-    <Alert title="Disclaimer" color-style="bg-base-300">
+    <Input
+      label="Shopper Result URL"
+      type="text"
+      helper-text="The customer/user is redirected here after the transaction."
+      v-model="shopperResultURLPayon" />
+
+    <Input
+      label="Card Submit Label (The 'PAY NOW' button)"
+      helper-text="This permanently overrides 'Locale' regardless of language."
+      v-model="payNowLabel" />
+
+    <!-- select locale -->
+    <div class="mt-3">
+      <label class="label">
+        <span class="label-text text-sky-400 font-bold"
+          >Locale (Widget Language)</span
+        >
+      </label>
+      <select class="select select-bordered w-full" v-model="locale">
+        <option v-for="local in localeList" :value="local.value">
+          {{ local.text }}
+        </option>
+      </select>
+    </div>
+
+    <Alert class="mt-6" title="Disclaimer" color-style="bg-base-300">
       Some of the items here have been changed from the default setting to
       better suit the app's look and flow. Additionally, the items labeled as
       <span class="font-medium">Exclusive</span> are features custom-made only
@@ -77,31 +102,6 @@
           >Shows or hides input placeholders. Default is true.</Toggle
         >
       </div>
-    </div>
-
-    <Input
-      label="Shopper Result URL"
-      type="text"
-      helper-text="The customer/user is redirected here after the transaction."
-      v-model="shopperResultURLPayon" />
-
-    <Input
-      label="Card Submit Label (The 'PAY NOW' button)"
-      helper-text="This permanently overrides 'Locale' regardless of language."
-      v-model="payNowLabel" />
-
-    <!-- select locale -->
-    <div class="mt-3">
-      <label class="label">
-        <span class="label-text text-sky-400 font-bold"
-          >Locale (Widget Language)</span
-        >
-      </label>
-      <select class="select select-bordered w-full" v-model="locale">
-        <option v-for="local in localeList" :value="local.value">
-          {{ local.text }}
-        </option>
-      </select>
     </div>
   </div>
 </template>
