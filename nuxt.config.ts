@@ -28,5 +28,5 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@sidebase/nuxt-session'],
+  modules: ['@sidebase/nuxt-session', 'nuxt-icon'],
 })

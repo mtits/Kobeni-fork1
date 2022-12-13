@@ -69,7 +69,7 @@
               class="btn mt-6 w-full"
               :class="{ loading: isLoading }"
               @click="login">
-              Sign In
+              <span> Sign In </span>
             </button>
 
             <div class="grid place-items-center mt-3">

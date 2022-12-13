@@ -1,3 +1,82 @@
+<script setup>
+  import { getAuth, signOut } from 'firebase/auth'
+
+  const currentUser = useState('currentUser', () => '')
+
+  // set default states of the widget
+  useState('autoLaunchWidget', () => true)
+
+  //
+  useState('selectedCardBrands', () => {
+    return ['VISA', 'MASTER']
+  })
+
+  useState('selectedVirtualBrands', () => {
+    return []
+  })
+
+  useState('selectedBankBrands', () => {
+    return []
+  })
+
+  // default selected
+  useState('selectedBrands', () => {
+    return ['VISA', 'MASTER']
+  })
+
+  //
+  useState('widgetStyle', () => 'plain')
+  useState('maskCvv', () => true)
+  useState('requireCvv', () => true)
+  useState('showCVVHint', () => false)
+  useState('allowEmptyCvv', () => false)
+  useState('validation', () => true)
+  useState('showLabels', () => true)
+  useState('showPlaceholders', () => true)
+  useState('disableCardExpiryDateValidation', () => false)
+  useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')
+  useState('locale', () => 'en')
+
+  // payon default params
+  useState('referenceTransaction', () => '')
+  useState('registrationId', () => '')
+  useState('mode', () => 'Test')
+  useState(
+    'accessToken',
+    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
+  )
+  useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
+  useState('cnpModal', () => false)
+
+  /**
+   * yeets you out of the house
+   */
+  async function logout() {
+    const auth = getAuth(firebaseApp)
+
+    try {
+      await signOut(auth)
+      await navigateTo('/login')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  /**
+   *
+   */
+  onMounted(() => {
+    // result URL for PAY.ON
+    useState('shopperResultUrlPayon', () => {
+      const currentURL = new URL(window.location.href)
+      return `${currentURL.origin}/payon/shopperresulturl`
+    })
+
+    //
+    useGetCurrentUser()
+  })
+</script>
+
 <template>
   <div class="bg-base-200">
     <!-- main div for drawer -->
@@ -54,9 +133,17 @@
             <li class="menu-title">
               <span>App Stuffs</span>
             </li>
-            <li><NuxtLink to="/">Home</NuxtLink></li>
             <li>
-              <NuxtLink to="/tomorrow">Tomorrow</NuxtLink>
+              <NuxtLink class="" to="/">
+                <Icon name="ic:baseline-home" />
+                Home
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/tomorrow">
+                <Icon name="ic:baseline-volume-up" />
+                Tomorrow
+              </NuxtLink>
             </li>
           </ul>
 
@@ -177,82 +264,3 @@
     scrollbar-color: hsl(220 13% 69%) black; /* scroll thumb and track */
   }
 </style>
-
-<script setup>
-  import { getAuth, signOut } from 'firebase/auth'
-
-  const currentUser = useState('currentUser', () => '')
-
-  // set default states of the widget
-  useState('autoLaunchWidget', () => true)
-
-  //
-  useState('selectedCardBrands', () => {
-    return ['VISA', 'MASTER']
-  })
-
-  useState('selectedVirtualBrands', () => {
-    return []
-  })
-
-  useState('selectedBankBrands', () => {
-    return []
-  })
-
-  // default selected
-  useState('selectedBrands', () => {
-    return ['VISA', 'MASTER']
-  })
-
-  //
-  useState('widgetStyle', () => 'plain')
-  useState('maskCvv', () => true)
-  useState('requireCvv', () => true)
-  useState('showCVVHint', () => false)
-  useState('allowEmptyCvv', () => false)
-  useState('validation', () => true)
-  useState('showLabels', () => true)
-  useState('showPlaceholders', () => true)
-  useState('disableCardExpiryDateValidation', () => false)
-  useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')
-  useState('locale', () => 'en')
-
-  // payon default params
-  useState('referenceTransaction', () => '')
-  useState('registrationId', () => '')
-  useState('mode', () => 'Test')
-  useState(
-    'accessToken',
-    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
-  )
-  useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
-  useState('cnpModal', () => false)
-
-  /**
-   * yeets you out of the house
-   */
-  async function logout() {
-    const auth = getAuth(firebaseApp)
-
-    try {
-      await signOut(auth)
-      await navigateTo('/login')
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  /**
-   *
-   */
-  onMounted(() => {
-    // result URL for PAY.ON
-    useState('shopperResultUrlPayon', () => {
-      const currentURL = new URL(window.location.href)
-      return `${currentURL.origin}/payon/shopperresulturl`
-    })
-
-    //
-    useGetCurrentUser()
-  })
-</script>
