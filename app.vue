@@ -6,7 +6,9 @@
 
       <!-- all in -->
       <div class="drawer-content flex flex-col items-center">
-        <NavBar v-if="currentUser" />
+        <Transition>
+          <NavBar v-if="currentUser" />
+        </Transition>
 
         <!-- Page content here -->
         <div class="container mx-auto px-24 py-10 bg-base-200">
@@ -22,8 +24,9 @@
             >
           </div>
         </div>
-
-        <Footer v-if="currentUser" />
+        <Transition>
+          <Footer v-if="currentUser" />
+        </Transition>
       </div>
 
       <!-- drawer items -->
