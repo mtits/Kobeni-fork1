@@ -3,20 +3,24 @@
     <label class="label mb-1">
       <span class="label-text text-sky-400 font-bold">{{ label }}</span>
     </label>
-    <div class="input-group">
-      <input
-        type="text"
-        class="input font-mono w-full"
-        :class="{
-          'input-error': characterCount > characterCountMax,
-          'input-warning': !isTestMode,
-        }"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        spellcheck="false"
-        readonly />
+    <div
+      class="tooltip tooltip-left tooltip-warning w-full"
+      data-tip="Readonly">
+      <div class="input-group">
+        <input
+          type="text"
+          class="input font-mono w-full"
+          :class="{
+            'input-error': characterCount > characterCountMax,
+            'input-warning': !isTestMode,
+          }"
+          :value="modelValue"
+          @input="$emit('update:modelValue', $event.target.value)"
+          spellcheck="false"
+          readonly />
 
-      <button class="btn" @click="$emit('copyContent')">Copy</button>
+        <button class="btn" @click="$emit('copyContent')">Copy</button>
+      </div>
     </div>
     <label class="label mb-1" v-if="displayCharacterCount">
       <span class="label-text"
