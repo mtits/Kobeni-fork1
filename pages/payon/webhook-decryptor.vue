@@ -13,13 +13,13 @@
 
     <Input
       label="Initialization Vector"
-      place-holder="C4FD0D6CB07AE3DF6F7B239E"
+      place-holder="e.g. C4FD0D6CB07AE3DF6F7B239E"
       helper-text="x-initialization-vector - found in the HTTP header"
       v-model="ivfromHttpHeader" />
 
     <Input
       label="Authentication Tag"
-      place-holder="54CA208CB4A0F8227738E96D6AB61361"
+      place-holder="e.g. 54CA208CB4A0F8227738E96D6AB61361"
       helper-text="x-authentication-tag - found in the HTTP header"
       v-model="authTagFromHttpHeader" />
 

@@ -9,7 +9,7 @@
         <NavBar v-if="currentUser" />
 
         <!-- Page content here -->
-        <div class="container mx-auto px-14 py-10 bg-base-200">
+        <div class="container mx-auto px-24 py-10 bg-base-200">
           <NuxtPage />
 
           <!-- i made dis -->
