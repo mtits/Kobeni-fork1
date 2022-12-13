@@ -1,3 +1,45 @@
+<script setup>
+  import { Howl, Howler } from 'howler'
+
+  definePageMeta({
+    pageTitle: 'Kobeni | Tomorrow, Ina said calmly...',
+  })
+
+  const tomorrow = new Howl({
+    src: ['/audio/tomorrow.mp3'],
+  })
+
+  const wow = new Howl({
+    src: ['/audio/wow.mp3'],
+  })
+
+  const omae = new Howl({
+    src: ['/audio/omae wa.mp3'],
+  })
+
+  const nani = new Howl({
+    src: ['/audio/nani.mp3'],
+  })
+
+  const pekoLaugh = new Howl({
+    src: ['/audio/peko_laugh.mp3'],
+  })
+
+  const ehe = new Howl({
+    src: ['/audio/ehe.mp3'],
+  })
+
+  // global object
+  Howler.volume(0.5)
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
+  })
+</script>
+
 <template>
   <div>
     <PageTitle title="Tomorrow">
@@ -71,45 +113,3 @@
     background-image: url('/tomorrow-compressed.gif');
   }
 </style>
-
-<script setup>
-  import { Howl, Howler } from 'howler'
-
-  definePageMeta({
-    pageTitle: 'Kobeni | Tomorrow, Ina said calmly...',
-  })
-
-  const tomorrow = new Howl({
-    src: ['/audio/tomorrow.mp3'],
-  })
-
-  const wow = new Howl({
-    src: ['/audio/wow.mp3'],
-  })
-
-  const omae = new Howl({
-    src: ['/audio/omae wa.mp3'],
-  })
-
-  const nani = new Howl({
-    src: ['/audio/nani.mp3'],
-  })
-
-  const pekoLaugh = new Howl({
-    src: ['/audio/peko_laugh.mp3'],
-  })
-
-  const ehe = new Howl({
-    src: ['/audio/ehe.mp3'],
-  })
-
-  // global object
-  Howler.volume(0.5)
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
-</script>

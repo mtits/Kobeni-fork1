@@ -1,3 +1,77 @@
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Result Page',
+  })
+
+  //
+  const route = useRoute()
+  const id = ref('')
+  const resourcePath = ref('')
+
+  //
+  const mode = ref('')
+  const dataParameters = ref('')
+  const entityId = ref('')
+  const accessToken = ref('')
+  const referenceTransaction = useState('referenceTransaction')
+  const registrationId = useState('registrationId')
+
+  //
+  const responseData = ref('')
+
+  /**
+   * gets the session data before doing anything else
+   */
+  const getSessionData = async () => {
+    const { session, refresh } = await useSession()
+
+    await refresh()
+
+    // console.log(session.value)
+    mode.value = session.value.mode
+    entityId.value = session.value.entityId
+    accessToken.value = session.value.accessToken
+    dataParameters.value = session.value.dataParameters
+  }
+
+  /**
+   * fetches the transaction results
+   */
+  const fetchTransactionResults = async () => {
+    try {
+      const { data } = await useFetch('/api/payon/getTransactionResults', {
+        method: 'post',
+        body: {
+          mode: mode.value,
+          accessToken: accessToken.value,
+          entityId: entityId.value,
+          checkoutID: id.value,
+        },
+      })
+
+      responseData.value = data.value
+      referenceTransaction.value = responseData.value.id
+      if (responseData.value.registrationId) {
+        registrationId.value = responseData.value.registrationId
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  /**
+   *
+   */
+  onMounted(async () => {
+    id.value = route.query.id
+    resourcePath.value = route.query.resourcePath
+
+    await getSessionData()
+    await fetchTransactionResults()
+    useGetCurrentUser()
+  })
+</script>
+
 <template>
   <div>
     <PageTitle title="Transaction Results"> </PageTitle>
@@ -94,77 +168,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Result Page',
-  })
-
-  //
-  const route = useRoute()
-  const id = ref('')
-  const resourcePath = ref('')
-
-  //
-  const mode = ref('')
-  const dataParameters = ref('')
-  const entityId = ref('')
-  const accessToken = ref('')
-  const referenceTransaction = useState('referenceTransaction')
-  const registrationId = useState('registrationId')
-
-  //
-  const responseData = ref('')
-
-  /**
-   * gets the session data before doing anything else
-   */
-  const getSessionData = async () => {
-    const { session, refresh } = await useSession()
-
-    await refresh()
-
-    // console.log(session.value)
-    mode.value = session.value.mode
-    entityId.value = session.value.entityId
-    accessToken.value = session.value.accessToken
-    dataParameters.value = session.value.dataParameters
-  }
-
-  /**
-   * fetches the transaction results
-   */
-  const fetchTransactionResults = async () => {
-    try {
-      const { data } = await useFetch('/api/payon/getTransactionResults', {
-        method: 'post',
-        body: {
-          mode: mode.value,
-          accessToken: accessToken.value,
-          entityId: entityId.value,
-          checkoutID: id.value,
-        },
-      })
-
-      responseData.value = data.value
-      referenceTransaction.value = responseData.value.id
-      if (responseData.value.registrationId) {
-        registrationId.value = responseData.value.registrationId
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  /**
-   *
-   */
-  onMounted(async () => {
-    id.value = route.query.id
-    resourcePath.value = route.query.resourcePath
-
-    await getSessionData()
-    await fetchTransactionResults()
-    useGetCurrentUser()
-  })
-</script>

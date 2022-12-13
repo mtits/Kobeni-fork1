@@ -1,22 +1,3 @@
-<template>
-  <div class="form-control w-full mt-3">
-    <label class="label mb-1">
-      <span class="label-text text-sky-400 font-bold">{{ label }}</span>
-    </label>
-    <input
-      :type="type"
-      class="input input-bordered font-mono w-full"
-      :placeholder="placeHolder"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-      spellcheck="false" />
-
-    <label class="label" v-if="helperText">
-      <span class="label-text-alt">{{ helperText }}</span>
-    </label>
-  </div>
-</template>
-
 <script setup>
   defineProps({
     label: {
@@ -50,3 +31,22 @@
 
   defineEmits(['update:modelValue'])
 </script>
+
+<template>
+  <div class="form-control w-full mt-3">
+    <label class="label mb-1">
+      <span class="label-text text-sky-400 font-bold">{{ label }}</span>
+    </label>
+    <input
+      :type="type"
+      class="input input-bordered font-mono w-full"
+      :placeholder="placeHolder"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+      spellcheck="false" />
+
+    <label class="label" v-if="helperText">
+      <span class="label-text-alt">{{ helperText }}</span>
+    </label>
+  </div>
+</template>

@@ -1,3 +1,17 @@
+<script setup>
+  defineProps({
+    title: {
+      type: String,
+      required: false,
+    },
+    colorStyle: {
+      type: String,
+      required: false,
+      default: '',
+    },
+  })
+</script>
+
 <template>
   <div class="alert shadow-lg" :class="colorStyle">
     <div>
@@ -19,17 +33,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  defineProps({
-    title: {
-      type: String,
-      required: false,
-    },
-    colorStyle: {
-      type: String,
-      required: false,
-      default: '',
-    },
-  })
-</script>

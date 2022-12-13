@@ -1,3 +1,51 @@
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Configure Merchant',
+  })
+
+  //
+  const mode = useState('mode')
+  const modeOptions = ref([
+    {
+      text: 'TEST',
+      value: 'Test',
+    },
+    {
+      text: 'PRODUCTION',
+      value: 'Live',
+    },
+  ])
+  const modeText = computed(() => {
+    if (mode.value == 'Test') {
+      return '"https://eu-test.oppwa.com/v1/..."'
+    } else {
+      return '"https://eu-prod.oppwa.com/v1/..."'
+    }
+  })
+
+  const selectedCardBrands = useState('selectedCardBrands')
+  const cardBrandList = getBrandsList().cards
+
+  const selectedVirtualBrands = useState('selectedVirtualBrands')
+  const virtualBrandList = getBrandsList().virtual
+
+  const selectedBankBrands = useState('selectedBankBrands')
+  const bankBrandList = getBrandsList().bank
+
+  const combinedSelectedBrands = computed(() => {
+    return [
+      ...selectedCardBrands.value,
+      ...selectedVirtualBrands.value,
+      ...selectedBankBrands.value,
+    ]
+  })
+
+  const selectedBrands = useState('selectedBrands')
+  // get app states
+  const accessToken = useState('accessToken')
+  const entityId = useState('entityId')
+</script>
+
 <template>
   <div>
     <Alert class="mt-3" title="Info" color-style="bg-base-300">
@@ -144,51 +192,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Configure Merchant',
-  })
-
-  //
-  const mode = useState('mode')
-  const modeOptions = ref([
-    {
-      text: 'TEST',
-      value: 'Test',
-    },
-    {
-      text: 'PRODUCTION',
-      value: 'Live',
-    },
-  ])
-  const modeText = computed(() => {
-    if (mode.value == 'Test') {
-      return '"https://eu-test.oppwa.com/v1/..."'
-    } else {
-      return '"https://eu-prod.oppwa.com/v1/..."'
-    }
-  })
-
-  const selectedCardBrands = useState('selectedCardBrands')
-  const cardBrandList = getBrandsList().cards
-
-  const selectedVirtualBrands = useState('selectedVirtualBrands')
-  const virtualBrandList = getBrandsList().virtual
-
-  const selectedBankBrands = useState('selectedBankBrands')
-  const bankBrandList = getBrandsList().bank
-
-  const combinedSelectedBrands = computed(() => {
-    return [
-      ...selectedCardBrands.value,
-      ...selectedVirtualBrands.value,
-      ...selectedBankBrands.value,
-    ]
-  })
-
-  const selectedBrands = useState('selectedBrands')
-  // get app states
-  const accessToken = useState('accessToken')
-  const entityId = useState('entityId')
-</script>

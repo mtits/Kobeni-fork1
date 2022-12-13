@@ -1,3 +1,31 @@
+<script setup>
+  const cnpModal = useState('cnpModal')
+  const checkoutId = useState('checkoutId')
+
+  defineProps({
+    title: {
+      type: String,
+    },
+  })
+
+  /**
+   * todo: yeet the widget
+   */
+  const yeetTheWidget = () => {
+    cnpModal.value = false
+
+    // nuf said
+    removeScriptFromHead()
+    yeetTheWidgy()
+
+    // clear checkout ID so that the form unrenders because of v-if
+    console.info(
+      'The "checkoutID" and his entire family has been terminated. There were no survivors.'
+    )
+    checkoutId.value = ''
+  }
+</script>
+
 <template>
   <div>
     <input type="checkbox" class="modal-toggle" />
@@ -75,31 +103,3 @@
     background-color: hsl(262 80% 40%);
   }
 </style>
-
-<script setup>
-  const cnpModal = useState('cnpModal')
-  const checkoutId = useState('checkoutId')
-
-  defineProps({
-    title: {
-      type: String,
-    },
-  })
-
-  /**
-   * todo: yeet the widget
-   */
-  const yeetTheWidget = () => {
-    cnpModal.value = false
-
-    // nuf said
-    removeScriptFromHead()
-    yeetTheWidgy()
-
-    // clear checkout ID so that the form unrenders because of v-if
-    console.info(
-      'The "checkoutID" and his entire family has been terminated. There were no survivors.'
-    )
-    checkoutId.value = ''
-  }
-</script>

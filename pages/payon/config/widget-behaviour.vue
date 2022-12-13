@@ -1,3 +1,28 @@
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Widget Behaviour',
+  })
+
+  // all widget states
+  const autoLaunchWidget = useState('autoLaunchWidget')
+  const widgetStyle = useState('widgetStyle')
+  const maskCvv = useState('maskCvv')
+  const requireCvv = useState('requireCvv')
+  const showCVVHint = useState('showCVVHint')
+  const allowEmptyCvv = useState('allowEmptyCvv')
+  const validation = useState('validation')
+  const showLabels = useState('showLabels')
+  const showPlaceholders = useState('showPlaceholders')
+  const disableCardExpiryDateValidation = useState(
+    'disableCardExpiryDateValidation'
+  )
+
+  const payNowLabel = useState('payNowLabel')
+  const locale = useState('locale')
+  const localeList = getLocaleList()
+  const shopperResultURLPayon = useState('shopperResultUrlPayon')
+</script>
+
 <template>
   <div>
     <Input
@@ -105,28 +130,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Widget Behaviour',
-  })
-
-  // all widget states
-  const autoLaunchWidget = useState('autoLaunchWidget')
-  const widgetStyle = useState('widgetStyle')
-  const maskCvv = useState('maskCvv')
-  const requireCvv = useState('requireCvv')
-  const showCVVHint = useState('showCVVHint')
-  const allowEmptyCvv = useState('allowEmptyCvv')
-  const validation = useState('validation')
-  const showLabels = useState('showLabels')
-  const showPlaceholders = useState('showPlaceholders')
-  const disableCardExpiryDateValidation = useState(
-    'disableCardExpiryDateValidation'
-  )
-
-  const payNowLabel = useState('payNowLabel')
-  const locale = useState('locale')
-  const localeList = getLocaleList()
-  const shopperResultURLPayon = useState('shopperResultUrlPayon')
-</script>

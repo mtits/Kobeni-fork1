@@ -1,12 +1,3 @@
-<template>
-  <div class="prose mb-6">
-    <h1 class="text-sky-400">{{ title }}</h1>
-    <p>
-      <slot></slot>
-    </p>
-  </div>
-</template>
-
 <script setup>
   defineProps({
     title: {
@@ -15,3 +6,12 @@
     },
   })
 </script>
+
+<template>
+  <div class="prose mb-6">
+    <h1 class="text-sky-400">{{ title }}</h1>
+    <p>
+      <slot></slot>
+    </p>
+  </div>
+</template>

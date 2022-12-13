@@ -1,55 +1,3 @@
-<template>
-  <div>
-    <PageTitle title="Reporting API"> Where art thou? </PageTitle>
-
-    <!-- reference transaction -->
-    <Input
-      type="text"
-      label="Reference Transaction"
-      v-model="referenceTransaction" />
-
-    <!-- select search types -->
-    <div class="form-control mt-3">
-      <label class="label mb-1">
-        <span class="label-text text-sky-400 font-bold">Search Type</span>
-      </label>
-      <select class="select select-bordered" v-model="searchType">
-        <option v-for="sType in searchTypes" :value="sType">
-          {{ sType }}
-        </option>
-      </select>
-    </div>
-
-    <button
-      class="btn mt-6 btn-primary"
-      :class="{ loading: showLoading }"
-      @click="submit">
-      Search
-    </button>
-
-    <Textareadisplayonly
-      label="Response Data"
-      :data="responseData"
-      v-if="responseData"></Textareadisplayonly>
-
-    <div class="btn-group mt-3 place-items-center">
-      <button
-        class="btn"
-        @click="copyEntireResponse(responseData)"
-        v-if="responseData">
-        Copy Response
-      </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.id)"
-        v-if="responseData.id">
-        Copy Transaction ID
-      </button>
-    </div>
-  </div>
-</template>
-
 <script setup>
   definePageMeta({
     pageTitle: 'Kobeni | Reporting API',
@@ -105,3 +53,55 @@
     useGetCurrentUser()
   })
 </script>
+
+<template>
+  <div>
+    <PageTitle title="Reporting API"> Where art thou? </PageTitle>
+
+    <!-- reference transaction -->
+    <Input
+      type="text"
+      label="Reference Transaction"
+      v-model="referenceTransaction" />
+
+    <!-- select search types -->
+    <div class="form-control mt-3">
+      <label class="label mb-1">
+        <span class="label-text text-sky-400 font-bold">Search Type</span>
+      </label>
+      <select class="select select-bordered" v-model="searchType">
+        <option v-for="sType in searchTypes" :value="sType">
+          {{ sType }}
+        </option>
+      </select>
+    </div>
+
+    <button
+      class="btn mt-6 btn-primary"
+      :class="{ loading: showLoading }"
+      @click="submit">
+      Search
+    </button>
+
+    <Textareadisplayonly
+      label="Response Data"
+      :data="responseData"
+      v-if="responseData"></Textareadisplayonly>
+
+    <div class="btn-group mt-3 place-items-center">
+      <button
+        class="btn"
+        @click="copyEntireResponse(responseData)"
+        v-if="responseData">
+        Copy Response
+      </button>
+
+      <button
+        class="btn"
+        @click="copyString(responseData.id)"
+        v-if="responseData.id">
+        Copy Transaction ID
+      </button>
+    </div>
+  </div>
+</template>

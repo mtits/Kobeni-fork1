@@ -1,3 +1,16 @@
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Config Page',
+  })
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
+  })
+</script>
+
 <template>
   <div>
     <PageTitle title="Setup"></PageTitle>
@@ -17,16 +30,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Config Page',
-  })
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
-</script>

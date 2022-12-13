@@ -1,116 +1,3 @@
-<template>
-  <div>
-    <PageTitle title="COPYandPAY">
-      COPYandPAY is a SAQ-A compliant payment-form solution, making it both
-      secure and simple-to-integrate.
-    </PageTitle>
-
-    <!-- show endpoint -->
-    <InputReadOnly
-      label="Endpoint"
-      v-model="modeText"
-      :mode="mode"
-      :display-character-count="false"
-      @copy-content="copyString(modeText)" />
-
-    <div class="flex flex-col w-full">
-      <!-- top -->
-      <div class="grid flex-grow">
-        <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
-
-        <div class="text-xs mt-3">
-          Current Active Brands:
-          <span class="space-x-1">
-            <span
-              class="badge badge-warning badge-xs"
-              v-for="brands in selectedBrands">
-              {{ brands }}</span
-            >
-          </span>
-        </div>
-
-        <Alert class="my-6" title="Info" color-style="bg-base-300">
-          Be sure to add the parameter <kbd>entityId</kbd> in the
-          <NuxtLink
-            class="link link-hover font-semibold"
-            to="/payon/config/configure-merchant"
-            >Setup</NuxtLink
-          >
-          menu. Do not add it here.
-        </Alert>
-
-        <!-- buttons -->
-        <div>
-          <!-- submit btn -->
-          <div
-            class="tooltip tooltip-bottom"
-            data-tip="Submitting this will replace the previous data.">
-            <button
-              class="btn btn-primary"
-              :class="{ loading: showLoading }"
-              @click="submit">
-              Submit
-            </button>
-          </div>
-
-          <Transition>
-            <div
-              class="tooltip tooltip-right"
-              :data-tip="sessionDataParameters">
-              <button
-                class="btn ml-3"
-                v-if="sessionDataParameters"
-                @click="loadSessionData">
-                Load Previous Data
-              </button>
-            </div>
-          </Transition>
-        </div>
-      </div>
-
-      <!-- botton -->
-      <Transition mode="out-in">
-        <div class="grid flex-grow" v-if="responseData">
-          <div v-if="responseData">
-            <Textareadisplayonly
-              label="Response Data"
-              :data="responseData"></Textareadisplayonly>
-
-            <!-- btn group -->
-            <div class="btn-group mt-3 place-items-center">
-              <button class="btn" @click="copyEntireResponse(responseData)">
-                Copy Response
-              </button>
-
-              <button
-                class="btn"
-                v-if="responseData.id"
-                @click="copyString(responseData.id)">
-                Copy Checkout ID
-              </button>
-
-              <label
-                for="cnp-modal"
-                class="btn btn-primary"
-                v-if="responseData.id"
-                @click="createScriptTag"
-                >Launch Widget</label
-              >
-            </div>
-          </div>
-        </div>
-      </Transition>
-    </div>
-
-    <!-- cnp modal here -->
-    <modal title="CopyandPay Widget" :isModalOpen="cnpModal" v-if="checkoutId">
-      <Cnpform
-        :shopper-result-url="shopperResultURLPayon"
-        :brands="selectedBrandsFormatted" />
-    </modal>
-  </div>
-</template>
-
 <script setup>
   definePageMeta({
     pageTitle: 'Kobeni | CopyandPay',
@@ -338,3 +225,116 @@
     useGetCurrentUser()
   })
 </script>
+
+<template>
+  <div>
+    <PageTitle title="COPYandPAY">
+      COPYandPAY is a SAQ-A compliant payment-form solution, making it both
+      secure and simple-to-integrate.
+    </PageTitle>
+
+    <!-- show endpoint -->
+    <InputReadOnly
+      label="Endpoint"
+      v-model="modeText"
+      :mode="mode"
+      :display-character-count="false"
+      @copy-content="copyString(modeText)" />
+
+    <div class="flex flex-col w-full">
+      <!-- top -->
+      <div class="grid flex-grow">
+        <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+
+        <div class="text-xs mt-3">
+          Current Active Brands:
+          <span class="space-x-1">
+            <span
+              class="badge badge-warning badge-xs"
+              v-for="brands in selectedBrands">
+              {{ brands }}</span
+            >
+          </span>
+        </div>
+
+        <Alert class="my-6" title="Info" color-style="bg-base-300">
+          Be sure to add the parameter <kbd>entityId</kbd> in the
+          <NuxtLink
+            class="link link-hover font-semibold"
+            to="/payon/config/configure-merchant"
+            >Setup</NuxtLink
+          >
+          menu. Do not add it here.
+        </Alert>
+
+        <!-- buttons -->
+        <div>
+          <!-- submit btn -->
+          <div
+            class="tooltip tooltip-bottom"
+            data-tip="Submitting this will replace the previous data.">
+            <button
+              class="btn btn-primary"
+              :class="{ loading: showLoading }"
+              @click="submit">
+              Submit
+            </button>
+          </div>
+
+          <Transition>
+            <div
+              class="tooltip tooltip-right"
+              :data-tip="sessionDataParameters">
+              <button
+                class="btn ml-3"
+                v-if="sessionDataParameters"
+                @click="loadSessionData">
+                Load Previous Data
+              </button>
+            </div>
+          </Transition>
+        </div>
+      </div>
+
+      <!-- botton -->
+      <Transition mode="out-in">
+        <div class="grid flex-grow" v-if="responseData">
+          <div v-if="responseData">
+            <Textareadisplayonly
+              label="Response Data"
+              :data="responseData"></Textareadisplayonly>
+
+            <!-- btn group -->
+            <div class="btn-group mt-3 place-items-center">
+              <button class="btn" @click="copyEntireResponse(responseData)">
+                Copy Response
+              </button>
+
+              <button
+                class="btn"
+                v-if="responseData.id"
+                @click="copyString(responseData.id)">
+                Copy Checkout ID
+              </button>
+
+              <label
+                for="cnp-modal"
+                class="btn btn-primary"
+                v-if="responseData.id"
+                @click="createScriptTag"
+                >Launch Widget</label
+              >
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </div>
+
+    <!-- cnp modal here -->
+    <modal title="CopyandPay Widget" :isModalOpen="cnpModal" v-if="checkoutId">
+      <Cnpform
+        :shopper-result-url="shopperResultURLPayon"
+        :brands="selectedBrandsFormatted" />
+    </modal>
+  </div>
+</template>

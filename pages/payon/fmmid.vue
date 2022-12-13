@@ -1,3 +1,40 @@
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Format Thy MID',
+  })
+
+  const MID = ref('69420')
+  const merchantName = ref('Cognito Inc.')
+  const jcbAcquirerBIN = ref('')
+
+  const visaRequestorID = computed(() => {
+    return `10066501*${MID.value}`
+  })
+
+  const mastercardRequestorID = computed(() => {
+    return `ACI77858_${MID.value}`
+  })
+
+  const mastercardRequestorName = computed(() => {
+    return `ACI Worldwide_${merchantName.value}`
+  })
+
+  const discoverRequestorID = computed(() => {
+    return `ACI_${MID.value}`
+  })
+
+  const jcbRequestorID = computed(() => {
+    return `${jcbAcquirerBIN.value}MCT${MID.value}`
+  })
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
+  })
+</script>
+
 <template>
   <div>
     <PageTitle title="Format Thy MID">
@@ -121,40 +158,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Format Thy MID',
-  })
-
-  const MID = ref('69420')
-  const merchantName = ref('Cognito Inc.')
-  const jcbAcquirerBIN = ref('')
-
-  const visaRequestorID = computed(() => {
-    return `10066501*${MID.value}`
-  })
-
-  const mastercardRequestorID = computed(() => {
-    return `ACI77858_${MID.value}`
-  })
-
-  const mastercardRequestorName = computed(() => {
-    return `ACI Worldwide_${merchantName.value}`
-  })
-
-  const discoverRequestorID = computed(() => {
-    return `ACI_${MID.value}`
-  })
-
-  const jcbRequestorID = computed(() => {
-    return `${jcbAcquirerBIN.value}MCT${MID.value}`
-  })
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
-</script>

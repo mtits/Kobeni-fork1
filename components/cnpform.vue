@@ -1,12 +1,3 @@
-<template>
-  <div>
-    <form
-      :action="shopperResultUrl"
-      class="paymentWidgets"
-      :data-brands="brands"></form>
-  </div>
-</template>
-
 <script setup>
   defineProps({
     shopperResultUrl: {
@@ -20,3 +11,12 @@
     },
   })
 </script>
+
+<template>
+  <div>
+    <form
+      :action="shopperResultUrl"
+      class="paymentWidgets"
+      :data-brands="brands"></form>
+  </div>
+</template>

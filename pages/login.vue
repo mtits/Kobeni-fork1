@@ -1,3 +1,46 @@
+<script setup>
+  import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+
+  definePageMeta({
+    pageTitle: 'Kobeni | Login',
+  })
+
+  const email = ref('')
+  const password = ref('')
+  const isLoading = ref(false)
+  const isLoginFailed = ref(false)
+
+  /**
+   *
+   */
+  const login = async () => {
+    isLoading.value = true
+    isLoginFailed.value = false
+
+    const auth = getAuth(firebaseApp)
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      )
+
+      // validate if user exist on login
+      if (userCredential.user) {
+        await navigateTo('payon/copyandpay')
+      }
+
+      //
+    } catch (error) {
+      isLoginFailed.value = true
+      console.error({ errorCode: error.code, errorMessage: error.message })
+    } finally {
+      isLoading.value = false
+    }
+  }
+</script>
+
 <template>
   <div class="px-96">
     <div class="card bg-base-300 shadow-xl">
@@ -66,46 +109,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-  import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-
-  definePageMeta({
-    pageTitle: 'Kobeni | Login',
-  })
-
-  const email = ref('')
-  const password = ref('')
-  const isLoading = ref(false)
-  const isLoginFailed = ref(false)
-
-  /**
-   *
-   */
-  const login = async () => {
-    isLoading.value = true
-    isLoginFailed.value = false
-
-    const auth = getAuth(firebaseApp)
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email.value,
-        password.value
-      )
-
-      // validate if user exist on login
-      if (userCredential.user) {
-        await navigateTo('payon/copyandpay')
-      }
-
-      //
-    } catch (error) {
-      isLoginFailed.value = true
-      console.error({ errorCode: error.code, errorMessage: error.message })
-    } finally {
-      isLoading.value = false
-    }
-  }
-</script>

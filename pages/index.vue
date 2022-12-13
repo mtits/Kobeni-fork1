@@ -1,3 +1,16 @@
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Pull Yoself Togedah!',
+  })
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
+  })
+</script>
+
 <template>
   <div>
     <div class="hero min-h-screen" id="index">
@@ -15,16 +28,3 @@
     background-image: url('/kobeni.png');
   }
 </style>
-
-<script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Pull Yoself Togedah!',
-  })
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
-</script>

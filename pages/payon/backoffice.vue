@@ -1,70 +1,3 @@
-<template>
-  <div>
-    <PageTitle title="Backoffice">
-      Backoffice operations can be performed against initial payments that were
-      generated using COPYandPAY or server-to-server. The referencedPaymentId is
-      the value return in the id JSON field.
-    </PageTitle>
-
-    <!-- show endpoint -->
-    <InputReadOnly
-      label="Endpoint"
-      v-model="modeText"
-      :mode="mode"
-      :display-character-count="false"
-      @copy-content="copyString(modeText)" />
-
-    <!-- reference transaction -->
-    <Input
-      type="text"
-      label="Reference Transaction"
-      v-model="referenceTransaction" />
-
-    <!-- Params -->
-    <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
-
-    <button
-      class="btn mt-3 btn-primary"
-      :class="{ loading: showLoading }"
-      @click="submit">
-      Submit
-    </button>
-    <Transition>
-      <div
-        class="tooltip tooltip-right"
-        :data-tip="`${sessiondataParametersBackoffice}\nRefTrx=${sessionRefId}`">
-        <button
-          class="btn ml-3"
-          @click="loadSessionData"
-          v-if="sessiondataParametersBackoffice">
-          Load Previous Data
-        </button>
-      </div>
-    </Transition>
-
-    <Textareadisplayonly
-      label="Response Data"
-      :data="responseData"
-      v-if="responseData"></Textareadisplayonly>
-
-    <div class="btn-group mt-3 place-items-center">
-      <button
-        class="btn"
-        @click="copyEntireResponse(responseData)"
-        v-if="responseData">
-        Copy Response
-      </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.id)"
-        v-if="responseData.id">
-        Copy Transaction ID
-      </button>
-    </div>
-  </div>
-</template>
-
 <script setup>
   definePageMeta({
     pageTitle: 'Kobeni | Backoffice Operations',
@@ -189,3 +122,70 @@
     useGetCurrentUser()
   })
 </script>
+
+<template>
+  <div>
+    <PageTitle title="Backoffice">
+      Backoffice operations can be performed against initial payments that were
+      generated using COPYandPAY or server-to-server. The referencedPaymentId is
+      the value return in the id JSON field.
+    </PageTitle>
+
+    <!-- show endpoint -->
+    <InputReadOnly
+      label="Endpoint"
+      v-model="modeText"
+      :mode="mode"
+      :display-character-count="false"
+      @copy-content="copyString(modeText)" />
+
+    <!-- reference transaction -->
+    <Input
+      type="text"
+      label="Reference Transaction"
+      v-model="referenceTransaction" />
+
+    <!-- Params -->
+    <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+
+    <button
+      class="btn mt-3 btn-primary"
+      :class="{ loading: showLoading }"
+      @click="submit">
+      Submit
+    </button>
+    <Transition>
+      <div
+        class="tooltip tooltip-right"
+        :data-tip="`${sessiondataParametersBackoffice}\nRefTrx=${sessionRefId}`">
+        <button
+          class="btn ml-3"
+          @click="loadSessionData"
+          v-if="sessiondataParametersBackoffice">
+          Load Previous Data
+        </button>
+      </div>
+    </Transition>
+
+    <Textareadisplayonly
+      label="Response Data"
+      :data="responseData"
+      v-if="responseData"></Textareadisplayonly>
+
+    <div class="btn-group mt-3 place-items-center">
+      <button
+        class="btn"
+        @click="copyEntireResponse(responseData)"
+        v-if="responseData">
+        Copy Response
+      </button>
+
+      <button
+        class="btn"
+        @click="copyString(responseData.id)"
+        v-if="responseData.id">
+        Copy Transaction ID
+      </button>
+    </div>
+  </div>
+</template>

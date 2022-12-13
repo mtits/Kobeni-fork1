@@ -1,66 +1,3 @@
-<template>
-  <div>
-    <PageTitle title="Recurring (REPEATED only)">
-      Subsequent payments only. Please send the initial transactions over at
-      CopyandPay or S2S.
-    </PageTitle>
-
-    <!-- reference transaction -->
-    <Input type="text" label="Registration ID" v-model="registrationId" />
-
-    <!-- show endpoint -->
-    <InputReadOnly
-      label="Endpoint"
-      v-model="modeText"
-      :mode="mode"
-      :display-character-count="false"
-      @copy-content="copyString(modeText)" />
-
-    <!-- Params -->
-    <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
-
-    <button
-      class="btn mt-3 btn-primary"
-      :class="{ loading: showLoading }"
-      @click="submit">
-      Submit
-    </button>
-    <Transition>
-      <div
-        class="tooltip tooltip-right"
-        :data-tip="`${sessiondataParametersRecurring}\nRG=${sessionRegId}`">
-        <button
-          class="btn ml-3"
-          @click="loadSessionData"
-          v-if="sessiondataParametersRecurring">
-          Load Previous Data
-        </button>
-      </div>
-    </Transition>
-
-    <Textareadisplayonly
-      label="Response Data"
-      :data="responseData"
-      v-if="responseData"></Textareadisplayonly>
-
-    <div class="btn-group mt-3 place-items-center">
-      <button
-        class="btn"
-        @click="copyEntireResponse(responseData)"
-        v-if="responseData">
-        Copy Response
-      </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.id)"
-        v-if="responseData.id">
-        Copy Transaction ID
-      </button>
-    </div>
-  </div>
-</template>
-
 <script setup>
   definePageMeta({
     pageTitle: 'Kobeni | Recurring (REPEATED ONLY)',
@@ -185,3 +122,66 @@
     useGetCurrentUser()
   })
 </script>
+
+<template>
+  <div>
+    <PageTitle title="Recurring (REPEATED only)">
+      Subsequent payments only. Please send the initial transactions over at
+      CopyandPay or S2S.
+    </PageTitle>
+
+    <!-- reference transaction -->
+    <Input type="text" label="Registration ID" v-model="registrationId" />
+
+    <!-- show endpoint -->
+    <InputReadOnly
+      label="Endpoint"
+      v-model="modeText"
+      :mode="mode"
+      :display-character-count="false"
+      @copy-content="copyString(modeText)" />
+
+    <!-- Params -->
+    <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+
+    <button
+      class="btn mt-3 btn-primary"
+      :class="{ loading: showLoading }"
+      @click="submit">
+      Submit
+    </button>
+    <Transition>
+      <div
+        class="tooltip tooltip-right"
+        :data-tip="`${sessiondataParametersRecurring}\nRG=${sessionRegId}`">
+        <button
+          class="btn ml-3"
+          @click="loadSessionData"
+          v-if="sessiondataParametersRecurring">
+          Load Previous Data
+        </button>
+      </div>
+    </Transition>
+
+    <Textareadisplayonly
+      label="Response Data"
+      :data="responseData"
+      v-if="responseData"></Textareadisplayonly>
+
+    <div class="btn-group mt-3 place-items-center">
+      <button
+        class="btn"
+        @click="copyEntireResponse(responseData)"
+        v-if="responseData">
+        Copy Response
+      </button>
+
+      <button
+        class="btn"
+        @click="copyString(responseData.id)"
+        v-if="responseData.id">
+        Copy Transaction ID
+      </button>
+    </div>
+  </div>
+</template>

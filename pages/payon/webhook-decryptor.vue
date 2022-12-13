@@ -1,3 +1,50 @@
+<script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Webhook Decrytor',
+  })
+
+  const secretFromConfiguration = ref('')
+  const ivfromHttpHeader = ref('')
+  const authTagFromHttpHeader = ref('')
+  const httpBody = ref('')
+
+  const showLoading = ref(false)
+  const responseData = ref('')
+
+  /**
+   *
+   */
+  const decryptData = async () => {
+    showLoading.value = true
+    responseData.value = ''
+
+    try {
+      const { data } = await useFetch('/api/payon/decryptor', {
+        method: 'post',
+        body: {
+          secretFromConfiguration: secretFromConfiguration.value,
+          ivfromHttpHeader: ivfromHttpHeader.value,
+          authTagFromHttpHeader: authTagFromHttpHeader.value,
+          httpBody: httpBody.value,
+        },
+      })
+
+      responseData.value = data.value
+    } catch (error) {
+      console.error(error)
+    } finally {
+      showLoading.value = false
+    }
+  }
+
+  /**
+   *
+   */
+  onMounted(() => {
+    useGetCurrentUser()
+  })
+</script>
+
 <template>
   <div>
     <PageTitle title="쟤네 못봤겠지?">
@@ -50,50 +97,3 @@
     </Transition>
   </div>
 </template>
-
-<script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Webhook Decrytor',
-  })
-
-  const secretFromConfiguration = ref('')
-  const ivfromHttpHeader = ref('')
-  const authTagFromHttpHeader = ref('')
-  const httpBody = ref('')
-
-  const showLoading = ref(false)
-  const responseData = ref('')
-
-  /**
-   *
-   */
-  const decryptData = async () => {
-    showLoading.value = true
-    responseData.value = ''
-
-    try {
-      const { data } = await useFetch('/api/payon/decryptor', {
-        method: 'post',
-        body: {
-          secretFromConfiguration: secretFromConfiguration.value,
-          ivfromHttpHeader: ivfromHttpHeader.value,
-          authTagFromHttpHeader: authTagFromHttpHeader.value,
-          httpBody: httpBody.value,
-        },
-      })
-
-      responseData.value = data.value
-    } catch (error) {
-      console.error(error)
-    } finally {
-      showLoading.value = false
-    }
-  }
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
-</script>
