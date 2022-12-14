@@ -47,13 +47,13 @@
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col space-y-3">
     <Alert class="mt-3" title="Info" color-style="bg-base-300">
       Input your BIP credentials. Set up the widget behaviour.
     </Alert>
 
     <!-- select environment -->
-    <div class="form-control mt-3">
+    <div class="form-control">
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Environment</span>
       </label>
@@ -68,10 +68,13 @@
     </div>
 
     <Input label="Access Token" type="password" v-model="accessToken" />
+
     <Input label="Entity ID" type="text" v-model="entityId" />
 
+    <div></div>
+
     <!-- select brands -->
-    <div class="flex mt-6 space-x-6">
+    <div class="flex space-x-6">
       <!-- left side -->
       <div class="grid space-y-6 w-1/2">
         <!-- cards -->

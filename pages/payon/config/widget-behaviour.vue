@@ -24,8 +24,9 @@
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col space-y-3">
     <Input
+      class="mt-3"
       label="Shopper Result URL"
       type="text"
       helper-text="The customer/user is redirected here after the transaction."
@@ -37,7 +38,7 @@
       v-model="payNowLabel" />
 
     <!-- select locale -->
-    <div class="mt-3">
+    <div>
       <label class="label">
         <span class="label-text text-sky-400 font-bold"
           >Locale (Widget Language)</span
@@ -50,7 +51,7 @@
       </select>
     </div>
 
-    <Alert class="mt-6" title="Disclaimer" color-style="bg-base-300">
+    <Alert title="Disclaimer" color-style="bg-base-300">
       Some of the items here have been changed from the default setting to
       better suit the app's look and flow. Additionally, the items labeled as
       <span class="font-medium">Exclusive</span> are features custom-made only
@@ -58,7 +59,7 @@
     </Alert>
 
     <!-- display toggles as columns -->
-    <div class="grid grid-cols-2 gap-4 mt-3 px-14">
+    <div class="grid grid-cols-2 gap-4">
       <!-- left -->
       <div>
         <!-- auto-launch -->

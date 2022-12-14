@@ -145,62 +145,67 @@
       PCI-compliance requirements, we recommend that you use COPYandPAY.
     </PageTitle>
 
-    <!-- show endpoint -->
-    <InputReadOnly
-      label="Endpoint"
-      v-model="modeText"
-      :mode="mode"
-      :display-character-count="false"
-      @copy-content="copyString(modeText)" />
+    <div class="flex flex-col space-y-3">
+      <!-- show endpoint -->
+      <InputReadOnly
+        label="Endpoint"
+        v-model="modeText"
+        :mode="mode"
+        :display-character-count="false"
+        @copy-content="copyString(modeText)" />
 
-    <!-- Params -->
-    <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+      <!-- Params -->
+      <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
-    <button
-      class="btn mt-3 btn-primary"
-      :class="{ loading: showLoading }"
-      @click="submit">
-      Submit
-    </button>
-    <Transition>
-      <div
-        class="tooltip tooltip-right"
-        :data-tip="sessiondataParametersServerToServer">
+      <button
+        class="btn btn-primary"
+        :class="{ loading: showLoading }"
+        @click="submit">
+        Submit
+      </button>
+
+      <Transition>
+        <div
+          class="tooltip tooltip-bottom z-20"
+          :data-tip="sessiondataParametersServerToServer">
+          <button
+            class="btn w-full"
+            @click="loadSessionData"
+            v-if="sessiondataParametersServerToServer">
+            Load Previous Data
+          </button>
+        </div>
+      </Transition>
+
+      <Transition>
+        <Textareadisplayonly
+          label="Response Data"
+          :data="responseData"
+          v-if="responseData"></Textareadisplayonly>
+      </Transition>
+
+      <div class="btn-group">
         <button
-          class="btn ml-3"
-          @click="loadSessionData"
-          v-if="sessiondataParametersServerToServer">
-          Load Previous Data
+          class="btn w-1/3"
+          @click="copyEntireResponse(responseData)"
+          v-if="responseData">
+          Copy Response
+        </button>
+
+        <button
+          class="btn w-1/3"
+          @click="copyString(responseData.id)"
+          v-if="responseData.id">
+          Copy Transaction ID
+        </button>
+
+        <button
+          class="btn w-1/3"
+          @click="copyString(responseData.registrationId)"
+          v-if="responseData.registrationId">
+          Copy Registration ID
         </button>
       </div>
-    </Transition>
-
-    <Textareadisplayonly
-      label="Response Data"
-      :data="responseData"
-      v-if="responseData"></Textareadisplayonly>
-
-    <div class="btn-group mt-3 place-items-center">
-      <button
-        class="btn"
-        @click="copyEntireResponse(responseData)"
-        v-if="responseData">
-        Copy Response
-      </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.id)"
-        v-if="responseData.id">
-        Copy Transaction ID
-      </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.registrationId)"
-        v-if="responseData.registrationId">
-        Copy Registration ID
-      </button>
     </div>
   </div>
 </template>

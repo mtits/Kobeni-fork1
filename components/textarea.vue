@@ -15,7 +15,7 @@
 </script>
 
 <template>
-  <div class="form-control mt-3">
+  <div class="form-control">
     <label class="label mb-1">
       <span class="label-text text-sky-400 font-bold">{{ label }}</span>
     </label>

@@ -44,7 +44,7 @@
         </Transition>
 
         <!-- Page content here -->
-        <div class="container mx-auto px-24 py-10 bg-base-200">
+        <div class="container mx-auto pl-24 pr-64 py-10 bg-base-200">
           <NuxtPage />
 
           <!-- i made dis -->

@@ -58,16 +58,16 @@
       <kbd>merchantRedirectUrl</kbd> along with the payment status.
     </PageTitle>
 
-    <!-- show endpoint -->
-    <InputReadOnly
-      label="Endpoint"
-      v-model="modeText"
-      :mode="mode"
-      :display-character-count="false"
-      @copy-content="copyString(modeText)" />
-
     <!-- text area for the parameters needed -->
-    <div class="flex flex-col w-full space-y-4">
+    <div class="flex flex-col space-y-3">
+      <!-- show endpoint -->
+      <InputReadOnly
+        label="Endpoint"
+        v-model="modeText"
+        :mode="mode"
+        :display-character-count="false"
+        @copy-content="copyString(modeText)" />
+
       <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
       <Alert title="Transaction ID" color-style="bg-base-300">{{

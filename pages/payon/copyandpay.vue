@@ -233,101 +233,89 @@
       secure and simple-to-integrate.
     </PageTitle>
 
-    <!-- show endpoint -->
-    <InputReadOnly
-      label="Endpoint"
-      v-model="modeText"
-      :mode="mode"
-      :display-character-count="false"
-      @copy-content="copyString(modeText)" />
+    <div class="flex flex-col space-y-3">
+      <!-- show endpoint -->
+      <InputReadOnly
+        label="Endpoint"
+        v-model="modeText"
+        :mode="mode"
+        :display-character-count="false"
+        @copy-content="copyString(modeText)" />
 
-    <div class="flex flex-col w-full">
-      <!-- top -->
-      <div class="grid flex-grow">
-        <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+      <Alert title="Info" color-style="bg-base-300">
+        Be sure to add the parameter <kbd>entityId</kbd> in the
+        <NuxtLink
+          class="link link-hover font-semibold"
+          to="/payon/config/configure-merchant"
+          >Setup</NuxtLink
+        >
+        menu. Do not add it here.
+      </Alert>
 
-        <div class="text-xs mt-3">
-          Current Active Brands:
-          <span class="space-x-1">
-            <span
-              class="badge badge-warning badge-xs"
-              v-for="brands in selectedBrands">
-              {{ brands }}</span
-            >
-          </span>
-        </div>
+      <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
-        <Alert class="my-6" title="Info" color-style="bg-base-300">
-          Be sure to add the parameter <kbd>entityId</kbd> in the
-          <NuxtLink
-            class="link link-hover font-semibold"
-            to="/payon/config/configure-merchant"
-            >Setup</NuxtLink
+      <div class="text-xs">
+        Current Active Brands:
+        <span class="space-x-1">
+          <span
+            class="badge badge-warning badge-xs"
+            v-for="brands in selectedBrands">
+            {{ brands }}</span
           >
-          menu. Do not add it here.
-        </Alert>
+        </span>
+      </div>
 
-        <!-- buttons -->
-        <div>
-          <!-- submit btn -->
-          <div
-            class="tooltip tooltip-bottom"
-            data-tip="Submitting this will replace the previous data.">
-            <button
-              class="btn btn-primary"
-              :class="{ loading: showLoading }"
-              @click="submit">
-              Submit
-            </button>
-          </div>
+      <!-- submit btn -->
+      <button
+        class="btn btn-primary"
+        :class="{ loading: showLoading }"
+        @click="submit">
+        Submit
+      </button>
 
-          <Transition>
-            <div
-              class="tooltip tooltip-right"
-              :data-tip="sessionDataParameters">
-              <button
-                class="btn ml-3"
-                v-if="sessionDataParameters"
-                @click="loadSessionData">
-                Load Previous Data
-              </button>
-            </div>
-          </Transition>
-        </div>
+      <div
+        class="tooltip tooltip-bottom z-20"
+        :data-tip="sessionDataParameters">
+        <button
+          class="btn w-full"
+          v-if="sessionDataParameters"
+          @click="loadSessionData">
+          Load Previous Data
+        </button>
       </div>
 
       <!-- botton -->
-      <Transition mode="out-in">
-        <div class="grid flex-grow" v-if="responseData">
-          <div v-if="responseData">
-            <Textareadisplayonly
-              label="Response Data"
-              :data="responseData"></Textareadisplayonly>
-
-            <!-- btn group -->
-            <div class="btn-group mt-3 place-items-center">
-              <button class="btn" @click="copyEntireResponse(responseData)">
-                Copy Response
-              </button>
-
-              <button
-                class="btn"
-                v-if="responseData.id"
-                @click="copyString(responseData.id)">
-                Copy Checkout ID
-              </button>
-
-              <label
-                for="cnp-modal"
-                class="btn btn-primary"
-                v-if="responseData.id"
-                @click="createScriptTag"
-                >Launch Widget</label
-              >
-            </div>
-          </div>
-        </div>
+      <Transition>
+        <Textareadisplayonly
+          label="Response Data"
+          :data="responseData"
+          v-if="responseData"></Textareadisplayonly>
       </Transition>
+
+      <!-- btn group -->
+      <div class="btn-group">
+        <button
+          class="btn w-1/3"
+          v-if="responseData"
+          @click="copyEntireResponse(responseData)">
+          Copy Response
+        </button>
+
+        <button
+          class="btn w-1/3"
+          v-if="responseData.id"
+          @click="copyString(responseData.id)">
+          Copy Checkout ID
+        </button>
+
+        <label
+          for="cnp-modal"
+          class="btn btn-primary w-1/3"
+          v-if="responseData.id"
+          @click="createScriptTag"
+          >Launch Widget</label
+        >
+      </div>
     </div>
 
     <!-- cnp modal here -->

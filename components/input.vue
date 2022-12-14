@@ -33,7 +33,7 @@
 </script>
 
 <template>
-  <div class="form-control w-full mt-3">
+  <div class="form-control w-full">
     <label class="label mb-1">
       <span class="label-text text-sky-400 font-bold">{{ label }}</span>
     </label>

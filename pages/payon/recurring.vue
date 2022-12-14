@@ -130,58 +130,63 @@
       CopyandPay or S2S.
     </PageTitle>
 
-    <!-- reference transaction -->
-    <Input type="text" label="Registration ID" v-model="registrationId" />
+    <div class="flex flex-col space-y-3">
+      <!-- reference transaction -->
+      <Input type="text" label="Registration ID" v-model="registrationId" />
 
-    <!-- show endpoint -->
-    <InputReadOnly
-      label="Endpoint"
-      v-model="modeText"
-      :mode="mode"
-      :display-character-count="false"
-      @copy-content="copyString(modeText)" />
+      <!-- show endpoint -->
+      <InputReadOnly
+        label="Endpoint"
+        v-model="modeText"
+        :mode="mode"
+        :display-character-count="false"
+        @copy-content="copyString(modeText)" />
 
-    <!-- Params -->
-    <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
+      <!-- Params -->
+      <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
-    <button
-      class="btn mt-3 btn-primary"
-      :class="{ loading: showLoading }"
-      @click="submit">
-      Submit
-    </button>
-    <Transition>
-      <div
-        class="tooltip tooltip-right"
-        :data-tip="`${sessiondataParametersRecurring}\nRG=${sessionRegId}`">
+      <button
+        class="btn btn-primary"
+        :class="{ loading: showLoading }"
+        @click="submit">
+        Submit
+      </button>
+
+      <Transition>
+        <div
+          class="tooltip tooltip-bottom z-20"
+          :data-tip="`${sessiondataParametersRecurring}\nRG=${sessionRegId}`">
+          <button
+            class="btn w-full"
+            @click="loadSessionData"
+            v-if="sessiondataParametersRecurring">
+            Load Previous Data
+          </button>
+        </div>
+      </Transition>
+
+      <Transition>
+        <Textareadisplayonly
+          label="Response Data"
+          :data="responseData"
+          v-if="responseData"></Textareadisplayonly>
+      </Transition>
+
+      <div class="btn-group">
         <button
-          class="btn ml-3"
-          @click="loadSessionData"
-          v-if="sessiondataParametersRecurring">
-          Load Previous Data
+          class="btn w-1/2"
+          @click="copyEntireResponse(responseData)"
+          v-if="responseData">
+          Copy Response
+        </button>
+
+        <button
+          class="btn w-1/2"
+          @click="copyString(responseData.id)"
+          v-if="responseData.id">
+          Copy Transaction ID
         </button>
       </div>
-    </Transition>
-
-    <Textareadisplayonly
-      label="Response Data"
-      :data="responseData"
-      v-if="responseData"></Textareadisplayonly>
-
-    <div class="btn-group mt-3 place-items-center">
-      <button
-        class="btn"
-        @click="copyEntireResponse(responseData)"
-        v-if="responseData">
-        Copy Response
-      </button>
-
-      <button
-        class="btn"
-        @click="copyString(responseData.id)"
-        v-if="responseData.id">
-        Copy Transaction ID
-      </button>
     </div>
   </div>
 </template>

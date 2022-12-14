@@ -52,48 +52,50 @@
       <span class="italic font-medium">Administration > Webhooks</span>.
     </PageTitle>
 
-    <Input
-      label="Secret"
-      type="password"
-      helper-text="Found in the BIP admin settings"
-      v-model="secretFromConfiguration" />
+    <div class="flex flex-col space-y-3">
+      <Input
+        label="Secret"
+        type="password"
+        helper-text="Found in the BIP admin settings"
+        v-model="secretFromConfiguration" />
 
-    <Input
-      label="Initialization Vector"
-      place-holder="e.g. C4FD0D6CB07AE3DF6F7B239E"
-      helper-text="x-initialization-vector - found in the HTTP header"
-      v-model="ivfromHttpHeader" />
+      <Input
+        label="Initialization Vector"
+        place-holder="e.g. C4FD0D6CB07AE3DF6F7B239E"
+        helper-text="x-initialization-vector - found in the HTTP header"
+        v-model="ivfromHttpHeader" />
 
-    <Input
-      label="Authentication Tag"
-      place-holder="e.g. 54CA208CB4A0F8227738E96D6AB61361"
-      helper-text="x-authentication-tag - found in the HTTP header"
-      v-model="authTagFromHttpHeader" />
+      <Input
+        label="Authentication Tag"
+        place-holder="e.g. 54CA208CB4A0F8227738E96D6AB61361"
+        helper-text="x-authentication-tag - found in the HTTP header"
+        v-model="authTagFromHttpHeader" />
 
-    <Textarea label="HTTP Body" v-model="httpBody"></Textarea>
+      <Textarea label="HTTP Body" v-model="httpBody"></Textarea>
 
-    <button
-      class="btn btn-primary mt-3"
-      :class="{ loading: showLoading }"
-      @click="decryptData">
-      싸우러 가자
-    </button>
-
-    <Transition>
-      <Textareadisplayonly
-        label="Response Data"
-        :is-json="true"
-        :data="responseData"
-        v-if="responseData"></Textareadisplayonly>
-    </Transition>
-
-    <Transition>
       <button
-        class="btn mt-3"
-        v-if="responseData"
-        @click="copyEntireResponse(responseData)">
-        Copy Webhook Data
+        class="btn btn-primary"
+        :class="{ loading: showLoading }"
+        @click="decryptData">
+        싸우러 가자
       </button>
-    </Transition>
+
+      <Transition>
+        <Textareadisplayonly
+          label="Response Data"
+          :is-json="true"
+          :data="responseData"
+          v-if="responseData"></Textareadisplayonly>
+      </Transition>
+
+      <Transition>
+        <button
+          class="btn"
+          v-if="responseData"
+          @click="copyEntireResponse(responseData)">
+          Copy Webhook Data
+        </button>
+      </Transition>
+    </div>
   </div>
 </template>
