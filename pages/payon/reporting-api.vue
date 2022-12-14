@@ -84,10 +84,12 @@
         Search
       </button>
 
-      <Textareadisplayonly
-        label="Response Data"
-        :data="responseData"
-        v-if="responseData"></Textareadisplayonly>
+      <Transition>
+        <Textareadisplayonly
+          label="Response Data"
+          :data="responseData"
+          v-if="responseData"></Textareadisplayonly>
+      </Transition>
 
       <div class="btn-group place-items-center">
         <button
