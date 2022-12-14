@@ -1,66 +1,14 @@
 <script setup>
-  import { getAuth, signOut } from 'firebase/auth'
-
   const currentUser = useState('currentUser', () => '')
 
-  // set default states of the widget
-  useState('autoLaunchWidget', () => true)
-
-  //
-  useState('selectedCardBrands', () => {
-    return ['VISA', 'MASTER']
-  })
-
-  useState('selectedVirtualBrands', () => {
-    return []
-  })
-
-  useState('selectedBankBrands', () => {
-    return []
-  })
-
-  // default selected
-  useState('selectedBrands', () => {
-    return ['VISA', 'MASTER']
-  })
-
-  //
-  useState('widgetStyle', () => 'plain')
-  useState('maskCvv', () => true)
-  useState('requireCvv', () => true)
-  useState('showCVVHint', () => false)
-  useState('allowEmptyCvv', () => false)
-  useState('validation', () => true)
-  useState('showLabels', () => true)
-  useState('showPlaceholders', () => true)
-  useState('disableCardExpiryDateValidation', () => false)
-  useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')
-  useState('locale', () => 'en')
+  // widget params
+  useInitWidgetStates()
 
   // payon default params
-  useState('referenceTransaction', () => '')
-  useState('registrationId', () => '')
-  useState('mode', () => 'Test')
-  useState(
-    'accessToken',
-    () => 'OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='
-  )
-  useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
-  useState('cnpModal', () => false)
+  useInitPayonStates()
 
-  /**
-   * yeets you out of the house
-   */
-  async function logout() {
-    const auth = getAuth(firebaseApp)
-
-    try {
-      await signOut(auth)
-      await navigateTo('/login')
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  // init the pz stuffs
+  useInitPaymentzStates()
 
   /**
    *
@@ -70,6 +18,12 @@
     useState('shopperResultUrlPayon', () => {
       const currentURL = new URL(window.location.href)
       return `${currentURL.origin}/payon/shopperresulturl`
+    })
+
+    // result URL for PZ
+    useState('merchantRedirectURL', () => {
+      const currentURL = new URL(window.location.href)
+      return `${currentURL.origin}/paymentz/merchantRedirectURL`
     })
 
     //
@@ -208,7 +162,10 @@
               <span>Paymentz Stuffs (UNDER CONSTRUCTION)</span>
             </li>
 
-            <li class="hover-bordered"><a>Setup</a></li>
+            <li class="hover-bordered">
+              <NuxtLink to="/paymentz/config">Setup</NuxtLink>
+            </li>
+
             <li class="hover-bordered"><a>Standard Checkout</a></li>
             <li class="hover-bordered"><a>Generate Auth Token</a></li>
             <li class="hover-bordered"><a>REST API</a></li>
