@@ -166,7 +166,11 @@
               <NuxtLink to="/paymentz/config">Setup</NuxtLink>
             </li>
 
-            <li class="hover-bordered"><a>Standard Checkout</a></li>
+            <li class="hover-bordered">
+              <NuxtLink to="/paymentz/standardcheckout"
+                >Standard Checkout</NuxtLink
+              >
+            </li>
             <li class="hover-bordered"><a>Generate Auth Token</a></li>
             <li class="hover-bordered"><a>REST API</a></li>
             <li class="hover-bordered"><a>Backoffice</a></li>

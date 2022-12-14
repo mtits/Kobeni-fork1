@@ -1,4 +1,8 @@
 <script setup>
+  definePageMeta({
+    pageTitle: 'Kobeni | Config',
+  })
+
   // select mode
   const mode = useState('pzMode')
   const modeOptions = ref([
@@ -45,7 +49,11 @@
     <Input label="Member ID" v-model="memberID" />
     <Input label="Merchant Username" v-model="merchantUsername" />
     <Input label="Secure Key" type="password" v-model="merchantSecureKey" />
-    <Input label="Transaction Amount" v-model="amount" />
+    <Input
+      label="Transaction Amount"
+      helper-text="Always format with 2 decimals"
+      place-holder="e.g. 1.00"
+      v-model="amount" />
     <Input label="Transaction ID" v-model="merchantTransactionId" />
     <Input label="Redirect URL" v-model="merchantRedirectURL" />
   </div>

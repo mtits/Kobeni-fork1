@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 /**
  * Formats an array into a string with a specific separator/delimiter
  * @param {array} arrayMain
@@ -267,4 +269,14 @@ export const getLocaleList = () => {
     { text: 'Turkish', value: 'tr' },
     { text: 'Traditional Chinese', value: 'zh' },
   ]
+}
+
+/**
+ * using nanoid, generate a string that can be used as a transaction id
+ * @param {String} prefix
+ * @param {Number} length
+ * @returns String as transaction id, e.g. kbn-rAndOm
+ */
+export const generateTrxId = (prefix, length) => {
+  return `${prefix}-${nanoid(length)}`
 }

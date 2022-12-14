@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 /**
  * init all PZ related vars
  */
@@ -9,7 +8,7 @@ export const useInitPaymentzStates = () => {
   useState('merchantUsername', () => '')
   useState('amount', () => '')
   useState('merchantTransactionId', () => {
-    return `kbn-${nanoid(6)}`
+    return generateTrxId('kbn', 6)
   })
   useState('merchantSecureKey', () => '')
 }
