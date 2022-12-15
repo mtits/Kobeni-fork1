@@ -242,12 +242,12 @@
         :display-character-count="false"
         @copy-content="copyString(modeText)" />
 
-      <Alert title="Info" color-style="bg-base-300">
+      <Alert title="Info" color-style="bg-sky-900 text-slate-300">
         Be sure to add the parameter <kbd>entityId</kbd> in the
         <NuxtLink
-          class="link link-hover font-semibold"
+          class="link font-semibold"
           to="/payon/config/configure-merchant"
-          >Setup</NuxtLink
+          >Configure Merchant</NuxtLink
         >
         menu. Do not add it here.
       </Alert>

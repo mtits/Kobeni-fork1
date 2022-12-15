@@ -51,7 +51,7 @@
       </select>
     </div>
 
-    <Alert title="Disclaimer" color-style="bg-base-300">
+    <Alert title="Disclaimer" color-style="bg-sky-900 text-slate-300">
       Some of the items here have been changed from the default setting to
       better suit the app's look and flow. Additionally, the items labeled as
       <span class="font-medium">Exclusive</span> are features custom-made only

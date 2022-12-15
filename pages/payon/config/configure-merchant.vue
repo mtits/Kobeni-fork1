@@ -48,7 +48,7 @@
 
 <template>
   <div class="flex flex-col space-y-3">
-    <Alert class="mt-3" title="Info" color-style="bg-base-300">
+    <Alert class="mt-3" title="Info" color-style="bg-sky-900 text-slate-300">
       Input your BIP credentials. Set up the widget behaviour.
     </Alert>
 
