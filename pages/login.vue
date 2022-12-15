@@ -43,7 +43,7 @@
 
 <template>
   <div class="px-80">
-    <div class="card bg-base-300 shadow-xl">
+    <div class="card bg-base-200 shadow-xl">
       <div class="card-body">
         <div class="grid place-items-center">
           <div class="prose">
@@ -70,7 +70,7 @@
                 @keyup.enter="login" />
 
               <button
-                class="btn w-full"
+                class="btn btn-primary w-full"
                 :class="{ loading: isLoading }"
                 @click="login">
                 <span> Sign In </span>
