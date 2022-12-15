@@ -68,7 +68,7 @@
         <!-- Sidebar content here -->
 
         <!-- main container of the side drawer contents -->
-        <aside class="w-80 bg-base-300">
+        <aside class="w-72 bg-base-300">
           <!-- side title -->
           <div
             class="py-3 px-7 bg-neutral sticky top-0 bg-opacity-90 backdrop-blur z-20">
@@ -83,7 +83,7 @@
           <div class="h-4"></div>
 
           <!-- APP MENUS -->
-          <ul class="menu flex flex-col p-0 px-4">
+          <ul class="menu menu-compact flex flex-col p-0 px-2">
             <li class="menu-title">
               <span>App Stuffs</span>
             </li>
@@ -126,17 +126,18 @@
           </ul>
 
           <!-- PAYON MENUS -->
-          <ul class="menu flex flex-col p-0 px-4">
+          <ul class="menu menu-compact flex flex-col p-0 px-2">
             <li></li>
             <li class="menu-title">
               <span>PAY.ON Stuffs</span>
             </li>
 
             <!-- collapse for sub menus -->
-            <div class="collapse collapse-arrow rounded-box">
+            <div
+              class="collapse rounded-box border border-base-100 collapse-arrow mb-1">
               <input type="checkbox" />
 
-              <div class="collapse-title flex space-x-3">
+              <div class="collapse-title flex ml-1 space-x-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -149,7 +150,7 @@
                     stroke-linejoin="round"
                     d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
                 </svg>
-                <span> Setup </span>
+                <span class=""> Setup </span>
               </div>
 
               <div class="collapse-content">
@@ -175,6 +176,7 @@
                     Widget Behaviour
                   </NuxtLink>
                 </li>
+
                 <li class="hover-bordered">
                   <NuxtLink to="/payon/config/configure-merchant">
                     <svg
@@ -342,10 +344,10 @@
           </ul>
 
           <!-- PZ MENUS -->
-          <ul class="menu flex flex-col p-0 px-4">
+          <ul class="menu menu-compact flex flex-col p-0 px-2">
             <li></li>
             <li class="menu-title">
-              <span>Paymentz Stuffs (UNDER CONSTRUCTION)</span>
+              <span>Paymentz Stuffs UNDERCONSTRUCTION</span>
             </li>
 
             <li class="hover-bordered">
@@ -441,10 +443,10 @@
           </ul>
 
           <!-- WL MENUS -->
-          <ul class="menu flex flex-col p-0 px-4">
+          <ul class="menu menu-compact flex flex-col p-0 px-2">
             <li></li>
             <li class="menu-title">
-              <span>WL Stuffs (UNDER CONSTRUCTION)</span>
+              <span>WL Stuffs UNDERCONSTRUCTION</span>
             </li>
 
             <li class="hover-bordered">
