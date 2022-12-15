@@ -17,13 +17,13 @@
 
     <div class="tabs">
       <NuxtLink
-        class="tab tab-lifted tab-lg"
+        class="tab tab-lg tab-bordered"
         to="/payon/config/configure-merchant">
         Configure Merchant
       </NuxtLink>
 
       <NuxtLink
-        class="tab tab-lifted tab-lg"
+        class="tab tab-lg tab-bordered"
         to="/payon/config/widget-behaviour">
         Widget Behaviour
       </NuxtLink>

@@ -55,7 +55,7 @@
       <div class="grid grid-cols-2 gap-6">
         <!-- VISA Content -->
         <Transition>
-          <div class="card bg-base-300 shadow-xl" v-if="MID || merchantName">
+          <div class="card bg-base-200 shadow-xl" v-if="MID || merchantName">
             <div class="card-body">
               <div class="prose">
                 <h2 class="text-sky-300">VISA</h2>
@@ -82,7 +82,7 @@
 
         <!-- Mastercard -->
         <Transition>
-          <div class="card bg-base-300 shadow-xl" v-if="MID || merchantName">
+          <div class="card bg-base-200 shadow-xl" v-if="MID || merchantName">
             <div class="card-body">
               <div class="prose">
                 <h2 class="text-sky-300">MASTERCARD</h2>
@@ -109,7 +109,7 @@
 
         <!-- Discover -->
         <Transition>
-          <div class="card bg-base-300 shadow-xl" v-if="MID">
+          <div class="card bg-base-200 shadow-xl" v-if="MID">
             <div class="card-body">
               <div class="prose">
                 <h2 class="text-sky-300">Discover</h2>
@@ -129,7 +129,7 @@
         <!-- JCB -->
         <Transition>
           <div
-            class="card bg-base-300 shadow-xl"
+            class="card bg-base-200 shadow-xl"
             v-if="(MID && jcbAcquirerBIN) || merchantName">
             <div class="card-body">
               <div class="prose">
