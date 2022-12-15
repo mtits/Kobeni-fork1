@@ -56,6 +56,7 @@
       <Input
         label="Secret"
         type="password"
+        place-holder="my roommate eats pizza in the shower"
         helper-text="Found in the BIP admin settings"
         v-model="secretFromConfiguration" />
 
