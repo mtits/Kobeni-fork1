@@ -48,12 +48,8 @@
 
 <template>
   <div class="flex flex-col space-y-3">
-    <Alert class="mt-3" title="Info" color-style="bg-sky-900 text-slate-300">
-      Input your BIP credentials. Set up the widget behaviour.
-    </Alert>
-
     <!-- select environment -->
-    <div class="form-control">
+    <div class="form-control mt-3">
       <label class="label mb-1">
         <span class="label-text text-sky-400 font-bold">Environment</span>
       </label>
@@ -67,9 +63,17 @@
       </label>
     </div>
 
-    <Input label="Access Token" type="password" v-model="accessToken" />
+    <Input
+      label="Access Token"
+      helper-text="Access token can be taken from the backend UI under Administration > Account data > Merchant / Channel Info only if you have specific administration rights."
+      type="password"
+      v-model="accessToken" />
 
-    <Input label="Entity ID" type="text" v-model="entityId" />
+    <Input
+      label="Entity ID"
+      helper-text="The entity required to authorize the request. This should be the channel entity identifier. In case channel dispatching is activated then it should be the merchant entity identifier."
+      type="text"
+      v-model="entityId" />
 
     <div></div>
 

@@ -18,15 +18,15 @@
     <div class="tabs">
       <NuxtLink
         class="tab tab-lifted tab-lg"
-        to="/payon/config/widget-behaviour"
-        >Widget Behaviour</NuxtLink
-      >
+        to="/payon/config/configure-merchant">
+        Configure Merchant
+      </NuxtLink>
 
       <NuxtLink
         class="tab tab-lifted tab-lg"
-        to="/payon/config/configure-merchant"
-        >Configure Merchant</NuxtLink
-      >
+        to="/payon/config/widget-behaviour">
+        Widget Behaviour
+      </NuxtLink>
     </div>
     <!-- displays the selected child page -->
     <div class="">
