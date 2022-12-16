@@ -51,83 +51,77 @@
       </select>
     </div>
 
-    <Alert title="Disclaimer" color-style="bg-sky-900 text-slate-300">
-      Some of the items here have been changed from the default setting to
-      better suit the app's look and flow. Additionally, the items labeled as
+    <Alert title="Info" color-style="bg-sky-900 text-slate-300">
+      The following are most the property names that can be toggled in the WPWL
+      object which customizes the widget. Some of the items here have been
+      changed from the default setting to better suit the app's look and flow.
+      Additionally, the items labeled as
       <span class="font-medium">Exclusive</span> are features custom-made only
       for this app.
     </Alert>
 
-    <!-- display toggles as columns -->
-    <div class="grid grid-cols-2 gap-4">
-      <!-- left -->
-      <div>
-        <!-- auto-launch -->
-        <Toggle v-model="autoLaunchWidget" title="Auto-launch (Exclusive)"
-          >Launch the widget if a checkout ID is detected.</Toggle
-        >
+    <div class="flex flex-col">
+      <!-- auto-launch -->
+      <Toggle v-model="autoLaunchWidget" title="Auto-launch (Exclusive)">
+        Launch the widget if a checkout ID is detected.
+      </Toggle>
 
-        <!-- plain vs card -->
-        <div class="form-control w-auto">
-          <label class="label cursor-pointer">
-            <span class="label-text">
-              <span class="text-sky-400 font-bold"><kbd>Card Style</kbd></span
-              ><br />
-              Set the widget's style to
-              <span class="text-sky-400">card</span> (This will some cause
-              visibility issues because of this app's theme). Current default:
-              <span class="text-sky-400">'plain'</span>.</span
-            >
-            <input
-              type="checkbox"
-              class="toggle"
-              v-model="widgetStyle"
-              true-value="card"
-              false-value="plain" />
-          </label>
-        </div>
-
-        <Toggle
-          v-model="disableCardExpiryDateValidation"
-          title="disableCardExpiryDateValidation"
-          >Determines whether the card expiry date field should be validated. By
-          default it is validated (false).</Toggle
-        >
-        <Toggle v-model="requireCvv" title="requireCvv"
-          >Determines whether the CVV field is presented on the payment
-          form.</Toggle
-        >
-
-        <Toggle v-model="maskCvv" title="maskCvv">Masks the CVV.</Toggle>
+      <!-- plain vs card -->
+      <div
+        class="form-control w-auto transition hover:bg-slate-800 p-3 rounded-lg">
+        <label class="label cursor-pointer">
+          <span class="label-text">
+            <span class="text-sky-400 font-bold"><kbd>Card Style</kbd></span
+            ><br />
+            Set the widget's style to
+            <span class="text-sky-400">card</span> (This will some cause
+            visibility issues because of this app's theme). Current default:
+            <span class="text-sky-400">'plain'</span>.</span
+          >
+          <input
+            type="checkbox"
+            class="toggle"
+            v-model="widgetStyle"
+            true-value="card"
+            false-value="plain" />
+        </label>
       </div>
 
-      <!-- right -->
-      <div>
-        <Toggle v-model="showCVVHint" title="showCVVHint"
-          >If set to true, then the credit card form will display a hint on
-          where the CVV is located when the mouse is hovering over the CVV
-          field.</Toggle
-        >
+      <Toggle
+        v-model="disableCardExpiryDateValidation"
+        title="disableCardExpiryDateValidation">
+        Determines whether the card expiry date field should be validated. By
+        default it is validated (false).
+      </Toggle>
 
-        <Toggle v-model="allowEmptyCvv" title="allowEmptyCvv"
-          >Determines whether the CVV field can be empty. By default it is
-          false.</Toggle
-        >
+      <Toggle v-model="requireCvv" title="requireCvv">
+        Determines whether the CVV field is presented on the payment form.
+      </Toggle>
 
-        <Toggle v-model="validation" title="validation"
-          >If false, disables validation and the functions
-          <kbd class="font-semibold">validate</kbd> and
-          <kbd class="font-semibold">onSubmit</kbd> will not be called.</Toggle
-        >
+      <Toggle v-model="maskCvv" title="maskCvv"> Masks the CVV. </Toggle>
 
-        <Toggle v-model="showLabels" title="showLabels"
-          >Shows or hides input labels. Default is true.</Toggle
-        >
+      <Toggle v-model="showCVVHint" title="showCVVHint">
+        If set to true, then the credit card form will display a hint on where
+        the CVV is located when the mouse is hovering over the CVV field.
+      </Toggle>
 
-        <Toggle v-model="showPlaceholders" title="showPlaceholders"
-          >Shows or hides input placeholders. Default is true.</Toggle
-        >
-      </div>
+      <Toggle v-model="allowEmptyCvv" title="allowEmptyCvv">
+        Determines whether the CVV field can be empty. By default it is false.
+      </Toggle>
+
+      <Toggle v-model="validation" title="validation">
+        If false, disables validation and the functions
+        <kbd class="font-semibold">validate</kbd> and
+        <kbd class="font-semibold">onSubmit</kbd> will not be called.
+      </Toggle>
+
+      <Toggle v-model="showLabels" title="showLabels">
+        Shows or hides input labels. Default is true.
+      </Toggle>
+
+      <Toggle v-model="showPlaceholders" title="showPlaceholders">
+        Shows or hides input placeholders. Default is true.
+      </Toggle>
     </div>
   </div>
 </template>

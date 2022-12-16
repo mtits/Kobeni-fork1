@@ -18,7 +18,7 @@
 </script>
 
 <template>
-  <div class="form-control w-auto">
+  <div class="form-control transition hover:bg-slate-800 w-auto p-3 rounded-lg">
     <label class="label cursor-pointer">
       <span class="label-text">
         <span class="text-sky-400 font-bold" v-if="title"
