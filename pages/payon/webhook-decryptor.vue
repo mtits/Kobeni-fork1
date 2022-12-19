@@ -106,4 +106,8 @@
       </Transition>
     </div>
   </div>
+
+  <div class="flex" v-else>
+    <button class="btn btn-ghost btn-block loading"></button>
+  </div>
 </template>

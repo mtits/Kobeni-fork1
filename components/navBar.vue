@@ -11,6 +11,9 @@
 
     try {
       await signOut(auth)
+
+      console.info('Logging out...')
+
       await navigateTo('/login')
     } catch (error) {
       console.error(error)

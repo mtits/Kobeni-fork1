@@ -1,6 +1,8 @@
 <script setup>
   import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
+  const currentUser = useState('currentUser')
+
   definePageMeta({
     pageTitle: 'Kobeni | Login',
   })

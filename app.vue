@@ -26,7 +26,7 @@
       return `${currentURL.origin}/paymentz/merchantRedirectURL`
     })
 
-    //
+    // firebase auth user watcher function
     useGetCurrentUser()
   })
 </script>
@@ -45,6 +45,7 @@
 
         <!-- Page content here -->
         <div class="container mx-auto px-40 py-10 bg-base-300">
+          <!-- the actual page -->
           <NuxtPage />
 
           <!-- i made dis -->
