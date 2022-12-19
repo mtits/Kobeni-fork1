@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Backoffice Operations',
   })
 
+  const currentUser = useState('currentUser')
+
   //
   const referenceTransaction = useState('referenceTransaction')
   const accessToken = useState('accessToken')
@@ -119,12 +121,11 @@
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
     await getSessionData()
-    useGetCurrentUser()
   })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Backoffice">
       Backoffice operations can be performed against initial payments that were
       generated using COPYandPAY or server-to-server. The referencedPaymentId is

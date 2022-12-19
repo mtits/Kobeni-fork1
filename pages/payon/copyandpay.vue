@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | CopyandPay',
   })
 
+  const currentUser = useState('currentUser')
+
   //
   const mode = useState('mode')
   const modeText = computed(() => {
@@ -222,12 +224,11 @@
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
     await getSessionData()
-    useGetCurrentUser()
   })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="COPYandPAY">
       COPYandPAY is a SAQ-A compliant payment-form solution, making it both
       secure and simple-to-integrate.

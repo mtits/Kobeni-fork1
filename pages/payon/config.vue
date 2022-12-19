@@ -3,16 +3,11 @@
     pageTitle: 'Kobeni | Config Page',
   })
 
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
+  const currentUser = useState('currentUser')
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Setup"></PageTitle>
 
     <div class="tabs">

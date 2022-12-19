@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Result Page',
   })
 
+  const currentUser = useState('currentUser')
+
   //
   const route = useRoute()
   const id = ref('')
@@ -68,12 +70,11 @@
 
     await getSessionData()
     await fetchTransactionResults()
-    useGetCurrentUser()
   })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Transaction Results"> </PageTitle>
 
     <div class="flex flex-col space-y-3">

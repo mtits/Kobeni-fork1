@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Standard Checkout',
   })
 
+  const currentUser = useState('currentUser')
+
   const mode = useState('pzMode')
   const modeText = computed(() => {
     return mode.value == 'Test'
@@ -50,7 +52,7 @@
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Standard Checkout">
       In Standard Checkout, the merchant needs to post the intial request to the
       hosted checkout page where customer will provide card/account details.

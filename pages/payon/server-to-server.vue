@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Server-to-Server',
   })
 
+  const currentUser = useState('currentUser')
+
   //
   const mode = useState('mode')
   const modeText = computed(() => {
@@ -133,12 +135,11 @@
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
     await getSessionData()
-    useGetCurrentUser()
   })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Server-to-Server">
       This integration variant requires you to collect the card data which
       increases your PCI-compliance scope. If you want to minimize your

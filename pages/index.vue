@@ -3,16 +3,11 @@
     pageTitle: 'Kobeni | Pull Yoself Togedah!',
   })
 
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
+  const currentUser = useState('currentUser')
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <div class="hero min-h-screen" id="index">
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center text-neutral-content">

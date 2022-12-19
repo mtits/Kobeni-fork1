@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Config',
   })
 
+  const currentUser = useState('currentUser')
+
   // select mode
   const mode = useState('pzMode')
   const modeOptions = ref([
@@ -27,7 +29,7 @@
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Setup">
       The following data are required for generating a checksum to be used for
       integrity validation of the request by the gateway.

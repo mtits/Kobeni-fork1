@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Recurring (REPEATED ONLY)',
   })
 
+  const currentUser = useState('currentUser')
+
   //
   const mode = useState('mode')
   const modeText = computed(() => {
@@ -119,12 +121,11 @@
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
     await getSessionData()
-    useGetCurrentUser()
   })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Recurring (REPEATED only)">
       Subsequent payments only. Please send the initial transactions over at
       CopyandPay or S2S.

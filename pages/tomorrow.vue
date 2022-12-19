@@ -5,6 +5,8 @@
     pageTitle: 'Kobeni | Tomorrow, Ina said calmly...',
   })
 
+  const currentUser = useState('currentUser')
+
   const tomorrow = new Howl({
     src: ['/audio/tomorrow.mp3'],
   })
@@ -31,17 +33,10 @@
 
   // global object
   Howler.volume(0.5)
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Tomorrow">
       Today I don't feel like doing anything. I just wanna lay in my bed. Don't
       feel like picking up my phone, so leave a message at the tone. 'Cause

@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Webhook Decrytor',
   })
 
+  const currentUser = useState('currentUser')
+
   const secretFromConfiguration = ref('')
   const ivfromHttpHeader = ref('')
   const authTagFromHttpHeader = ref('')
@@ -36,17 +38,10 @@
       showLoading.value = false
     }
   }
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="쟤네 못봤겠지?">
       Webhooks are managed in the BIP under
       <span class="italic font-medium">Administration > Webhooks</span>.

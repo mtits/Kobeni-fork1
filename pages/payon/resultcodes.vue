@@ -5,6 +5,8 @@
     pageTitle: 'Kobeni | Result Codes',
   })
 
+  const currentUser = useState('currentUser')
+
   // the one variable to rule them all
   const result = reactive({
     url: 'https://eu-test.oppwa.com/v1/resultcodes',
@@ -32,17 +34,10 @@
       console.error(error)
     }
   }
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Result Codes">
       The result codes are part of the response body's JSON (field result)
       containing a code and a description explaining the code. This data is

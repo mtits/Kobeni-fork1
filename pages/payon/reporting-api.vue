@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Reporting API',
   })
 
+  const currentUser = useState('currentUser')
+
   //
   const searchType = ref('paymentId')
   const searchTypes = ref(['paymentId', 'merchantTransactionId'])
@@ -45,17 +47,10 @@
       showLoading.value = false
     }
   }
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Reporting API"> Where art thou? </PageTitle>
 
     <div class="flex flex-col space-y-3">

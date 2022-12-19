@@ -3,6 +3,8 @@
     pageTitle: 'Kobeni | Format Thy MID',
   })
 
+  const currentUser = useState('currentUser')
+
   const MID = ref('69420')
   const merchantName = ref('Cognito Inc.')
   const jcbAcquirerBIN = ref('')
@@ -26,17 +28,10 @@
   const jcbRequestorID = computed(() => {
     return `${jcbAcquirerBIN.value}MCT${MID.value}`
   })
-
-  /**
-   *
-   */
-  onMounted(() => {
-    useGetCurrentUser()
-  })
 </script>
 
 <template>
-  <div>
+  <div v-if="currentUser">
     <PageTitle title="Format Thy MID">
       Enter thy MID information beneath and I shall format thee!
     </PageTitle>
