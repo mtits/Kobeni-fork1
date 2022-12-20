@@ -26,12 +26,20 @@ export const useInitWidgetStates = () => {
   useState('widgetStyle', () => 'plain')
   useState('maskCvv', () => true)
   useState('requireCvv', () => true)
-  useState('showCVVHint', () => false)
+  useState('showCVVHint', () => true)
   useState('allowEmptyCvv', () => false)
   useState('validation', () => true)
   useState('showLabels', () => true)
   useState('showPlaceholders', () => true)
   useState('disableCardExpiryDateValidation', () => false)
+
+  //
   useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')
+  useState('labelBrand', () => 'Brand(s)')
+  useState('cardNumber', () => 'CC/DC Number')
+  useState('expiryDate', () => 'Expiration')
+  useState('cardHolder', () => 'Name on Card')
+  useState('cvv', () => 'Magic Numbers')
+
   useState('locale', () => 'en')
 }

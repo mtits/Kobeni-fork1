@@ -163,9 +163,7 @@
       },
 
       //
-      labels: {
-        submit: useState('payNowLabel').value,
-      },
+      labels: {},
 
       // sets the placeholder for number and cvv, because iFrames, that's why
       iframeStyles: {
@@ -178,6 +176,30 @@
 
         'background-color': 'rgb(229 231 235)',
       },
+    }
+
+    if (useState('labelBrand').value != '') {
+      wpwlOptions.labels.brand = useState('labelBrand').value
+    }
+
+    if (useState('cardNumber').value != '') {
+      wpwlOptions.labels.cardNumber = useState('cardNumber').value
+    }
+
+    if (useState('expiryDate').value != '') {
+      wpwlOptions.labels.expiryDate = useState('expiryDate').value
+    }
+
+    if (useState('cardHolder').value != '') {
+      wpwlOptions.labels.cardHolder = useState('cardHolder').value
+    }
+
+    if (useState('cvv').value != '') {
+      wpwlOptions.labels.cvv = useState('cvv').value
+    }
+
+    if (useState('payNowLabel').value != '') {
+      wpwlOptions.labels.submit = useState('payNowLabel').value
     }
 
     // display the options to the user

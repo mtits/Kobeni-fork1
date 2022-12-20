@@ -17,8 +17,17 @@
     'disableCardExpiryDateValidation'
   )
 
+  //
   const payNowLabel = useState('payNowLabel')
+  const labelBrand = useState('labelBrand')
+  const cardNumber = useState('cardNumber')
+  const expiryDate = useState('expiryDate')
+  const cardHolder = useState('cardHolder')
+  const cvv = useState('cvv')
+
   const locale = useState('locale')
+
+  //
   const localeList = getLocaleList()
   const shopperResultURLPayon = useState('shopperResultUrlPayon')
 </script>
@@ -59,33 +68,51 @@
         </div>
 
         <p class="text-sm">
-          These are the widget fields that can be replaced from the default.
+          These are the widget fields that can be replaced from the default. Go
+          ahead, give it a personality.
+        </p>
+
+        <p class="text-sm">
+          If you prefer the boring defaults, set the fields to blank.
         </p>
       </div>
-      <div class="flex-1">
-        <Input
-          label="Card Submit Label (The 'PAY NOW' button)"
-          helper-text="This permanently overrides 'Locale' regardless of language."
-          v-model="payNowLabel" />
+      <div class="flex-1 space-y-2">
+        <Input label="Brand List" v-model="labelBrand" />
+
+        <Input label="Card Number" v-model="cardNumber" />
+
+        <Input label="Expiry Date" v-model="expiryDate" />
+
+        <Input label="Card Holder" v-model="cardHolder" />
+
+        <Input label="CVV" v-model="cvv" />
+
+        <Input label="Card Submit ('PAY NOW' button)" v-model="payNowLabel" />
 
         <!-- select locale -->
         <div>
           <label class="label">
-            <span class="label-text text-sky-400 font-bold"
-              >Locale (Widget Language)</span
-            >
+            <span class="label-text text-sky-400 font-bold">
+              Locale (Widget Language)
+            </span>
           </label>
           <select class="select select-bordered w-full" v-model="locale">
             <option v-for="local in localeList" :value="local.value">
               {{ local.text }}
             </option>
           </select>
+          <label class="label">
+            <span class="label-text-alt">
+              For this to work, the labels above should be blank.
+            </span>
+          </label>
         </div>
       </div>
     </div>
 
     <hr />
 
+    <!-- toggles -->
     <div class="flex flex-col">
       <Alert title="Info" color-style="bg-sky-900 text-slate-300">
         The following are most the property names that can be toggled in the
