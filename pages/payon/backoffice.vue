@@ -128,8 +128,9 @@
   <div v-if="currentUser">
     <PageTitle title="Backoffice">
       Backoffice operations can be performed against initial payments that were
-      generated using COPYandPAY or server-to-server. The referencedPaymentId is
-      the value return in the id JSON field.
+      generated using COPYandPAY or server-to-server. The
+      <kbd class="kbd kbd-sm text-sky-400">referencedPaymentId</kbd> is the
+      value return in the id JSON field.
     </PageTitle>
 
     <div class="flex flex-col space-y-3">

@@ -52,12 +52,13 @@
     </div>
 
     <Alert title="Info" color-style="bg-sky-900 text-slate-300">
-      The following are most the property names that can be toggled in the WPWL
+      The following are most the property names that can be toggled in the
+      <kbd class="kbd kbd-sm">wpwl</kbd>
       object which customizes the widget. Some of the items here have been
       changed from the default setting to better suit the app's look and flow.
       Additionally, the items labeled as
-      <span class="font-medium">Exclusive</span> are features custom-made only
-      for this app.
+      <span class="font-medium font-mono text-sky-400">Exclusive</span> are
+      features custom-made only for this app.
     </Alert>
 
     <div class="flex flex-col">
