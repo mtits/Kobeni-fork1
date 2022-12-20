@@ -23,6 +23,7 @@ export const useInitWidgetStates = () => {
     return ['VISA', 'MASTER']
   })
 
+  // toggles
   useState('widgetStyle', () => 'plain')
   useState('maskCvv', () => true)
   useState('requireCvv', () => true)
@@ -33,7 +34,7 @@ export const useInitWidgetStates = () => {
   useState('showPlaceholders', () => true)
   useState('disableCardExpiryDateValidation', () => false)
 
-  //
+  // widget labels
   useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')
   useState('labelBrand', () => 'Brand(s)')
   useState('cardNumber', () => 'CC / DC Number')
