@@ -8,8 +8,6 @@
 
 <template>
   <div v-if="currentUser">
-    <PageTitle title="Setup"></PageTitle>
-
     <div class="tabs">
       <NuxtLink
         class="tab tab-lg tab-bordered"
