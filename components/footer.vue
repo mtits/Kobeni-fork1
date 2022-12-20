@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer mx-auto px-20 py-10 bg-neutral text-neutral-content">
+  <footer class="footer mx-auto px-40 py-10 bg-neutral">
     <!-- PAYON stuff -->
     <div>
       <span class="footer-title">ACI - PAY.ON</span>
