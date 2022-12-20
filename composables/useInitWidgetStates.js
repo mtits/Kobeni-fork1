@@ -36,7 +36,7 @@ export const useInitWidgetStates = () => {
   //
   useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')
   useState('labelBrand', () => 'Brand(s)')
-  useState('cardNumber', () => 'CC/DC Number')
+  useState('cardNumber', () => 'CC / DC Number')
   useState('expiryDate', () => 'Expiration')
   useState('cardHolder', () => 'Name on Card')
   useState('cvv', () => 'Magic Numbers')
