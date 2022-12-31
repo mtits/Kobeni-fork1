@@ -2,11 +2,30 @@
   const currentUser = useState('currentUser', () => '')
   const currentTheme = useState('currentTheme', () => 'dark')
 
-  useHead({
-    htmlAttrs: {
-      'data-theme': currentTheme.value,
-    },
-  })
+  /**
+   *
+   */
+  const checkCurrentTheme = async () => {
+    // check session for saved theme
+    const { session, refresh } = await useSession()
+    await refresh()
+
+    if (session.value.theme) {
+      console.info(`Switching to theme: ${session.value.theme}`)
+      currentTheme.value = session.value.theme
+    } else {
+      console.log('No session theme, setting to default dark mode')
+    }
+
+    useHead({
+      htmlAttrs: {
+        'data-theme': currentTheme.value,
+      },
+    })
+  }
+
+  //
+  checkCurrentTheme()
 
   // widget params
   useInitWidgetStates()

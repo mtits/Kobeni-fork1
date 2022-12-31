@@ -24,24 +24,25 @@
   /**
    *
    */
-  const changeTheme = () => {
+  const changeTheme = async () => {
+    const { refresh, update } = await useSession()
+    await refresh()
+
+    // set session theme in case of page refresh
     if (currentTheme.value == 'dark') {
-      //
+      await update({ theme: 'winter' })
       currentTheme.value = 'winter'
-      useHead({
-        htmlAttrs: {
-          'data-theme': currentTheme.value,
-        },
-      })
     } else {
-      //
+      await update({ theme: 'dark' })
       currentTheme.value = 'dark'
-      useHead({
-        htmlAttrs: {
-          'data-theme': currentTheme.value,
-        },
-      })
     }
+
+    // use composable with the determined value from above
+    useHead({
+      htmlAttrs: {
+        'data-theme': currentTheme.value,
+      },
+    })
   }
 </script>
 
