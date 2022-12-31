@@ -43,74 +43,62 @@
 </script>
 
 <template>
-  <div class="px-80">
-    <div class="card bg-base-200 shadow-xl">
-      <div class="card-body">
-        <div class="grid place-items-center">
-          <div class="prose">
-            <h1>
-              <span class="text-sky-400"> Kobeni </span>
-            </h1>
-          </div>
+  <div class="flex flex-col place-items-center">
+    <!-- card -->
+    <div class="card w-96 bg-base-200 shadow-xl">
+      <div class="card-body place-items-center">
+        <div class="prose">
+          <h1>
+            <span class="text-sky-400"> Kobeni </span>
+          </h1>
+        </div>
+        <p class="italic text-sm">sorry, new phone, hu dis?</p>
 
-          <div class="mb-14">
-            <p class="italic">sorry, new phone, hu dis?</p>
-          </div>
+        <div></div>
 
-          <div class="w-96 h-96">
-            <div class="flex flex-col space-y-3">
-              <Input
-                label="Email Address"
-                v-model="email"
-                @keyup.enter="login" />
+        <Input label="Email Address" v-model="email" @keyup.enter="login" />
 
-              <Input
-                type="password"
-                label="Password"
-                v-model="password"
-                @keyup.enter="login" />
+        <Input
+          type="password"
+          label="Password"
+          v-model="password"
+          @keyup.enter="login" />
 
-              <button
-                class="btn btn-primary w-full"
-                :class="{ loading: isLoading }"
-                @click="login">
-                <span> Sign In </span>
-              </button>
+        <button
+          class="btn btn-primary w-full"
+          :class="{ loading: isLoading }"
+          @click="login">
+          <span> Sign In </span>
+        </button>
 
-              <div class="grid place-items-center mt-3">
-                <div class="tooltip tooltip-bottom" data-tip="Aha ha...">
-                  <a
-                    href="https://www.youtube.com/watch?v=8X_Ot0k4XJc"
-                    class="link text-sm">
-                    Forgot Password?
-                  </a>
-                </div>
-              </div>
+        <!-- forgot password link -->
+        <div class="tooltip tooltip-bottom" data-tip="Aha ha...">
+          <a
+            href="https://www.youtube.com/watch?v=8X_Ot0k4XJc"
+            class="link text-sm">
+            Forgot Password?
+          </a>
+        </div>
 
-              <!-- alert for failed logins -->
-              <Transition>
-                <div
-                  class="alert alert-error shadow-lg mt-6"
-                  v-if="isLoginFailed">
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="stroke-current flex-shrink-0 h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>Login failed. Please check your credentials.</span>
-                  </div>
-                </div>
-              </Transition>
+        <!-- alert for failed logins -->
+        <Transition>
+          <div class="alert alert-error shadow-lg mt-6" v-if="isLoginFailed">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="stroke-current flex-shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Login failed. Please check your credentials.</span>
             </div>
           </div>
-        </div>
+        </Transition>
       </div>
     </div>
   </div>
