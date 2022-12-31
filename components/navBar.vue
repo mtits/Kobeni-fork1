@@ -68,7 +68,7 @@
           <ul
             tabindex="0"
             class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-            <div class="tooltip tooltip-left" data-tip="y tho?">
+            <Transition name="fade" mode="out-in">
               <li v-if="currentTheme == 'dark'">
                 <a @click="changeTheme">
                   <svg
@@ -87,26 +87,26 @@
                   Light Mode
                 </a>
               </li>
-            </div>
 
-            <li v-if="currentTheme == 'winter'">
-              <a @click="changeTheme">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-                </svg>
+              <li v-else>
+                <a @click="changeTheme">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                  </svg>
 
-                my eyes, it hurts
-              </a>
-            </li>
+                  my eyes, it hurts
+                </a>
+              </li>
+            </Transition>
 
             <li>
               <a @click="logout">
@@ -131,3 +131,15 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.2s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+</style>
