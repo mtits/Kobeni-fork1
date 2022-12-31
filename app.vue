@@ -1,5 +1,12 @@
 <script setup>
   const currentUser = useState('currentUser', () => '')
+  const currentTheme = useState('currentTheme', () => 'dark')
+
+  useHead({
+    htmlAttrs: {
+      'data-theme': currentTheme.value,
+    },
+  })
 
   // widget params
   useInitWidgetStates()

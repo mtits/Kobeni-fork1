@@ -2,9 +2,9 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      htmlAttrs: {
-        'data-theme': 'dark',
-      },
+      // htmlAttrs: {
+      //   'data-theme': 'dark',
+      // },
       link: [{ rel: 'icon', href: '/favicon.png' }],
       script: [{ src: '/external.js' }, { src: '/jquery-3.6.1.min.js' }],
     },
