@@ -30,11 +30,11 @@
 
     // set session theme in case of page refresh
     if (currentTheme.value == 'dark') {
-      await update({ theme: 'winter' })
       currentTheme.value = 'winter'
+      await update({ theme: 'winter' })
     } else {
-      await update({ theme: 'dark' })
       currentTheme.value = 'dark'
+      await update({ theme: 'dark' })
     }
 
     // use composable with the determined value from above

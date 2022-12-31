@@ -3,14 +3,13 @@
   const currentTheme = useState('currentTheme', () => 'dark')
 
   /**
-   *
+   * check session for saved theme
    */
-  const checkCurrentTheme = async () => {
-    // check session for saved theme
+  const checkTheme = async () => {
     const { session, refresh } = await useSession()
     await refresh()
 
-    if (session.value.theme) {
+    if (session.value.theme != null) {
       console.info(`Switching to theme: ${session.value.theme}`)
       currentTheme.value = session.value.theme
     } else {
@@ -23,9 +22,6 @@
       },
     })
   }
-
-  //
-  checkCurrentTheme()
 
   // widget params
   useInitWidgetStates()
@@ -40,6 +36,9 @@
    *
    */
   onMounted(() => {
+    //
+    checkTheme()
+
     // result URL for PAY.ON
     useState('shopperResultUrlPayon', () => {
       const currentURL = new URL(window.location.href)
