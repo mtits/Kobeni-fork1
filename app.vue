@@ -75,12 +75,15 @@
 
           <!-- i made dis -->
           <div class="grid place-items-center mt-4">
-            <span class="text-xs"
-              >i made dis.
-              <a class="link" href="https://github.com/veib6247" target="_blank"
-                >Github</a
-              ></span
-            >
+            <span class="text-xs">
+              i made dis.
+              <a
+                class="link"
+                href="https://github.com/veib6247"
+                target="_blank">
+                Github
+              </a>
+            </span>
           </div>
         </div>
         <Transition>
