@@ -48,7 +48,19 @@
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <button class="btn btn-primary" @click="tomorrow.play()">
+          <button class="btn btn-primary gap-2" @click="tomorrow.play()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
             Tomorrow!
           </button>
         </div>
@@ -62,19 +74,57 @@
       <div class="flex space-x-3 place-items-center justify-center">
         <!-- col 1 -->
         <div class="grid flex-grow w-1/3">
-          <button class="btn" @click="tomorrow.play()">Tomorrow!</button>
+          <button class="btn gap-2" @click="tomorrow.play()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
+            Tomorrow!
+          </button>
         </div>
 
         <!-- col 2 -->
         <div class="grid flex-grow w-1/3">
-          <button class="btn" @click="omae.play()">
+          <button class="btn gap-2" @click="omae.play()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
             Omae wa mou shindeiru
           </button>
         </div>
 
         <!-- col 3 -->
         <div class="grid flex-grow w-1/3">
-          <button class="btn" @click="pekoLaugh.play()">
+          <button class="btn gap-2" @click="pekoLaugh.play()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
             AH↗️HA↘️HA↗️HA↘️HA↗️
           </button>
         </div>
@@ -84,17 +134,57 @@
       <div class="flex space-x-3 place-items-center justify-center">
         <!-- col 1 -->
         <div class="grid flex-grow w-1/3">
-          <button class="btn" @click="wow.play()">&lt;:3) ~Wow</button>
+          <button class="btn gap-2" @click="wow.play()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
+            &lt;:3) ~Wow
+          </button>
         </div>
 
         <!-- col 2 -->
         <div class="grid flex-grow w-1/3">
-          <button class="btn" @click="nani.play()">Nani???</button>
+          <button class="btn gap-2" @click="nani.play()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
+            Nani???
+          </button>
         </div>
 
         <!-- col 3 -->
         <div class="grid flex-grow w-1/3">
-          <button class="btn" @click="ehe.play()">
+          <button class="btn gap-2" @click="ehe.play()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+            </svg>
             "'Ehe' Te Nandayo!?!?!?!1"
           </button>
         </div>
