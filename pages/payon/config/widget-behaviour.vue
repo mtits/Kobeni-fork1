@@ -113,7 +113,7 @@
     <hr />
 
     <!-- toggles -->
-    <div class="flex flex-col">
+    <div class="flex flex-col gap-2">
       <Alert title="Info" color-style="bg-sky-900 text-slate-300">
         The following are most the property names that can be toggled in the
         <kbd class="kbd kbd-sm">wpwl</kbd>
