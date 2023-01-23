@@ -58,7 +58,7 @@
         </div>
 
         <p class="text-sm">
-          This determines which subdomain to use hroughout the request process
+          This determines which subdomain to use throughout the request process
           (including the widget form submit URL).
         </p>
       </div>
