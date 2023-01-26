@@ -72,9 +72,9 @@
 
       <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
 
-      <Alert title="Transaction ID" color-style="bg-sky-900 text-slate-300">{{
-        merchantTransactionId
-      }}</Alert>
+      <Alert title="Transaction ID" color-style="bg-sky-900 text-slate-300">
+        {{ merchantTransactionId }}
+      </Alert>
 
       <button class="btn btn-primary" @click="submit">Submit</button>
     </div>
