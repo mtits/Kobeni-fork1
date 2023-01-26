@@ -49,15 +49,55 @@
    *
    */
   const submit = () => {
-    // todo: generate hash
-    const dataString = `${memberID.value}|${partnerName.value}|${amount.value}|${merchantTransactionId.value}|${merchantRedirectURL.value}|${merchantSecureKey.value}`
-    console.info(`Generated md5 hash: ${generateHash(dataString)}`)
+    // eval if Standard-Checkout-Form already exists and remove it from DOM before creating a new one
+    let stdCheckoutFormSearch = document.getElementById(
+      'standard-checkout-form'
+    )
+    if (!!document.getElementById('standard-checkout-form')) {
+      stdCheckoutFormSearch.remove()
+      console.info('Removed duplicate checkout form.')
+    }
 
-    // todo: create form and submit!
-    // const stdCheckoutForm = document.createElement('form')
+    // generate hash
+    const dataString = `${memberID.value}|${partnerName.value}|${amount.value}|${merchantTransactionId.value}|${merchantRedirectURL.value}|${merchantSecureKey.value}`
+    const generatedMd5Hash = generateHash(dataString)
+    console.info(`Generated md5 hash: ${generatedMd5Hash}`)
+
+    // create form
+    const stdCheckoutForm = document.createElement('form')
+    stdCheckoutForm.setAttribute('method', 'POST')
+    stdCheckoutForm.setAttribute('action', modeText.value)
+    stdCheckoutForm.setAttribute('target', '_blank')
+    stdCheckoutForm.setAttribute('id', 'standard-checkout-form')
+
+    // create inputs and append to the form
+    const paramArray = dataParameters.value.split('\n')
+
+    paramArray.push(`checksum=${generatedMd5Hash}`)
+    paramArray.push(`memberId=${memberID.value}`)
+    paramArray.push(`totype=${partnerName.value}`)
+    paramArray.push(`amount=${amount.value}`)
+    paramArray.push(`merchantTransactionId=${merchantTransactionId.value}`)
+    paramArray.push(`merchantRedirectUrl=${merchantRedirectURL.value}`)
+
+    paramArray.forEach((parameterItem) => {
+      const data = parameterItem.split('=')
+
+      // create the input and append to form
+      const textInput = document.createElement('input')
+      textInput.setAttribute('type', 'hidden')
+      textInput.setAttribute('name', data[0])
+      textInput.setAttribute('value', data[1])
+      stdCheckoutForm.appendChild(textInput)
+
+      document.body.appendChild(stdCheckoutForm)
+    })
+
+    // console.info('Data:', paramArray)
+    stdCheckoutForm.submit()
 
     // generate a new trx ID after submitting the form
-    // merchantTransactionId.value = generateTrxId('kbn', 6)
+    merchantTransactionId.value = generateTrxId('kbn', 6)
   }
 </script>
 
