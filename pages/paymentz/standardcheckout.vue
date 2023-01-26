@@ -31,6 +31,11 @@
     'paymentBrand=REPLACE_ME',
   ])
 
+  const memberID = useState('memberID')
+  const partnerName = useState('partnerName') // ToType
+  const amount = useState('amount')
+  const merchantRedirectURL = useState('merchantRedirectURL')
+  const merchantSecureKey = useState('merchantSecureKey')
   const merchantTransactionId = useState('merchantTransactionId')
 
   /**
@@ -44,10 +49,15 @@
    *
    */
   const submit = () => {
+    // todo: generate hash
+    const dataString = `${memberID.value}|${partnerName.value}|${amount.value}|${merchantTransactionId.value}|${merchantRedirectURL.value}|${merchantSecureKey.value}`
+    console.info(`Generated md5 hash: ${generateHash(dataString)}`)
+
     // todo: create form and submit!
+    // const stdCheckoutForm = document.createElement('form')
 
     // generate a new trx ID after submitting the form
-    merchantTransactionId.value = generateTrxId('kbn', 6)
+    // merchantTransactionId.value = generateTrxId('kbn', 6)
   }
 </script>
 

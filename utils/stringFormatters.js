@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid'
+import md5 from 'crypto-js/md5'
 
 /**
  * Formats an array into a string with a specific separator/delimiter
@@ -279,4 +280,12 @@ export const getLocaleList = () => {
  */
 export const generateTrxId = (prefix, length) => {
   return `${prefix}-${nanoid(length)}`
+}
+
+/**
+ * Uses md5 module from the crypto-js package, returns md5 hash as value for the checksum
+ * @returns {string} Hashed value of the required fields
+ */
+export const generateHash = (dataString) => {
+  return md5(dataString).toString()
 }
