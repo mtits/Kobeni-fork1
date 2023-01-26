@@ -48,7 +48,7 @@
     // result URL for PZ
     useState('merchantRedirectURL', () => {
       const currentURL = new URL(window.location.href)
-      return `${currentURL.origin}/paymentz/merchantRedirectURL`
+      return `${currentURL.origin}/api/pz/redirect`
     })
 
     // firebase auth user watcher function
