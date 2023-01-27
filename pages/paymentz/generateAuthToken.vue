@@ -1,6 +1,6 @@
 <script setup>
   definePageMeta({
-    pageTitle: 'Kobeni | Generate Auth Token',
+    pageTitle: 'Kobeni | Generate AuthToken',
   })
 
   const currentUser = useState('currentUser')
@@ -48,20 +48,44 @@
 
 <template>
   <div v-if="currentUser">
-    <PageTitle title="Generate Auth Token">
-      The AuthToken is needed for performing Server-to-server and backoffice
-      transactions. This token will be valid for 1 hour.
+    <PageTitle title="Generate AuthToken">
+      The AuthToken is needed for performing server-to-server transactions and
+      backoffice operations. The token is valid for 1 hour, or you can generate
+      a new one for every request.
     </PageTitle>
 
     <div class="flex flex-col gap-3">
+      <div class="alert shadow-lg">
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="stroke-info flex-shrink-0 w-6 h-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>
+            The following data are directly taken from the
+            <NuxtLink class="link" to="/paymentz/config"> Setup page </NuxtLink>
+            .
+          </span>
+        </div>
+      </div>
+
       <Input
         label="Partner/PSP ID"
         v-model="partnerID"
         @keyup.enter="generateToken" />
+
       <Input
         label="Merchant Username"
         v-model="merchantUsername"
         @keyup.enter="generateToken" />
+
       <Input
         type="password"
         label="Secure Key"
