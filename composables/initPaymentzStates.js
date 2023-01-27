@@ -12,4 +12,5 @@ export const useInitPaymentzStates = () => {
     return generateTrxId('kbn', 6)
   })
   useState('merchantSecureKey', () => '')
+  useState('authToken', () => '')
 }

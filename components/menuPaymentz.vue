@@ -44,8 +44,9 @@
         Standard Checkout
       </NuxtLink>
     </li>
+
     <li class="hover-bordered">
-      <a>
+      <NuxtLink to="/paymentz/generateAuthToken">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -60,7 +61,7 @@
         </svg>
 
         Generate Auth Token
-      </a>
+      </NuxtLink>
     </li>
     <li class="hover-bordered">
       <a>
