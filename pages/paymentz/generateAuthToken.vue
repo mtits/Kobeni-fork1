@@ -71,7 +71,7 @@
           <span>
             The following data are directly taken from the
             <NuxtLink class="link" to="/paymentz/config"> Setup page </NuxtLink>
-            .
+            . Modifying the information here will do the same in the setup.
           </span>
         </div>
       </div>
