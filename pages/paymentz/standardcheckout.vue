@@ -111,7 +111,7 @@
     </PageTitle>
 
     <!-- text area for the parameters needed -->
-    <div class="flex flex-col space-y-3">
+    <div class="flex flex-col gap-3">
       <!-- show endpoint -->
       <InputReadOnly
         label="Endpoint"

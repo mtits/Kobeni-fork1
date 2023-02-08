@@ -20,7 +20,7 @@
       <span class="label-text text-sky-400 font-bold">{{ label }}</span>
     </label>
     <textarea
-      class="textarea textarea-bordered font-mono h-80"
+      class="textarea textarea-bordered font-mono h-96"
       spellcheck="false"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"></textarea>

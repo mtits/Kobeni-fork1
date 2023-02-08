@@ -6,6 +6,12 @@
   const currentUser = useState('currentUser')
 
   const mode = useState('pzMode')
+  const modeText = computed(() => {
+    return mode.value == 'Test'
+      ? 'https://preprod.prtpg.com/transactionServices/REST/v1/authToken'
+      : 'https://secure.prtpg.com/transactionServices/REST/v1/authToken'
+  })
+
   const partnerID = useState('partnerID')
   const merchantUsername = useState('merchantUsername')
   const merchantSecureKey = useState('merchantSecureKey')
@@ -75,6 +81,14 @@
           </span>
         </div>
       </div>
+
+      <!-- show endpoint -->
+      <InputReadOnly
+        label="Endpoint"
+        v-model="modeText"
+        :mode="mode"
+        :display-character-count="false"
+        @copy-content="copyString(modeText)" />
 
       <Input
         label="Partner/PSP ID"
