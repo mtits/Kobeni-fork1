@@ -72,7 +72,7 @@
         </button>
 
         <!-- forgot password link -->
-        <div class="tooltip tooltip-bottom" data-tip="Aha ha...">
+        <div class="tooltip tooltip-bottom" data-tip="Beware of the Ostrich">
           <a
             href="https://www.youtube.com/watch?v=8X_Ot0k4XJc"
             class="link text-sm">

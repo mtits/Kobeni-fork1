@@ -16,51 +16,144 @@
   // parameters
   const dataParameters = ref('')
   const defaultParameters = ref([
-    'orderDescription=This is a REST API test transaction.',
-    'country=PH',
-    'city=Makati',
-    'state=NCR',
-    'postcode=1227',
-    'street=Valero',
-    'telnocc=63',
-    'phone=9854785236',
-    'email=flex.gateway@payreto.com',
-    'ip=192.168.0.1',
-    'card.number=5105105105105100',
-    'card.expiryMonth=01',
+    'orderDescriptor=This is a REST API test transaction',
+    'shipping.country=PH',
+    'shipping.city=Makati',
+    'shipping.state=NCR',
+    'shipping.postcode=1227',
+    'shipping.street1=Valero',
+    'customer.telnocc=63',
+    'customer.phone=9294112356',
+    'customer.email=flex.gateway@payreto.com',
+    'customer.givenName=John',
+    'customer.surname=Wick',
+    'customer.birthDate=19930528',
+    'customer.ip=192.168.0.1',
+    'card.number=4111110000000021',
+    'card.expiryMonth=12',
     'card.expiryYear=2030',
     'card.cvv=123',
-    'paymentBrand=MC',
     'currency=REPLACE_ME',
-    'terminalid=REPLACE_ME',
-    'paymentMode=REPLACE_ME',
     'paymentBrand=REPLACE_ME',
+    'paymentMode=REPLACE_ME',
+    'paymentType=REPLACE_ME',
+    'authentication.terminalId=REPLACE_ME',
   ])
 
   const memberID = useState('memberID')
-  const partnerName = useState('partnerName') // ToType
+  const merchantUsername = useState('merchantUsername')
+
+  const partnerID = useState('partnerID')
+
   const amount = useState('amount')
   const merchantRedirectURL = useState('merchantRedirectURL')
   const merchantSecureKey = useState('merchantSecureKey')
   const merchantTransactionId = useState('merchantTransactionId')
 
+  const responseDataToken = ref('')
+  const authToken = ref('')
+
+  const isLoading = ref(false)
+  const btnLabel = ref('Submit')
+  const isButtonError = ref(false)
+  const responseData = ref('')
+
   /**
    *
    */
   const submit = async () => {
-    // todo: generate hash <memberId>|<secureKey>|<merchantTransactionId>|<amount>
+    // generate hash
     const dataString = `${memberID.value}|${merchantSecureKey.value}|${merchantTransactionId.value}|${amount.value}`
     const generatedMd5Hash = generateHash(dataString)
-    console.info(
-      `Generated md5 hash for "${dataString}" is "${generatedMd5Hash}"`
-    )
+    console.info(`Generated md5 hash for "${dataString}"`)
 
-    // todo: generate token
-    // todo: append all params
+    // clear old token
+    authToken.value = ''
+
+    // generate token
+    await generateToken()
+
+    // append all params
+    const dataParamString = textAreaToURLParams(dataParameters.value)
+    const dataParamStringAdd = new URLSearchParams({
+      'authentication.memberId': memberID.value,
+      'authentication.checksum': generatedMd5Hash,
+      amount: amount.value,
+      merchantTransactionId: merchantTransactionId.value,
+      merchantRedirectUrl: merchantRedirectURL.value,
+    })
+
+    const payloadData = `${dataParamString}&${dataParamStringAdd.toString()}`
+
     // todo: submit
+    if (authToken.value !== '') {
+      try {
+        isLoading.value = true
+        btnLabel.value = 'Submitting Transaction'
+        responseData.value = ''
+        isButtonError.value = false
 
-    // generate a new trx ID after submitting the form
+        const { data } = await useFetch('/api/pz/restApi', {
+          method: 'post',
+          headers: { accessToken: authToken.value },
+          body: {
+            mode: mode.value,
+            payload: payloadData,
+          },
+        })
+
+        responseData.value = data.value
+
+        //
+      } catch (error) {
+        console.error(error)
+
+        //
+      } finally {
+        btnLabel.value = 'Submit'
+        isLoading.value = false
+      }
+    }
+
+    // generate a new trx ID after submitting the request
     merchantTransactionId.value = generateTrxId('kbn', 6)
+  }
+
+  /**
+   * Generates the Auth Token before submitting to the Payment endpoint
+   */
+  async function generateToken() {
+    try {
+      isLoading.value = true
+      isButtonError.value = false
+      btnLabel.value = 'Generating Token'
+
+      const { data } = await useFetch('/api/pz/generateAuthToken', {
+        method: 'post',
+        body: {
+          mode: mode.value,
+          partnerID: partnerID.value,
+          merchantUsername: merchantUsername.value,
+          merchantSecureKey: merchantSecureKey.value,
+        },
+      })
+
+      responseDataToken.value = data.value
+
+      if (responseDataToken.value.AuthToken) {
+        authToken.value = responseDataToken.value.AuthToken
+      } else {
+        console.error(responseDataToken.value)
+        isButtonError.value = true
+        authToken.value = ''
+
+        btnLabel.value = 'Token Generation Failed'
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      isLoading.value = false
+    }
   }
 
   /**
@@ -98,7 +191,38 @@
         {{ merchantTransactionId }}
       </Alert>
 
-      <button class="btn btn-primary" @click="submit">Submit</button>
+      <button
+        class="btn btn-primary"
+        :class="{ loading: isLoading, 'btn-error': isButtonError }"
+        @click="submit">
+        {{ btnLabel }}
+      </button>
+
+      <Transition>
+        <Textareadisplayonly
+          label="Response Data"
+          :data="responseData"
+          v-if="responseData"></Textareadisplayonly>
+      </Transition>
+
+      <button
+        class="btn w-full gap-2"
+        v-if="responseData"
+        @click="copyEntireResponse(responseData)">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+        </svg>
+        Response
+      </button>
     </div>
   </div>
 
