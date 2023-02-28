@@ -31,14 +31,14 @@ export default defineEventHandler(async (event) => {
         resource: body.checkoutID,
         responseData: response.data,
       },
-      `(MODE: ${body.mode}) Query operation successful`
+      `(MODE: ${body.mode}) HTTP ${response.status} - Query operation successful`
     )
 
     return response.data
   } catch (error) {
     logger.error(
       error.response.data,
-      `(MODE: ${body.mode}) Query operation failed`
+      `(MODE: ${body.mode}) HTTP ${error.response.status} - Query operation failed`
     )
 
     return error.response.data

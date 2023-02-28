@@ -1,9 +1,15 @@
+import pino from 'pino'
+
+// pino logger instance
+const logger = pino({
+  name: 'Kobeni - Generate Auth Token',
+})
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  console.log({
-    postedDataParams: body,
-  })
+  //
+  logger.info(body, 'Returned Response')
 
   /**
    * append body as query parameters

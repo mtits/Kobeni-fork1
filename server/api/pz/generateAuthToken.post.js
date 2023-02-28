@@ -1,4 +1,10 @@
 import axios from 'axios'
+import pino from 'pino'
+
+// pino logger instance
+const logger = pino({
+  name: 'Kobeni - Generate Auth Token',
+})
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -14,31 +20,35 @@ export default defineEventHandler(async (event) => {
       data: `authentication.partnerId=${body.partnerID}&merchant.username=${body.merchantUsername}&authentication.sKey=${body.merchantSecureKey}`,
     })
 
-    // log to server before returning
-    console.log({
-      requestData: {
-        mode: body.mode,
-        'authentication.partnerId': body.partnerID,
-        'merchant.username': body.merchantUsername,
-        'authentication.sKey': body.merchantSecureKey,
+    /**
+     * due to PZ being stupid regarding the returned HTTP code, regardless of results, they will always return 200 here, why??
+     */
+    logger.info(
+      {
+        requestData: {
+          'authentication.partnerId': body.partnerID,
+          'merchant.username': body.merchantUsername,
+        },
+        responseData: response.data,
       },
-      responseData: response.data,
-    })
+      `(MODE: ${body.mode}) HTTP ${response.status} - Auth token generated successfully`
+    )
 
     return response.data
 
     // error
   } catch (error) {
     // log to server before returning
-    console.log({
-      requestData: {
-        mode: body.mode,
-        'authentication.partnerId': body.partnerID,
-        'merchant.username': body.merchantUsername,
-        'authentication.sKey': body.merchantSecureKey,
+    logger.error(
+      {
+        requestData: {
+          'authentication.partnerId': body.partnerID,
+          'merchant.username': body.merchantUsername,
+        },
+        responseErrorData: error.response.data,
       },
-      responseErrorData: error.response.data,
-    })
+      `(MODE: ${body.mode}) HTTP ${error.response.status} - Failed to generate checkout ID`
+    )
 
     return error.response.data
   }

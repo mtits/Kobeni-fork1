@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         requestData: body.dataParameters,
         responseData: response.data,
       },
-      `(MODE: ${body.mode}) Server-to-server operation successful`
+      `(MODE: ${body.mode}) HTTP ${response.status} - Server-to-server operation successful`
     )
 
     return response.data
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
         requestData: body.dataParameters,
         responseData: error.response.data,
       },
-      `(MODE: ${body.mode}) Server-to-server operation failed`
+      `(MODE: ${body.mode}) HTTP ${error.response.status} - Server-to-server operation failed`
     )
 
     return error.response.data

@@ -1,4 +1,10 @@
 import axios from 'axios'
+import pino from 'pino'
+
+// pino logger instance
+const logger = pino({
+  name: 'Kobeni - REST API',
+})
 
 export default defineEventHandler(async (event) => {
   //
@@ -18,28 +24,26 @@ export default defineEventHandler(async (event) => {
     })
 
     // log to server before returning
-    console.log({
-      requestData: {
-        mode: body.mode,
-        token: accessToken,
-        data: body.payload,
+    logger.info(
+      {
+        requestData: body.payload,
+        responseData: response.data,
       },
-      responseData: response.data,
-    })
+      `(MODE: ${body.mode}) HTTP ${response.status} - REST API operation successful`
+    )
 
     return response.data
 
     // error
   } catch (error) {
     // log to server before returning
-    console.log({
-      requestData: {
-        mode: body.mode,
-        token: accessToken,
-        data: body.payload,
+    logger.error(
+      {
+        requestData: body.payload,
+        responseData: error.response.data,
       },
-      responseErrorData: error.response.data,
-    })
+      `(MODE: ${body.mode}) HTTP ${error.response.status} - REST API operation failed`
+    )
 
     return error.response.data
   }

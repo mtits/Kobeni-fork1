@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         requestData: body.dataParameters,
         responseData: response.data,
       },
-      `(MODE: ${body.mode}) Checkout ID generated successfully`
+      `(MODE: ${body.mode}) HTTP ${response.status} - Checkout ID generated successfully`
     )
 
     return response.data
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
         requestData: body.dataParameters,
         responseErrorData: error.response.data,
       },
-      `(MODE: ${body.mode}) Failed to generate checkout ID`
+      `(MODE: ${body.mode}) HTTP ${error.response.status} - Failed to generate checkout ID`
     )
 
     return error.response.data

@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
         requestData: body.dataParameters,
         responseData: response.data,
       },
-      `(MODE: ${body.mode}) Backoffice operation successful`
+      `(MODE: ${body.mode}) HTTP ${response.status} - Backoffice operation successful`
     )
 
     return response.data
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
         requestData: body.dataParameters,
         responseData: error.response.data,
       },
-      `(MODE: ${body.mode}) Backoffice operation successfully`
+      `(MODE: ${body.mode}) HTTP ${error.response.status} - Backoffice operation failed`
     )
 
     return error.response.data
