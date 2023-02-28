@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev | pino-pretty",
     "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -23,6 +23,7 @@
     "firebase": "^9.14.0",
     "howler": "^2.2.3",
     "json-to-csv-export": "^2.1.0",
-    "nanoid": "^4.0.0"
+    "nanoid": "^4.0.0",
+    "pino": "^8.11.0"
   }
 }

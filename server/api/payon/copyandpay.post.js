@@ -1,4 +1,15 @@
 import axios from 'axios'
+import pino from 'pino'
+
+// pino logger instance
+const logger = pino({
+  name: 'Kobeni-logs',
+  formatters: {
+    level(label, number) {
+      return { level: number }
+    },
+  },
+})
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -18,7 +29,7 @@ export default defineEventHandler(async (event) => {
     })
 
     // log to server before returning
-    console.log({
+    logger.info({
       requestData: {
         mode: body.mode,
         accessToken: body.accessToken,
@@ -32,7 +43,7 @@ export default defineEventHandler(async (event) => {
     // error
   } catch (error) {
     // log to server before returning
-    console.log({
+    logger.error({
       requestData: {
         mode: body.mode,
         accessToken: body.accessToken,
