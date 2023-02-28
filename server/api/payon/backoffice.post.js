@@ -1,4 +1,10 @@
 import axios from 'axios'
+import pino from 'pino'
+
+// pino logger instance
+const logger = pino({
+  name: 'Kobeni - Backoffice',
+})
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -18,28 +24,26 @@ export default defineEventHandler(async (event) => {
     })
 
     // log to server before returning
-    console.log({
-      requestData: {
-        mode: body.mode,
-        accessToken: body.accessToken,
-        data: body.dataParameters,
+    logger.info(
+      {
+        requestData: body.dataParameters,
+        responseData: response.data,
       },
-      responseData: response.data,
-    })
+      `(MODE: ${body.mode}) Backoffice operation successful`
+    )
 
     return response.data
 
     // error
   } catch (error) {
     // log to server before returning
-    console.log({
-      requestData: {
-        mode: body.mode,
-        accessToken: body.accessToken,
-        data: body.dataParameters,
+    logger.error(
+      {
+        requestData: body.dataParameters,
+        responseData: error.response.data,
       },
-      responseErrorData: error.response.data,
-    })
+      `(MODE: ${body.mode}) Backoffice operation successfully`
+    )
 
     return error.response.data
   }

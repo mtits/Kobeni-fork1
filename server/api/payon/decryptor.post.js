@@ -1,4 +1,10 @@
 import crypto from 'crypto'
+import pino from 'pino'
+
+// pino logger instance
+const logger = pino({
+  name: 'Kobeni - Webhook Decryptor',
+})
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -22,16 +28,18 @@ export default defineEventHandler(async (event) => {
     const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv)
     decipher.setAuthTag(authTag)
 
-    // Decrypt
+    // Decrypt, returns string
     const result = decipher.update(cipherText) + decipher.final()
-    console.log('Decryption Results:', JSON.parse(result))
 
-    //
-    return JSON.parse(result)
+    // parse to json
+    const objResult = JSON.parse(result)
 
-    //
+    // log to server before returning
+    logger.info(objResult, `Webhook Decryption Result`)
+
+    return objResult
   } catch (error) {
-    console.log('Decryption Error:', error)
-    return { ServerMsg: error }
+    logger.error(error, 'Decryption Error')
+    return { error }
   }
 })

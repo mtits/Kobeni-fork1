@@ -1,4 +1,10 @@
 import axios from 'axios'
+import pino from 'pino'
+
+// pino logger instance
+const logger = pino({
+  name: 'Kobeni - Get Transaction Results',
+})
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -19,18 +25,21 @@ export default defineEventHandler(async (event) => {
       },
     })
 
-    console.log({ transactionResult: response.data })
+    // log to server before returning
+    logger.info(
+      {
+        resource: body.checkoutID,
+        responseData: response.data,
+      },
+      `(MODE: ${body.mode}) Query operation successful`
+    )
 
     return response.data
   } catch (error) {
-    console.log({
-      requestData: {
-        mode: body.mode,
-        accessToken: body.accessToken,
-        entityId: body.entityId,
-      },
-      responseErrorData: error.response.data,
-    })
+    logger.error(
+      error.response.data,
+      `(MODE: ${body.mode}) Query operation failed`
+    )
 
     return error.response.data
   }

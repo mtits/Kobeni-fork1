@@ -3,12 +3,7 @@ import pino from 'pino'
 
 // pino logger instance
 const logger = pino({
-  name: 'Kobeni-logs',
-  formatters: {
-    level(label, number) {
-      return { level: number }
-    },
-  },
+  name: 'Kobeni - CopyAndPay',
 })
 
 export default defineEventHandler(async (event) => {
@@ -28,29 +23,25 @@ export default defineEventHandler(async (event) => {
       data: body.dataParameters,
     })
 
-    // log to server before returning
-    logger.info({
-      requestData: {
-        mode: body.mode,
-        accessToken: body.accessToken,
-        data: body.dataParameters,
+    // log to server
+    logger.info(
+      {
+        requestData: body.dataParameters,
+        responseData: response.data,
       },
-      responseData: response.data,
-    })
+      `(MODE: ${body.mode}) Checkout ID generated successfully`
+    )
 
     return response.data
-
-    // error
   } catch (error) {
     // log to server before returning
-    logger.error({
-      requestData: {
-        mode: body.mode,
-        accessToken: body.accessToken,
-        data: body.dataParameters,
+    logger.error(
+      {
+        requestData: body.dataParameters,
+        responseErrorData: error.response.data,
       },
-      responseErrorData: error.response.data,
-    })
+      `(MODE: ${body.mode}) Failed to generate checkout ID`
+    )
 
     return error.response.data
   }
