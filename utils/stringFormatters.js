@@ -289,3 +289,39 @@ export const generateTrxId = (prefix, length) => {
 export const generateHash = (dataString) => {
   return md5(dataString).toString()
 }
+
+/**
+ * Helper function to format the URL endpoints
+ * @param {String} envMode
+ * @param {String} integrationName - COPYANDPAY, S2S, BACKOFFICE
+ * @param {String} referenceId - required for some endpoints
+ * @returns {String} Formatted endpoint based on the env and integration
+ */
+export const oppwaEndPointFormatter = (
+  envMode,
+  integrationName,
+  referenceId = null
+) => {
+  const baseURL = 'oppwa.com'
+  const subDomain = envMode == 'Test' ? 'eu-test' : 'eu-prod'
+
+  //
+  switch (integrationName) {
+    case 'COPYANDPAY':
+      return `https://${subDomain}.${baseURL}/v1/checkouts`
+
+    case 'BACKOFFICE':
+      if (referenceId == '') {
+        throw new Error('Missing Resource', {
+          cause: 'A resource ID is required for this integration.',
+        })
+      } else {
+        return `https://${subDomain}.${baseURL}/v1/payments/${referenceId}`
+      }
+
+    default:
+      throw new Error('Invalid Integration', {
+        cause: 'Provided integration name is not defined.',
+      })
+  }
+}
