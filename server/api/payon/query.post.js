@@ -1,5 +1,6 @@
 import axios from 'axios'
 import pino from 'pino'
+import { oppwaEndPointFormatter } from '../../../utils/stringFormatters'
 
 // pino logger instance
 const logger = pino({
@@ -9,14 +10,28 @@ const logger = pino({
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  const subDomain = body.mode == 'Test' ? 'eu-test' : 'eu-prod'
   let endPoint = ''
   let merchantTransactionId = undefined // axios note: params that are null or undefined are not rendered in the URL.
 
+  /**
+   * error handling required here because a reference ID is required
+   */
   if (body.searchType == 'paymentId') {
-    endPoint = `https://${subDomain}.oppwa.com/v1/query/${body.referenceId}`
+    try {
+      endPoint = oppwaEndPointFormatter(body.mode, 'QUERY', body.referenceId)
+    } catch (error) {
+      const msg = 'Invalid Request'
+      logger.error(error, msg)
+
+      return {
+        kobeni: {
+          error: msg,
+          description: 'The reference ID cannot be empty.',
+        },
+      }
+    }
   } else {
-    endPoint = `https://${subDomain}.oppwa.com/v1/query`
+    endPoint = oppwaEndPointFormatter(body.mode, 'QUERY')
     merchantTransactionId = body.referenceId
   }
 

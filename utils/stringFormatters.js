@@ -293,35 +293,49 @@ export const generateHash = (dataString) => {
 /**
  * Helper function to format the URL endpoints
  * @param {String} envMode
- * @param {String} integrationName - COPYANDPAY, S2S, BACKOFFICE
+ * @param {String} integrationName - COPYANDPAY, GET_RESULTS, S2S, BACKOFFICE, QUERY, RECURRING
  * @param {String} referenceId - required for some endpoints
+ * @param {String} baseURL - defaults to 'oppwa.com', can be modified if API is hosted somewhere else
  * @returns {String} Formatted endpoint based on the env and integration
  */
 export const oppwaEndPointFormatter = (
   envMode,
   integrationName,
-  referenceId = null
+  referenceId = null,
+  baseURL = 'oppwa.com'
 ) => {
-  const baseURL = 'oppwa.com'
   const subDomain = envMode == 'Test' ? 'eu-test' : 'eu-prod'
 
-  //
-  switch (integrationName) {
-    case 'COPYANDPAY':
-      return `https://${subDomain}.${baseURL}/v1/checkouts`
+  // validate if referenceId is empty
+  if (referenceId == '') {
+    throw new Error('Missing Reference/Checkout/Registration ID')
+  } else {
+    // ze formatting
+    switch (integrationName) {
+      case 'COPYANDPAY':
+        return `https://${subDomain}.${baseURL}/v1/checkouts`
 
-    case 'BACKOFFICE':
-      if (referenceId == '') {
-        throw new Error('Missing Resource', {
-          cause: 'A resource ID is required for this integration.',
-        })
-      } else {
+      case 'S2S':
+        return `https://${subDomain}.${baseURL}/v1/payments`
+
+      case 'GET_RESULTS':
+        return `https://${subDomain}.${baseURL}/v1/checkouts/${referenceId}/payment`
+
+      case 'BACKOFFICE':
         return `https://${subDomain}.${baseURL}/v1/payments/${referenceId}`
-      }
 
-    default:
-      throw new Error('Invalid Integration', {
-        cause: 'Provided integration name is not defined.',
-      })
+      case 'QUERY':
+        return referenceId != null
+          ? `https://${subDomain}.${baseURL}/v1/query/${referenceId}`
+          : `https://${subDomain}.${baseURL}/v1/query`
+
+      case 'RECURRING':
+        return `https://${subDomain}.${baseURL}/v1/registrations/${referenceId}/payments`
+
+      default:
+        throw new Error('Invalid Integration Name', {
+          cause: `Provided integration name ${integrationName} is not defined.`,
+        })
+    }
   }
 }

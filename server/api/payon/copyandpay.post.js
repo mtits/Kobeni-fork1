@@ -9,11 +9,21 @@ const logger = pino({
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
+  let endPoint = ''
 
   try {
     // set the endpoint depending on the environment
-    const endPoint = oppwaEndPointFormatter(body.mode, 'COPYANDPAY')
+    endPoint = oppwaEndPointFormatter(body.mode, 'COPYANDPAY')
+  } catch (error) {
+    const msg = 'Invalid Endpoint'
+    logger.error(error, msg)
 
+    return {
+      kobeni: { error: msg, description: 'Unable to parse URL endpoint.' },
+    }
+  }
+
+  try {
     const response = await axios({
       method: 'post',
       url: endPoint,

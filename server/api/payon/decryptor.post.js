@@ -38,6 +38,8 @@ export default defineEventHandler(async (event) => {
     logger.info(objResult, `Webhook Decryption Result`)
 
     return objResult
+
+    //
   } catch (error) {
     logger.error(error, 'Decryption Error')
     return { error }
