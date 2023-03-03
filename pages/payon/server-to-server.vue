@@ -114,11 +114,15 @@ const submit = async () => {
     })
 
     responseData.value = data.value
-    referenceTransaction.value = responseData.value.id
 
-    if (responseData.value.registrationId) {
+    // save the trx as referemce fpr backoffice operations
+    if (data.value.id)
+      referenceTransaction.value = data.value.id
+
+    // same for registration ids
+    if (responseData.value.registrationId)
       registrationId.value = responseData.value.registrationId
-    }
+
   } catch (error) {
     console.error(error)
   } finally {
