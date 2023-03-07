@@ -7,12 +7,10 @@ const currentUser = useState('currentUser')
 
 //
 const mode = useState('mode')
+
 const modeText = computed(() => {
-  if (mode.value == 'Test') {
-    return 'https://eu-test.oppwa.com/v1/checkouts'
-  } else {
-    return 'https://eu-prod.oppwa.com/v1/checkouts'
-  }
+  const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
+  return `https://${subDomain}.oppwa.com/v1/checkouts`
 })
 
 //
