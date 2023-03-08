@@ -3,7 +3,7 @@ import pino from 'pino'
 
 // pino logger instance
 const logger = pino({
-  name: 'Kobeni - Fetch Transactions List',
+  name: 'Kobeni - Query Transaction',
 })
 
 export default defineEventHandler(async (event) => {
@@ -13,12 +13,9 @@ export default defineEventHandler(async (event) => {
 
   // set the endpoint depending on the environment
   const subDomain = body.mode == 'Test' ? 'preprod' : 'secure'
-  const endPoint = `https://${subDomain}.prtpg.com/transactionServices/REST/v1/getTransactionList`
+  const endPoint = `https://${subDomain}.prtpg.com/transactionServices/REST/v1/payments/${body.id}`
 
-  let data = `authentication.memberId=${body.memberID}&authentication.checksum=${body.checksum}&pagination.fromdate=${body.from}&pagination.todate=${body.to}`
-
-  // append status if ALL is not selected
-  if (body.status != 'ALL') data += `&status=${body.status}`
+  const data = `authentication.memberId=${body.memberId}&authentication.checksum=${body.checksum}&paymentType=IN&idType=PID`
 
   try {
     const response = await axios({
@@ -28,22 +25,26 @@ export default defineEventHandler(async (event) => {
       data: data,
     })
 
+    // log to server before returning
     logger.info(
       {
         requestData: data,
         responseData: response.data,
       },
-      `(MODE: ${body.mode}) HTTP ${response.status} - Fetch Transaction List`
+      `(MODE: ${body.mode}) HTTP ${response.status} - Query operation successful`
     )
 
     return response.data
+
+    // error
   } catch (error) {
+    // log to server before returning
     logger.error(
       {
         requestData: data,
-        responseErrorData: error.response.data,
+        responseData: error.response.data,
       },
-      `(MODE: ${body.mode}) HTTP ${error.response.status} - Failed to Fetch Transaction List`
+      `(MODE: ${body.mode}) HTTP ${error.response.status} - Query operation failed`
     )
 
     return error.response.data
