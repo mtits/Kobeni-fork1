@@ -299,7 +299,7 @@ function toggleModal(isEnabled, trxRef = '') {
             <div class="stats shadow bg-slate-800 p-3">
               <div class="stat">
                 <div class="stat-title text-white">Results</div>
-                <div class="stat-value">{{ selectedTrxData.result.description }}</div>
+                <div class="stat-value">{{ selectedTrxData.result.description.toUpperCase() }}</div>
                 <div class="stat-desc font-mono text-violet-400">{{ selectedTrxData.result.code }}</div>
               </div>
             </div>
