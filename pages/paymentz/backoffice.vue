@@ -95,7 +95,6 @@ async function submit() {
 
 
   try {
-
     // todo: generate token
     const { data } = await useFetch('/api/pz/generateAuthToken', {
       method: 'post',
@@ -191,7 +190,7 @@ function toggleModal(isEnabled, trxRef = '') {
   isModalEnabled.value = isEnabled
   selectedTrx.value = trxRef
 
-  if (isEnabled == true)
+  if (isEnabled)
     queryTransaction()
 }
 </script>
@@ -290,100 +289,128 @@ function toggleModal(isEnabled, trxRef = '') {
       <!-- modal -->
       <div class="modal" :class="{ 'modal-open': isModalEnabled }">
         <div class="modal-box w-11/12 max-w-4xl">
-          <label class="btn btn-sm btn-circle absolute right-2 top-2" @click="toggleModal(false)">✕</label>
 
-          <h3 class="text-lg font-bold text-sky-400">{{ selectedTrx }}</h3>
+          <label class="btn btn-sm btn-circle absolute right-2 top-2" v-if="selectedTrxData"
+            @click="toggleModal(false)">✕</label>
 
-          <div class="flex flex-col" v-if="selectedTrxData">
+          <div class="flex flex-col gap-5 mt-7" v-if="selectedTrxData">
 
-            <div class="flex gap-3 mt-6">
-
-              <!-- statuses -->
-              <div class="space-y-2">
-                <div>
-                  <h1 class="font-medium text-sky-400">Result Code</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.result.code }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Description</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.result.description }}
-                  </span>
-                </div>
+            <!-- header status -->
+            <div class="stats shadow bg-slate-800 p-3">
+              <div class="stat">
+                <div class="stat-title text-white">Results</div>
+                <div class="stat-value">{{ selectedTrxData.result.description }}</div>
+                <div class="stat-desc font-mono text-violet-400">{{ selectedTrxData.result.code }}</div>
               </div>
+            </div>
 
-              <!-- data -->
-              <div class="space-y-2">
+            <!-- content in columns -->
+            <div class="flex gap-5  mx-5">
+              <!-- statuses -->
+              <div class="flex-1 space-y-3">
+
+                <div v-if="selectedTrxData.timestamp">
+                  <h1 class="font-medium text-sky-400">Timestamp</h1>
+                  <span class="text-sm font-mono">
+                    {{ selectedTrxData.timestamp }}
+                  </span>
+                </div>
+
                 <div>
+                  <h1 class="font-medium text-sky-400">Tracking ID</h1>
+                  <span class="text-sm font-mono">
+                    {{ selectedTrx }}
+                  </span>
+                </div>
+
+                <div v-if="selectedTrxData.merchantTransactionId">
+                  <h1 class="font-medium text-sky-400">Merchant Transaction ID</h1>
+                  <span class="text-sm font-mono">
+                    {{ selectedTrxData.merchantTransactionId }}
+                  </span>
+                </div>
+
+                <div v-if="selectedTrxData.bankReferenceId">
+                  <h1 class="font-medium text-sky-400">Bank Reference ID</h1>
+                  <span class="text-sm">
+                    {{ selectedTrxData.bankReferenceId }}
+                  </span>
+                </div>
+
+                <div v-if="selectedTrxData.remark">
+                  <h1 class="font-medium text-sky-400">Bank Remark</h1>
+                  <span class="text-sm">
+                    {{ selectedTrxData.remark }}
+                  </span>
+                </div>
+
+                <div v-if="selectedTrxData.transactionStatus">
+                  <h1 class="font-medium text-sky-400">Transaction Status</h1>
+                  <div class="badge">
+                    {{ selectedTrxData.transactionStatus }}
+                  </div>
+                </div>
+
+                <div v-if="selectedTrxData.status">
                   <h1 class="font-medium text-sky-400">Status</h1>
                   <span class="text-sm">
                     {{ selectedTrxData.status }}
                   </span>
                 </div>
 
-                <div>
-                  <h1 class="font-medium text-sky-400">Brand</h1>
+                <div v-if="selectedTrxData.eci">
+                  <h1 class="font-medium text-sky-400">ECI</h1>
                   <span class="text-sm">
-                    {{ selectedTrxData.paymentBrand }}
+                    {{ selectedTrxData.eci }}
                   </span>
                 </div>
 
-                <div>
-                  <h1 class="font-medium text-sky-400">Payment Mode</h1>
+                <div v-if="selectedTrxData.orderDescription">
+                  <h1 class="font-medium text-sky-400">Order Description</h1>
                   <span class="text-sm">
-                    {{ selectedTrxData.paymentMode }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Amount</h1>
-                  <span class="text-sm font-mono">
-                    {{ selectedTrxData.amount }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Currency</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.currency }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Descriptor</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.descriptor }}
+                    {{ selectedTrxData.orderDescription }}
                   </span>
                 </div>
               </div>
 
-              <!-- card -->
-              <div class="space-y-2">
-                <div>
+              <!-- customer & card -->
+              <div class="flex-1 space-y-3">
+                <div v-if="selectedTrxData.firstName || selectedTrxData.lastName">
+                  <h1 class="font-medium text-sky-400">Name</h1>
+                  <span class="text-sm">
+                    {{ selectedTrxData.firstName }} {{ selectedTrxData.lastName }}
+                  </span>
+                </div>
+
+                <div v-if="selectedTrxData.customer.email">
+                  <h1 class="font-medium text-sky-400">Email</h1>
+                  <span class="text-sm">
+                    {{ selectedTrxData.customer.email }}
+                  </span>
+                </div>
+
+                <div v-if="selectedTrxData.card.bin">
                   <h1 class="font-medium text-sky-400">BIN</h1>
                   <span class="text-sm font-mono">
                     {{ selectedTrxData.card.bin }}
                   </span>
                 </div>
 
-                <div>
+                <div v-if="selectedTrxData.card.last4Digits">
                   <h1 class="font-medium text-sky-400">Last 4 Digits</h1>
                   <span class="text-sm font-mono">
                     {{ selectedTrxData.card.last4Digits }}
                   </span>
                 </div>
 
-                <div>
+                <div v-if="selectedTrxData.card.holder">
                   <h1 class="font-medium text-sky-400">Card Holder</h1>
                   <span class="text-sm">
                     {{ selectedTrxData.card.holder }}
                   </span>
                 </div>
 
-                <div>
+                <div v-if="selectedTrxData.card.expiryMonth || selectedTrxData.card.expiryYear">
                   <h1 class="font-medium text-sky-400">Expiry</h1>
                   <span class="text-sm font-mono">
                     {{ selectedTrxData.card.expiryMonth }} / {{ selectedTrxData.card.expiryYear }}
@@ -391,109 +418,81 @@ function toggleModal(isEnabled, trxRef = '') {
                 </div>
               </div>
 
-              <!-- customer -->
-              <div class="space-y-2">
-                <div>
-                  <h1 class="font-medium text-sky-400">First Name</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.firstName }}
+              <!-- data -->
+              <div class="flex-1 space-y-3">
+                <div v-if="selectedTrxData.paymentBrand">
+                  <h1 class="font-medium text-sky-400">Brand</h1>
+                  <div class="badge">
+                    {{ selectedTrxData.paymentBrand }}
+                  </div>
+                </div>
+
+                <div v-if="selectedTrxData.amount">
+                  <h1 class="font-medium text-sky-400">Amount</h1>
+                  <span class="text-sm font-mono">
+                    {{ selectedTrxData.amount }}
                   </span>
                 </div>
 
-                <div>
-                  <h1 class="font-medium text-sky-400">Last Name</h1>
+                <div v-if="selectedTrxData.currency">
+                  <h1 class="font-medium text-sky-400">Currency</h1>
+                  <div class="badge badge-info">
+                    {{ selectedTrxData.currency }}
+                  </div>
+                </div>
+
+                <div v-if="selectedTrxData.paymentMode">
+                  <h1 class="font-medium text-sky-400">Payment Mode</h1>
                   <span class="text-sm">
-                    {{ selectedTrxData.lastName }}
+                    {{ selectedTrxData.paymentMode }}
                   </span>
                 </div>
 
-                <div>
-                  <h1 class="font-medium text-sky-400">Email</h1>
+                <div v-if="selectedTrxData.descriptor">
+                  <h1 class="font-medium text-sky-400">Descriptor</h1>
                   <span class="text-sm">
-                    {{ selectedTrxData.customer.email }}
-                  </span>
-                </div>
-              </div>
-
-              <!-- misc. -->
-              <div class="space-y-2">
-                <div>
-                  <h1 class="font-medium text-sky-400">Timestamp</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.timestamp }}
+                    {{ selectedTrxData.descriptor }}
                   </span>
                 </div>
 
-                <div>
-                  <h1 class="font-medium text-sky-400">Merchant Transaction ID</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.merchantTransactionId }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Bank Remark</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.remark }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Transaction Status</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.transactionStatus }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Checksum</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.checksum }}
-                  </span>
-                </div>
-
-                <div>
-                  <h1 class="font-medium text-sky-400">Order Description</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.orderDescription }}
-                  </span>
-                </div>
-
-                <div>
+                <div v-if="selectedTrxData.companyName">
                   <h1 class="font-medium text-sky-400">Company Name</h1>
                   <span class="text-sm">
                     {{ selectedTrxData.companyName }}
                   </span>
                 </div>
 
-                <div>
+                <div v-if="selectedTrxData.merchantContact">
                   <h1 class="font-medium text-sky-400">Merchant Contact</h1>
                   <span class="text-sm">
                     {{ selectedTrxData.merchantContact }}
                   </span>
                 </div>
 
-                <div>
+                <div v-if="selectedTrxData.terminalId">
                   <h1 class="font-medium text-sky-400">Terminal ID</h1>
                   <span class="text-sm">
                     {{ selectedTrxData.terminalId }}
                   </span>
                 </div>
 
-                <div>
-                  <h1 class="font-medium text-sky-400">Bank Reference ID</h1>
-                  <span class="text-sm">
-                    {{ selectedTrxData.bankReferenceId }}
+                <div v-if="selectedTrxData.checksum">
+                  <h1 class="font-medium text-sky-400">Checksum</h1>
+                  <span class="text-sm font-mono">
+                    {{ selectedTrxData.checksum }}
                   </span>
                 </div>
               </div>
-
             </div>
 
-
+            <!-- buttons here -->
+            <div>
+              <button class="btn btn-warning w-full" v-if="selectedTrxData.result.code == '00001'">Refund</button>
+            </div>
           </div>
 
-          <button class="btn btn-ghost btn-block loading" v-else></button>
+          <progress class="progress" v-else></progress>
+
         </div>
       </div>
     </div>
