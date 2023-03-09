@@ -298,9 +298,9 @@ function toggleModal(isEnabled, trxRef = '') {
             <!-- header status -->
             <div class="stats shadow bg-slate-800 p-3">
               <div class="stat">
-                <div class="stat-title text-white">Results</div>
-                <div class="stat-value">{{ selectedTrxData.result.description.toUpperCase() }}</div>
-                <div class="stat-desc font-mono text-violet-400">{{ selectedTrxData.result.code }}</div>
+                <div class="stat-title font-mono text-violet-400">{{ selectedTrxData.result.code }}</div>
+                <div class="stat-value text-xl">{{ selectedTrxData.result.description.toUpperCase() }}</div>
+                <div class="stat-desc font-mono ">{{ selectedTrxData.timestamp }}</div>
               </div>
             </div>
 
@@ -308,13 +308,6 @@ function toggleModal(isEnabled, trxRef = '') {
             <div class="flex gap-5  mx-5">
               <!-- statuses -->
               <div class="flex-1 space-y-3">
-
-                <div v-if="selectedTrxData.timestamp">
-                  <h1 class="font-medium text-sky-400">Timestamp</h1>
-                  <span class="text-sm font-mono">
-                    {{ selectedTrxData.timestamp }}
-                  </span>
-                </div>
 
                 <div>
                   <h1 class="font-medium text-sky-400">Tracking ID</h1>
@@ -436,16 +429,16 @@ function toggleModal(isEnabled, trxRef = '') {
 
                 <div v-if="selectedTrxData.currency">
                   <h1 class="font-medium text-sky-400">Currency</h1>
-                  <div class="badge badge-info">
+                  <div class="badge">
                     {{ selectedTrxData.currency }}
                   </div>
                 </div>
 
                 <div v-if="selectedTrxData.paymentMode">
                   <h1 class="font-medium text-sky-400">Payment Mode</h1>
-                  <span class="text-sm">
+                  <div class="badge">
                     {{ selectedTrxData.paymentMode }}
-                  </span>
+                  </div>
                 </div>
 
                 <div v-if="selectedTrxData.descriptor">
