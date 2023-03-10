@@ -298,7 +298,7 @@ function toggleModal(isEnabled, trxRef = '') {
             <!-- header status -->
             <div class="stats shadow bg-slate-800 p-3">
               <div class="stat">
-                <div class="stat-title font-mono text-violet-400">{{ selectedTrxData.result.code }}</div>
+                <div class="stat-title font-mono text-violet-400">{{ selectedTrx }}</div>
                 <div class="stat-value text-xl">{{ selectedTrxData.result.description.toUpperCase() }}</div>
                 <div class="stat-desc font-mono ">{{ selectedTrxData.timestamp }}</div>
               </div>
@@ -309,17 +309,17 @@ function toggleModal(isEnabled, trxRef = '') {
               <!-- statuses -->
               <div class="flex-1 space-y-3">
 
-                <div>
-                  <h1 class="font-medium text-sky-400">Tracking ID</h1>
-                  <span class="text-sm font-mono">
-                    {{ selectedTrx }}
-                  </span>
-                </div>
-
                 <div v-if="selectedTrxData.merchantTransactionId">
                   <h1 class="font-medium text-sky-400">Merchant Transaction ID</h1>
                   <span class="text-sm font-mono">
                     {{ selectedTrxData.merchantTransactionId }}
+                  </span>
+                </div>
+
+                <div>
+                  <h1 class="font-medium text-sky-400">Result Code</h1>
+                  <span class="text-sm font-mono">
+                    {{ selectedTrxData.result.code }}
                   </span>
                 </div>
 
