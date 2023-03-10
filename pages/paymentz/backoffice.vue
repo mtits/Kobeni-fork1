@@ -263,9 +263,19 @@ function toggleModal(isEnabled, trxRef = '') {
               <tr class="hover" v-for="trx in transactionList">
                 <td>{{ trx.transactionDate }}</td>
                 <td>
-                  <a class="btn btn-sm" @click="toggleModal(true, trx.systemPaymentId)">
-                    {{ trx.systemPaymentId }}
-                  </a>
+                  <div class="btn-group">
+                    <button class="btn btn-sm font-mono" @click="toggleModal(true, trx.systemPaymentId)">
+                      {{ trx.systemPaymentId }}
+                    </button>
+                    <button class="btn btn-sm" @click="copyString(trx.systemPaymentId)">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                        <path
+                          d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
+                        <path
+                          d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
+                      </svg>
+                    </button>
+                  </div>
                 </td>
                 <td class="font-mono">
                   {{ trx.amount }}
@@ -459,7 +469,9 @@ function toggleModal(isEnabled, trxRef = '') {
             </div>
 
             <!-- buttons here -->
-            <div class="flex flex-row-reverse">
+            <div class="flex flex-row-reverse gap-2">
+
+
               <button class="btn btn-warning gap-2" v-if="selectedTrxData.result.code == '00001'">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6">
@@ -467,6 +479,15 @@ function toggleModal(isEnabled, trxRef = '') {
                     d="M8.25 9.75h4.875a2.625 2.625 0 010 5.25H12M8.25 9.75L10.5 7.5M8.25 9.75L10.5 12m9-7.243V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z" />
                 </svg>
                 Refund
+              </button>
+
+              <button class="btn gap-2" @click="copyEntireResponse(selectedTrxData)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+                </svg>
+                Data
               </button>
             </div>
           </div>
