@@ -1,49 +1,49 @@
 <script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Configure Merchant',
-  })
+definePageMeta({
+  pageTitle: 'Kobeni | Configure Merchant',
+})
 
-  //
-  const mode = useState('mode')
-  const modeOptions = ref([
-    {
-      text: 'TEST',
-      value: 'Test',
-    },
-    {
-      text: 'PRODUCTION',
-      value: 'Live',
-    },
-  ])
-  const modeText = computed(() => {
-    if (mode.value == 'Test') {
-      return '"https://eu-test.oppwa.com/v1/..."'
-    } else {
-      return '"https://eu-prod.oppwa.com/v1/..."'
-    }
-  })
+//
+const mode = useState('mode')
+const modeOptions = ref([
+  {
+    text: 'TEST',
+    value: 'Test',
+  },
+  {
+    text: 'PRODUCTION',
+    value: 'Live',
+  },
+])
+const modeText = computed(() => {
+  if (mode.value == 'Test') {
+    return '"https://eu-test.oppwa.com/v1/..."'
+  } else {
+    return '"https://eu-prod.oppwa.com/v1/..."'
+  }
+})
 
-  const selectedCardBrands = useState('selectedCardBrands')
-  const cardBrandList = getBrandsList().cards
+const selectedCardBrands = useState('selectedCardBrands')
+const cardBrandList = getBrandsList().cards
 
-  const selectedVirtualBrands = useState('selectedVirtualBrands')
-  const virtualBrandList = getBrandsList().virtual
+const selectedVirtualBrands = useState('selectedVirtualBrands')
+const virtualBrandList = getBrandsList().virtual
 
-  const selectedBankBrands = useState('selectedBankBrands')
-  const bankBrandList = getBrandsList().bank
+const selectedBankBrands = useState('selectedBankBrands')
+const bankBrandList = getBrandsList().bank
 
-  const combinedSelectedBrands = computed(() => {
-    return [
-      ...selectedCardBrands.value,
-      ...selectedVirtualBrands.value,
-      ...selectedBankBrands.value,
-    ]
-  })
+const combinedSelectedBrands = computed(() => {
+  return [
+    ...selectedCardBrands.value,
+    ...selectedVirtualBrands.value,
+    ...selectedBankBrands.value,
+  ]
+})
 
-  const selectedBrands = useState('selectedBrands')
-  // get app states
-  const accessToken = useState('accessToken')
-  const entityId = useState('entityId')
+const selectedBrands = useState('selectedBrands')
+// get app states
+const accessToken = useState('accessToken')
+const entityId = useState('entityId')
 </script>
 
 <template>
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <hr />
+    <div class="divider"></div>
 
     <!-- BIP credentials row -->
     <div class="flex gap-10">
@@ -94,21 +94,17 @@
       </div>
 
       <div class="flex-1">
-        <Input
-          label="Access Token"
+        <Input label="Access Token"
           helper-text="Access token can be taken from the backend UI under Administration > Account data > Merchant / Channel Info only if you have specific administration rights."
-          type="password"
-          v-model="accessToken" />
+          type="password" v-model="accessToken" />
 
-        <Input
-          label="Entity ID"
+        <Input label="Entity ID"
           helper-text="The entity required to authorize the request. This should be the channel entity identifier. In case channel dispatching is activated then it should be the merchant entity identifier."
-          type="text"
-          v-model="entityId" />
+          type="text" v-model="entityId" />
       </div>
     </div>
 
-    <hr />
+    <div class="divider"></div>
 
     <!-- brands row -->
     <div class="flex gap-10">
@@ -125,19 +121,14 @@
           <kbd class="kbd kbd-sm text-sky-400">data-brands</kbd> attribute.
         </p>
 
-        <button
-          class="btn btn-accent w-full"
-          @click="selectedBrands = combinedSelectedBrands">
+        <button class="btn btn-accent w-full" @click="selectedBrands = combinedSelectedBrands">
           Set Active Brands
         </button>
 
         <div class="justify-start space-x-3 space-y-3">
           <!-- selected brands display via badges -->
           <TransitionGroup>
-            <div
-              class="badge badge-warning badge-lg"
-              v-for="brand in selectedBrands"
-              :key="brand">
+            <div class="badge badge-warning badge-lg" v-for="brand in selectedBrands" :key="brand">
               {{ brand }}
             </div>
           </TransitionGroup>
@@ -150,21 +141,14 @@
           <div class="card-body">
             <h2 class="card-title text-sky-400">Cards</h2>
             <!-- select brands -->
-            <select
-              class="select select-bordered"
-              size="10"
-              v-model="selectedCardBrands"
-              multiple>
+            <select class="select select-bordered" size="10" v-model="selectedCardBrands" multiple>
               <option v-for="brand in cardBrandList">{{ brand }}</option>
             </select>
 
             <!-- display currently selected for this section -->
             <div class="card-actions justify-start mt-3">
               <TransitionGroup>
-                <div
-                  class="badge badge-info badge-lg"
-                  v-for="brand in selectedCardBrands"
-                  :key="brand">
+                <div class="badge badge-info badge-lg" v-for="brand in selectedCardBrands" :key="brand">
                   {{ brand }}
                 </div>
               </TransitionGroup>
@@ -176,21 +160,14 @@
         <div class="card bg-base-100">
           <div class="card-body">
             <h2 class="card-title text-sky-400">Virtual Accounts</h2>
-            <select
-              class="select select-bordered"
-              size="10"
-              v-model="selectedVirtualBrands"
-              multiple>
+            <select class="select select-bordered" size="10" v-model="selectedVirtualBrands" multiple>
               <option v-for="brand in virtualBrandList">{{ brand }}</option>
             </select>
 
             <!-- display currently selected for this section -->
             <div class="card-actions justify-start mt-3">
               <TransitionGroup>
-                <div
-                  class="badge badge-info badge-lg"
-                  v-for="brand in selectedVirtualBrands"
-                  :key="brand">
+                <div class="badge badge-info badge-lg" v-for="brand in selectedVirtualBrands" :key="brand">
                   {{ brand }}
                 </div>
               </TransitionGroup>
@@ -202,21 +179,14 @@
         <div class="card bg-base-100">
           <div class="card-body">
             <h2 class="card-title text-sky-400">Bank Accounts</h2>
-            <select
-              class="select select-bordered"
-              size="10"
-              v-model="selectedBankBrands"
-              multiple>
+            <select class="select select-bordered" size="10" v-model="selectedBankBrands" multiple>
               <option v-for="brand in bankBrandList">{{ brand }}</option>
             </select>
 
             <!-- display currently selected for this section -->
             <div class="card-actions justify-start mt-3">
               <TransitionGroup>
-                <div
-                  class="badge badge-info badge-lg"
-                  v-for="brand in selectedBankBrands"
-                  :key="brand">
+                <div class="badge badge-info badge-lg" v-for="brand in selectedBankBrands" :key="brand">
                   {{ brand }}
                 </div>
               </TransitionGroup>

@@ -1,35 +1,35 @@
 <script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Widget Behaviour',
-  })
+definePageMeta({
+  pageTitle: 'Kobeni | Widget Behaviour',
+})
 
-  // all widget states
-  const autoLaunchWidget = useState('autoLaunchWidget')
-  const widgetStyle = useState('widgetStyle')
-  const maskCvv = useState('maskCvv')
-  const requireCvv = useState('requireCvv')
-  const showCVVHint = useState('showCVVHint')
-  const allowEmptyCvv = useState('allowEmptyCvv')
-  const validation = useState('validation')
-  const showLabels = useState('showLabels')
-  const showPlaceholders = useState('showPlaceholders')
-  const disableCardExpiryDateValidation = useState(
-    'disableCardExpiryDateValidation'
-  )
+// all widget states
+const autoLaunchWidget = useState('autoLaunchWidget')
+const widgetStyle = useState('widgetStyle')
+const maskCvv = useState('maskCvv')
+const requireCvv = useState('requireCvv')
+const showCVVHint = useState('showCVVHint')
+const allowEmptyCvv = useState('allowEmptyCvv')
+const validation = useState('validation')
+const showLabels = useState('showLabels')
+const showPlaceholders = useState('showPlaceholders')
+const disableCardExpiryDateValidation = useState(
+  'disableCardExpiryDateValidation'
+)
 
-  //
-  const payNowLabel = useState('payNowLabel')
-  const labelBrand = useState('labelBrand')
-  const cardNumber = useState('cardNumber')
-  const expiryDate = useState('expiryDate')
-  const cardHolder = useState('cardHolder')
-  const cvv = useState('cvv')
+//
+const payNowLabel = useState('payNowLabel')
+const labelBrand = useState('labelBrand')
+const cardNumber = useState('cardNumber')
+const expiryDate = useState('expiryDate')
+const cardHolder = useState('cardHolder')
+const cvv = useState('cvv')
 
-  const locale = useState('locale')
+const locale = useState('locale')
 
-  //
-  const localeList = getLocaleList()
-  const shopperResultURLPayon = useState('shopperResultUrlPayon')
+//
+const localeList = getLocaleList()
+const shopperResultURLPayon = useState('shopperResultUrlPayon')
 </script>
 
 <template>
@@ -50,15 +50,12 @@
         </p>
       </div>
       <div class="flex-1">
-        <Input
-          label="shopperResultUrl"
-          type="text"
-          helper-text="The customer/user is redirected here"
+        <Input label="shopperResultUrl" type="text" helper-text="The customer/user is redirected here"
           v-model="shopperResultURLPayon" />
       </div>
     </div>
 
-    <hr />
+    <div class="divider"></div>
 
     <!-- labels row -->
     <div class="flex gap-10">
@@ -110,7 +107,7 @@
       </div>
     </div>
 
-    <hr />
+    <div class="divider"></div>
 
     <!-- toggles -->
     <div class="flex flex-col gap-2">
@@ -130,29 +127,19 @@
       </Toggle>
 
       <!-- plain vs card -->
-      <div
-        class="form-control w-auto transition hover:bg-slate-800 p-3 rounded-lg">
+      <div class="form-control w-auto transition hover:bg-slate-800 p-3 rounded-lg">
         <label class="label cursor-pointer">
           <span class="label-text">
-            <span class="text-sky-400 font-bold"><kbd>Card Style</kbd></span
-            ><br />
+            <span class="text-sky-400 font-bold"><kbd>Card Style</kbd></span><br />
             Set the widget's style to
             <span class="text-sky-400">card</span> (This will some cause
             visibility issues because of this app's theme). Current default:
-            <span class="text-sky-400">'plain'</span>.</span
-          >
-          <input
-            type="checkbox"
-            class="toggle"
-            v-model="widgetStyle"
-            true-value="card"
-            false-value="plain" />
+            <span class="text-sky-400">'plain'</span>.</span>
+          <input type="checkbox" class="toggle" v-model="widgetStyle" true-value="card" false-value="plain" />
         </label>
       </div>
 
-      <Toggle
-        v-model="disableCardExpiryDateValidation"
-        title="disableCardExpiryDateValidation">
+      <Toggle v-model="disableCardExpiryDateValidation" title="disableCardExpiryDateValidation">
         Determines whether the card expiry date field should be validated. By
         default it is validated (false).
       </Toggle>
