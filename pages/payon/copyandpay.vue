@@ -37,6 +37,9 @@ const cnpModal = useState('cnpModal')
 const shopperResultURLPayon = useState('shopperResultUrlPayon')
 const showLoading = ref(false)
 
+// trx ID
+const trxId = useState('payonTrxId')
+
 // widget states
 const autoLaunchWidget = useState('autoLaunchWidget')
 const selectedBrands = useState('selectedBrands')
@@ -114,7 +117,7 @@ const submit = async () => {
         accessToken: accessToken.value,
         dataParameters: `${textAreaToURLParams(
           dataParameters.value
-        )}&entityId=${entityId.value}`,
+        )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
       },
     })
 
@@ -135,6 +138,10 @@ const submit = async () => {
   } finally {
     showLoading.value = false
   }
+
+  // generate a new trx ID after a submit
+  trxId.value = generateTrxId('kbn', 6)
+  // console.info(`New merchantTransactionId: ${trxId.value}`)
 }
 
 /**
@@ -258,7 +265,8 @@ onMounted(async () => {
         <NuxtLink class="link font-semibold" to="/payon/config/configure-merchant">
           Configure Merchant
         </NuxtLink>
-        menu. Do not add it here.
+        menu, do not add it here. Additionally, the field <kbd class="kbd kbd-sm">merchantTransactionId</kbd> is
+        automatically generated and added.
       </Alert>
 
       <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>

@@ -11,4 +11,7 @@ export const useInitPayonStates = () => {
   )
   useState('entityId', () => '8a8294174b7ecb28014b9699220015ca')
   useState('cnpModal', () => false)
+  useState('payonTrxId', () => {
+    return generateTrxId('kbn', 6)
+  })
 }

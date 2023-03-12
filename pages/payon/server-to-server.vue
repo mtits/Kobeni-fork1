@@ -50,6 +50,9 @@ const sessionAccessToken = ref('')
 const sessiondataParametersServerToServer = ref('')
 const sessionEntityId = ref('')
 
+// 
+const trxId = useState('payonTrxId')
+
 /**
  * fetches data from the session and sets it to the local variables
  */
@@ -109,7 +112,7 @@ const submit = async () => {
         accessToken: accessToken.value,
         dataParameters: `${textAreaToURLParams(
           dataParameters.value
-        )}&entityId=${entityId.value}`,
+        )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
       },
     })
 
@@ -128,6 +131,10 @@ const submit = async () => {
   } finally {
     showLoading.value = false
   }
+
+
+  trxId.value = generateTrxId('kbn', 6)
+  // console.info(`New merchantTransactionId: ${trxId.value}`)
 }
 
 /**
@@ -152,6 +159,16 @@ onMounted(async () => {
       <!-- show endpoint -->
       <InputReadOnly label="Endpoint" v-model="modeText" :mode="mode" :display-character-count="false"
         @copy-content="copyString(modeText)" />
+
+      <Alert title="Info" color-style="bg-sky-900 text-slate-300">
+        Be sure to add the <kbd class="kbd kbd-sm">entityId</kbd> parameter in
+        the
+        <NuxtLink class="link font-semibold" to="/payon/config/configure-merchant">
+          Configure Merchant
+        </NuxtLink>
+        menu, do not add it here. Additionally, the field <kbd class="kbd kbd-sm">merchantTransactionId</kbd> is
+        automatically generated and added.
+      </Alert>
 
       <!-- Params -->
       <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>

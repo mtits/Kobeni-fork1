@@ -41,9 +41,11 @@ const combinedSelectedBrands = computed(() => {
 })
 
 const selectedBrands = useState('selectedBrands')
+
 // get app states
 const accessToken = useState('accessToken')
 const entityId = useState('entityId')
+const trxId = useState('payonTrxId')
 </script>
 
 <template>
@@ -105,6 +107,28 @@ const entityId = useState('entityId')
     </div>
 
     <div class="divider"></div>
+
+    <!-- Merchant transction ID -->
+    <div class="flex gap-10">
+      <!-- left -->
+      <div class="flex-none w-96 space-y-2">
+        <div class="prose">
+          <h3 class="text-sky-400 font-bold">Others</h3>
+        </div>
+
+        <p class="text-sm">
+          Optional data.
+        </p>
+      </div>
+
+      <div class="flex-1">
+        <Input label="Merchant Transaction ID" helper-text="This changes for every submit." type="text" v-model="trxId" />
+      </div>
+    </div>
+
+
+    <div class="divider"></div>
+
 
     <!-- brands row -->
     <div class="flex gap-10">
