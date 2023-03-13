@@ -247,6 +247,7 @@ function toggleModal(isEnabled, trxRef = '') {
           <table class="table table-compact table-zebra w-full">
             <thead>
               <tr>
+                <th>No.</th>
                 <th>Date</th>
                 <th>Tracking ID</th>
                 <th>Amount</th>
@@ -260,7 +261,8 @@ function toggleModal(isEnabled, trxRef = '') {
               </tr>
             </thead>
             <tbody>
-              <tr class="hover" v-for="trx in transactionList">
+              <tr class="hover" v-for="(trx, index) in transactionList">
+                <td class="font-mono">{{ index + 1 }}</td>
                 <td>{{ trx.transactionDate }}</td>
                 <td>
                   <div class="btn-group">
@@ -308,7 +310,9 @@ function toggleModal(isEnabled, trxRef = '') {
               <!-- header status -->
               <div class="stats shadow bg-slate-800 p-3">
                 <div class="stat">
-                  <div class="stat-title font-mono text-violet-400">#{{ selectedTrx }}</div>
+                  <div class="stat-title font-mono text-violet-400">
+                    <span class="text-xs">#</span>{{ selectedTrx }}
+                  </div>
                   <div class="stat-value text-xl">{{ selectedTrxData.result.description.toUpperCase() }}</div>
                   <div class="stat-desc font-mono ">{{ selectedTrxData.timestamp }}</div>
                 </div>
@@ -340,9 +344,9 @@ function toggleModal(isEnabled, trxRef = '') {
 
                   <div>
                     <h1 class="font-medium text-sky-400">Result Code</h1>
-                    <span class="text-sm font-mono">
+                    <div class="badge font-mono">
                       {{ selectedTrxData.result.code }}
-                    </span>
+                    </div>
                   </div>
 
                   <div v-if="selectedTrxData.bankReferenceId">
