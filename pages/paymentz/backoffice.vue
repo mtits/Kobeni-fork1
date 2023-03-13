@@ -41,7 +41,7 @@ onMounted(() => {
   const formattedDate = `${date.getFullYear()}-${month}-${day}`
   // console.info(formattedDate)
 
-  dateFrom.value = formattedDate
+  dateFrom.value = `${date.getFullYear()}-${month}-01` // always init at the 1st day of the month
   dateTo.value = formattedDate
 })
 
