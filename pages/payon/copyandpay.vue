@@ -181,6 +181,15 @@ const setWpwlOptions = () => {
 
       'background-color': 'rgb(229 231 235)',
     },
+
+    onReady: function () {
+      // create the field
+      var thingy =
+        '<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/tBhQJ7yWR0rSAeAMLa" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><br />'
+
+      // add the field
+      $('form.wpwl-form-card').find('.wpwl-button').before(thingy)
+    },
   }
 
   if (useState('labelBrand').value != '') {

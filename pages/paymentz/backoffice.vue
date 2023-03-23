@@ -147,8 +147,6 @@ async function submit() {
   }
 }
 
-
-
 const isModalEnabled = ref(false)
 const selectedTrx = ref('')
 const selectedTrxData = ref('')
