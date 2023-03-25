@@ -16,6 +16,8 @@ const showPlaceholders = useState('showPlaceholders')
 const disableCardExpiryDateValidation = useState(
   'disableCardExpiryDateValidation'
 )
+const paypalBNPL = useState('paypalBNPL')
+const paypalBNPLBuyerCountry = useState('paypalBNPLBuyerCountry')
 
 //
 const payNowLabel = useState('payNowLabel')
@@ -172,6 +174,20 @@ const shopperResultURLPayon = useState('shopperResultUrlPayon')
       <Toggle v-model="showPlaceholders" title="showPlaceholders">
         Shows or hides input placeholders. Default is true.
       </Toggle>
+
+      <Toggle v-model="paypalBNPL" title="Enable Paypal BNPL (Buy Now, Pay Later)">
+        When enabled, Kobeni will include the JS required to add the Paypal BNPL smart button(s).
+      </Toggle>
+
+      <Transition>
+
+        <div class="p-6 bg-slate-900 rounded-2xl" v-if="paypalBNPL">
+          <Input label="Paypal BNPL Buyer Country"
+            helper-text="Required for Paypal's Smart Buttons for BNPL. This also affect the label of the BNPL button depending on the country."
+            v-model="paypalBNPLBuyerCountry" />
+        </div>
+      </Transition>
+
     </div>
   </div>
 </template>

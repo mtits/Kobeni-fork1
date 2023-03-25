@@ -33,6 +33,8 @@ export const useInitWidgetStates = () => {
   useState('showLabels', () => true)
   useState('showPlaceholders', () => true)
   useState('disableCardExpiryDateValidation', () => false)
+  useState('paypalBNPL', () => false)
+  useState('paypalBNPLBuyerCountry', () => 'US')
 
   // widget labels
   useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')

@@ -216,6 +216,20 @@ const setWpwlOptions = () => {
     wpwlOptions.labels.submit = useState('payNowLabel').value
   }
 
+  // Paypal BNPL
+  if (useState('paypalBNPL').value) {
+    wpwlOptions.inlineFlow = ['PAYPAL']
+    wpwlOptions.paypal = {
+      sdkParams: {
+        components: "buttons,messages",
+        "enable-funding": "paylater",
+        "disable-funding": "card",
+        "buyer-country": useState('paypalBNPLBuyerCountry').value
+      }
+    }
+
+  }
+
   // display the options to the user
   console.table(wpwlOptions)
 }
