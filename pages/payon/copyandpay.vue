@@ -1,273 +1,279 @@
 <script setup>
-definePageMeta({
-  pageTitle: 'Kobeni | CopyandPay',
-})
-
-const currentUser = useState('currentUser')
-
-//
-const mode = useState('mode')
-
-const modeText = computed(() => {
-  const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
-  return `https://${subDomain}.oppwa.com/v1/checkouts`
-})
-
-//
-const accessToken = useState('accessToken')
-const entityId = useState('entityId')
-
-//
-const dataParameters = ref('')
-const defaultParameters = ref([
-  'amount=1.00',
-  'currency=USD',
-  'paymentType=DB',
-  'billing.city=South Jadyn',
-  'billing.country=US',
-  'billing.street1=645 Delmer Vista Suite 927',
-  'billing.postcode=15705-9357',
-  'customer.email=test@test.com',
-  'customer.givenName=John',
-  'customer.surname=Wick',
-])
-const responseData = ref('')
-const checkoutId = useState('checkoutId')
-const cnpModal = useState('cnpModal')
-const shopperResultURLPayon = useState('shopperResultUrlPayon')
-const showLoading = ref(false)
-
-// trx ID
-const trxId = useState('payonTrxId')
-
-// widget states
-const autoLaunchWidget = useState('autoLaunchWidget')
-const selectedBrands = useState('selectedBrands')
-const selectedBrandsFormatted = computed(() => {
-  return arrayToFormatter(selectedBrands.value, ' ')
-})
-
-// all session data from here
-const sessionMode = ref('')
-const sessionBrands = ref('')
-const sessionAccessToken = ref('')
-const sessionDataParameters = ref('')
-const sessionEntityId = ref('')
-
-/**
- * fetches data from the session and sets it to the local variables
- */
-const getSessionData = async () => {
-  const { session, refresh } = await useSession()
-
-  await refresh()
-
-  sessionMode.value = session.value.mode
-  sessionBrands.value = session.value.brands
-  sessionAccessToken.value = session.value.accessToken
-  sessionEntityId.value = session.value.entityId
-  sessionDataParameters.value = session.value.dataParameters
-}
-
-/**
- * loads the session data as the main ui data
- */
-const loadSessionData = () => {
-  mode.value = sessionMode.value
-  selectedBrands.value = sessionBrands.value
-  accessToken.value = sessionAccessToken.value
-  entityId.value = sessionEntityId.value
-  dataParameters.value = sessionDataParameters.value
-}
-
-/**
- * set up session data on click of the submit button
- */
-const setSessionData = async () => {
-  const { refresh, update } = await useSession()
-
-  await refresh()
-
-  await update({
-    mode: mode.value,
-    brands: selectedBrands.value,
-    accessToken: accessToken.value,
-    entityId: entityId.value,
-    dataParameters: dataParameters.value,
+  definePageMeta({
+    pageTitle: 'Kobeni | CopyandPay',
   })
-}
 
-/**
- * submit to the API!
- */
-const submit = async () => {
-  showLoading.value = true
-  responseData.value = ''
-
-  // push the sessions to.. well.. sessions
-  await setSessionData()
-  await getSessionData()
+  const currentUser = useState('currentUser')
 
   //
-  try {
-    const { data } = await useFetch('/api/payon/copyandpay', {
-      method: 'post',
-      body: {
-        mode: mode.value,
-        accessToken: accessToken.value,
-        dataParameters: `${textAreaToURLParams(
-          dataParameters.value
-        )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
-      },
+  const mode = useState('mode')
+
+  const modeText = computed(() => {
+    const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
+    return `https://${subDomain}.oppwa.com/v1/checkouts`
+  })
+
+  //
+  const accessToken = useState('accessToken')
+  const entityId = useState('entityId')
+
+  //
+  const dataParameters = ref('')
+  const defaultParameters = ref([
+    'amount=1.00',
+    'currency=USD',
+    'paymentType=DB',
+    'billing.city=South Jadyn',
+    'billing.country=US',
+    'billing.street1=645 Delmer Vista Suite 927',
+    'billing.postcode=15705-9357',
+    'customer.email=test@test.com',
+    'customer.givenName=John',
+    'customer.surname=Wick',
+  ])
+  const responseData = ref('')
+  const checkoutId = useState('checkoutId')
+  const cnpModal = useState('cnpModal')
+  const shopperResultURLPayon = useState('shopperResultUrlPayon')
+  const showLoading = ref(false)
+
+  // trx ID
+  const trxId = useState('payonTrxId')
+
+  // widget states
+  const autoLaunchWidget = useState('autoLaunchWidget')
+  const selectedBrands = useState('selectedBrands')
+  const selectedBrandsFormatted = computed(() => {
+    return arrayToFormatter(selectedBrands.value, ' ')
+  })
+
+  // all session data from here
+  const sessionMode = ref('')
+  const sessionBrands = ref('')
+  const sessionAccessToken = ref('')
+  const sessionDataParameters = ref('')
+  const sessionEntityId = ref('')
+
+  /**
+   * fetches data from the session and sets it to the local variables
+   */
+  const getSessionData = async () => {
+    const { session, refresh } = await useSession()
+
+    await refresh()
+
+    sessionMode.value = session.value.mode
+    sessionBrands.value = session.value.brands
+    sessionAccessToken.value = session.value.accessToken
+    sessionEntityId.value = session.value.entityId
+    sessionDataParameters.value = session.value.dataParameters
+  }
+
+  /**
+   * loads the session data as the main ui data
+   */
+  const loadSessionData = () => {
+    mode.value = sessionMode.value
+    selectedBrands.value = sessionBrands.value
+    accessToken.value = sessionAccessToken.value
+    entityId.value = sessionEntityId.value
+    dataParameters.value = sessionDataParameters.value
+  }
+
+  /**
+   * set up session data on click of the submit button
+   */
+  const setSessionData = async () => {
+    const { refresh, update } = await useSession()
+
+    await refresh()
+
+    await update({
+      mode: mode.value,
+      brands: selectedBrands.value,
+      accessToken: accessToken.value,
+      entityId: entityId.value,
+      dataParameters: dataParameters.value,
     })
+  }
 
-    responseData.value = data.value
+  /**
+   * submit to the API!
+   */
+  const submit = async () => {
+    showLoading.value = true
+    responseData.value = ''
 
-    // save states
+    // push the sessions to.. well.. sessions
+    await setSessionData()
+    await getSessionData()
+
+    //
+    try {
+      const { data } = await useFetch('/api/payon/copyandpay', {
+        method: 'post',
+        body: {
+          mode: mode.value,
+          accessToken: accessToken.value,
+          dataParameters: `${textAreaToURLParams(
+            dataParameters.value
+          )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
+        },
+      })
+
+      responseData.value = data.value
+
+      // save states
+      if (responseData.value.id) {
+        checkoutId.value = responseData.value.id
+      }
+
+      // open the modal and call the form
+      if (autoLaunchWidget.value) {
+        cnpModal.value = true
+        createScriptTag()
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      showLoading.value = false
+    }
+
+    // generate a new trx ID after a submit
+    trxId.value = generateTrxId('kbn', 6)
+    // console.info(`New merchantTransactionId: ${trxId.value}`)
+  }
+
+  /**
+   * sets the wpwlOptions based on config-payon before launching the widget
+   */
+  const setWpwlOptions = () => {
+    wpwlOptions = {
+      locale: useState('locale').value,
+      style: useState('widgetStyle').value,
+      maskCvv: useState('maskCvv').value,
+      requireCvv: useState('requireCvv').value,
+      showCVVHint: useState('showCVVHint').value,
+      allowEmptyCvv: useState('allowEmptyCvv').value,
+      validation: useState('validation').value,
+      showLabels: useState('showLabels').value,
+      showPlaceholders: useState('showPlaceholders').value,
+      disableCardExpiryDateValidation: useState(
+        'disableCardExpiryDateValidation'
+      ).value,
+
+      //
+      spinner: {
+        color: '#38bdf8',
+      },
+
+      //
+      labels: {},
+
+      // sets the placeholder for number and cvv, because iFrames, that's why
+      iframeStyles: {
+        'card-number-placeholder': {
+          color: 'rgb(107 114 128)',
+        },
+        'cvv-placeholder': {
+          color: 'rgb(107 114 128)',
+        },
+
+        'background-color': 'rgb(229 231 235)',
+      },
+
+      onReady: function () {
+        // create the field
+        var thingy =
+          '<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/tBhQJ7yWR0rSAeAMLa" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><br />'
+
+        // add the field
+        $('form.wpwl-form-card').find('.wpwl-button').before(thingy)
+      },
+    }
+
+    if (useState('labelBrand').value != '') {
+      wpwlOptions.labels.brand = useState('labelBrand').value
+    }
+
+    if (useState('cardNumber').value != '') {
+      wpwlOptions.labels.cardNumber = useState('cardNumber').value
+    }
+
+    if (useState('expiryDate').value != '') {
+      wpwlOptions.labels.expiryDate = useState('expiryDate').value
+    }
+
+    if (useState('cardHolder').value != '') {
+      wpwlOptions.labels.cardHolder = useState('cardHolder').value
+    }
+
+    if (useState('cvv').value != '') {
+      wpwlOptions.labels.cvv = useState('cvv').value
+    }
+
+    if (useState('payNowLabel').value != '') {
+      wpwlOptions.labels.submit = useState('payNowLabel').value
+    }
+
+    // BINlist
+    if (useState('binListBrandDetection').value) {
+      wpwlOptions.brandDetection = true,
+        wpwlOptions.brandDetectionType = 'binlist'
+    }
+
+    // Paypal BNPL
+    if (useState('paypalBNPL').value) {
+      wpwlOptions.inlineFlow = ['PAYPAL']
+      wpwlOptions.paypal = {
+        sdkParams: {
+          components: "buttons,messages",
+          "enable-funding": "paylater",
+          "disable-funding": "card",
+          "buyer-country": useState('paypalBNPLBuyerCountry').value
+        }
+      }
+
+    }
+
+    // display the options to the user
+    console.table(wpwlOptions)
+  }
+
+  /**
+   * create the script tag and append to the document to display the widgy
+   */
+  const createScriptTag = () => {
+    setWpwlOptions()
+
+    // open the modal first
+    cnpModal.value = true
+
+    // update the value of the checkoutId from the responseData
     if (responseData.value.id) {
       checkoutId.value = responseData.value.id
     }
 
-    // open the modal and call the form
-    if (autoLaunchWidget.value) {
-      cnpModal.value = true
-      createScriptTag()
-    }
-  } catch (error) {
-    console.error(error)
-  } finally {
-    showLoading.value = false
+    // create the new script tag and append to head
+    const widgetScript = document.createElement('script')
+    widgetScript.id = 'widget-script-tag'
+
+    // eval subdomain
+    const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
+    widgetScript.src = `https://${subDomain}.oppwa.com/v1/paymentWidgets.js?checkoutId=${responseData.value.id}`
+
+    // append to head
+    document.head.append(widgetScript)
   }
 
-  // generate a new trx ID after a submit
-  trxId.value = generateTrxId('kbn', 6)
-  // console.info(`New merchantTransactionId: ${trxId.value}`)
-}
+  /**
+   *
+   */
+  onMounted(async () => {
+    dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
-/**
- * sets the wpwlOptions based on config-payon before launching the widget
- */
-const setWpwlOptions = () => {
-  wpwlOptions = {
-    locale: useState('locale').value,
-    style: useState('widgetStyle').value,
-    maskCvv: useState('maskCvv').value,
-    requireCvv: useState('requireCvv').value,
-    showCVVHint: useState('showCVVHint').value,
-    allowEmptyCvv: useState('allowEmptyCvv').value,
-    validation: useState('validation').value,
-    showLabels: useState('showLabels').value,
-    showPlaceholders: useState('showPlaceholders').value,
-    disableCardExpiryDateValidation: useState(
-      'disableCardExpiryDateValidation'
-    ).value,
-
-    //
-    spinner: {
-      color: '#38bdf8',
-    },
-
-    //
-    labels: {},
-
-    // sets the placeholder for number and cvv, because iFrames, that's why
-    iframeStyles: {
-      'card-number-placeholder': {
-        color: 'rgb(107 114 128)',
-      },
-      'cvv-placeholder': {
-        color: 'rgb(107 114 128)',
-      },
-
-      'background-color': 'rgb(229 231 235)',
-    },
-
-    onReady: function () {
-      // create the field
-      var thingy =
-        '<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/tBhQJ7yWR0rSAeAMLa" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><br />'
-
-      // add the field
-      $('form.wpwl-form-card').find('.wpwl-button').before(thingy)
-    },
-  }
-
-  if (useState('labelBrand').value != '') {
-    wpwlOptions.labels.brand = useState('labelBrand').value
-  }
-
-  if (useState('cardNumber').value != '') {
-    wpwlOptions.labels.cardNumber = useState('cardNumber').value
-  }
-
-  if (useState('expiryDate').value != '') {
-    wpwlOptions.labels.expiryDate = useState('expiryDate').value
-  }
-
-  if (useState('cardHolder').value != '') {
-    wpwlOptions.labels.cardHolder = useState('cardHolder').value
-  }
-
-  if (useState('cvv').value != '') {
-    wpwlOptions.labels.cvv = useState('cvv').value
-  }
-
-  if (useState('payNowLabel').value != '') {
-    wpwlOptions.labels.submit = useState('payNowLabel').value
-  }
-
-  // Paypal BNPL
-  if (useState('paypalBNPL').value) {
-    wpwlOptions.inlineFlow = ['PAYPAL']
-    wpwlOptions.paypal = {
-      sdkParams: {
-        components: "buttons,messages",
-        "enable-funding": "paylater",
-        "disable-funding": "card",
-        "buyer-country": useState('paypalBNPLBuyerCountry').value
-      }
-    }
-
-  }
-
-  // display the options to the user
-  console.table(wpwlOptions)
-}
-
-/**
- * create the script tag and append to the document to display the widgy
- */
-const createScriptTag = () => {
-  setWpwlOptions()
-
-  // open the modal first
-  cnpModal.value = true
-
-  // update the value of the checkoutId from the responseData
-  if (responseData.value.id) {
-    checkoutId.value = responseData.value.id
-  }
-
-  // create the new script tag and append to head
-  const widgetScript = document.createElement('script')
-  widgetScript.id = 'widget-script-tag'
-
-  // eval subdomain
-  const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
-  widgetScript.src = `https://${subDomain}.oppwa.com/v1/paymentWidgets.js?checkoutId=${responseData.value.id}`
-
-  // append to head
-  document.head.append(widgetScript)
-}
-
-/**
- *
- */
-onMounted(async () => {
-  dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
-
-  await getSessionData()
-})
+    await getSessionData()
+  })
 </script>
 
 <template>

@@ -1,37 +1,38 @@
 <script setup>
-definePageMeta({
-  pageTitle: 'Kobeni | Widget Behaviour',
-})
+  definePageMeta({
+    pageTitle: 'Kobeni | Widget Behaviour',
+  })
 
-// all widget states
-const autoLaunchWidget = useState('autoLaunchWidget')
-const widgetStyle = useState('widgetStyle')
-const maskCvv = useState('maskCvv')
-const requireCvv = useState('requireCvv')
-const showCVVHint = useState('showCVVHint')
-const allowEmptyCvv = useState('allowEmptyCvv')
-const validation = useState('validation')
-const showLabels = useState('showLabels')
-const showPlaceholders = useState('showPlaceholders')
-const disableCardExpiryDateValidation = useState(
-  'disableCardExpiryDateValidation'
-)
-const paypalBNPL = useState('paypalBNPL')
-const paypalBNPLBuyerCountry = useState('paypalBNPLBuyerCountry')
+  // all widget states
+  const autoLaunchWidget = useState('autoLaunchWidget')
+  const widgetStyle = useState('widgetStyle')
+  const maskCvv = useState('maskCvv')
+  const requireCvv = useState('requireCvv')
+  const showCVVHint = useState('showCVVHint')
+  const allowEmptyCvv = useState('allowEmptyCvv')
+  const validation = useState('validation')
+  const showLabels = useState('showLabels')
+  const showPlaceholders = useState('showPlaceholders')
+  const disableCardExpiryDateValidation = useState(
+    'disableCardExpiryDateValidation'
+  )
+  const paypalBNPL = useState('paypalBNPL')
+  const paypalBNPLBuyerCountry = useState('paypalBNPLBuyerCountry')
+  const binListBrandDetection = useState('binListBrandDetection')
 
-//
-const payNowLabel = useState('payNowLabel')
-const labelBrand = useState('labelBrand')
-const cardNumber = useState('cardNumber')
-const expiryDate = useState('expiryDate')
-const cardHolder = useState('cardHolder')
-const cvv = useState('cvv')
+  //
+  const payNowLabel = useState('payNowLabel')
+  const labelBrand = useState('labelBrand')
+  const cardNumber = useState('cardNumber')
+  const expiryDate = useState('expiryDate')
+  const cardHolder = useState('cardHolder')
+  const cvv = useState('cvv')
 
-const locale = useState('locale')
+  const locale = useState('locale')
 
-//
-const localeList = getLocaleList()
-const shopperResultURLPayon = useState('shopperResultUrlPayon')
+  //
+  const localeList = getLocaleList()
+  const shopperResultURLPayon = useState('shopperResultUrlPayon')
 </script>
 
 <template>
@@ -110,21 +111,20 @@ const shopperResultURLPayon = useState('shopperResultUrlPayon')
     </div>
 
     <div class="divider"></div>
+    <Alert title="Info" color-style="bg-sky-900 text-slate-300">
+      The following are the most common properties that can be added/removed in the
+      <kbd class="kbd kbd-sm">wpwlOptions</kbd>
+      object which customizes the widget. Some of the items here have been
+      changed from the default setting to better suit the app's look and flow.
+      Additionally, the items labeled as
+      <span class="badge badge-warning badge-sm">Internal</span> are
+      features custom-made only for this app.
+    </Alert>
 
     <!-- toggles -->
     <div class="flex flex-col gap-2">
-      <Alert title="Info" color-style="bg-sky-900 text-slate-300">
-        The following are most the property names that can be toggled in the
-        <kbd class="kbd kbd-sm">wpwl</kbd>
-        object which customizes the widget. Some of the items here have been
-        changed from the default setting to better suit the app's look and flow.
-        Additionally, the items labeled as
-        <span class="font-medium font-mono text-sky-400">Exclusive</span> are
-        features custom-made only for this app.
-      </Alert>
-
       <!-- auto-launch -->
-      <Toggle v-model="autoLaunchWidget" title="Auto-launch (Exclusive)">
+      <Toggle v-model="autoLaunchWidget" title="Auto-launch" :is-exclusive="true">
         Launch the widget if a checkout ID is detected.
       </Toggle>
 
@@ -175,15 +175,18 @@ const shopperResultURLPayon = useState('shopperResultUrlPayon')
         Shows or hides input placeholders. Default is true.
       </Toggle>
 
+      <Toggle v-model="binListBrandDetection" title="Enable BINlist Brand Detection">
+        Allows the widget to use ACI's BIN database to detect the card. Default is true.
+      </Toggle>
+
       <Toggle v-model="paypalBNPL" title="Enable Paypal BNPL (Buy Now, Pay Later)">
         When enabled, Kobeni will include the JS required to add the Paypal BNPL smart button(s).
       </Toggle>
 
       <Transition>
-
         <div class="p-6 bg-slate-900 rounded-2xl" v-if="paypalBNPL">
           <Input label="Paypal BNPL Buyer Country"
-            helper-text="Required for Paypal's Smart Buttons for BNPL. This also affect the label of the BNPL button depending on the country."
+            helper-text="[ISO 3166-1 alpha-2] Required for Paypal's Smart Buttons for BNPL. This also affect the label of the BNPL button depending on the country."
             v-model="paypalBNPLBuyerCountry" />
         </div>
       </Transition>
