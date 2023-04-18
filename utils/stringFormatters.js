@@ -13,8 +13,8 @@ export const arrayToFormatter = (arrayMain, separator) => {
 
 /**
  * Formats textarea string to URL data param string
- * @param {String} textAreaString
- * @returns String
+ * @param {string} textAreaString
+ * @returns {string}
  */
 export const textAreaToURLParams = (textAreaString) => {
   return textAreaString.replace(/\n/g, '&')
@@ -38,7 +38,7 @@ export const copyEntireResponse = (jsonResponse) => {
 
 /**
  * brand list go brrrr...
- * @returns array - List of all support brands for copyandpay
+ * @returns {array} List of all support brands for copyandpay
  */
 export const getBrandsList = () => {
   return {
@@ -220,7 +220,7 @@ export const getBrandsList = () => {
 
 /**
  * locale list go brrrr....
- * @returns array of all locales
+ * @returns {array} array list of all locales
  */
 export const getLocaleList = () => {
   return [
@@ -266,7 +266,7 @@ export const getLocaleList = () => {
  * using nanoid, generate a string that can be used as a transaction id
  * @param {String} prefix
  * @param {Number} length
- * @returns String as transaction id, e.g. kbn-rAndOm
+ * @returns {string} as transaction id, e.g. kbn-rAndOm
  */
 export const generateTrxId = (prefix, length) => {
   return `${prefix}-${nanoid(length)}`
@@ -282,11 +282,11 @@ export const generateHash = (dataString) => {
 
 /**
  * Helper function to format the URL endpoints
- * @param {String} envMode
- * @param {String} integrationName - COPYANDPAY, GET_RESULTS, S2S, BACKOFFICE, QUERY, RECURRING
- * @param {String} referenceId - required for some endpoints
- * @param {String} baseURL - defaults to 'oppwa.com', can be modified if API is hosted somewhere else
- * @returns {String} Formatted endpoint based on the env and integration
+ * @param {string} envMode
+ * @param {string} integrationName - COPYANDPAY, GET_RESULTS, S2S, BACKOFFICE, QUERY, RECURRING
+ * @param {string} referenceId - required for some endpoints
+ * @param {string} baseURL - defaults to 'oppwa.com', can be modified if API is hosted somewhere else
+ * @returns {string} Formatted endpoint based on the env and integration
  */
 export const oppwaEndPointFormatter = (
   envMode,
