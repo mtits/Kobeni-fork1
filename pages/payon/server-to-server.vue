@@ -1,150 +1,161 @@
 <script setup>
-definePageMeta({
-  pageTitle: 'Kobeni | Server-to-Server',
-})
-
-const currentUser = useState('currentUser')
-
-//
-const mode = useState('mode')
-
-const modeText = computed(() => {
-  const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
-  return `https://${subDomain}.oppwa.com/v1/payments`
-})
-
-//
-const accessToken = useState('accessToken')
-const entityId = useState('entityId')
-const referenceTransaction = useState('referenceTransaction')
-const registrationId = useState('registrationId')
-
-//
-const dataParameters = ref('')
-const defaultParameters = ref([
-  'amount=1.00',
-  'currency=USD',
-  'paymentType=PA',
-  'paymentBrand=VISA',
-  'card.number=4200000000000000',
-  'card.holder=Nicolas Cage',
-  'card.expiryMonth=05',
-  'card.expiryYear=2034',
-  'card.cvv=123',
-  'billing.city=South Jadyn',
-  'billing.country=US',
-  'billing.street1=645 Delmer Vista Suite 927',
-  'billing.postcode=15705-9357',
-  'customer.email=test@test.com',
-  'customer.givenName=John',
-  'customer.surname=Wick',
-])
-
-//
-const responseData = ref('')
-const showLoading = ref(false)
-
-// all session data from here
-const sessionMode = ref('')
-const sessionAccessToken = ref('')
-const sessiondataParametersServerToServer = ref('')
-const sessionEntityId = ref('')
-
-// 
-const trxId = useState('payonTrxId')
-
-/**
- * fetches data from the session and sets it to the local variables
- */
-async function getSessionData() {
-  const { session, refresh } = await useSession()
-
-  await refresh()
-
-  sessionMode.value = session.value.mode
-  sessionAccessToken.value = session.value.accessToken
-  sessionEntityId.value = session.value.entityId
-  sessiondataParametersServerToServer.value =
-    session.value.dataParametersServerToServer
-}
-
-/**
- * set up session data on click of the submit button
- */
-const setSessionData = async () => {
-  const { refresh, update } = await useSession()
-
-  await refresh()
-
-  await update({
-    mode: mode.value,
-    accessToken: accessToken.value,
-    entityId: entityId.value,
-    dataParametersServerToServer: dataParameters.value,
+  definePageMeta({
+    pageTitle: 'Kobeni | Server-to-Server',
   })
-}
 
-/**
- * loads the session data as the main ui data
- */
-const loadSessionData = () => {
-  mode.value = sessionMode.value
-  accessToken.value = sessionAccessToken.value
-  entityId.value = sessionEntityId.value
-  dataParameters.value = sessiondataParametersServerToServer.value
-}
+  const currentUser = useState('currentUser')
 
-/**
- *
- */
-const submit = async () => {
-  showLoading.value = true
-  responseData.value = ''
+  //
+  const mode = useState('mode')
 
-  await setSessionData()
-  await getSessionData()
+  const modeText = computed(() => {
+    const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
+    return `https://${subDomain}.oppwa.com/v1/payments`
+  })
 
-  try {
-    const { data } = await useFetch('/api/payon/server-2-server', {
-      method: 'post',
-      body: {
-        mode: mode.value,
-        accessToken: accessToken.value,
-        dataParameters: `${textAreaToURLParams(
-          dataParameters.value
-        )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
-      },
-    })
+  //
+  const accessToken = useState('accessToken')
+  const entityId = useState('entityId')
+  const referenceTransaction = useState('referenceTransaction')
+  const registrationId = useState('registrationId')
 
-    responseData.value = data.value
+  //
+  const dataParameters = ref('')
+  const defaultParameters = ref([
+    'amount=1.00',
+    'currency=USD',
+    'paymentType=PA',
+    'paymentBrand=VISA',
+    'card.number=4200000000000000',
+    'card.holder=Nicolas Cage',
+    'card.expiryMonth=05',
+    'card.expiryYear=2034',
+    'card.cvv=123',
+    'billing.city=South Jadyn',
+    'billing.country=US',
+    'billing.street1=645 Delmer Vista Suite 927',
+    'billing.postcode=15705-9357',
+    'customer.email=test@test.com',
+    'customer.givenName=John',
+    'customer.surname=Wick',
+    'customer.ip=192.168.0.1',
+    'customer.browser.acceptHeader=text/html',
+    'customer.browser.screenColorDepth=48',
+    'customer.browser.javaEnabled=false',
+    'customer.browser.javascriptEnabled=true',
+    'customer.browser.language=en',
+    'customer.browser.screenHeight=1200',
+    'customer.browser.screenWidth=1600',
+    'customer.browser.timezone=60',
+    'customer.browser.challengeWindow=4',
+    'customer.browser.userAgent=Mozilla/4.0 (MSIE 6.0; Windows NT 5.0)'
+  ])
 
-    // save the trx as referemce fpr backoffice operations
-    if (data.value.id)
-      referenceTransaction.value = data.value.id
+  //
+  const responseData = ref('')
+  const showLoading = ref(false)
 
-    // same for registration ids
-    if (responseData.value.registrationId)
-      registrationId.value = responseData.value.registrationId
+  // all session data from here
+  const sessionMode = ref('')
+  const sessionAccessToken = ref('')
+  const sessiondataParametersServerToServer = ref('')
+  const sessionEntityId = ref('')
 
-  } catch (error) {
-    console.error(error)
-  } finally {
-    showLoading.value = false
+  // 
+  const trxId = useState('payonTrxId')
+
+  /**
+   * fetches data from the session and sets it to the local variables
+   */
+  async function getSessionData() {
+    const { session, refresh } = await useSession()
+
+    await refresh()
+
+    sessionMode.value = session.value.mode
+    sessionAccessToken.value = session.value.accessToken
+    sessionEntityId.value = session.value.entityId
+    sessiondataParametersServerToServer.value =
+      session.value.dataParametersServerToServer
   }
 
+  /**
+   * set up session data on click of the submit button
+   */
+  const setSessionData = async () => {
+    const { refresh, update } = await useSession()
 
-  trxId.value = generateTrxId('kbn', 6)
-  // console.info(`New merchantTransactionId: ${trxId.value}`)
-}
+    await refresh()
 
-/**
- *
- */
-onMounted(async () => {
-  dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+    await update({
+      mode: mode.value,
+      accessToken: accessToken.value,
+      entityId: entityId.value,
+      dataParametersServerToServer: dataParameters.value,
+    })
+  }
 
-  await getSessionData()
-})
+  /**
+   * loads the session data as the main ui data
+   */
+  const loadSessionData = () => {
+    mode.value = sessionMode.value
+    accessToken.value = sessionAccessToken.value
+    entityId.value = sessionEntityId.value
+    dataParameters.value = sessiondataParametersServerToServer.value
+  }
+
+  /**
+   *
+   */
+  const submit = async () => {
+    showLoading.value = true
+    responseData.value = ''
+
+    await setSessionData()
+    await getSessionData()
+
+    try {
+      const { data } = await useFetch('/api/payon/server-2-server', {
+        method: 'post',
+        body: {
+          mode: mode.value,
+          accessToken: accessToken.value,
+          dataParameters: `${textAreaToURLParams(
+            dataParameters.value
+          )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
+        },
+      })
+
+      responseData.value = data.value
+
+      // save the trx as referemce fpr backoffice operations
+      if (data.value.id)
+        referenceTransaction.value = data.value.id
+
+      // same for registration ids
+      if (responseData.value.registrationId)
+        registrationId.value = responseData.value.registrationId
+
+    } catch (error) {
+      console.error(error)
+    } finally {
+      showLoading.value = false
+    }
+
+
+    trxId.value = generateTrxId('kbn', 6)
+    // console.info(`New merchantTransactionId: ${trxId.value}`)
+  }
+
+  /**
+   *
+   */
+  onMounted(async () => {
+    dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+
+    await getSessionData()
+  })
 </script>
 
 <template>
