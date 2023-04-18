@@ -8,17 +8,7 @@ import md5 from 'crypto-js/md5'
  * @returns String, e.g. "customer.givenName=john&customer.surname=wick&...""
  */
 export const arrayToFormatter = (arrayMain, separator) => {
-  let containerString = ''
-
-  arrayMain.forEach((parameter, index, array) => {
-    if (index < array.length - 1) {
-      containerString += `${parameter}${separator}`
-    } else {
-      containerString += parameter
-    }
-  })
-
-  return containerString
+  return arrayMain.join(separator)
 }
 
 /**
