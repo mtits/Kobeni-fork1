@@ -4,8 +4,8 @@ import md5 from 'crypto-js/md5'
 /**
  * Formats an array into a string with a specific separator/delimiter
  * @param {array} arrayMain
- * @param {String} separator
- * @returns String, e.g. "customer.givenName=john&customer.surname=wick&...""
+ * @param {string} separator
+ * @returns {string} e.g. "customer.givenName=john&customer.surname=wick&...""
  */
 export const arrayToFormatter = (arrayMain, separator) => {
   return arrayMain.join(separator)
