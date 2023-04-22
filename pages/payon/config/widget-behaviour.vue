@@ -1,38 +1,38 @@
-<script setup>
+<script setup lang="ts">
   definePageMeta({
     pageTitle: 'Kobeni | Widget Behaviour',
   })
 
   // all widget states
-  const autoLaunchWidget = useState('autoLaunchWidget')
+  const autoLaunchWidget = useState<boolean>('autoLaunchWidget')
   const widgetStyle = useState('widgetStyle')
-  const maskCvv = useState('maskCvv')
-  const requireCvv = useState('requireCvv')
-  const showCVVHint = useState('showCVVHint')
-  const allowEmptyCvv = useState('allowEmptyCvv')
-  const validation = useState('validation')
-  const showLabels = useState('showLabels')
-  const showPlaceholders = useState('showPlaceholders')
-  const disableCardExpiryDateValidation = useState(
+  const maskCvv = useState<boolean>('maskCvv')
+  const requireCvv = useState<boolean>('requireCvv')
+  const showCVVHint = useState<boolean>('showCVVHint')
+  const allowEmptyCvv = useState<boolean>('allowEmptyCvv')
+  const validation = useState<boolean>('validation')
+  const showLabels = useState<boolean>('showLabels')
+  const showPlaceholders = useState<boolean>('showPlaceholders')
+  const disableCardExpiryDateValidation = useState<boolean>(
     'disableCardExpiryDateValidation'
   )
-  const paypalBNPL = useState('paypalBNPL')
-  const paypalBNPLBuyerCountry = useState('paypalBNPLBuyerCountry')
-  const binListBrandDetection = useState('binListBrandDetection')
+  const paypalBNPL = useState<boolean>('paypalBNPL')
+  const paypalBNPLBuyerCountry = useState<string>('paypalBNPLBuyerCountry')
+  const binListBrandDetection = useState<boolean>('binListBrandDetection')
 
   //
-  const payNowLabel = useState('payNowLabel')
-  const labelBrand = useState('labelBrand')
-  const cardNumber = useState('cardNumber')
-  const expiryDate = useState('expiryDate')
-  const cardHolder = useState('cardHolder')
-  const cvv = useState('cvv')
+  const payNowLabel = useState<string>('payNowLabel')
+  const labelBrand = useState<string>('labelBrand')
+  const cardNumber = useState<string>('cardNumber')
+  const expiryDate = useState<string>('expiryDate')
+  const cardHolder = useState<string>('cardHolder')
+  const cvv = useState<string>('cvv')
 
   const locale = useState('locale')
 
   //
   const localeList = getLocaleList()
-  const shopperResultURLPayon = useState('shopperResultUrlPayon')
+  const shopperResultURLPayon = useState<string>('shopperResultUrlPayon')
 </script>
 
 <template>
