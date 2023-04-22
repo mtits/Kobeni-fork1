@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
   definePageMeta({
     pageTitle: 'Kobeni | Pull Yoself Togedah!',
   })
@@ -23,7 +23,7 @@
 </template>
 
 <style>
-  #index {
-    background-image: url('/kobeni.png');
-  }
+#index {
+  background-image: url('/kobeni.png');
+}
 </style>

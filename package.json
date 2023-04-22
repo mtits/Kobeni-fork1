@@ -11,6 +11,7 @@
   "devDependencies": {
     "@sidebase/nuxt-session": "^0.2.3",
     "@tailwindcss/typography": "^0.5.8",
+    "@types/howler": "^2.2.7",
     "autoprefixer": "^10.4.13",
     "nuxt": "3.0.0",
     "postcss": "^8.4.19",

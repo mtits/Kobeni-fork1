@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
   const currentUser = useState('currentUser', () => '')
   const currentTheme = useState('currentTheme', () => 'dark')
 
@@ -77,10 +77,7 @@
           <div class="grid place-items-center mt-4">
             <span class="text-xs">
               i made dis.
-              <a
-                class="link"
-                href="https://github.com/veib6247"
-                target="_blank">
+              <a class="link" href="https://github.com/veib6247" target="_blank">
                 Github
               </a>
             </span>
@@ -98,8 +95,7 @@
         <!-- main container of the side drawer contents -->
         <aside class="w-72 bg-base-300">
           <!-- side title -->
-          <div
-            class="py-3 px-7 bg-neutral sticky top-0 bg-opacity-90 backdrop-blur z-20">
+          <div class="py-3 px-7 bg-neutral sticky top-0 bg-opacity-90 backdrop-blur z-20">
             <div class="prose">
               <h1 class="text-sky-400">
                 Kobeni
@@ -131,31 +127,34 @@
 </template>
 
 <style>
-  /* page transition */
-  .page-enter-active,
-  .page-leave-active {
-    transition: all 0.3s;
-  }
-  .page-enter-from,
-  .page-leave-to {
-    opacity: 0;
-    filter: blur(1rem);
-  }
+/* page transition */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s;
+}
 
-  /* component transitions */
-  .v-enter-active,
-  .v-leave-active {
-    transition: opacity 0.5s ease;
-  }
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
 
-  .v-enter-from,
-  .v-leave-to {
-    opacity: 0;
-  }
+/* component transitions */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
-  /** style the scrollbar for firefox */
-  body {
-    scrollbar-width: thin; /* "auto" or "thin" */
-    scrollbar-color: hsl(220 13% 69%) black; /* scroll thumb and track */
-  }
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+/** style the scrollbar for firefox */
+body {
+  scrollbar-width: thin;
+  /* "auto" or "thin" */
+  scrollbar-color: hsl(220 13% 69%) black;
+  /* scroll thumb and track */
+}
 </style>
