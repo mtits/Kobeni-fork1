@@ -1,51 +1,55 @@
-<script setup>
-definePageMeta({
-  pageTitle: 'Kobeni | Configure Merchant',
-})
+<script setup lang="ts">
+  definePageMeta({
+    pageTitle: 'Kobeni | Configure Merchant',
+  })
 
-//
-const mode = useState('mode')
-const modeOptions = ref([
-  {
-    text: 'TEST',
-    value: 'Test',
-  },
-  {
-    text: 'PRODUCTION',
-    value: 'Live',
-  },
-])
-const modeText = computed(() => {
-  if (mode.value == 'Test') {
-    return '"https://eu-test.oppwa.com/v1/..."'
-  } else {
-    return '"https://eu-prod.oppwa.com/v1/..."'
-  }
-})
+  //
+  const mode = useState('mode')
+  const modeOptions = ref([
+    {
+      text: 'TEST',
+      value: 'Test',
+    },
+    {
+      text: 'PRODUCTION',
+      value: 'Live',
+    },
+  ])
 
-const selectedCardBrands = useState('selectedCardBrands')
-const cardBrandList = getBrandsList().cards
+  const modeText = computed(() => {
+    if (mode.value == 'Test') {
+      return '"https://eu-test.oppwa.com/v1/..."'
+    } else {
+      return '"https://eu-prod.oppwa.com/v1/..."'
+    }
+  })
 
-const selectedVirtualBrands = useState('selectedVirtualBrands')
-const virtualBrandList = getBrandsList().virtual
+  const selectedCardBrands = useState('selectedCardBrands')
+  const cardBrandList = getBrandsList().cards
 
-const selectedBankBrands = useState('selectedBankBrands')
-const bankBrandList = getBrandsList().bank
+  const selectedVirtualBrands = useState('selectedVirtualBrands')
+  const virtualBrandList = getBrandsList().virtual
 
-const combinedSelectedBrands = computed(() => {
-  return [
-    ...selectedCardBrands.value,
-    ...selectedVirtualBrands.value,
-    ...selectedBankBrands.value,
-  ]
-})
+  const selectedBankBrands = useState('selectedBankBrands')
+  const bankBrandList = getBrandsList().bank
 
-const selectedBrands = useState('selectedBrands')
+  /**
+   * combine all 3 arrays of selected brands
+   */
+  const combinedSelectedBrands = computed(() => {
+    return [
+      ...(selectedCardBrands.value as string[]),
+      ...(selectedVirtualBrands.value as string[]),
+      ...(selectedBankBrands.value as string[]),
+    ]
+  })
 
-// get app states
-const accessToken = useState('accessToken')
-const entityId = useState('entityId')
-const trxId = useState('payonTrxId')
+  const selectedBrands = useState('selectedBrands')
+
+  // get app states
+  const accessToken = useState<string>('accessToken')
+  const entityId = useState<string>('entityId')
+  const trxId = useState<string>('payonTrxId')
 </script>
 
 <template>
