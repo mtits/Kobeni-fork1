@@ -264,8 +264,8 @@ export const getLocaleList = () => {
 
 /**
  * using nanoid, generate a string that can be used as a transaction id
- * @param {String} prefix
- * @param {Number} length
+ * @param {string} prefix
+ * @param {number} length
  * @returns {string} as transaction id, e.g. kbn-rAndOm
  */
 export const generateTrxId = (prefix, length) => {
@@ -274,6 +274,7 @@ export const generateTrxId = (prefix, length) => {
 
 /**
  * Uses md5 module from the crypto-js package, returns md5 hash as value for the checksum
+ * @param {string} dataString
  * @returns {string} Hashed value of the required fields
  */
 export const generateHash = (dataString) => {
@@ -283,9 +284,9 @@ export const generateHash = (dataString) => {
 /**
  * Helper function to format the URL endpoints
  * @param {string} envMode
- * @param {string} integrationName - COPYANDPAY, GET_RESULTS, S2S, BACKOFFICE, QUERY, RECURRING
- * @param {string} referenceId - required for some endpoints
- * @param {string} baseURL - defaults to 'oppwa.com', can be modified if API is hosted somewhere else
+ * @param {string} integrationName COPYANDPAY, GET_RESULTS, S2S, BACKOFFICE, QUERY, RECURRING
+ * @param {string} referenceId Required for some endpoints
+ * @param {string} baseURL Defaults to 'oppwa.com', can be modified if API is hosted somewhere else
  * @returns {string} Formatted endpoint based on the env and integration
  */
 export const oppwaEndPointFormatter = (
