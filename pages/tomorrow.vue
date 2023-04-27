@@ -2,7 +2,7 @@
   import { Howl, Howler } from 'howler'
 
   definePageMeta({
-    pageTitle: 'Kobeni | Tomorrow, Ina said calmly...',
+    pageTitle: 'Kobeni | Soundboard',
   })
 
   const currentUser = useState('currentUser')
@@ -39,37 +39,18 @@
     src: ['/audio/widow-ult.oga']
   })
 
+  const omen = new Howl({
+    src: ['/audio/omen-ult.mp3']
+  })
+
   // global object
   Howler.volume(0.5)
 </script>
 
 <template>
   <div class="flex flex-col gap-10" v-if="currentUser">
-    <PageTitle title="Tomorrow">
-      Today I don't feel like doing anything. I just wanna lay in my bed. Don't
-      feel like picking up my phone, so leave a message at the tone. 'Cause
-      today I swear I'm not doing anything. Nothing at all.
-    </PageTitle>
-
-    <!-- hero -->
-    <div class="hero min-h-screen mb-4" id="ina-hero">
-      <div class="hero-overlay bg-opacity-60"></div>
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <button class="btn btn-primary gap-2" @click="tomorrow.play()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-            </svg>
-            Tomorrow!
-          </button>
-        </div>
-      </div>
-    </div>
-
     <div>
-      <PageTitle title="Soundboard">Other things to fill your ears. </PageTitle>
+      <PageTitle title="Soundboard">Things to fill your ears. </PageTitle>
       <div class="flex flex-wrap gap-3">
         <button class="btn gap-2 w-72" @click="tomorrow.play()">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -128,7 +109,7 @@
     </div>
 
     <div>
-      <PageTitle title="Ult who?">Guess which OW2 ult based on the label</PageTitle>
+      <PageTitle title="Ult Who? - Overwatch Edition">Guess which agent ult. based on the label</PageTitle>
       <div class="flex flex-wrap gap-3">
         <button class="btn gap-2 w-72" @click="bap.play()">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -149,15 +130,23 @@
         </button>
       </div>
     </div>
+
+    <div>
+      <PageTitle title="Ult Who? - Valorant Edition">Guess which agent ult. based on the label</PageTitle>
+      <div class="flex flex-wrap gap-3">
+        <button class="btn gap-2 w-72" @click="omen.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          "Squatter!"
+        </button>
+      </div>
+    </div>
   </div>
 
   <div class="flex" v-else>
     <button class="btn btn-ghost btn-block loading"></button>
   </div>
 </template>
-
-<style>
-#ina-hero {
-  background-image: url('/tomorrow-compressed.gif');
-}
-</style>
