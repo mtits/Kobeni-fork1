@@ -31,12 +31,20 @@
     src: ['/audio/ehe.mp3'],
   })
 
+  const bap = new Howl({
+    src: ['/audio/bap-ult.ogg']
+  })
+
+  const widow = new Howl({
+    src: ['/audio/widow-ult.oga']
+  })
+
   // global object
   Howler.volume(0.5)
 </script>
 
 <template>
-  <div v-if="currentUser">
+  <div class="flex flex-col gap-10" v-if="currentUser">
     <PageTitle title="Tomorrow">
       Today I don't feel like doing anything. I just wanna lay in my bed. Don't
       feel like picking up my phone, so leave a message at the tone. 'Cause
@@ -60,85 +68,85 @@
       </div>
     </div>
 
-    <PageTitle title="Soundboard"> Other things to fill your ears. </PageTitle>
+    <div>
+      <PageTitle title="Soundboard">Other things to fill your ears. </PageTitle>
+      <div class="flex flex-wrap gap-3">
+        <button class="btn gap-2 w-72" @click="tomorrow.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          Tomorrow!
+        </button>
 
-    <div class="space-y-3">
-      <!-- row 1 -->
-      <div class="flex space-x-3 place-items-center justify-center">
-        <!-- col 1 -->
-        <div class="grid flex-grow w-1/3">
-          <button class="btn gap-2" @click="tomorrow.play()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-            </svg>
-            Tomorrow!
-          </button>
-        </div>
+        <button class="btn gap-2 w-72" @click="omae.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          Omae wa mou shindeiru
+        </button>
 
-        <!-- col 2 -->
-        <div class="grid flex-grow w-1/3">
-          <button class="btn gap-2" @click="omae.play()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-            </svg>
-            Omae wa mou shindeiru
-          </button>
-        </div>
+        <button class="btn gap-2 w-72" @click="nani.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          Nani???
+        </button>
 
-        <!-- col 3 -->
-        <div class="grid flex-grow w-1/3">
-          <button class="btn gap-2" @click="pekoLaugh.play()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-            </svg>
-            AH↗️HA↘️HA↗️HA↘️HA↗️
-          </button>
-        </div>
+        <button class="btn gap-2 w-72" @click="pekoLaugh.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          AH↗️HA↘️HA↗️HA↘️HA↗️
+        </button>
+
+        <button class="btn gap-2 w-72" @click="wow.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          &lt;:3) ~Wow
+        </button>
+
+        <button class="btn gap-2 w-72" @click="ehe.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          'Ehe' Te Nandayo!?!?!?!1
+        </button>
       </div>
+    </div>
 
-      <!-- row 2 -->
-      <div class="flex space-x-3 place-items-center justify-center">
-        <!-- col 1 -->
-        <div class="grid flex-grow w-1/3">
-          <button class="btn gap-2" @click="wow.play()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-            </svg>
-            &lt;:3) ~Wow
-          </button>
-        </div>
+    <div>
+      <PageTitle title="Ult who?">Guess which OW2 ult based on the label</PageTitle>
+      <div class="flex flex-wrap gap-3">
+        <button class="btn gap-2 w-72" @click="bap.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          "Hinde baso yun!"
+        </button>
 
-        <!-- col 2 -->
-        <div class="grid flex-grow w-1/3">
-          <button class="btn gap-2" @click="nani.play()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-            </svg>
-            Nani???
-          </button>
-        </div>
-
-        <!-- col 3 -->
-        <div class="grid flex-grow w-1/3">
-          <button class="btn gap-2" @click="ehe.play()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-            </svg>
-            "'Ehe' Te Nandayo!?!?!?!1"
-          </button>
-        </div>
+        <button class="btn gap-2 w-72" @click="widow.play()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          "Penshoppe ni Shopee Lóreal"
+        </button>
       </div>
     </div>
   </div>

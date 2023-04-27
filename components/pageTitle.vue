@@ -8,8 +8,8 @@
 </script>
 
 <template>
-  <div class="prose mb-6">
-    <h1 class="text-sky-400">{{ title }}</h1>
+  <div class="mb-6">
+    <span class="text-4xl font-bold text-sky-400">{{ title }}</span>
     <p>
       <slot></slot>
     </p>
