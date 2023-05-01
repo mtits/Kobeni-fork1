@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  definePageMeta({
-    pageTitle: 'Kobeni | Configure Merchant',
+  useHead({
+    title: 'Kobeni | Configure Merchant',
   })
 
   //

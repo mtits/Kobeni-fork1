@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  definePageMeta({
-    pageTitle: 'Kobeni | Widget Behaviour',
+  useHead({
+    title: 'Kobeni | Widget Behaviour',
   })
 
   // all widget states

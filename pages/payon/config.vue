@@ -1,6 +1,6 @@
 <script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Config Page',
+  useHead({
+    title: 'Kobeni | Config Page',
   })
 
   const currentUser = useState('currentUser')
@@ -9,15 +9,11 @@
 <template>
   <div v-if="currentUser">
     <div class="tabs">
-      <NuxtLink
-        class="tab tab-lg tab-bordered"
-        to="/payon/config/configure-merchant">
+      <NuxtLink class="tab tab-lg tab-bordered" to="/payon/config/configure-merchant">
         Configure Merchant
       </NuxtLink>
 
-      <NuxtLink
-        class="tab tab-lg tab-bordered"
-        to="/payon/config/widget-behaviour">
+      <NuxtLink class="tab tab-lg tab-bordered" to="/payon/config/widget-behaviour">
         Widget Behaviour
       </NuxtLink>
     </div>

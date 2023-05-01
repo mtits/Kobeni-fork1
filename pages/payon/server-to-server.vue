@@ -1,6 +1,6 @@
 <script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Server-to-Server',
+  useHead({
+    title: 'Kobeni | Server-to-Server',
   })
 
   const currentUser = useState('currentUser')

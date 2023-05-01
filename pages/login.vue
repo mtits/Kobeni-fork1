@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
-  definePageMeta({
-    pageTitle: 'Kobeni | Login',
+  useHead({
+    title: 'Kobeni | Login',
   })
 
   const email = ref('')

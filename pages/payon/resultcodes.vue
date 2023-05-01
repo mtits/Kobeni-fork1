@@ -1,39 +1,39 @@
 <script setup>
-import csvDownload from 'json-to-csv-export'
+  import csvDownload from 'json-to-csv-export'
 
-definePageMeta({
-  pageTitle: 'Kobeni | Result Codes',
-})
+  useHead({
+    title: 'Kobeni | Result Codes',
+  })
 
-const currentUser = useState('currentUser')
+  const currentUser = useState('currentUser')
 
-// the one variable to rule them all
-const result = reactive({
-  url: 'https://eu-test.oppwa.com/v1/resultcodes',
-  data: '',
-})
+  // the one variable to rule them all
+  const result = reactive({
+    url: 'https://eu-test.oppwa.com/v1/resultcodes',
+    data: '',
+  })
 
-// fetch from ACI docs
-const { data, refresh } = await useFetch(result.url)
-result.data = data.value
+  // fetch from ACI docs
+  const { data, refresh } = await useFetch(result.url)
+  result.data = data.value
 
-/**
- * parse JSON into CSV and download to client
- */
-const exportCSV = () => {
-  try {
-    const dataToConvert = {
-      data: result.data.resultCodes,
-      filename: 'result_codes',
-      delimiter: ',',
-      headers: ['Code', 'Description'],
+  /**
+   * parse JSON into CSV and download to client
+   */
+  const exportCSV = () => {
+    try {
+      const dataToConvert = {
+        data: result.data.resultCodes,
+        filename: 'result_codes',
+        delimiter: ',',
+        headers: ['Code', 'Description'],
+      }
+      // dl!
+      csvDownload(dataToConvert)
+    } catch (error) {
+      console.error(error)
     }
-    // dl!
-    csvDownload(dataToConvert)
-  } catch (error) {
-    console.error(error)
   }
-}
 </script>
 
 <template>

@@ -1,39 +1,39 @@
 <script setup>
-definePageMeta({
-  pageTitle: 'Kobeni | Config',
-})
+  useHead({
+    title: 'Kobeni | Config',
+  })
 
-const currentUser = useState('currentUser')
+  const currentUser = useState('currentUser')
 
-// select mode
-const mode = useState('pzMode')
-const modeOptions = ref([
-  {
-    text: 'TEST',
-    value: 'Test',
-  },
-  {
-    text: 'PRODUCTION',
-    value: 'Live',
-  },
-])
+  // select mode
+  const mode = useState('pzMode')
+  const modeOptions = ref([
+    {
+      text: 'TEST',
+      value: 'Test',
+    },
+    {
+      text: 'PRODUCTION',
+      value: 'Live',
+    },
+  ])
 
-//
-const partnerID = useState('partnerID')
-const partnerName = useState('partnerName') // ToType
-const memberID = useState('memberID')
-const merchantUsername = useState('merchantUsername')
-const amount = useState('amount')
-const merchantTransactionId = useState('merchantTransactionId')
-const merchantRedirectURL = useState('merchantRedirectURL')
-const merchantSecureKey = useState('merchantSecureKey')
+  //
+  const partnerID = useState('partnerID')
+  const partnerName = useState('partnerName') // ToType
+  const memberID = useState('memberID')
+  const merchantUsername = useState('merchantUsername')
+  const amount = useState('amount')
+  const merchantTransactionId = useState('merchantTransactionId')
+  const merchantRedirectURL = useState('merchantRedirectURL')
+  const merchantSecureKey = useState('merchantSecureKey')
 
-/**
- *
- */
-const generateID = () => {
-  merchantTransactionId.value = generateTrxId('kbn', 6)
-}
+  /**
+   *
+   */
+  const generateID = () => {
+    merchantTransactionId.value = generateTrxId('kbn', 6)
+  }
 </script>
 
 <template>
@@ -97,9 +97,9 @@ const generateID = () => {
       <!-- merchant details -->
       <div class="flex gap-10">
         <div class="flex-none w-96">
-        <div class="prose">
-          <h3 class="text-sky-400 font-bold">Merchant</h3>
-        </div>
+          <div class="prose">
+            <h3 class="text-sky-400 font-bold">Merchant</h3>
+          </div>
 
           <p class="text-sm">
             Details about the Merchant (member). These are usually sent via

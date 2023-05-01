@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  definePageMeta({
-    pageTitle: 'Kobeni | Pull Yoself Togedah!',
+  useHead({
+    title: 'Kobeni | Pull Yoself Togedah!'
   })
 
   const currentUser = useState('currentUser')

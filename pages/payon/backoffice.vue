@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  definePageMeta({
-    pageTitle: 'Kobeni | Backoffice Operations',
+  useHead({
+    title: 'Kobeni | Backoffice Operations',
   })
 
   const currentUser = useState('currentUser')

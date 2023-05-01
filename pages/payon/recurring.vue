@@ -1,133 +1,133 @@
 <script setup>
-definePageMeta({
-  pageTitle: 'Kobeni | Recurring (REPEATED ONLY)',
-})
-
-const currentUser = useState('currentUser')
-
-//
-const mode = useState('mode')
-
-const modeText = computed(() => {
-  const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
-  return `https://${subDomain}.oppwa.com/v1/registrations/${registrationId.value}/payments`
-})
-
-//
-const registrationId = useState('registrationId')
-const accessToken = useState('accessToken')
-const entityId = useState('entityId')
-const referenceTransaction = useState('referenceTransaction')
-
-
-//
-const dataParameters = ref('')
-const defaultParameters = ref([
-  'amount=92.00',
-  'currency=USD',
-  'paymentType=DB',
-  'standingInstruction.mode=REPEATED',
-  'standingInstruction.type=RECURRING',
-  'standingInstruction.source=MIT',
-  'standingInstruction.initialTransactionId=REPLACE_ME',
-])
-
-//
-const responseData = ref('')
-const showLoading = ref(false)
-
-// all session data from here
-const sessionMode = ref('')
-const sessionRegId = ref('')
-const sessionAccessToken = ref('')
-const sessiondataParametersRecurring = ref('')
-const sessionEntityId = ref('')
-
-/**
- * fetches data from the session and sets it to the local variables
- */
-const getSessionData = async () => {
-  const { session, refresh } = await useSession()
-
-  await refresh()
-
-  sessionMode.value = session.value.mode
-  sessionRegId.value = session.value.registrationId
-  sessionAccessToken.value = session.value.accessToken
-  sessionEntityId.value = session.value.entityId
-  sessiondataParametersRecurring.value = session.value.dataParametersRecurring
-}
-
-/**
- * set up session data on click of the submit button
- */
-const setSessionData = async () => {
-  const { refresh, update } = await useSession()
-
-  await refresh()
-
-  await update({
-    mode: mode.value,
-    registrationId: registrationId.value,
-    accessToken: accessToken.value,
-    entityId: entityId.value,
-    dataParametersRecurring: dataParameters.value,
+  useHead({
+    title: 'Kobeni | Recurring (REPEATED ONLY)',
   })
-}
 
-/**
- * loads the session data as the main ui data
- */
-const loadSessionData = () => {
-  mode.value = sessionMode.value
-  registrationId.value = sessionRegId.value
-  accessToken.value = sessionAccessToken.value
-  entityId.value = sessionEntityId.value
-  dataParameters.value = sessiondataParametersRecurring.value
-}
+  const currentUser = useState('currentUser')
 
-/**
- *
- */
-const submit = async () => {
-  showLoading.value = true
-  responseData.value = ''
+  //
+  const mode = useState('mode')
 
-  await setSessionData()
-  await getSessionData()
+  const modeText = computed(() => {
+    const subDomain = mode.value == 'Test' ? 'eu-test' : 'eu-prod'
+    return `https://${subDomain}.oppwa.com/v1/registrations/${registrationId.value}/payments`
+  })
 
-  try {
-    const { data } = await useFetch('/api/payon/recurring', {
-      method: 'post',
-      body: {
-        mode: mode.value,
-        registrationId: registrationId.value,
-        accessToken: accessToken.value,
-        dataParameters: `${textAreaToURLParams(
-          dataParameters.value
-        )}&entityId=${entityId.value}`,
-      },
-    })
+  //
+  const registrationId = useState('registrationId')
+  const accessToken = useState('accessToken')
+  const entityId = useState('entityId')
+  const referenceTransaction = useState('referenceTransaction')
 
-    responseData.value = data.value
 
-    // save the trx as referemce fpr backoffice operations
-    if (data.value.id)
-      referenceTransaction.value = data.value.id
+  //
+  const dataParameters = ref('')
+  const defaultParameters = ref([
+    'amount=92.00',
+    'currency=USD',
+    'paymentType=DB',
+    'standingInstruction.mode=REPEATED',
+    'standingInstruction.type=RECURRING',
+    'standingInstruction.source=MIT',
+    'standingInstruction.initialTransactionId=REPLACE_ME',
+  ])
 
-    // 
-  } catch (error) {
-    console.error(error)
-  } finally {
-    showLoading.value = false
+  //
+  const responseData = ref('')
+  const showLoading = ref(false)
+
+  // all session data from here
+  const sessionMode = ref('')
+  const sessionRegId = ref('')
+  const sessionAccessToken = ref('')
+  const sessiondataParametersRecurring = ref('')
+  const sessionEntityId = ref('')
+
+  /**
+   * fetches data from the session and sets it to the local variables
+   */
+  const getSessionData = async () => {
+    const { session, refresh } = await useSession()
+
+    await refresh()
+
+    sessionMode.value = session.value.mode
+    sessionRegId.value = session.value.registrationId
+    sessionAccessToken.value = session.value.accessToken
+    sessionEntityId.value = session.value.entityId
+    sessiondataParametersRecurring.value = session.value.dataParametersRecurring
   }
-}
 
-onMounted(async () => {
-  dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+  /**
+   * set up session data on click of the submit button
+   */
+  const setSessionData = async () => {
+    const { refresh, update } = await useSession()
 
-  await getSessionData()
-})
+    await refresh()
+
+    await update({
+      mode: mode.value,
+      registrationId: registrationId.value,
+      accessToken: accessToken.value,
+      entityId: entityId.value,
+      dataParametersRecurring: dataParameters.value,
+    })
+  }
+
+  /**
+   * loads the session data as the main ui data
+   */
+  const loadSessionData = () => {
+    mode.value = sessionMode.value
+    registrationId.value = sessionRegId.value
+    accessToken.value = sessionAccessToken.value
+    entityId.value = sessionEntityId.value
+    dataParameters.value = sessiondataParametersRecurring.value
+  }
+
+  /**
+   *
+   */
+  const submit = async () => {
+    showLoading.value = true
+    responseData.value = ''
+
+    await setSessionData()
+    await getSessionData()
+
+    try {
+      const { data } = await useFetch('/api/payon/recurring', {
+        method: 'post',
+        body: {
+          mode: mode.value,
+          registrationId: registrationId.value,
+          accessToken: accessToken.value,
+          dataParameters: `${textAreaToURLParams(
+            dataParameters.value
+          )}&entityId=${entityId.value}`,
+        },
+      })
+
+      responseData.value = data.value
+
+      // save the trx as referemce fpr backoffice operations
+      if (data.value.id)
+        referenceTransaction.value = data.value.id
+
+      // 
+    } catch (error) {
+      console.error(error)
+    } finally {
+      showLoading.value = false
+    }
+  }
+
+  onMounted(async () => {
+    dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+
+    await getSessionData()
+  })
 </script>
 
 <template>

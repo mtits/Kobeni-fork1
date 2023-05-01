@@ -1,6 +1,6 @@
 <script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | CopyandPay',
+  useHead({
+    title: 'Kobeni | CopyandPay',
   })
 
   const currentUser = useState('currentUser')

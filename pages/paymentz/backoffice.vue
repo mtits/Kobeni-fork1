@@ -1,196 +1,196 @@
 <script setup>
-definePageMeta({
-  pageTitle: 'Kobeni | Backoffice',
-})
+  useHead({
+    title: 'Kobeni | Backoffice',
+  })
 
-// 
-const currentUser = useState('currentUser')
+  // 
+  const currentUser = useState('currentUser')
 
-// endpoint states
-const mode = useState('pzMode')
-const modeText = computed(() => {
-  return mode.value == 'Test'
-    ? 'https://preprod.prtpg.com/transactionServices/REST/v1/getTransactionList'
-    : 'https://secure.prtpg.com/transactionServices/REST/v1/getTransactionList'
-})
+  // endpoint states
+  const mode = useState('pzMode')
+  const modeText = computed(() => {
+    return mode.value == 'Test'
+      ? 'https://preprod.prtpg.com/transactionServices/REST/v1/getTransactionList'
+      : 'https://secure.prtpg.com/transactionServices/REST/v1/getTransactionList'
+  })
 
-// Dates
-const dateFrom = ref('')
-const dateTo = ref('')
+  // Dates
+  const dateFrom = ref('')
+  const dateTo = ref('')
 
-// 
-const memberID = useState('memberID')
-const merchantSecureKey = useState('merchantSecureKey')
-const merchantUsername = useState('merchantUsername')
-const partnerID = useState('partnerID')
+  // 
+  const memberID = useState('memberID')
+  const merchantSecureKey = useState('merchantSecureKey')
+  const merchantUsername = useState('merchantUsername')
+  const partnerID = useState('partnerID')
 
-// 
-const statusList = ref(['ALL', 'begun', 'authstarted', 'authsuccessful', 'authfailed', 'authcancelled', 'cancelstarted', 'cancelled', 'capturestarted', 'capturesuccess', 'capturefailed', 'markedforreversal', 'reversed', 'chargeback', 'failed', 'payoutstarted', 'payoutsuccessful', 'payoutfailed'])
-const selectedStatus = ref('ALL')
+  // 
+  const statusList = ref(['ALL', 'begun', 'authstarted', 'authsuccessful', 'authfailed', 'authcancelled', 'cancelstarted', 'cancelled', 'capturestarted', 'capturesuccess', 'capturefailed', 'markedforreversal', 'reversed', 'chargeback', 'failed', 'payoutstarted', 'payoutsuccessful', 'payoutfailed'])
+  const selectedStatus = ref('ALL')
 
-/**
- * set "dateFrom" to date today
- */
-onMounted(() => {
-  const date = new Date()
+  /**
+   * set "dateFrom" to date today
+   */
+  onMounted(() => {
+    const date = new Date()
 
-  // format to add the zeroes
-  const month = (date.getMonth() + 1 < 10) ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-  const day = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate()
+    // format to add the zeroes
+    const month = (date.getMonth() + 1 < 10) ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+    const day = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate()
 
-  const formattedDate = `${date.getFullYear()}-${month}-${day}`
-  // console.info(formattedDate)
+    const formattedDate = `${date.getFullYear()}-${month}-${day}`
+    // console.info(formattedDate)
 
-  dateFrom.value = `${date.getFullYear()}-${month}-01` // always init at the 1st day of the month
-  dateTo.value = formattedDate
-})
+    dateFrom.value = `${date.getFullYear()}-${month}-01` // always init at the 1st day of the month
+    dateTo.value = formattedDate
+  })
 
-const isLoading = ref(false)
+  const isLoading = ref(false)
 
-const isError = ref(false)
-const errorMsg = ref('')
-const errorColorStyle = ref('alert-error')
+  const isError = ref(false)
+  const errorMsg = ref('')
+  const errorColorStyle = ref('alert-error')
 
-/**
- * sets the states to display the alert msg
- * @param {string} colorStyle 
- * @param {string} errorMsg 
- */
-function displayError(colorStyle, msg) {
-  isError.value = true
-  errorColorStyle.value = colorStyle
-  errorMsg.value = msg
-  isLoading.value = false
-}
+  /**
+   * sets the states to display the alert msg
+   * @param {string} colorStyle 
+   * @param {string} errorMsg 
+   */
+  function displayError(colorStyle, msg) {
+    isError.value = true
+    errorColorStyle.value = colorStyle
+    errorMsg.value = msg
+    isLoading.value = false
+  }
 
-/**
- * reset states
- */
-function clearStates() {
-  isLoading.value = true
-  transactionList.value = ''
-  isError.value = false
-  errorMsg.value = ''
-}
+  /**
+   * reset states
+   */
+  function clearStates() {
+    isLoading.value = true
+    transactionList.value = ''
+    isError.value = false
+    errorMsg.value = ''
+  }
 
-const transactionList = ref('')
-const authToken = useState('authToken')
-
-
-/**
- * 
- */
-async function submit() {
-  clearStates()
-
-  // checksum hash "memberId|secretKey"
-  const checksum = generateHash(`${memberID.value}|${merchantSecureKey.value}`)
-
-  // required date format is "MM/DD/YYYY" 
-  const dateFromArray = dateFrom.value.split('-')
-  const fromDate = `${dateFromArray[1]}/${dateFromArray[2]}/${dateFromArray[0]}`
-
-  const dateToArray = dateTo.value.split('-')
-  const toDate = `${dateToArray[1]}/${dateToArray[2]}/${dateToArray[0]}`
+  const transactionList = ref('')
+  const authToken = useState('authToken')
 
 
-  try {
-    // todo: generate token
-    const { data } = await useFetch('/api/pz/generateAuthToken', {
-      method: 'post',
-      body: {
-        mode: mode.value,
-        partnerID: partnerID.value,
-        merchantUsername: merchantUsername.value,
-        merchantSecureKey: merchantSecureKey.value,
-      },
-    })
+  /**
+   * 
+   */
+  async function submit() {
+    clearStates()
+
+    // checksum hash "memberId|secretKey"
+    const checksum = generateHash(`${memberID.value}|${merchantSecureKey.value}`)
+
+    // required date format is "MM/DD/YYYY" 
+    const dateFromArray = dateFrom.value.split('-')
+    const fromDate = `${dateFromArray[1]}/${dateFromArray[2]}/${dateFromArray[0]}`
+
+    const dateToArray = dateTo.value.split('-')
+    const toDate = `${dateToArray[1]}/${dateToArray[2]}/${dateToArray[0]}`
 
 
-    if (data.value.AuthToken) {
-      authToken.value = data.value.AuthToken
+    try {
+      // todo: generate token
+      const { data } = await useFetch('/api/pz/generateAuthToken', {
+        method: 'post',
+        body: {
+          mode: mode.value,
+          partnerID: partnerID.value,
+          merchantUsername: merchantUsername.value,
+          merchantSecureKey: merchantSecureKey.value,
+        },
+      })
 
-      // submit
-      try {
-        const { data } = await useFetch('/api/pz/fetchList', {
-          method: 'post',
-          headers: { accessToken: authToken.value },
-          body: {
-            mode: mode.value,
-            memberID: memberID.value,
-            checksum: checksum,
-            from: fromDate,
-            to: toDate,
-            status: selectedStatus.value
-          },
-        })
 
-        if (data.value.transaction) {
-          transactionList.value = data.value.transaction
-        } else {
-          displayError('alert-warning', 'No records found')
+      if (data.value.AuthToken) {
+        authToken.value = data.value.AuthToken
+
+        // submit
+        try {
+          const { data } = await useFetch('/api/pz/fetchList', {
+            method: 'post',
+            headers: { accessToken: authToken.value },
+            body: {
+              mode: mode.value,
+              memberID: memberID.value,
+              checksum: checksum,
+              from: fromDate,
+              to: toDate,
+              status: selectedStatus.value
+            },
+          })
+
+          if (data.value.transaction) {
+            transactionList.value = data.value.transaction
+          } else {
+            displayError('alert-warning', 'No records found')
+          }
+
+          // console.info(data.value)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          isLoading.value = false
         }
-
-        // console.info(data.value)
-      } catch (error) {
-        console.error(error)
-      } finally {
+      } else {
+        displayError('alert-error', 'Failed to generate token')
         isLoading.value = false
       }
-    } else {
-      displayError('alert-error', 'Failed to generate token')
-      isLoading.value = false
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const isModalEnabled = ref(false)
+  const selectedTrx = ref('')
+  const selectedTrxData = ref('')
+
+  /**
+   * 
+   */
+  async function queryTransaction() {
+    // clear data
+    selectedTrxData.value = ''
+
+    try {
+      const { data } = await useFetch('/api/pz/query', {
+        method: 'post',
+        headers: { accessToken: authToken.value },
+        body: {
+          mode: mode.value,
+          memberId: memberID.value,
+          id: selectedTrx.value,
+          checksum: generateHash(`${memberID.value}|${merchantSecureKey.value}|${selectedTrx.value}`) // <memberId>|<secureKey>|<paymentId>
+        },
+      })
+
+      selectedTrxData.value = data.value
+
+      // 
+    } catch (error) {
+      console.error(error)
     }
 
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const isModalEnabled = ref(false)
-const selectedTrx = ref('')
-const selectedTrxData = ref('')
-
-/**
- * 
- */
-async function queryTransaction() {
-  // clear data
-  selectedTrxData.value = ''
-
-  try {
-    const { data } = await useFetch('/api/pz/query', {
-      method: 'post',
-      headers: { accessToken: authToken.value },
-      body: {
-        mode: mode.value,
-        memberId: memberID.value,
-        id: selectedTrx.value,
-        checksum: generateHash(`${memberID.value}|${merchantSecureKey.value}|${selectedTrx.value}`) // <memberId>|<secureKey>|<paymentId>
-      },
-    })
-
-    selectedTrxData.value = data.value
-
-    // 
-  } catch (error) {
-    console.error(error)
   }
 
-}
+  /**
+   * toggles the "isModalEnabled" state and add a ref to the trx to display in the modal
+   * @param {boolean} isEnabled 
+   * @param {string} trxRef 
+   */
+  function toggleModal(isEnabled, trxRef = '') {
+    isModalEnabled.value = isEnabled
+    selectedTrx.value = trxRef
 
-/**
- * toggles the "isModalEnabled" state and add a ref to the trx to display in the modal
- * @param {boolean} isEnabled 
- * @param {string} trxRef 
- */
-function toggleModal(isEnabled, trxRef = '') {
-  isModalEnabled.value = isEnabled
-  selectedTrx.value = trxRef
-
-  if (isEnabled)
-    queryTransaction()
-}
+    if (isEnabled)
+      queryTransaction()
+  }
 </script>
 
 <template>

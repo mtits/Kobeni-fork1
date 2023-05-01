@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       script: [{ src: '/external.js' }, { src: '/jquery-3.6.1.min.js' }],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
-    keepalive: true,
+    // keepalive: true,
   },
 
   router: {

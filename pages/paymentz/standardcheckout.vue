@@ -1,6 +1,6 @@
 <script setup>
-  definePageMeta({
-    pageTitle: 'Kobeni | Standard Checkout',
+  useHead({
+    title: 'Kobeni | Standard Checkout',
   })
 
   const currentUser = useState('currentUser')
@@ -113,11 +113,7 @@
     <!-- text area for the parameters needed -->
     <div class="flex flex-col gap-3">
       <!-- show endpoint -->
-      <InputReadOnly
-        label="Endpoint"
-        v-model="modeText"
-        :mode="mode"
-        :display-character-count="false"
+      <InputReadOnly label="Endpoint" v-model="modeText" :mode="mode" :display-character-count="false"
         @copy-content="copyString(modeText)" />
 
       <Textarea label="Data Parameters" v-model="dataParameters"></Textarea>
