@@ -2,14 +2,27 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      // htmlAttrs: {
-      //   'data-theme': 'dark',
-      // },
+      meta: [
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1',
+        },
+
+        {
+          name: 'description',
+          content:
+            'Test your PAY.ON and Paymentz transaction integrations here!',
+        },
+
+        {
+          charset: 'utf-8',
+        },
+      ],
       link: [{ rel: 'icon', href: '/favicon.png' }],
       script: [{ src: '/external.js' }, { src: '/jquery-3.6.1.min.js' }],
     },
-    pageTransition: { name: 'page', mode: 'out-in' },
     // keepalive: true,
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
 
   router: {
@@ -21,6 +34,7 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+
   postcss: {
     plugins: {
       tailwindcss: {},
