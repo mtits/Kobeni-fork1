@@ -47,7 +47,7 @@
       </div>
 
       <!-- domain -->
-      <Input label="Domain" v-model="domain" />
+      <Input label="Domain" place-holder="prtpe.com" v-model="domain" />
 
       <!-- select for entity type -->
       <div class="form-control w-full">
@@ -60,7 +60,7 @@
       </div>
 
       <!-- name -->
-      <Input label="Entity Name" v-model="entityName" />
+      <Input label="Entity Name" place-holder="Merchant / Division / Channel name Inc. Ltd. Corp." v-model="entityName" />
 
       <!-- result -->
       <div>
