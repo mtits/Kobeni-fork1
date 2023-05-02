@@ -18,6 +18,7 @@
   const entityId = useState('entityId')
   const referenceTransaction = useState('referenceTransaction')
   const registrationId = useState('registrationId')
+  const shopperResultURLPayon = useState('shopperResultUrlPayon')
 
   //
   const dataParameters = ref('')
@@ -123,7 +124,7 @@
           accessToken: accessToken.value,
           dataParameters: `${textAreaToURLParams(
             dataParameters.value
-          )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
+          )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}&shopperResultUrl=${shopperResultURLPayon.value}`,
         },
       })
 
