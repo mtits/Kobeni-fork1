@@ -10,7 +10,7 @@
 <template>
   <div class="mb-6">
     <span class="text-4xl font-bold text-sky-400">{{ title }}</span>
-    <p>
+    <p class="mt-2">
       <slot></slot>
     </p>
   </div>
