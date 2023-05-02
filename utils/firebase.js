@@ -4,14 +4,13 @@ import { initializeApp } from 'firebase/app'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCtoOq5mOGTanlsBA65WSE_0XeFUe6COkc',
-  authDomain: 'kobeni-b23cb.firebaseapp.com',
-  projectId: 'kobeni-b23cb',
-  storageBucket: 'kobeni-b23cb.appspot.com',
-  messagingSenderId: '180641714041',
-  appId: '1:180641714041:web:e5de08d32f773681c429a8',
+  apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGINSENDERID,
+  appId: import.meta.env.VITE_FIREBASE_APPID,
 }
 
 // Initialize Firebase
