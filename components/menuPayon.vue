@@ -20,7 +20,7 @@
         <span class=""> Setup </span>
       </div>
 
-      <div class="collapse-content">
+      <div class="collapse-content flex flex-col gap-1">
         <li class="hover-bordered">
           <NuxtLink to="/payon/config/configure-merchant">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
