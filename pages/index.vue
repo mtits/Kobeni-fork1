@@ -8,7 +8,7 @@
 
 <template>
   <div v-if="currentUser">
-    <div class="hero min-h-screen" id="index">
+    <div class="hero min-h-screen" style="background-image: url('/kobeni.png');">
       <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center text-neutral-content">
         <PageTitle title="Kobeni"> nothing to see here, go away </PageTitle>
@@ -17,13 +17,5 @@
     ur mom gay
   </div>
 
-  <div class="flex" v-else>
-    <button class="btn btn-ghost btn-block loading"></button>
-  </div>
+  <LoadingDisplay v-else />
 </template>
-
-<style>
-#index {
-  background-image: url('/kobeni.png');
-}
-</style>

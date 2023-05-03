@@ -1,49 +1,49 @@
 <script setup>
-import { getAuth, signOut } from 'firebase/auth'
+  import { getAuth, signOut } from 'firebase/auth'
 
-const currentUser = useState('currentUser')
-const currentTheme = useState('currentTheme')
+  const currentUser = useState('currentUser')
+  const currentTheme = useState('currentTheme')
 
-/**
- * yeets you out of the house
- */
-const logout = async () => {
-  const auth = getAuth(firebaseApp)
+  /**
+   * yeets you out of the house
+   */
+  const logout = async () => {
+    const auth = getAuth(firebaseApp)
 
-  try {
-    await signOut(auth)
+    try {
+      await signOut(auth)
 
-    console.info('Logging out...')
+      console.info('Logging out...')
 
-    await navigateTo('/login')
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-/**
- *
- */
-const changeTheme = async () => {
-  const { refresh, update } = await useSession()
-  await refresh()
-
-  // set session theme in case of page refresh
-  if (currentTheme.value == 'dark') {
-    currentTheme.value = 'winter'
-    await update({ theme: 'winter' })
-  } else {
-    currentTheme.value = 'dark'
-    await update({ theme: 'dark' })
+      await navigateTo('/login')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  // use composable with the determined value from above
-  useHead({
-    htmlAttrs: {
-      'data-theme': currentTheme.value,
-    },
-  })
-}
+  /**
+   *
+   */
+  const changeTheme = async () => {
+    const { refresh, update } = await useSession()
+    await refresh()
+
+    // set session theme in case of page refresh
+    if (currentTheme.value == 'dark') {
+      currentTheme.value = 'winter'
+      await update({ theme: 'winter' })
+    } else {
+      currentTheme.value = 'dark'
+      await update({ theme: 'dark' })
+    }
+
+    // use composable with the determined value from above
+    useHead({
+      htmlAttrs: {
+        'data-theme': currentTheme.value,
+      },
+    })
+  }
 </script>
 
 <template>
@@ -61,7 +61,7 @@ const changeTheme = async () => {
       <div class="navbar-end">
         <!-- user settings dwopdown -->
         <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-secondary gap-2">
+          <label tabindex="0" class="btn gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round"

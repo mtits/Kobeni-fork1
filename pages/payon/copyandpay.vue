@@ -361,7 +361,5 @@
     </modal>
   </div>
 
-  <div class="flex" v-else>
-    <button class="btn btn-ghost btn-block loading"></button>
-  </div>
+  <LoadingDisplay v-else />
 </template>
