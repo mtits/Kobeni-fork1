@@ -9,12 +9,28 @@
 <template>
   <div v-if="currentUser">
     <div class="hero min-h-screen" style="background-image: url('/kobeni.png');">
-      <div class="hero-overlay bg-opacity-60"></div>
+      <div class="hero-overlay bg-opacity-90 backdrop-blur-lg"></div>
+
       <div class="hero-content text-center text-neutral-content">
-        <PageTitle title="Kobeni"> nothing to see here, go away </PageTitle>
+
+        <div class="flex flex-col items-center gap-3">
+          <div>
+            <img src="/kobeni.png" class="w-36 h-36 rounded-full object-cover transition hover:scale-105" />
+          </div>
+
+          <PageTitle title="Kobeni">
+            <span class="text-sm">
+              Nothing to see here, go away...
+            </span>
+          </PageTitle>
+        </div>
+
       </div>
     </div>
-    ur mom gay
+
+    <span class="text-xs">
+      ur mom gay
+    </span>
   </div>
 
   <LoadingDisplay v-else />
