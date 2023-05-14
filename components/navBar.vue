@@ -48,12 +48,12 @@
 
 <template>
   <div class="sticky top-0 z-20 bg-neutral bg-opacity-90 backdrop-blur w-full">
-    <div class="navbar px-32">
+    <div class="navbar px-16">
       <div class="navbar-start">
         <div class="prose lg:hidden">
           <h1 class="text-sky-400">
             Kobeni
-            <div class="badge badge-accent">ALPHA</div>
+            <span class="text-xs font-normal text-amber-400">ALPHA</span>
           </h1>
         </div>
       </div>

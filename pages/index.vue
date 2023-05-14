@@ -24,7 +24,7 @@
     <!-- PAY.ON Tools -->
     <div class="mt-10">
       <PageTitle title="PAY.ON Tools" />
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap gap-2">
         <HomeItem title="COPYandPAY" nav-to="/payon/copyandpay">
           COPYandPAY is a SAQ-A compliant payment-form solution, making it both secure and simple-to-integrate.
         </HomeItem>

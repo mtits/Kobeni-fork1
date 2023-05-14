@@ -1,10 +1,7 @@
-<script setup></script>
-
 <template>
-  <ul class="menu menu-compact flex flex-col gap-1 p-0 px-2">
-    <li></li>
+  <ul class="menu menu-compact p-2 flex flex-col gap-1 ">
     <li class="menu-title">
-      <span>WL Stuffs UNDERCONSTRUCTION</span>
+      <span>WL (UNDER CONSTRUCTION)</span>
     </li>
 
     <li class="hover-bordered">
@@ -17,6 +14,7 @@
         Setup
       </a>
     </li>
+
     <li class="hover-bordered">
       <a>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -28,6 +26,7 @@
         Hosted Payment Page
       </a>
     </li>
+
     <li class="hover-bordered">
       <a>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -39,6 +38,7 @@
         Server-to-server
       </a>
     </li>
+
     <li class="hover-bordered">
       <a>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -50,6 +50,7 @@
         Backoffice
       </a>
     </li>
+
     <li class="hover-bordered">
       <a>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

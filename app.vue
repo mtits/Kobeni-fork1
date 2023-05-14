@@ -69,20 +69,11 @@
         </Transition>
 
         <!-- Page content here -->
-        <div class="container mx-auto px-32 py-10 bg-base-300">
+        <div class="container mx-auto px-10 py-16 bg-base-300">
           <!-- the actual page -->
           <NuxtPage />
-
-          <!-- i made dis -->
-          <div class="grid place-items-center mt-4">
-            <span class="text-xs">
-              i made dis.
-              <a class="link" href="https://github.com/veib6247" target="_blank">
-                Github
-              </a>
-            </span>
-          </div>
         </div>
+
         <Transition>
           <Footer v-if="currentUser" />
         </Transition>
@@ -90,37 +81,34 @@
 
       <!-- drawer items -->
       <div class="drawer-side" v-if="currentUser">
-        <label class="drawer-overlay" for="app-drawer"></label>
+        <label for="app-drawer" class="drawer-overlay"></label>
 
-        <!-- main container of the side drawer contents -->
-        <aside class="w-72 bg-base-300">
-          <!-- side title -->
-          <div class="py-3 px-7 bg-neutral sticky top-0 bg-opacity-90 backdrop-blur z-20">
+        <!-- container so that they all tuck in mobile -->
+        <div class="bg-base-300">
+          <div class="py-3 px-6 bg-neutral sticky top-0 bg-opacity-90 backdrop-blur z-20">
             <div class="prose">
               <h1 class="text-sky-400">
                 Kobeni
-                <div class="badge badge-accent">ALPHA</div>
+                <span class="text-xs font-normal text-amber-400">ALPHA</span>
               </h1>
             </div>
           </div>
 
-          <div class="h-4"></div>
+          <div class="px-2">
+            <!-- APP MENUS -->
+            <MenuApps />
 
-          <!-- APP MENUS -->
-          <MenuApps />
+            <!-- PAYON MENUS -->
+            <MenuPayon />
 
-          <!-- PAYON MENUS -->
-          <MenuPayon />
+            <!-- PZ MENUS -->
+            <MenuPaymentz />
 
-          <!-- PZ MENUS -->
-          <MenuPaymentz />
+            <!-- WL MENUS -->
+            <MenuWL />
+          </div>
 
-          <!-- WL MENUS -->
-          <MenuWL />
-
-          <div class="h-4"></div>
-        </aside>
-        <!-- end side drawer container -->
+        </div>
       </div>
     </div>
   </div>
