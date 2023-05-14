@@ -283,7 +283,7 @@
       secure and simple-to-integrate.
     </PageTitle>
 
-    <div class="flex flex-col space-y-3">
+    <div class="flex flex-col gap-3">
       <!-- show endpoint -->
       <InputReadOnly label="Endpoint" v-model="modeText" :mode="mode" :display-character-count="false"
         @copy-content="copyString(modeText)" />
