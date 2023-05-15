@@ -1,6 +1,6 @@
 <script setup>
   useHead({
-    title: 'Kobeni | CopyandPay',
+    title: 'Kobeni | COPYandPAY',
   })
 
   const currentUser = useState('currentUser')
