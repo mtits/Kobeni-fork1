@@ -1,6 +1,7 @@
 <script setup lang="ts">
   const currentUser = useState('currentUser', () => '')
   const currentTheme = useState('currentTheme', () => 'dark')
+  const appName = useState('appName', () => 'コベニ')
 
   /**
    * check session for saved theme
@@ -57,7 +58,7 @@
 </script>
 
 <template>
-  <div class="bg-base-300">
+  <div class="bg-gradient-to-r from-base-200 to-neutral">
     <!-- main div for drawer -->
     <div class="drawer drawer-mobile">
       <input id="app-drawer" type="checkbox" class="drawer-toggle" />
@@ -87,8 +88,8 @@
         <div class="bg-neutral">
           <div class="py-3 px-6 sticky top-0 bg-opacity-90 backdrop-blur z-20">
             <div class="prose">
-              <h1 class="text-sky-400">
-                Kobeni
+              <h1 class="text-sky-400 font-title">
+                {{ appName }}
                 <span class="text-xs font-normal text-amber-400">ALPHA</span>
               </h1>
             </div>

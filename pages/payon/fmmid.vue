@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Format Thy MID',
-  })
+  usePageHead('Format Thy MID')
 
   const currentUser = useState('currentUser')
 

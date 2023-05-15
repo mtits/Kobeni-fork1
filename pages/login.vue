@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
-  useHead({
-    title: 'Kobeni | Login',
-  })
+  const appName = useState('appName')
+
+  usePageHead('Login')
 
   const email = ref('')
   const password = ref('')
@@ -49,7 +49,7 @@
       <div class="card-body place-items-center">
         <div class="prose">
           <h1>
-            <span class="text-sky-400"> Kobeni </span>
+            <span class="text-sky-400 font-title"> {{ appName }} </span>
           </h1>
         </div>
         <p class="italic text-sm">sorry, new phone, hu dis?</p>

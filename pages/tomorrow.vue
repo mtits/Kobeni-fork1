@@ -1,9 +1,7 @@
 <script setup lang="ts">
   import { Howl, Howler } from 'howler'
 
-  useHead({
-    title: 'Kobeni | Soundboard'
-  })
+  usePageHead('Soundboard')
 
   const currentUser = useState('currentUser')
 

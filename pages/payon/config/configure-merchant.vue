@@ -1,7 +1,5 @@
 <script setup lang="ts">
-  useHead({
-    title: 'Kobeni | Configure Merchant',
-  })
+  usePageHead('Configure Merchant')
 
   //
   const mode = useState('mode')

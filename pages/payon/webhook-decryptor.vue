@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Webhook Decrytor',
-  })
+  usePageHead('Webhook Decrytor')
 
   const currentUser = useState('currentUser')
 

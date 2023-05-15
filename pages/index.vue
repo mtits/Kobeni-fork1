@@ -1,7 +1,5 @@
 <script setup lang="ts">
-  useHead({
-    title: 'Kobeni | Pull Yoself Togedah!'
-  })
+  usePageHead('Home')
 
   const currentUser = useState('currentUser')
 </script>

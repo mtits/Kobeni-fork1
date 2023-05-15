@@ -1,7 +1,5 @@
 <script setup lang="ts">
-  useHead({
-    title: 'Kobeni | Widget Behaviour',
-  })
+  usePageHead('Widget Behaviour')
 
   // all widget states
   const autoLaunchWidget = useState<boolean>('autoLaunchWidget')

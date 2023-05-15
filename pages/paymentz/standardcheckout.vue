@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Standard Checkout',
-  })
+  usePageHead('Standard Checkout')
 
   const currentUser = useState('currentUser')
 

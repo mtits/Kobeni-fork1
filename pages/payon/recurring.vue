@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Recurring (REPEATED ONLY)',
-  })
+  usePageHead('Recurring (REPEATED ONLY)')
 
   const currentUser = useState('currentUser')
 

@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Generate AuthToken',
-  })
+  usePageHead('Generate Auth Token')
 
   const currentUser = useState('currentUser')
 

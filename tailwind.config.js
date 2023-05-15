@@ -10,6 +10,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      title: ['Noto Serif JP', 'serif'],
+      mono: ['Roboto Mono', 'monospace'],
+    },
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {

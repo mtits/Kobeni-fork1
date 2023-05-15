@@ -1,14 +1,10 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Merchant Redirect Page',
-  })
+  usePageHead('Merchant Redirect Page')
 
   const currentUser = useState('currentUser')
   const route = useRoute()
 
   const queryParams = route.query
-
-      // console.log(queryParams)
 </script>
 
 <template>

@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Reporting API',
-  })
+  usePageHead('Reporting API')
 
   const currentUser = useState('currentUser')
 

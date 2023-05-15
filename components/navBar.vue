@@ -3,6 +3,8 @@
 
   const currentUser = useState('currentUser')
   const currentTheme = useState('currentTheme')
+  const appName = useState('appName')
+
 
   /**
    * yeets you out of the house
@@ -51,8 +53,8 @@
     <div class="navbar px-16">
       <div class="navbar-start">
         <div class="prose lg:hidden">
-          <h1 class="text-sky-400">
-            Kobeni
+          <h1 class="text-sky-400 font-title">
+            {{ appName }}
             <span class="text-xs font-normal text-amber-400">ALPHA</span>
           </h1>
         </div>

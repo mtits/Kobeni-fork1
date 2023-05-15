@@ -1,9 +1,7 @@
 <script setup>
   import csvDownload from 'json-to-csv-export'
 
-  useHead({
-    title: 'Kobeni | Result Codes',
-  })
+  usePageHead('Result Codes')
 
   const currentUser = useState('currentUser')
 

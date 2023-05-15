@@ -1,7 +1,5 @@
 <script setup lang="ts">
-  useHead({
-    title: 'Kobeni | BIP URL Generator',
-  })
+  usePageHead('BIP URL Generator')
 
   // vars
   const currentUser = useState('currentUser')

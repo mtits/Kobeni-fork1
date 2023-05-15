@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Result Page',
-  })
+  usePageHead('Result Page')
 
   const currentUser = useState('currentUser')
 

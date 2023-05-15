@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Backoffice',
-  })
+  usePageHead('Backoffice')
 
   // 
   const currentUser = useState('currentUser')

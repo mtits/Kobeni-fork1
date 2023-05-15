@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | Server-to-Server',
-  })
+  usePageHead('Server-to-Server')
 
   const currentUser = useState('currentUser')
 

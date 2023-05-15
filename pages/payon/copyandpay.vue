@@ -1,7 +1,5 @@
 <script setup>
-  useHead({
-    title: 'Kobeni | COPYandPAY',
-  })
+  usePageHead('COPYandPAY')
 
   const currentUser = useState('currentUser')
 
