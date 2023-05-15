@@ -1,5 +1,5 @@
 <template>
-  <ul class="menu menu-compact p-2 flex flex-col gap-1 ">
+  <ul class="menu menu-compact p-2 px-4 flex flex-col gap-1 ">
     <li class="menu-title">
       <span>WL (UNDER CONSTRUCTION)</span>
     </li>

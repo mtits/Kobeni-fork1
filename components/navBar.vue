@@ -47,7 +47,7 @@
 </script>
 
 <template>
-  <div class="sticky top-0 z-20 bg-neutral bg-opacity-90 backdrop-blur w-full">
+  <div class="sticky top-0 z-20 bg-opacity-90 backdrop-blur w-full">
     <div class="navbar px-16">
       <div class="navbar-start">
         <div class="prose lg:hidden">
@@ -61,7 +61,7 @@
       <div class="navbar-end">
         <!-- user settings dwopdown -->
         <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn gap-2">
+          <label tabindex="0" class="btn btn-ghost gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round"

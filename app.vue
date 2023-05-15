@@ -69,23 +69,23 @@
         </Transition>
 
         <!-- Page content here -->
-        <div class="container mx-auto px-10 py-16 bg-base-300">
+        <div class="container mx-auto px-10 pt-5 pb-20">
           <!-- the actual page -->
           <NuxtPage />
         </div>
 
-        <Transition>
+        <!-- <Transition>
           <Footer v-if="currentUser" />
-        </Transition>
+        </Transition> -->
       </div>
 
       <!-- drawer items -->
-      <div class="drawer-side" v-if="currentUser">
+      <div class="drawer-side w-72" v-if="currentUser">
         <label for="app-drawer" class="drawer-overlay"></label>
 
         <!-- container so that they all tuck in mobile -->
-        <div class="bg-base-300">
-          <div class="py-3 px-6 bg-neutral sticky top-0 bg-opacity-90 backdrop-blur z-20">
+        <div class="bg-neutral">
+          <div class="py-3 px-6 sticky top-0 bg-opacity-90 backdrop-blur z-20">
             <div class="prose">
               <h1 class="text-sky-400">
                 Kobeni
@@ -94,7 +94,7 @@
             </div>
           </div>
 
-          <div class="px-2">
+          <div>
             <!-- APP MENUS -->
             <MenuApps />
 
@@ -105,7 +105,7 @@
             <MenuPaymentz />
 
             <!-- WL MENUS -->
-            <MenuWL />
+            <!-- <MenuWL /> -->
           </div>
 
         </div>

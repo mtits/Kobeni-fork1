@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <ul class="menu menu-compact p-2 flex flex-col gap-1 px-2">
+  <ul class="menu menu-compact p-2 px-4 w-fill flex flex-col gap-1">
     <li class="menu-title">
       <span>APP</span>
     </li>
