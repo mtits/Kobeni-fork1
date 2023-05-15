@@ -70,7 +70,7 @@
     <!-- Paymentz Tools -->
     <div class="mt-10">
       <PageTitle title="PaymentZ Tools" />
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap gap-2">
         <HomeItem title="Standard Checkout" nav-to="/paymentz/standardcheckout">
           In Standard Checkout, the merchant needs to post the intial request to the hosted checkout page where customer
           will provide card/account details.
@@ -94,7 +94,7 @@
     <!-- My tools -->
     <div class="mt-10">
       <PageTitle title="Other Stuffs" />
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap gap-2">
         <HomeItem title="Soundboard" nav-to="/tomorrow">
           Buttons with sounds.
         </HomeItem>
