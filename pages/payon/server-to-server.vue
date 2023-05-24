@@ -37,7 +37,6 @@
     'customer.email=test@test.com',
     'customer.givenName=John',
     'customer.surname=Wick',
-    'customer.ip=192.168.0.1',
     'customer.browser.acceptHeader=text/html',
     'customer.browser.screenColorDepth=48',
     'customer.browser.javaEnabled=false',
@@ -146,6 +145,8 @@
     trxId.value = generateTrxId('kbn', 6)
     // console.info(`New merchantTransactionId: ${trxId.value}`)
   }
+
+  defaultParameters.value.push(`customer.ip=${await useUserIp()}`)
 
   /**
    *

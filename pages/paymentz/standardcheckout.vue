@@ -22,11 +22,6 @@
     'telnocc=63',
     'phone=9854785236',
     'email=flex.gateway@payreto.com',
-    'ip=192.168.0.1',
-    'currency=REPLACE_ME',
-    'terminalid=REPLACE_ME',
-    'paymentMode=REPLACE_ME',
-    'paymentBrand=REPLACE_ME',
   ])
 
   const memberID = useState('memberID')
@@ -36,10 +31,20 @@
   const merchantSecureKey = useState('merchantSecureKey')
   const merchantTransactionId = useState('merchantTransactionId')
 
+  // fetch current user's IP and append to the default params
+  defaultParameters.value.push(`ip=${await useUserIp()}`)
+
   /**
    *
    */
   onMounted(() => {
+    // add the rest so that the ip does not end up at the bottom
+    defaultParameters.value.push('currency=REPLACE_ME')
+    defaultParameters.value.push('terminalid=REPLACE_ME')
+    defaultParameters.value.push('paymentMode=REPLACE_ME')
+    defaultParameters.value.push('paymentBrand=REPLACE_ME')
+
+    // format the bois
     dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
   })
 
