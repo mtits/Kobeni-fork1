@@ -12,7 +12,7 @@
   })
 
   // fetch from ACI docs
-  const { data, refresh, pending } = await useLazyFetch(result.url)
+  const { data, refresh, pending } = await useFetch(result.url)
   result.data = data.value
 
   /**
