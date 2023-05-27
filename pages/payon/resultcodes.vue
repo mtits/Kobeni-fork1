@@ -42,22 +42,23 @@
       collected real-time on page load from ACI's API.
     </PageTitle>
 
+    <div class="flex flex-col gap-3">
 
-    <div class="space-y-3">
-      <div class="space-x-3" v-if="data">
-        <button class="btn btn-primary gap-2" @click="exportCSV">
-          <IconTable />
-          CSV
-        </button>
-
-        <button class="btn btn-square" @click="refresh">
-          <IconReload />
-        </button>
-      </div>
 
       <progress class="progress" v-if="pending"></progress>
 
-      <div v-else>
+      <div class="flex flex-col gap-3" v-else>
+        <div class="flex gap-3">
+          <button class="btn btn-primary gap-2" @click="exportCSV">
+            <IconTable />
+            CSV
+          </button>
+
+          <button class="btn btn-square" @click="refresh">
+            <IconReload />
+          </button>
+        </div>
+
         <Transition>
           <div class="overflow-x-auto" v-if="data">
             <table class="table table-zebra w-full">
@@ -79,7 +80,6 @@
         </Transition>
       </div>
     </div>
-
   </div>
 
   <LoadingDisplay v-else />
