@@ -28,16 +28,26 @@ export default defineEventHandler(async (event) => {
   try {
     const response = await axios({
       method: 'get',
-      url: `${endPoint}?entityId=${body.entityId}&date.from=${body.dateFrom} 00:00:00&date.to=${body.dateTo} 01:00:00`,
+      url: endPoint,
+
       headers: {
         Authorization: `Bearer ${body.accessToken}`,
       },
+
+      params: {
+        entityId: body.entityId,
+        'date.from': `${body.dateFrom} 00:00:00`,
+        'date.to': `${body.dateTo} 23:59:59`,
+        paymentTypes: body.paymentTypes,
+      },
     })
 
+    logger.info(response.data)
     return response.data
-  } catch (error) {
-    console.error((error as any).response.data)
 
-    return { kobeniServerError: (error as any).response.data }
+    //
+  } catch (error) {
+    logger.error((error as any).response.data)
+    return (error as any).response.data
   }
 })
