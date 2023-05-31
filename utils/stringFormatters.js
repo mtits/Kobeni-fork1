@@ -323,10 +323,22 @@ export const oppwaEndPointFormatter = (
       case 'RECURRING':
         return `https://${subDomain}.${baseURL}/v1/registrations/${referenceId}/payments`
 
+      case 'LIST':
+        return `https://${subDomain}.${baseURL}/v3/query`
+
       default:
         throw new Error('Invalid Integration Name', {
           cause: `Provided integration name ${integrationName} is not defined.`,
         })
     }
   }
+}
+
+/**
+ *
+ * @param {Number} evalNum
+ * @returns the number with prefixed zero if it's only 1 digit
+ */
+export const expectoPrefixTheZeroNum = (evalNum) => {
+  return evalNum < 10 ? `0${evalNum}` : evalNum
 }
