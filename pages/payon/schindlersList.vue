@@ -98,13 +98,17 @@
         </div>
       </div>
 
+      <Alert title="Info" color-style="bg-sky-900 text-slate-300">
+        This integration sometimes vomits horrible Eldritch nightmares. Filter at your own risk.
+      </Alert>
+
       <div class="flex gap-2">
         <button class="btn" :class="{ 'loading': isPending }" @click="getDates">Fetch List</button>
       </div>
 
       <Transition>
         <div v-if="records">
-          <span class="block mb-1 text-xs">Displaying {{ records.length }} Records</span>
+          <span class="block mb-1 ml-2 text-xs">Displaying {{ records.length }} Records</span>
           <div class="overflow-x-auto">
             <table class="table table-zebra table-compact w-full">
               <thead>
