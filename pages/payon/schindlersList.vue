@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      <Alert title="Info" color-style="bg-sky-900 text-slate-300">
+      <Alert colorStyle="bg-sky-900 text-slate-300">
         This integration sometimes vomits horrible Eldritch nightmares. Filter at your own risk.
       </Alert>
 
