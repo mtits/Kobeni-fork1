@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <div class="alert shadow-lg" :class="colorStyle">
+  <div class="alert shadow" :class="colorStyle">
     <div>
       <IconAlert />
       <div>
