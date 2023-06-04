@@ -65,6 +65,11 @@
   }
 
 
+
+  /**
+   * ALL MODAL RELATED THINGIES
+   */
+
   const isModalOpen = ref(false)
   const selectedId = ref('')
   const selectedTrx = ref()
@@ -117,7 +122,7 @@
           </label>
 
           <select class="select select-bordered" v-model="selectedPaymentType">
-            <option v-for="type in paymentTypes" :value="type.value">{{ type.name }}</option>
+            <option v-for="paymentType in paymentTypes" :value="paymentType.value">{{ paymentType.name }}</option>
           </select>
         </div>
       </div>
