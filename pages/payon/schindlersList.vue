@@ -138,22 +138,39 @@
               </thead>
               <tbody>
                 <tr class="hover" v-for="record in records" :key="record.id">
-                  <td class="text-xs font-mono">{{ record.timestamp }}</td>
+                  <td class="text-xs font-mono">
+                    {{ record.timestamp }}
+                  </td>
+
                   <td class="text-xs font-mono">
                     <button class="link" @click="openModal(record.id)">{{ record.id }}</button>
                   </td>
+
                   <td class="text-xs font-mono">
                     <p class="w-48 truncate">
                       {{ record.merchantTransactionId }}
                     </p>
                   </td>
-                  <td class="text-xs font-mono">{{ record.result.code }}</td>
+
+                  <td class="text-xs font-mono">
+                    {{ record.result.code }}
+                  </td>
+
                   <td class="text-xs font-mono">
                     <p class="w-48 truncate">{{ record.result.description }}</p>
                   </td>
-                  <td class="text-xs font-mono">{{ record.paymentBrand }}</td>
-                  <td class="text-xs font-mono">{{ record.currency }}</td>
-                  <td class="text-xs font-mono">{{ record.amount }}</td>
+
+                  <td class="text-xs font-mono">
+                    {{ record.paymentBrand }}
+                  </td>
+
+                  <td class="text-xs font-mono">
+                    {{ record.currency }}
+                  </td>
+
+                  <td class="text-xs font-mono">
+                    {{ record.amount }}
+                  </td>
                 </tr>
               </tbody>
               <tfoot>
