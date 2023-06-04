@@ -31,7 +31,7 @@
   /**
    * 
    */
-  const getDates = async () => {
+  const fetchList = async () => {
     try {
       isPending.value = true
       records.value = undefined
@@ -130,7 +130,7 @@
 
 
       <div class="flex gap-2">
-        <button class="btn" :class="{ 'loading': isPending }" @click="getDates">Fetch List</button>
+        <button class="btn" :class="{ 'loading': isPending }" @click="fetchList">Fetch List</button>
       </div>
 
       <Transition>
