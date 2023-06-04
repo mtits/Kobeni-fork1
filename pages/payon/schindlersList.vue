@@ -134,16 +134,7 @@
           <div class="overflow-x-auto">
             <table class="table table-zebra table-compact w-full">
               <thead>
-                <tr>
-                  <th>Timestamp</th>
-                  <th>UUID</th>
-                  <th>Merchant Transaction ID</th>
-                  <th>Result Code</th>
-                  <th>Result Description</th>
-                  <th>Brand</th>
-                  <th>Currency</th>
-                  <th>Amount</th>
-                </tr>
+                <TableHeaderRow />
               </thead>
               <tbody>
                 <tr class="hover" v-for="record in records" :key="record.id">
@@ -166,16 +157,7 @@
                 </tr>
               </tbody>
               <tfoot>
-                <tr>
-                  <th>Timestamp</th>
-                  <th>UUID</th>
-                  <th>Merchant Transaction ID</th>
-                  <th>Result Code</th>
-                  <th>Result Description</th>
-                  <th>Brand</th>
-                  <th>Currency</th>
-                  <th>Amount</th>
-                </tr>
+                <TableHeaderRow />
               </tfoot>
             </table>
           </div>
@@ -212,100 +194,82 @@
 
         <div class="flex flex-col gap-3 m-5">
           <!-- more trx deets -->
-          <div class="flex flex-wrap gap-10">
+          <div class="flex flex-wrap gap-3">
             <!-- the generics -->
             <div class="flex flex-col gap-3">
-              <div v-if="selectedTrx.id">
-                <span class="block uppercase font-mono text-xs opacity-50">ID</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.id }}</span>
-              </div>
+              <ModalDisplayItem field-title="ID" v-if="selectedTrx.id">
+                {{ selectedTrx.id }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.merchantTransactionId">
-                <span class="block uppercase font-mono text-xs opacity-50">merchant Transaction Id</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.merchantTransactionId }}</span>
-              </div>
+              <ModalDisplayItem field-title="merchant Transaction Id" v-if="selectedTrx.merchantTransactionId">
+                {{ selectedTrx.merchantTransactionId }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.descriptor">
-                <span class="block uppercase font-mono text-xs opacity-50">descriptor</span>
-                <p class="block font-mono text-sm w-72 truncate">{{ selectedTrx.descriptor }}</p>
-              </div>
-            </div>
+              <ModalDisplayItem field-title="descriptor" v-if="selectedTrx.descriptor">
+                {{ selectedTrx.descriptor }}
+              </ModalDisplayItem>
 
-            <!-- amounts and stuff -->
-            <div class="flex flex-col gap-3">
-              <div v-if="selectedTrx.paymentType">
-                <span class="block uppercase font-mono text-xs opacity-50">payment Type</span>
-                <span class="font-mono text-xs bg-slate-900 rounded-lg p-1">{{ selectedTrx.paymentType }}</span>
-              </div>
+              <ModalDisplayItem field-title="payment Type" v-if="selectedTrx.paymentType">
+                {{ selectedTrx.paymentType }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.amount">
-                <span class="block uppercase font-mono text-xs opacity-50">amount</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.amount }} {{ selectedTrx.currency }}</span>
-              </div>
+              <ModalDisplayItem field-title="amount" v-if="selectedTrx.amount">
+                {{ selectedTrx.amount }} {{ selectedTrx.currency }}
+              </ModalDisplayItem>
             </div>
 
             <!-- all card data everything -->
             <div class="flex flex-col gap-3" v-if="selectedTrx.card">
-              <div v-if="selectedTrx.card.bin">
-                <span class="block uppercase font-mono text-xs opacity-50">BIN</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.bin }}</span>
-              </div>
+              <ModalDisplayItem field-title="BIN" v-if="selectedTrx.card.bin">
+                {{ selectedTrx.card.bin }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.card.last4Digits">
-                <span class="block uppercase font-mono text-xs opacity-50">last 4 Digits</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.last4Digits }}</span>
-              </div>
+              <ModalDisplayItem field-title="last 4 Digits" v-if="selectedTrx.card.last4Digits">
+                {{ selectedTrx.card.last4Digits }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.card.expiryMonth">
-                <span class="block uppercase font-mono text-xs opacity-50">expiry Month</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.expiryMonth }}</span>
-              </div>
+              <ModalDisplayItem field-title="expiry Month" v-if="selectedTrx.card.expiryMonth">
+                {{ selectedTrx.card.expiryMonth }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.card.expiryYear">
-                <span class="block uppercase font-mono text-xs opacity-50">expiry Year</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.expiryYear }}</span>
-              </div>
+              <ModalDisplayItem field-title="expiry Year" v-if="selectedTrx.card.expiryYear">
+                {{ selectedTrx.card.expiryYear }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.card.holder">
-                <span class="block uppercase font-mono text-xs opacity-50">holder</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.holder }}</span>
-              </div>
+              <ModalDisplayItem field-title="holder" v-if="selectedTrx.card.holder">
+                {{ selectedTrx.card.holder }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.card.type">
-                <span class="block uppercase font-mono text-xs opacity-50">type</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.type }}</span>
-              </div>
+              <ModalDisplayItem field-title="type" v-if="selectedTrx.card.type">
+                {{ selectedTrx.card.type }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.card.maxPanLength">
-                <span class="block uppercase font-mono text-xs opacity-50">maxPanLength</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.maxPanLength }}</span>
-              </div>
+              <ModalDisplayItem field-title="max Pan Length" v-if="selectedTrx.card.maxPanLength">
+                {{ selectedTrx.card.maxPanLength }}
+              </ModalDisplayItem>
 
-              <div v-if="selectedTrx.card.regulatedFlag">
-                <span class="block uppercase font-mono text-xs opacity-50">regulatedFlag</span>
-                <span class="block font-mono text-sm">{{ selectedTrx.card.regulatedFlag }}</span>
-              </div>
+              <ModalDisplayItem field-title="regulated Flag" v-if="selectedTrx.card.regulatedFlag">
+                {{ selectedTrx.card.regulatedFlag }}
+              </ModalDisplayItem>
             </div>
 
             <!-- all bank data everything -->
             <div v-if="selectedTrx.card">
               <div v-if="selectedTrx.card.issuer">
                 <span class="block uppercase font-mono text-xs opacity-50">Bank Info</span>
+
                 <div class="flex flex-col gap-3 bg-gray-900 shadow p-4 mt-2 rounded-lg">
-                  <div v-if="selectedTrx.card.issuer.bank">
-                    <span class="block uppercase font-mono text-xs opacity-50">Issuing Bank</span>
-                    <p class="block font-mono text-sm w-72 truncate">{{ selectedTrx.card.issuer.bank }}</p>
-                  </div>
+                  <ModalDisplayItem field-title="Issuing Bank" v-if="selectedTrx.card.issuer.bank">
+                    {{ selectedTrx.card.issuer.bank }}
+                  </ModalDisplayItem>
 
-                  <div v-if="selectedTrx.card.issuer.phone">
-                    <span class="block uppercase font-mono text-xs opacity-50">phone</span>
-                    <span class="block font-mono text-sm">{{ selectedTrx.card.issuer.phone }}</span>
-                  </div>
+                  <ModalDisplayItem field-title="phone" v-if="selectedTrx.card.issuer.phone">
+                    {{ selectedTrx.card.issuer.phone }}
+                  </ModalDisplayItem>
 
-                  <div v-if="selectedTrx.card.issuer.website">
-                    <span class="block uppercase font-mono text-xs opacity-50">website</span>
-                    <span class="block font-mono text-sm">{{ selectedTrx.card.issuer.website }}</span>
-                  </div>
+                  <ModalDisplayItem field-title="website" v-if="selectedTrx.card.issuer.website">
+                    {{ selectedTrx.card.issuer.website }}
+                  </ModalDisplayItem>
                 </div>
               </div>
             </div>
@@ -314,8 +278,8 @@
           <!-- custom params -->
           <div v-if="selectedTrx.customParameters">
             <span class="block uppercase font-mono text-xs opacity-50">custom Parameters</span>
-            <div class="bg-gray-900 shadow p-4 rounded-lg mt-2">
-              <p class="font-mono text-sm max-w-4xl truncate">
+            <div class="bg-gray-900 shadow p-4 rounded-lg mt-1">
+              <p class="font-mono text-xs max-w-4xl truncate">
               <pre>{{ selectedTrx.customParameters }}</pre>
               </p>
             </div>
