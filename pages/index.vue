@@ -47,6 +47,10 @@
           the response.
         </HomeItem>
 
+        <HomeItem title="Schindler's List" nav-to="/payon/schindlerslist">
+          Query a list of transactions via a date range and some filters.
+        </HomeItem>
+
         <HomeItem title="Format Thy MID" nav-to="/payon/fmmid">
           Auto-formats any given credentials to match BIP's required format for 3DS v2.
         </HomeItem>
