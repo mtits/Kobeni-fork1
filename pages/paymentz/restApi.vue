@@ -26,7 +26,13 @@
     'customer.givenName=John',
     'customer.surname=Wick',
     'customer.birthDate=19930528',
-    'customer.ip=192.168.0.1',
+  ])
+
+  // get ip
+  defaultParameters.value.push(`customer.ip=${await useUserIp()}`)
+
+  // append the rest
+  const allThatRemains = [
     'card.number=4111110000000021',
     'card.expiryMonth=12',
     'card.expiryYear=2030',
@@ -36,7 +42,10 @@
     'paymentMode=REPLACE_ME',
     'paymentType=REPLACE_ME',
     'authentication.terminalId=REPLACE_ME',
-  ])
+  ]
+
+  defaultParameters.value.push(...allThatRemains)
+
 
   const memberID = useState('memberID')
   const merchantUsername = useState('merchantUsername')
