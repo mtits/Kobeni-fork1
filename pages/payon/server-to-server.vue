@@ -146,7 +146,7 @@
     // console.info(`New merchantTransactionId: ${trxId.value}`)
   }
 
-  defaultParameters.value.push(`customer.ip=${await useUserIp()}`)
+  defaultParameters.value.push(`customer.ip=${useState('userIp').value}`)
 
   /**
    *

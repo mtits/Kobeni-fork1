@@ -3,6 +3,11 @@
   const currentTheme = useState('currentTheme', () => 'dark')
   const appName = useState('appName', () => 'コベニ')
 
+  // use composable once on page load then set the return value as the IP
+  const userIp = await useUserIp()
+  useState('userIp', () => userIp)
+
+
   /**
    * check session for saved theme
    */

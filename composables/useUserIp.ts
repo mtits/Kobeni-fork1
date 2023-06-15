@@ -1,12 +1,13 @@
 export const useUserIp = async (): Promise<string> => {
-  interface ipifyResult {
+  interface seeipResult {
     ip: string
   }
 
   const style =
     'background-color: rgb(120 53 15); padding: 3px; border-radius: 0.5rem; color: white;'
 
-  const errorMsg = 'Unable to fetch IP from service "api.ipify.org"'
+  const errorMsg =
+    'unable to fetch IP from service "api.seeip.org/jsonip"'.toUpperCase()
 
   try {
     console.log(
@@ -14,16 +15,11 @@ export const useUserIp = async (): Promise<string> => {
       style
     )
 
-    const { data } = await useFetch<ipifyResult>('https://api.ipify.org', {
-      method: 'get',
-      query: {
-        format: 'json',
-      },
-    })
+    const { data } = await useFetch<seeipResult>('https://api.seeip.org/jsonip')
 
     if (data.value) {
       console.info(`${data.value.ip} - ( ͡° ᴥ ͡°) i c u`)
-      return data.value!.ip
+      return data.value.ip
 
       //
     } else {

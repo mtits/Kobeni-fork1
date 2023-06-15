@@ -32,7 +32,7 @@
   const merchantTransactionId = useState('merchantTransactionId')
 
   // fetch current user's IP and append to the default params
-  defaultParameters.value.push(`ip=${await useUserIp()}`)
+  defaultParameters.value.push(`ip=${useState('userIp').value}`)
 
   /**
    *
