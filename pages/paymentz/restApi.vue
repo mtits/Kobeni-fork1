@@ -29,7 +29,8 @@
   ])
 
   // get ip
-  defaultParameters.value.push(`customer.ip=${useState('userIp').value}`)
+  const userIp = await fetchUserIp()
+  defaultParameters.value.push(`customer.ip=${userIp}`)
 
   // append the rest
   const allThatRemains = [

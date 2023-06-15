@@ -1,4 +1,5 @@
 <script setup>
+  import axios from 'axios'
   usePageHead('Server-to-Server')
 
   const currentUser = useState('currentUser')
@@ -48,6 +49,10 @@
     'customer.browser.challengeWindow=4',
     'customer.browser.userAgent=Mozilla/4.0 (MSIE 6.0; Windows NT 5.0)'
   ])
+
+  const userIp = await fetchUserIp()
+  defaultParameters.value.push(`customer.ip=${userIp}`)
+  dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
 
   //
   const responseData = ref('')
@@ -146,13 +151,12 @@
     // console.info(`New merchantTransactionId: ${trxId.value}`)
   }
 
-  defaultParameters.value.push(`customer.ip=${useState('userIp').value}`)
-
   /**
    *
    */
   onMounted(async () => {
-    dataParameters.value = arrayToFormatter(defaultParameters.value, '\n')
+
+
 
     await getSessionData()
   })
