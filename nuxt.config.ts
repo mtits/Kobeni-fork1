@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', href: '/favicon.png' }],
       script: [{ src: '/external.js' }, { src: '/jquery-3.6.1.min.js' }],
     },
-    keepalive: true,
+    // keepalive: true,
     pageTransition: { name: 'page', mode: 'out-in' },
   },
 
