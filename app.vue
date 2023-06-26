@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import axios from 'axios'
-
   const currentUser = useState('currentUser', () => '')
   const currentTheme = useState('currentTheme', () => 'dark')
   const appName = useState('appName', () => 'コベニ')
@@ -12,11 +10,13 @@
     const { session, refresh } = await useSession()
     await refresh()
 
-    if (session.value.theme != null) {
-      console.info(`Switching to theme: ${session.value.theme}`)
-      currentTheme.value = session.value.theme
-    } else {
-      console.log('No session theme, setting to default dark mode')
+    if (session.value) {
+      if (session.value.theme != null) {
+        console.info(`Switching to theme: ${session.value.theme}`)
+        currentTheme.value = session.value.theme
+      } else {
+        console.log('No session theme, setting to default dark mode')
+      }
     }
 
     useHead({
