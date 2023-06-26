@@ -201,7 +201,7 @@
       </Transition>
 
       <Transition>
-        <Textareadisplayonly label="Response Data" :data="responseData" v-if="responseData"></Textareadisplayonly>
+        <Textareadisplayonly label="Response Data" :data="responseData" v-if="responseData" />
       </Transition>
 
       <div class="btn-group">
