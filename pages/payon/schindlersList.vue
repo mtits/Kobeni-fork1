@@ -224,6 +224,10 @@
                 {{ selectedTrx.id }}
               </ModalDisplayItem>
 
+              <ModalDisplayItem field-title="Referenced Id" v-if="selectedTrx.referencedId">
+                {{ selectedTrx.referencedId }}
+              </ModalDisplayItem>
+
               <ModalDisplayItem field-title="merchant Transaction Id" v-if="selectedTrx.merchantTransactionId">
                 {{ selectedTrx.merchantTransactionId }}
               </ModalDisplayItem>
