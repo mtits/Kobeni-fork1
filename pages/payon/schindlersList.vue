@@ -95,7 +95,8 @@
     <PageTitle title="Burn 'em"></PageTitle>
 
     <Alert class="mb-3" color-style="bg-sky-900 text-slate-300">
-      This integration sometimes <i>vomits horrible Eldritch nightmares</i>. Filter at your own risk.
+      This integration sometimes <i>vomits horrible Eldritch nightmares</i>. Filter at your own risk. This page is also
+      limited to displaying only the first 100 items in the list.
     </Alert>
 
     <div class="flex flex-col gap-2">

@@ -39,6 +39,7 @@ export default defineEventHandler(async (event) => {
         'date.from': `${body.dateFrom} 00:00:00`,
         'date.to': `${body.dateTo} 23:59:59`,
         paymentTypes: body.paymentTypes,
+        pageNo: 1,
       },
     })
 
