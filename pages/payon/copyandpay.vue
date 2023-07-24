@@ -147,6 +147,7 @@
    */
   const setWpwlOptions = () => {
     wpwlOptions = {
+      inlineFlow: [],
       locale: useState('locale').value,
       style: useState('widgetStyle').value,
       maskCvv: useState('maskCvv').value,
@@ -222,7 +223,7 @@
 
     // Paypal BNPL
     if (useState('paypalBNPL').value) {
-      wpwlOptions.inlineFlow = ['PAYPAL']
+      wpwlOptions.inlineFlow.push('PAYPAL')
       wpwlOptions.paypal = {
         sdkParams: {
           components: "buttons,messages",
@@ -232,6 +233,13 @@
         }
       }
 
+    }
+
+    // Klarna Inlines
+    if (useState('klarnaInline').value) {
+      wpwlOptions.inlineFlow.push('KLARNA_PAYMENTS_PAYNOW')
+      wpwlOptions.inlineFlow.push('KLARNA_PAYMENTS_PAYLATER')
+      wpwlOptions.inlineFlow.push('KLARNA_PAYMENTS_SLICEIT')
     }
 
     // display the options to the user

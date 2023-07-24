@@ -36,6 +36,7 @@ export const useInitWidgetStates = () => {
   useState('paypalBNPL', () => false)
   useState('paypalBNPLBuyerCountry', () => 'US')
   useState('binListBrandDetection', () => true)
+  useState('klarnaInline', () => false)
 
   // widget labels
   useState('payNowLabel', () => 'ლ(｀∀´ლ)  okane kudasai!!')

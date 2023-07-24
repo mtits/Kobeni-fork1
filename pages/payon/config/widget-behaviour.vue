@@ -17,6 +17,7 @@
   const paypalBNPL = useState<boolean>('paypalBNPL')
   const paypalBNPLBuyerCountry = useState<string>('paypalBNPLBuyerCountry')
   const binListBrandDetection = useState<boolean>('binListBrandDetection')
+  const klarnaInline = useState<boolean>('klarnaInline')
 
   //
   const payNowLabel = useState<string>('payNowLabel')
@@ -175,6 +176,11 @@
 
       <Toggle v-model="binListBrandDetection" title="Enable BINlist Brand Detection">
         Allows the widget to use ACI's BIN database to detect the card. Default is true.
+      </Toggle>
+
+      <Toggle v-model="klarnaInline" title="Add Klarna to Inline Flow">
+        This will include the Klarna brands <kbd>['KLARNA_PAYMENTS_PAYNOW', 'KLARNA_PAYMENTS_PAYLATER',
+          'KLARNA_PAYMENTS_SLICEIT']</kbd> to the inline flow array.
       </Toggle>
 
       <Toggle v-model="paypalBNPL" title="Enable Paypal BNPL (Buy Now, Pay Later)">
