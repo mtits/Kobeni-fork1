@@ -100,6 +100,10 @@
         <HomeItem title="Soundboard" nav-to="/tomorrow">
           Buttons with sounds.
         </HomeItem>
+
+        <HomeItem title="Beshify" nav-to="/beshiefy">
+          In case malungkot ang beshy ko
+        </HomeItem>
       </div>
     </div>
 
