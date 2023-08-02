@@ -45,12 +45,15 @@
 
     await refresh()
 
-    sessionMode.value = session.value.mode
-    sessionRefId.value = session.value.referenceId
-    sessionAccessToken.value = session.value.accessToken
-    sessionEntityId.value = session.value.entityId
-    sessiondataParametersBackoffice.value =
-      session.value.dataParametersBackoffice
+    if (session.value) {
+      sessionMode.value = session.value.mode
+      sessionRefId.value = session.value.referenceId
+      sessionAccessToken.value = session.value.accessToken
+      sessionEntityId.value = session.value.entityId
+      sessiondataParametersBackoffice.value =
+        session.value.dataParametersBackoffice
+    }
+
   }
 
   /**

@@ -29,5 +29,12 @@
         Soundboard
       </NuxtLink>
     </li>
+
+    <li class="hover-bordered">
+      <NuxtLink to="/beshiefy" class="gap-4">
+        <span>🤸‍♂️</span>
+        Beshify
+      </NuxtLink>
+    </li>
   </ul>
 </template>
