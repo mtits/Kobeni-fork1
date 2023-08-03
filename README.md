@@ -1,3 +1,3 @@
 # Kobeni
 
-This is it, the last one. I promise
+A general purpose troubleshooting and testing tool for the [PAY.ON](https://www.aciworldwide.com/) and [Payment Plug](https://paymentplug.com/) (formerly known as Payment Z) payment gateways.
