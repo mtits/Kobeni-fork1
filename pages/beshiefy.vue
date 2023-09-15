@@ -22,7 +22,8 @@
           <label class="label mb-1">
             <span class="label-text text-sky-400 font-bold">Text</span>
           </label>
-          <input type="text" class="input input-bordered font-mono placeholder-slate-600" v-model="sentence">
+          <input type="text" class="input input-bordered font-mono placeholder-slate-600" v-model="sentence"
+            spellcheck="false">
         </div>
 
         <div class="form-control w-1/6">
