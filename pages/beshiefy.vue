@@ -5,7 +5,7 @@
   const emojis = ref(['🤸‍♂️', '🤸', '❤', '🛒', '👌', '😀', '⭐', '😍', '⚡', '👍', '🙌', '✌', '🤣'])
   const selectedEmoji = ref('🤸‍♂️')
 
-  const pageTitle = ref('Bakit malungkot ang beshy ko?')
+  const pageTitle = ref('Lagyan naten ng tumbling ang text ng beshie ko')
   const beshifiedTitle = computed(() => {
     return pageTitle.value.replaceAll(' ', ` ${selectedEmoji.value} `)
   })
