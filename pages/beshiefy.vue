@@ -37,8 +37,7 @@
         </div>
       </div>
 
-
-      <Textareadisplayonly label="Beshified" :data="beshified"></Textareadisplayonly>
+      <Textareadisplayonly label="Beshified" :is-json="false" :data="beshified"></Textareadisplayonly>
 
       <button class="btn" @click="copyString(beshified)">Copy</button>
     </div>
