@@ -5,6 +5,11 @@
   const emojis = ref(['🤸‍♂️', '🤸', '❤', '🛒', '👌', '😀', '⭐', '😍', '⚡', '👍', '🙌', '✌', '🤣'])
   const selectedEmoji = ref('🤸‍♂️')
 
+  const pageTitle = ref('Bakit malungkot ang beshy ko?')
+  const beshifiedTitle = computed(() => {
+    return pageTitle.value.replaceAll(' ', ` ${selectedEmoji.value} `)
+  })
+
   const sentence = ref('Bakit malungkot ang beshy ko?')
   const beshified = computed(() => {
     return sentence.value.replaceAll(' ', ` ${selectedEmoji.value} `)
@@ -13,7 +18,7 @@
 
 <template>
   <div class="flex flex-col" v-if="currentUser">
-    <PageTitle title="Beshify">Dagdagan natin ng emoji yung post mo...</PageTitle>
+    <PageTitle title="Beshify">{{ beshifiedTitle }}</PageTitle>
 
     <div class="flex flex-col gap-3">
 
