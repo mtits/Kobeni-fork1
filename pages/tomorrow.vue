@@ -9,6 +9,10 @@
     src: ['/audio/tomorrow.mp3'],
   })
 
+  const today = new Howl({
+    src: ['/audio/today.mp3'],
+  })
+
   const wow = new Howl({
     src: ['/audio/wow.mp3'],
   })
@@ -70,6 +74,11 @@
         <button class="btn gap-2 w-72" @click="tomorrow.play()">
           <IconPlay />
           Tomorrow!
+        </button>
+
+        <button class="btn gap-2 w-72" @click="today.play()">
+          <IconPlay />
+          Today!
         </button>
 
         <button class="btn gap-2 w-72" @click="omae.play()">
