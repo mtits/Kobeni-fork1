@@ -18,7 +18,7 @@
   //
   const dataParameters = ref('')
   const defaultParameters = ref([
-    'amount=8a8294174b7ecb28014b9699220015ca',
+    'entityId=8a8294174b7ecb28014b9699220015ca',
     'amount=1.00',
     'currency=USD',
     'paymentType=DB',
