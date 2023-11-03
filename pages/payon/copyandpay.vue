@@ -13,7 +13,7 @@
 
   //
   const accessToken = useState('accessToken')
-  //const entityId = useState('entityId') <- removed 04/11/23
+  const entityId = useState('entityId')
 
   //
   const dataParameters = ref('')
@@ -75,7 +75,7 @@
     mode.value = sessionMode.value
     selectedBrands.value = sessionBrands.value
     accessToken.value = sessionAccessToken.value
-    //entityId.value = sessionEntityId.value <-- removed 04/11/23
+    //entityId.value = sessionEntityId.value
     dataParameters.value = sessionDataParameters.value
   }
 
@@ -91,7 +91,7 @@
       mode: mode.value,
       brands: selectedBrands.value,
       accessToken: accessToken.value,
-      //entityId: entityId.value, <-- removed 04/11/23
+      entityId: entityId.value,
       dataParameters: dataParameters.value,
     })
   }
@@ -116,7 +116,7 @@
           accessToken: accessToken.value,
           dataParameters: `${textAreaToURLParams(
             dataParameters.value
-          )}&merchantTransactionId=${trxId.value}`,
+          )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
         },
       })
 
