@@ -11,7 +11,7 @@
   //
   const mode = ref('')
   const dataParameters = ref('')
-  //const entityId = ref('')
+  const entityId = ref('entityId')
   const accessToken = ref('')
   const referenceTransaction = useState('referenceTransaction')
   const registrationId = useState('registrationId')
@@ -44,7 +44,7 @@
         body: {
           mode: mode.value,
           accessToken: accessToken.value,
-          //entityId: entityId.value,
+          entityId: entityId.value,
           checkoutID: id.value,
         },
       })
