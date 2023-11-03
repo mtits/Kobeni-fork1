@@ -13,11 +13,12 @@
 
   //
   const accessToken = useState('accessToken')
-  const entityId = useState('entityId')
+  //const entityId = useState('entityId') <- removed 04/11/23
 
   //
   const dataParameters = ref('')
   const defaultParameters = ref([
+    'amount=8a8294174b7ecb28014b9699220015ca',
     'amount=1.00',
     'currency=USD',
     'paymentType=DB',
@@ -50,7 +51,7 @@
   const sessionBrands = ref('')
   const sessionAccessToken = ref('')
   const sessionDataParameters = ref('')
-  const sessionEntityId = ref('')
+  //const sessionEntityId = ref('') <-- removed 04/11/23
 
   /**
    * fetches data from the session and sets it to the local variables
@@ -63,7 +64,7 @@
     sessionMode.value = session.value.mode
     sessionBrands.value = session.value.brands
     sessionAccessToken.value = session.value.accessToken
-    sessionEntityId.value = session.value.entityId
+    //sessionEntityId.value = session.value.entityId <-- removed 04/11/23
     sessionDataParameters.value = session.value.dataParameters
   }
 
@@ -74,7 +75,7 @@
     mode.value = sessionMode.value
     selectedBrands.value = sessionBrands.value
     accessToken.value = sessionAccessToken.value
-    entityId.value = sessionEntityId.value
+    //entityId.value = sessionEntityId.value <-- removed 04/11/23
     dataParameters.value = sessionDataParameters.value
   }
 
@@ -90,7 +91,7 @@
       mode: mode.value,
       brands: selectedBrands.value,
       accessToken: accessToken.value,
-      entityId: entityId.value,
+      //entityId: entityId.value, <-- removed 04/11/23
       dataParameters: dataParameters.value,
     })
   }
@@ -106,7 +107,7 @@
     await setSessionData()
     await getSessionData()
 
-    //
+    // removed "&entityId=${entityId.value}" between )} and &merc...
     try {
       const { data } = await useFetch('/api/payon/copyandpay', {
         method: 'post',
@@ -115,7 +116,7 @@
           accessToken: accessToken.value,
           dataParameters: `${textAreaToURLParams(
             dataParameters.value
-          )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
+          )}&merchantTransactionId=${trxId.value}`,
         },
       })
 
@@ -295,12 +296,12 @@
         @copy-content="copyString(modeText)" />
 
       <Alert title="Info" color-style="bg-sky-900 text-slate-300">
-        Be sure to add the <kbd class="kbd kbd-sm">Auth Bearer</kbd> parameter in
+        Be sure to add the <kbd class="kbd kbd-sm">AuthBearer</kbd> parameter in
         the
         <NuxtLink class="link font-semibold" to="/payon/config/configure-merchant">
           Configure Merchant
         </NuxtLink>
-        menu, do not add it here. Additionally, the field <kbd class="kbd kbd-sm">merchantTransactionId</kbd> is
+        menu, as it's not here (for Security purposes). Additionally, the field <kbd class="kbd kbd-sm">merchantTransactionId</kbd> is
         automatically generated and added.
       </Alert>
 
