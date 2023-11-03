@@ -7,14 +7,14 @@
 <template>
   <div class="min-h-screen flex flex-col gap-5" v-if="currentUser">
 
-    <div class="text-center flex flex-col items-center gap-3">
+    <!---<div class="text-center flex flex-col items-center gap-3">
       <div>
         <img src="/kobeni.png" class="w-36 h-36 rounded-full object-cover transition hover:scale-105" />
-      </div>
+      </div> !--->
 
-      <PageTitle title="Kobeni">
+      <PageTitle title="Veib x MTITS Tester">
         <span class="text-sm">
-          Nothing to see here, go away...
+          Combination of all the Tools necessary to procure success
         </span>
       </PageTitle>
     </div>
