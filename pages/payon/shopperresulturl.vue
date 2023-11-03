@@ -11,7 +11,7 @@
   //
   const mode = ref('')
   const dataParameters = ref('')
-  const entityId = ref('entityId')
+  const entityId = ref('')
   const accessToken = ref('')
   const referenceTransaction = useState('referenceTransaction')
   const registrationId = useState('registrationId')
@@ -29,7 +29,7 @@
 
     // console.log(session.value)
     mode.value = session.value.mode
-    //entityId.value = session.value.entityId
+    entityId.value = body.entityId
     accessToken.value = session.value.accessToken
     dataParameters.value = session.value.dataParameters
   }
