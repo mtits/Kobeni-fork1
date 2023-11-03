@@ -295,7 +295,7 @@
         @copy-content="copyString(modeText)" />
 
       <Alert title="Info" color-style="bg-sky-900 text-slate-300">
-        Be sure to add the <kbd class="kbd kbd-sm">entityId</kbd> parameter in
+        Be sure to add the <kbd class="kbd kbd-sm">Auth Bearer</kbd> parameter in
         the
         <NuxtLink class="link font-semibold" to="/payon/config/configure-merchant">
           Configure Merchant
