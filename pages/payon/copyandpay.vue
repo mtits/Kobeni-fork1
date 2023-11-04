@@ -51,7 +51,7 @@
   const sessionBrands = ref('')
   const sessionAccessToken = ref('')
   const sessionDataParameters = ref('')
-  //const sessionEntityId = ref('') <-- removed 04/11/23
+  const sessionEntityId = ref('')
 
   /**
    * fetches data from the session and sets it to the local variables
@@ -64,7 +64,7 @@
     sessionMode.value = session.value.mode
     sessionBrands.value = session.value.brands
     sessionAccessToken.value = session.value.accessToken
-    //sessionEntityId.value = session.value.entityId <-- removed 04/11/23
+    sessionEntityId.value = session.value.entityId
     sessionDataParameters.value = session.value.dataParameters
   }
 
@@ -75,7 +75,7 @@
     mode.value = sessionMode.value
     selectedBrands.value = sessionBrands.value
     accessToken.value = sessionAccessToken.value
-    //entityId.value = sessionEntityId.value
+    entityId.value = sessionEntityId.value
     dataParameters.value = sessionDataParameters.value
   }
 
@@ -116,7 +116,7 @@
           accessToken: accessToken.value,
           dataParameters: `${textAreaToURLParams(
             dataParameters.value
-          )}&entityId=${entityId.value}&merchantTransactionId=${trxId.value}`,
+          )}&merchantTransactionId=${trxId.value}`,
         },
       })
 
