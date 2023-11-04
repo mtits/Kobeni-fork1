@@ -29,7 +29,7 @@
 
     // console.log(session.value)
     mode.value = session.value.mode
-    entityId.value = body.entityId
+    entityId.value = session.value.entityId
     accessToken.value = session.value.accessToken
     dataParameters.value = session.value.dataParameters
   }
