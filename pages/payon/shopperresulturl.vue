@@ -32,6 +32,7 @@
     entityId.value = session.value.entityId
     accessToken.value = session.value.accessToken
     dataParameters.value = session.value.dataParameters
+    console.log(dataParameters.value)
   }
 
   /**
