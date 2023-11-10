@@ -27,12 +27,17 @@
 
     await refresh()
 
+    const entityIdString = session.value.dataParameters.split('\n')
+    const bananaSplitString = entityIdString[0].split('=')
+
     // console.log(session.value)
     mode.value = session.value.mode
     entityId.value = session.value.entityId
     accessToken.value = session.value.accessToken
-    dataParameters.value = session.value.dataParameters
+    dataParameters.value = bananaSplitString[1]
+    
     console.log(dataParameters.value)
+
   }
 
   /**
